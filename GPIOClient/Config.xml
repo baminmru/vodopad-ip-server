@@ -1,0 +1,13 @@
+<Config DataSource="ora11fan" 
+Oracle="//192.168.9.46:1521/ora11fan"
+UserID="counters"
+Password="counters" 
+TimeOut="1000"
+TimerInterval="1000"
+ShowHidden="true"
+        >
+</Config>
+
+
+
+        
