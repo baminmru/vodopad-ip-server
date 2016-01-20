@@ -1,75 +1,20 @@
 ﻿Imports System.Net.Sockets
 Public Class ASSVSocket
+    Inherits GRPSSocket
 
-    Private rawBuffer(4096) As Byte
-    Private rawCount As Integer = 0
 
-    Private dataBuffer(4096) As Byte
-    Private dataCount As Integer = 0
-
-    Private dLastRcv As Date = Now
-
-    Private mASSVID As String = ""
-    Public ReadOnly Property ASSVID As String
+    Public Overrides ReadOnly Property SocketType() As String
         Get
-            Return mASSVID
+            Return "ASSVSOCKET"
         End Get
     End Property
-
-    Public ReadOnly Property LastRcvTime As Date
-        Get
-            Return dLastRcv
-        End Get
-    End Property
-
-
-
-
-    Private mHasID As Boolean
-    Public ReadOnly Property HasID() As Boolean
-        Get
-            Return mHasID
-        End Get
-    End Property
-
-
-    Private mLastError As String = ""
-    Public ReadOnly Property LastError() As String
-        Get
-            Return mLastError
-        End Get
-    End Property
-
-    Private Shared Function GetMyDir() As String
-        Dim s As String
-        s = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase)
-        s = s.Substring(6)
-        Return s
-    End Function
-
-    Private Sub LOG(ByVal s As String)
-
-        Dim ep As String = ""
-
-        If Not IPSocket Is Nothing Then
-            If IPSocket.Connected Then
-                ep = IPSocket.RemoteEndPoint.ToString()
-            End If
-
-        End If
-
-        Try
-            System.IO.File.AppendAllText(GetMyDir() + "\ASSV_LOG_" + Date.Now.ToString("yyyyMMdd") + "_" + mASSVID + ".txt", Date.Now.ToString("yyyy.MM.dd HH:mm:ss") + " (" + ep + ") " + s + vbCrLf)
-        Catch ex As Exception
-
-        End Try
-        Console.WriteLine(s)
-    End Sub
-
-    Public IPSocket As Socket
 
     Public Sub New(ByRef aSocket As Socket)
-        IPSocket = aSocket
+        MyBase.New(aSocket)
+    End Sub
+
+    Protected Overrides Sub Init()
+
         If IPSocket.Connected Then
 
             Dim buffer(20) As Byte
@@ -113,15 +58,15 @@ Public Class ASSVSocket
                 rCnt = Read(result, 0, 1023)
                 If rCnt > 8 Then
                     i = 0
-                    mASSVID = ""
+                    mCallerID = ""
                     For i = 0 To 8
                         If result(i) >= &H30 Then
-                            mASSVID = mASSVID + Chr(result(i))
+                            mCallerID = mCallerID + Chr(result(i))
                         End If
                     Next
-                    If mASSVID.Length > 1 Then
+                    If mCallerID.Length > 1 Then
                         mHasID = True
-                        LOG("ASSVID=" + mASSVID)
+                        LOG("ASSVID=" + mCallerID)
                     Else
                         mLastError = "Идентификатор модуля АССВ не получен"
                         LOG(mLastError)
@@ -160,7 +105,7 @@ Public Class ASSVSocket
     End Function
 
 
-    Public Function Read(ByRef buf() As Byte, ByVal offset As Integer, ByVal dlength As Integer) As Integer
+    Public Overrides Function Read(ByRef buf() As Byte, ByVal offset As Integer, ByVal dlength As Integer) As Integer
         LOG("ASSV Socket Read")
         Dim tmpSize As Integer
         Dim tmpoffset As Integer
@@ -169,7 +114,7 @@ Public Class ASSVSocket
         Dim l As Integer
         Dim c As Integer
         Dim i As Integer
-        
+
         l = 0
         c = 0
 
@@ -186,14 +131,14 @@ Public Class ASSVSocket
         End If
 
 
-        l = IPSocket.Available
-        Console.WriteLine(".")
-        While l = 0 And c < 10
-            System.Threading.Thread.Sleep(100)
-            l = IPSocket.Available
-            Console.Write(".")
-            c = c + 1
-        End While
+        'l = IPSocket.Available
+        'Console.WriteLine(".")
+        'While l = 0 And c < 10
+        '    System.Threading.Thread.Sleep(100)
+        '    l = IPSocket.Available
+        '    Console.Write(".")
+        '    c = c + 1
+        'End While
 
 
         rawCount = 0
@@ -287,7 +232,22 @@ Public Class ASSVSocket
     End Function
 
 
-    Public Function CheckBuffer(ByVal buf() As Byte, ByVal size As Integer) As Boolean
+    Public Overrides Function GetRawData(ByVal rawBuffer() As Byte, ByVal size As Integer) As Byte()
+        Dim ii As Integer
+        Dim arr() As Byte
+        For ii = 6 To size
+            If CheckBuffer(rawBuffer, ii) Then
+                arr = ConvertBuffer(rawBuffer, ii)
+                If Not arr Is Nothing Then
+                    Return arr
+                End If
+            End If
+        Next
+        Return Nothing
+    End Function
+
+
+    Private Function CheckBuffer(ByVal buf() As Byte, ByVal size As Integer) As Boolean
         Dim cc As UShort
         cc = assvCRC(buf, 2, size - 3)
         If (buf(size - 2) = ((cc >> 8) And 255)) And (buf(size - 1) = (cc And 255)) Then
@@ -298,7 +258,7 @@ Public Class ASSVSocket
 
 
 
-    Public Function ConvertBuffer(ByVal rawBuffer() As Byte, ByVal size As Integer) As Byte()
+    Private Function ConvertBuffer(ByVal rawBuffer() As Byte, ByVal size As Integer) As Byte()
         Dim isData As Boolean = False
         Dim i As Integer
         Dim outBuf() As Byte
@@ -367,7 +327,7 @@ Public Class ASSVSocket
 
 
 
-    Public Function Send(ByRef buf() As Byte, ByVal l As Integer, Optional ByVal NoReplay As Boolean = False) As Integer
+    Public Overrides Function Send(ByRef buf() As Byte, ByVal l As Integer, Optional ByVal NoReplay As Boolean = False) As Integer
         LOG("ASSV Socket Send")
         Dim buffer(1024) As Byte
         buffer(0) = &H10
@@ -421,22 +381,8 @@ Public Class ASSVSocket
         End If
     End Function
 
-    Public Function Connected() As Boolean
-        If Not IPSocket Is Nothing Then
-            Return IPSocket.Connected And HasID
-        End If
-        Return False
-    End Function
-
-    Public Sub Close()
-        If Not IPSocket Is Nothing Then
-            IPSocket.Close()
-            IPSocket = Nothing
-        End If
-
-    End Sub
 
 
 
-
+  
 End Class

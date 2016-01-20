@@ -201,18 +201,18 @@ Public MustInherit Class TVDriver
     End Property
 
 
-    Public Overridable Function OpenPort(Optional ByRef aSocket As ASSVSocket = Nothing) As Boolean
+    Public Overridable Function OpenPort(Optional ByRef aSocket As GRPSSocket = Nothing) As Boolean
         Dim nd As NportTransportSetupData
         Dim vd As VortexTransportSetupData
         Dim sd As SerialTransportSetupData
         Dim md As ModemTransportSetupData
-        Dim ad As ASSVTransportSetupData
+        Dim ad As GRPSTransportSetupData
 
 
 
-        If Transport = 5 Then
-            MyTransport = New ASSVTransport(aSocket)
-            ad = New ASSVTransportSetupData
+        If Transport = 5 Or Transport = 6 Then
+            MyTransport = New GRPSTransport(aSocket)
+            ad = New GRPSTransportSetupData
             ad.BaudRate = BaudRate
             MyTransport.SetupTransport(ad)
         End If
@@ -507,6 +507,7 @@ Public MustInherit Class TVDriver
         Thread.Sleep(si)
         RaiseIdle()
         While MyTransport.BytesToRead = 0 And t < 500
+            If Not MyTransport.IsConnected Then Exit Sub
             si = CalcInterval(1)
             Thread.Sleep(si)
             RaiseIdle()
@@ -517,6 +518,7 @@ Public MustInherit Class TVDriver
         cnt = -1
         t = 0
         While MyTransport.BytesToRead <> cnt And t < 20
+            If Not MyTransport.IsConnected Then Exit Sub
             cnt = MyTransport.BytesToRead
             RaiseIdle()
             si = CalcInterval(10)
@@ -528,6 +530,7 @@ Public MustInherit Class TVDriver
         If cnt = 0 Then
             t = 0
             While MyTransport.BytesToRead = 0 And t < 20
+                If Not MyTransport.IsConnected Then Exit Sub
                 System.Threading.Thread.Sleep(100)
                 RaiseIdle()
                 t = t + 1

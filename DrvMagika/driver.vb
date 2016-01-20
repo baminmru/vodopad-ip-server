@@ -1283,7 +1283,7 @@ Public Class driver
                 .M4 = GetFlt(SI, 49, 0)
                 .T1 = GetFlt(SI, 53, 0)
                 .T2 = GetFlt(SI, 57, 0)
-                .T3 = GetFlt(SI, 53, 0)
+                .T3 = GetFlt(SI, 61, 0)
                 .T4 = GetFlt(SI, 65, 0)
                 .P1 = GetFlt(SI, 69, 0)
                 .P2 = GetFlt(SI, 73, 0)

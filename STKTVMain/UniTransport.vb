@@ -851,12 +851,6 @@ Public Class ModemTransport
                 System.Threading.Thread.Sleep(1000)
                 SendIdle()
                 Connecting = True
-                If mData.InitCommand <> "" Then
-                    WriteS(mData.InitCommand & vbCrLf)
-                    ReadAll(1000)
-                End If
-
-
 
                 Port.Write("atez" & vbCrLf)
                 System.Threading.Thread.Sleep(1000)
@@ -866,6 +860,14 @@ Public Class ModemTransport
                 WriteS("at&f" & vbCrLf)
                 System.Threading.Thread.Sleep(1000)
                 WaitOK("")
+
+
+
+                If mData.InitCommand <> "" Then
+                    WriteS(mData.InitCommand & vbCrLf)
+                    ReadAll(1000)
+                End If
+
 
 
                 ' эхо
@@ -1415,28 +1417,28 @@ Public Class VortexTransport
 End Class
 
 
-Public Class ASSVTransportSetupData
+Public Class GRPSTransportSetupData
     Inherits TransportSetupData
-   
+
     Public Sub New()
     End Sub
 End Class
 
 
-Public Class ASSVTransport
+Public Class GRPSTransport
     Inherits UniTransport
 
-    Private mData As ASSVTransportSetupData
-    Private inBuffer(0 To 32000) As Byte
+    Private mData As GRPSTransportSetupData
+    'Private inBuffer(0 To 32000) As Byte
     Private dataBuffer(0 To 32000) As Byte
-    Private ReadCount As Integer = 0
+    'Private ReadCount As Integer = 0
     Private DataCount As Integer = 0
 
-    Private Soc As ASSVSocket
+    Private Soc As GRPSSocket
 
     Public Overrides ReadOnly Property IsConnected As Boolean
         Get
-
+            If Soc Is Nothing Then Return False
             If Soc.Connected And Soc.LastRcvTime.AddMinutes(4) > Now Then
                 Return True
             End If
@@ -1444,20 +1446,20 @@ Public Class ASSVTransport
         End Get
     End Property
 
-    Public Sub New(ByRef OpennedSocket As ASSVSocket)
+    Public Sub New(ByRef OpennedSocket As GRPSSocket)
         SendEvent(UnitransportAction.WakeUp, "")
-        mData = New ASSVTransportSetupData
+        mData = New GRPSTransportSetupData
         Soc = OpennedSocket
     End Sub
 
     Protected Overrides Sub Finalize()
         Try
-            If soc IsNot Nothing Then
+            If Soc IsNot Nothing Then
 
-                If soc.Connected Then
+                If Soc.Connected Then
                     SendEvent(UnitransportAction.Disconnecting, "")
                     Try
-                        soc.Close()
+                        Soc.Close()
                         SendEvent(UnitransportAction.Disconnected, "")
                     Catch ex As Exception
                         Debug.Print(ex.Message)
@@ -1469,7 +1471,7 @@ Public Class ASSVTransport
         End Try
 
         SendEvent(UnitransportAction.Destroy, "")
-        soc = Nothing
+        Soc = Nothing
 
         mData = Nothing
     End Sub
@@ -1479,48 +1481,65 @@ Public Class ASSVTransport
         Dim tmpReadCount As Integer
         Dim tmpSize As Integer
         Dim i As Integer
-        If ReadCount = 32000 Then Exit Sub
-
-        tmpSize = 32000 - ReadCount
-
-        If Soc.IPSocket.Available = 0 Then
-            System.Threading.Thread.Sleep(2)
-            SendIdle()
-        End If
-        If Soc.IPSocket.Available > 0 Then
-            If tmpSize > Soc.IPSocket.Available Then
-                tmpSize = Soc.IPSocket.Available
-            End If
-            tmpReadCount = Soc.IPSocket.Receive(tmpBuffer, tmpSize, Net.Sockets.SocketFlags.None)
+        If DataCount = 32000 Then Exit Sub
+        tmpSize = 32000 - DataCount
+        tmpReadCount = Soc.Read(tmpBuffer, 0, tmpSize)
+        If tmpReadCount > 0 Then
             BytesReceived += tmpReadCount
             SendEvent(UnitransportAction.ReceiveData, "")
-            If tmpReadCount > 0 Then
-                For i = 0 To tmpReadCount - 1
-                    inBuffer(ReadCount) = tmpBuffer(i)
-                    ReadCount += 1
-                Next
-            End If
-
-            Dim arr() As Byte
-            Dim ii As Integer
-            Dim j As Integer
-            For ii = 6 To ReadCount
-                If Soc.CheckBuffer(inBuffer, ii) Then
-                    arr = Soc.ConvertBuffer(inBuffer, ii)
-                    If Not arr Is Nothing Then
-                        DataCount = 0
-                        For j = 0 To arr.Length - 1
-                            dataBuffer(DataCount) = arr(j)
-                            DataCount += 1
-                        Next
-                    End If
-                    ReadCount = 0
-                End If
+            For i = 0 To tmpReadCount - 1
+                dataBuffer(DataCount) = tmpBuffer(i)
+                DataCount += 1
             Next
-
         End If
     End Sub
-   
+
+    'Private Sub TryRead()
+    '    Dim tmpBuffer(0 To 32000) As Byte
+    '    Dim tmpReadCount As Integer
+    '    Dim tmpSize As Integer
+    '    Dim i As Integer
+    '    If ReadCount = 32000 Then Exit Sub
+
+    '    tmpSize = 32000 - ReadCount
+
+    '    If Soc.IPSocket.Available = 0 Then
+    '        System.Threading.Thread.Sleep(2)
+    '        SendIdle()
+    '    End If
+    '    If Soc.IPSocket.Available > 0 Then
+    '        If tmpSize > Soc.IPSocket.Available Then
+    '            tmpSize = Soc.IPSocket.Available
+    '        End If
+    '        tmpReadCount = Soc.IPSocket.Receive(tmpBuffer, tmpSize, Net.Sockets.SocketFlags.None)
+    '        BytesReceived += tmpReadCount
+    '        SendEvent(UnitransportAction.ReceiveData, "")
+    '        If tmpReadCount > 0 Then
+    '            For i = 0 To tmpReadCount - 1
+    '                inBuffer(ReadCount) = tmpBuffer(i)
+    '                ReadCount += 1
+    '            Next
+    '        End If
+
+    '        Dim arr() As Byte
+
+    '        arr = Soc.GetRawData(inBuffer, ReadCount)
+    '        Dim j As Integer
+
+    '        If Not arr Is Nothing Then
+    '            ' DataCount = 0
+    '            For j = 0 To arr.Length - 1
+    '                dataBuffer(DataCount) = arr(j)
+    '                DataCount += 1
+    '            Next
+    '            ReadCount = 0
+    '        End If
+
+
+
+    '    End If
+    'End Sub
+
     Public Overrides Function BytesToRead() As Integer
         TryRead()
         Return DataCount
@@ -1538,9 +1557,9 @@ Public Class ASSVTransport
     End Function
 
     Public Overrides Function DisConnect() As Boolean
-        If (soc.Connected) Then
+        If (Soc.Connected) Then
             SendEvent(UnitransportAction.Disconnecting, "")
-            soc.Close()
+            Soc.Close()
             SendEvent(UnitransportAction.Disconnected, "")
         End If
 
@@ -1562,20 +1581,9 @@ Public Class ASSVTransport
             buffer(i + offset) = dataBuffer(i)
         Next
 
-        Dim bufstr As String = ""
-        Dim j As Integer
-        Try
-            Dim buf2() As Byte
-            buf2 = System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(866), System.Text.Encoding.Default, buffer, offset, count)
-            For j = 0 To CntRead - 1
-                bufstr = bufstr + Chr(buf2(j))
-            Next
-            If bufstr <> "" Then
-                Debug.Print(">>r" + CntRead.ToString + " >>")
-            End If
-        Catch ex As Exception
-            'Stop
-        End Try
+
+        Debug.Print(">>r" + CntRead.ToString + " >>")
+
         BytesReceived += CntRead
         SendEvent(UnitransportAction.ReceiveData, "")
         DataCount -= CntRead
@@ -1592,15 +1600,15 @@ Public Class ASSVTransport
     End Function
 
     Public Overrides Function SetupTransport(ByRef SetupData As TransportSetupData) As Boolean
-        mData = CType(SetupData, ASSVTransportSetupData)
+        mData = CType(SetupData, GRPSTransportSetupData)
     End Function
 
     Public Overrides Function TransportType() As String
-        Return "ASSV"
+        Return "GRPS"
     End Function
 
     Public Overrides Sub Write(ByVal buffer() As Byte, ByVal offset As Integer, ByVal count As Integer, Optional ByVal NoReplay As Boolean = False)
-        ReadCount = 0
+        'ReadCount = 0
         DataCount = 0
         Soc.Send(buffer, count, NoReplay)
         SendEvent(UnitransportAction.SendData, "")
@@ -1608,10 +1616,10 @@ Public Class ASSVTransport
         Debug.Print(">>w" + count.ToString) '+ ">>" + bufstr)
     End Sub
 
-    
+
 
     Public Overrides Sub CleanPort()
-        ReadCount = 0
+        'ReadCount = 0
         DataCount = 0
     End Sub
 End Class

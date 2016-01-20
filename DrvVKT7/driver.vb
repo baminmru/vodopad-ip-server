@@ -1077,7 +1077,7 @@ archErr:
             IsBytesToRead = False
         End If
         bufferindex = 0
-        System.Threading.Thread.Sleep(75)
+        'System.Threading.Thread.Sleep()
         MyTransport.CleanPort()
     End Sub
 
@@ -1339,6 +1339,45 @@ archErr:
             AErr += "dt45;"
         End If
         If SequenceErrorCount > 5 Then GoTo ArchErr
+
+
+        pVal = GetParam(VKT7ElemType.P1_1Type)
+        mArch.p1 = pVal
+        If IsError Then
+            AErr += "p1;"
+        End If
+        If SequenceErrorCount > 5 Then GoTo ArchErr
+
+        pVal = GetParam(VKT7ElemType.P2_1Type)
+        mArch.p2 = pVal
+        If IsError Then
+            AErr += "p2;"
+        End If
+        If SequenceErrorCount > 5 Then GoTo ArchErr
+
+        pVal = GetParam(VKT7ElemType.P1_2Type)
+        mArch.p3 = pVal
+        If IsError Then
+            AErr += "p3;"
+        End If
+        If SequenceErrorCount > 5 Then GoTo ArchErr
+
+        pVal = GetParam(VKT7ElemType.P2_2Type)
+        mArch.p4 = pVal
+        If IsError Then
+            AErr += "p4;"
+        End If
+        If SequenceErrorCount > 5 Then GoTo ArchErr
+
+
+        pVal = GetParam(VKT7ElemType.P3P_Type)
+        mArch.p5 = pVal
+        If IsError Then
+            AErr += "p5;"
+        End If
+        If SequenceErrorCount > 5 Then GoTo ArchErr
+
+
 
         pVal = GetParam(VKT7ElemType.Qg_1TypeP)
         mArch.dQ1 = pVal

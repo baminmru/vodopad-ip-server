@@ -406,7 +406,16 @@
 
             aLast = GetLastHourArchive(id_bd)
             If aLast Is Nothing Then
-                AppendAnalizerInfo(id_bd, "Не обнаружены часовые архивы", "YELLOW")
+
+                Dim checkdt As DataTable
+
+                checkdt = m_tvmain.QuerySelect("select * from plancall where id_bd=" + id_bd.ToString())
+                If checkdt.Rows.Count > 0 Then
+                    If checkdt.Rows(0)("CHOUR") = 1 Then
+                        AppendAnalizerInfo(id_bd, "Не обнаружены часовые архивы", "YELLOW")
+
+                    End If
+                End If
                 Exit Sub
             End If
 
@@ -416,7 +425,7 @@
                 a_ok = True
             End If
             If a_ok Then
-            AnalizeLast(id_bd, aLast, acfg.Rows(0), NodeName, True)
+                AnalizeLast(id_bd, aLast, acfg.Rows(0), NodeName, True)
             End If
 
             While deep
@@ -425,7 +434,7 @@
                     dtmp = aLast("DCOUNTER")
                     aPrev = GetPrevHourArchive(id_bd, dtmp)
                     If a_ok And Not aPrev Is Nothing Then
-                      
+
                         AnalizePair(id_bd, aLast, aPrev, acfg.Rows(0), NodeName, True, GVSMax, ok)
                         aLast = aPrev
 

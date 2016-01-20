@@ -625,7 +625,7 @@ Public Class TVMain
         cmd.Connection = connection
 
 
-        cmd.CommandText = "select npip,sysdate ServerDate from bdevices  where  ( nplock is null or nplock <sysdate ) and  transport in (0,1, 2,3,4,5) /* and npquery=1 */  and bdevices.id_bd=" & DevID.ToString() + " "
+        cmd.CommandText = "select npip,sysdate ServerDate from bdevices  where  ( nplock is null or nplock <sysdate ) and  transport in (0,1,2,3,4,5,6) /* and npquery=1 */  and bdevices.id_bd=" & DevID.ToString() + " "
 
         da.SelectCommand = cmd
         dt = New DataTable
@@ -655,7 +655,7 @@ Public Class TVMain
         cmd.Connection = connection
 
 
-        cmd.CommandText = "select npip,sysdate ServerDate from bdevices  where  ( nplock >=sysdate ) and   transport in (0,1,2,3,4,5) /* and npquery=1 */  and bdevices.id_bd=" + DevID.ToString() + " "
+        cmd.CommandText = "select npip,sysdate ServerDate from bdevices  where  ( nplock >=sysdate ) and   transport in (0,1,2,3,4,5,6) /* and npquery=1 */  and bdevices.id_bd=" + DevID.ToString() + " "
 
         da.SelectCommand = cmd
         dt = New DataTable
@@ -750,7 +750,7 @@ Public Class TVMain
             Console.WriteLine(ex.Message)
         End Try
     End Sub
-    Public Function DeviceInit(ByVal id_bd As Int32, Optional ByVal UsePort As String = "(Любой)", Optional ByVal aSocket As ASSVSocket = Nothing) As Boolean
+    Public Function DeviceInit(ByVal id_bd As Int32, Optional ByVal UsePort As String = "(Любой)", Optional ByVal aSocket As GRPSSocket = Nothing) As Boolean
         ClearDuration()
         Dim deviceid As Int32
         Dim IPstr As String = String.Empty
@@ -884,6 +884,10 @@ Public Class TVMain
                     'm_ConnectStatus += vbCrLf & "Транспорт: модем"
                     SaveLog(id_bd, 0, "??", 1, "Транспорт: АССВ")
 
+                Case 6
+                    'm_ConnectStatus += vbCrLf & "Транспорт: модем"
+                    SaveLog(id_bd, 0, "??", 1, "Транспорт: ROBUSTEL")
+
             End Select
 
             If transport = 0 Or transport = 4 Then
@@ -917,13 +921,14 @@ Public Class TVMain
                 SaveLog(id_bd, 0, "??", 1, "Выделен модем на порту: " & TVD.ComPort & " Телефон:" & TVD.Phone)
             ElseIf transport = 1 Then
                 TVD.ComPort = UsePort
-            ElseIf transport = 5 Then
+            ElseIf transport = 5 Or transport = 6 Then
                 If Not aSocket Is Nothing Then
-                    SaveLog(id_bd, 0, "ASSV", 1, "ASSV ID:" & aSocket.ASSVID)
+                    If transport = 5 Then SaveLog(id_bd, 0, "??", 1, "ASSV CALLER ID:" & aSocket.callerID)
+                    If transport = 6 Then SaveLog(id_bd, 0, "??", 1, "ROBUSTEL CALLER ID:" & aSocket.callerID)
                 End If
             Else
 
-                SaveLog(id_bd, 0, "IP", 1, "IP адрес:" & TVD.ServerIp)
+                SaveLog(id_bd, 0, "??", 1, "IP адрес:" & TVD.ServerIp)
                 'm_ConnectStatus += vbCrLf & "IP адрес:" & TVD.ServerIp
             End If
             TVD.NPPassword = NPPassword
@@ -1145,6 +1150,11 @@ Public Class TVMain
 
                     If dr("transport") = 5 Then
                         mGetConfigStructFromId_BD.Transport = "ASSV"
+                    End If
+
+
+                    If dr("transport") = 6 Then
+                        mGetConfigStructFromId_BD.Transport = "ROBUSTEL"
                     End If
 
 

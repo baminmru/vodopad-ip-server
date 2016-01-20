@@ -60,8 +60,9 @@
 
             If TickCount = 0 Then
                 Dim dt2 As DataTable
+                Dim q As String
 
-                dt2 = TvMain.QuerySelect("select bgroups.cgrpnm as Группа, bbuildings.cshort as Узел, " & _
+                q = "select bgroups.cgrpnm as Группа, bbuildings.cshort as Узел, " & _
                         " case when (CCURR =1 and DNEXTCURR <sysdate) then ceil((sysdate-DNEXTCURR)*24 *60) else 0 end as Текущие   ," & _
                         " case when (CHOUR =1 and DNEXTHOUR <sysdate)then ceil((sysdate-DNEXTHOUR)*24 *60) else 0 end as Часовые ," & _
                         " case when (C24 =1 and DNEXT24 <sysdate) then ceil((sysdate-DNEXT24)*24 *60) else 0 end as Суточные ," & _
@@ -79,8 +80,9 @@
                         " (C24 =1 and sysdate - DNEXT24 > 15.0 /60 /24)" & _
                         " or" & _
                         " (CSUM =1 and sysdate -DNEXTSUM > 15.0 /60 /24)" & _
-                        " ) order by bgroups.cgrpnm,bbuildings.cshort")
-
+                        " ) order by bgroups.cgrpnm,bbuildings.cshort"
+                Debug.Print(q)
+                dt2 = TvMain.QuerySelect(q)
                 If Not DataGridView2.DataSource Is Nothing Then
                     dd = DataGridView2.DataSource
                     dd.Dispose()

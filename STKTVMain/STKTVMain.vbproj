@@ -72,7 +72,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ASSVSocket.vb" />
+    <Compile Include="GRPSSocket.vb" />
     <Compile Include="IPSerial.vb" />
+    <Compile Include="ROBUSTELSocket.vb" />
     <Compile Include="TVDriver.vb" />
     <Compile Include="TVMain.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

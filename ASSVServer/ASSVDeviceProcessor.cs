@@ -12,7 +12,7 @@ namespace ASSVServerLib
     class ASSVDeviceProcessor
     {
         private int SequenceErrorCount = 0;
-        private STKTVMain.ASSVSocket aSocket;
+        private STKTVMain.GRPSSocket aSocket;
         private System.Diagnostics.EventLog eventLog1;
 
         private void InitializeComponent()
@@ -98,7 +98,7 @@ namespace ASSVServerLib
             if (bLogged)
             {
 
-                devRS = TvMain.QuerySelect("select id_bd from bdevices where transport=5 and callerid='" + aSocket.ASSVID + "'");
+                devRS = TvMain.QuerySelect("select id_bd from bdevices where transport=5 and callerid='" + aSocket.callerID + "'");
 
 
                 if (devRS.Rows.Count == 1)
@@ -163,9 +163,9 @@ namespace ASSVServerLib
                 else
                 {
                     if (devRS.Rows.Count ==0)
-                        ErrorReport("Не обнаружен прибор для АССВ устройства с идентификатором: " + aSocket.ASSVID);
+                        ErrorReport("Не обнаружен прибор для АССВ устройства с идентификатором: " + aSocket.callerID);
                     else
-                        ErrorReport("Обнаружено " +devRS.Rows.Count.ToString() + " приборов для АССВ устройства с идентификатором: " + aSocket.ASSVID);
+                        ErrorReport("Обнаружено " +devRS.Rows.Count.ToString() + " приборов для АССВ устройства с идентификатором: " + aSocket.callerID);
                 }
             }
 
@@ -1083,7 +1083,7 @@ namespace ASSVServerLib
 
                         TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dlastcall", SrvDate);
 
-                        // try to load requested dayr archives
+                        // try to load requested day archives
                         {
 
                             ddd = SrvDate;
