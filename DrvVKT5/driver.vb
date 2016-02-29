@@ -561,20 +561,21 @@ Public Class driver
                 Else
 
                     isArchToDBWrite = False
-                    Return "Часовой архив еще не сформирован"
+                    Return "Ошибка: Часовой архив еще не сформирован"
                 End If
             End If
 
 
             If ArchType = archType_day Then
                 dt2 = New Date(ArchYear, ArchMonth, ArchDay, 0, 0, 0)
-                If dt2 <= MaxArchDate And dt2 >= MinArchDate Then
+                dt1 = dt2.AddHours(23)
+                If dt1 <= MaxArchDate And dt1 >= MinArchDate Then
                     Arch.archType = ArchType
                   
                     If IsError Then
                         Return ErrorMessage
                     End If
-                    SetArchDate(dt2.AddHours(23))
+                    SetArchDate(dt1)
                     If IsError Then
                         Return ErrorMessage
                     End If
@@ -584,7 +585,7 @@ Public Class driver
                     End If
                 Else
                     isArchToDBWrite = False
-                    Return "Суточный архив еще не сформирован"
+                    Return "Ошибка: Суточный архив еще не сформирован"
                 End If
             End If
 
@@ -1063,13 +1064,23 @@ archErr:
                                         Arch.Q1 = BToSingle(b, (tubeNo - 1) * 12 + 11)
                                         Arch.Q2 = BToSingle(b, (tubeNo - 1) * 12 + 15)
                                         'If Version >= 6 Then
+                                        '    Try
                                         '    Arch.oktime1 = BToSingle(b, (tubeNo - 1) * 12 + 19)
+                                        '    Catch ex As Exception
+
+                                        '    End Try
+
                                         'End If
                                     Case 2
                                         Arch.Q3 = BToSingle(b, (tubeNo - 1) * 12 + 11)
                                         Arch.Q4 = BToSingle(b, (tubeNo - 1) * 12 + 15)
                                         'If Version >= 6 Then
+                                        '    Try
                                         '    Arch.oktime2 = BToSingle(b, (tubeNo - 1) * 12 + 19)
+                                        '    Catch ex As Exception
+
+                                        '    End Try
+
                                         'End If
                                     Case 3
                                         Arch.Q5 = BToSingle(b, (tubeNo - 1) * 12 + 11)
@@ -1731,9 +1742,21 @@ mArchErr:
 
                                         tArch.Q1 = BToDouble(b, (tubeNo - 1) * 16 + 19)
                                         tArch.Q2 = BToDouble(b, (tubeNo - 1) * 16 + 27)
+                                        If Version >= 6 Then
+                                            Try
+                                                Arch.oktime1 = BToDouble(b, (tubeNo - 1) * 16 + 35)
+                                            Catch ex As Exception
+                                            End Try
+                                        End If
                                     Case 2
                                         tArch.Q3 = BToDouble(b, (tubeNo - 1) * 16 + 19)
                                         tArch.Q4 = BToDouble(b, (tubeNo - 1) * 16 + 27)
+                                        If Version >= 6 Then
+                                            Try
+                                                Arch.oktime2 = BToDouble(b, (tubeNo - 1) * 16 + 35)
+                                            Catch ex As Exception
+                                            End Try
+                                        End If
                                     Case 3
                                         tArch.Q5 = BToSingle(b, (tubeNo - 1) * 16 + 19)
                                         tArch.Q6 = BToDouble(b, (tubeNo - 1) * 16 + 27)
@@ -1833,7 +1856,7 @@ mArchErr:
                                     If tNc > 0 Then
                                         mNC += "Gsit" + ncTubeNo.ToString() + ":" + tNc.ToString + ";"
                                     End If
-                                    tNc = Bytes2Int(b, (tubeNo - 1) * 18 + 15)
+                                    tNc = Bytes2Int(b, (ncTubeNo - 1) * 18 + 15)
                                     If tNc > 0 Then
                                         mNC += "Sost" + ncTubeNo.ToString() + ":" + tNc.ToString + ";"
                                     End If
@@ -1850,11 +1873,25 @@ mArchErr:
                                         'tArch.oktime1 -= tArch.errtime1
                                         'tArch.oktime1 -= tArch.HCtv1
 
+                                        'If Version >= 6 Then
+                                        '    Try
+                                        '        Arch.oktime1 = BToDouble(b, (tubeNo - 1) * 18 + 17)
+                                        '    Catch ex As Exception
+                                        '    End Try
+                                        'End If
+
                                     Case 2
                                         'tArch.HCtv2 = Bytes2Int(b, (ncTubeNo - 1) * 18 + 3)
                                         tArch.errtime2 = Bytes2Int(b, (ncTubeNo - 1) * 18 + 5)
                                         'tArch.oktime2 -= tArch.errtime2
                                         'tArch.oktime2 -= tArch.HCtv2
+
+                                        'If Version >= 6 Then
+                                        '    Try
+                                        '        Arch.oktime2 = BToDouble(b, (tubeNo - 1) * 18 + 17)
+                                        '    Catch ex As Exception
+                                        '    End Try
+                                        'End If
                                     Case 3
                                         tArch.HC = Bytes2Int(b, (ncTubeNo - 1) * 18 + 3)
                                         'tArch.Errtime = Bytes2Int(b, (ncTubeNo - 1) * 18 + 5)
@@ -2260,8 +2297,8 @@ archerr:
 
     Private Function GetArchiveDates() As Boolean
         EraseInputQueue()
-        MinArchDate = Date.MinValue
-        MaxArchDate = Date.MinValue
+        MaxArchDate = Date.Today
+        MinArchDate = Date.Today.AddDays(-365)
 
         Dim Frame(10) As Byte
         Dim ch As UInt16
@@ -2561,102 +2598,7 @@ archerr:
         Return False
     End Function
 
-    'Private Sub GetList()
-    '    IsError = False
-    '    ErrorMessage = ""
-    '    MyTransport.CleanPort()
-    '    EraseInputQueue()
-    '    Dim Frame(10) As Byte
-    '    Dim ch As UInt16
-    '    Frame(0) = &HFF
-    '    Frame(1) = &HFF
-    '    Frame(2) = &H0
-    '    Frame(3) = &H3
-    '    Frame(4) = &H3F
-    '    Frame(5) = &HFC
-    '    Frame(6) = &H0
-    '    Frame(7) = &H0
-    '    ch = CheckSum(Frame, 2, 6)
-    '    Frame(8) = ch Mod 256
-    '    Frame(9) = ch \ 256
-
-    '    EraseInputQueue()
-    '    MyTransport.Write(Frame, 0, 10)
-
-    '    'Dim t As Integer
-    '    'RaiseIdle()
-    '    Thread.Sleep(200)
-    '    't = 0
-    '    'While MyTransport.BytesToRead = 0 And t < 20
-    '    '    RaiseIdle()
-    '    '    Thread.Sleep(CalcInterval(2))
-    '    '    t = t + 1
-    '    'End While
-    '    WaitForData()
-
-    '    Dim b(4096) As Byte
-    '    Dim cnt As Integer
-    '    cnt = MyTransport.BytesToRead
-    '    If cnt > 0 Then
-    '        Dim ptr As Integer
-    '        Dim sz As Integer
-    '        ptr = 0
-    '        sz = 0
-    '        While cnt > 0
-    '            MyTransport.Read(b, ptr, cnt)
-    '            ptr += cnt
-    '            sz += cnt
-
-    '            Dim i As Integer
-    '            If VerifySumm(b, 0, sz) Then
-    '                Dim sout As String = ""
-    '                Dim cout As String = ""
-    '                If (b(1) = &H83 Or b(1) = &H90) Then
-    '                    IsError = True
-    '                    ErrorMessage = "Ошибка запроса код:" & b(2)
-    '                    Return
-    '                End If
-
-
-    '                ActiveCount = 0
-    '                For i = 0 To 100
-    '                    ElemSize(i) = 0
-    '                Next
-    '                For i = 3 To cnt - 5 Step 6
-    '                    ActiveElements(ActiveCount) = b(i)
-    '                    ElemSize(b(i)) = b(i + 4)
-    '                    ActiveCount += 1
-    '                Next
-    '                Return
-
-    '            End If
-
-    '            RaiseIdle()
-    '            Thread.Sleep(CalcInterval(2))
-    '            cnt = MyTransport.BytesToRead
-    '        End While
-
-
-    '    End If
-    '    IsError = True
-    '    ErrorMessage = "Ошибка получения данных"
-
-    'End Sub
-
-    'Private Function VerifyElement(ByVal EType As VKT7ElemType) As Boolean
-    '    Dim i As Integer
-
-    '    For i = 0 To ActiveCount - 1
-    '        If ActiveElements(i) = EType Then
-    '            Return True
-    '        End If
-    '    Next
-    '    If EType >= 44 And EType <= 80 Then
-    '        Return True
-    '    End If
-    '    Return False
-
-    'End Function
+    
 
 
 End Class

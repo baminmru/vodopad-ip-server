@@ -170,7 +170,7 @@ namespace STKService
                 //if (chour || ccurr || c24 || csum)
                 {
                     TvMain.ClearDuration();
-                    if (TvMain.LockDevice(id_bdc, 120, false))
+                    if (TvMain.LockDevice(id_bdc, 60 * 40, false))
                     {
                         if (TvMain.DeviceInit(id_bdc)) 
                         {
@@ -366,7 +366,7 @@ namespace STKService
                             Int16 numhour;
                             numhour = Convert.ToInt16("0" + dr["numhour"].ToString());
                             Int16 icall = Convert.ToInt16("0" + dr["icall"].ToString());
-                            if (TvMain.LockDevice(id_bdc, 120 * numhour,true))
+                            if (TvMain.LockDevice(id_bdc, 400 * numhour,true))
                             {
                                 TvMain.HoldLine();
                                 
@@ -511,6 +511,8 @@ namespace STKService
                                     // сдвигаем указатель на нужное количество минут
                                     if (TvMain.TVD.IsConnected())
                                     {
+
+                                          
                                         TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dnexthour", SrvDate); 
                                         TvMain.AddMinutesToPlanCall(id_bdc.ToString(), "dnexthour", icall);
                                     }
@@ -551,7 +553,7 @@ namespace STKService
                                 tempdate = tempdate.AddDays(-1);
                                 try
                                 {
-                                    if( TvMain.LockDevice(id_bdc,20 * num24,true )){
+                                    if( TvMain.LockDevice(id_bdc,400 * num24,true )){
                                         TvMain.HoldLine();
 
                                         // двигаемс€ от последнего прочитанного вперед
@@ -629,7 +631,7 @@ namespace STKService
                                 ReadDOK = false;
                                 try
                                 {
-                                    if( TvMain.LockDevice(id_bdc,120 * num24,true) ){ 
+                                    if( TvMain.LockDevice(id_bdc,400 * num24,true) ){ 
                                     for (int j = 0; j < num24 ; j++)
                                     {
 
@@ -716,7 +718,7 @@ namespace STKService
                             InfoReport("ѕрибор ID=  " + id_bdc.ToString() + " чтение текущих архивов на " + ddd.ToString());
                             try
                             {
-                                if(TvMain.LockDevice(id_bdc,120,true)){
+                                if(TvMain.LockDevice(id_bdc,400,true)){
                                     TvMain.HoldLine();
                                 String str;
                                 TvMain.ClearDuration();
@@ -799,7 +801,7 @@ namespace STKService
                             {
 
                                 String str;
-                                if (TvMain.LockDevice(id_bdc, 120,true))
+                                if (TvMain.LockDevice(id_bdc, 400,true))
                                 {
                                     TvMain.HoldLine();
                                     TvMain.ClearDuration();
@@ -869,6 +871,7 @@ namespace STKService
 
                             try
                             {
+                                TvMain.LockDevice(id_bdc, 400 * missing.Rows.Count, true);
                                 for (int j = 0; j < missing.Rows.Count && j <15 ; j++)
                                 {
                                     tempdate = (DateTime)(missing.Rows[j]["ARCHDATE"]);
@@ -937,6 +940,7 @@ namespace STKService
 
                             try
                             {
+                                TvMain.LockDevice(id_bdc, 400 * missing.Rows.Count, true);
                                 for (int j = 0; j < missing.Rows.Count && j <15; j++)
                                 {
                                     tempdate = (DateTime)(missing.Rows[j]["ARCHDATE"]);
@@ -1011,6 +1015,7 @@ namespace STKService
 
                             try
                             {
+                                TvMain.LockDevice(id_bdc, 400 * missing.Rows.Count, true);
                                 for (int j = 0; j < missing.Rows.Count && j < 6; j++)
                                 {
 
@@ -1104,7 +1109,7 @@ namespace STKService
                     }
                     else
                     {
-                        ErrorReport("ѕрибор ID " + dr["id_bd"].ToString() + " transport initialization Error! Check IP:" + dr["NPIP"].ToString()  );
+                        ErrorReport("ѕрибор ID " + dr["id_bd"].ToString() + " transport initialization Error!"  );
                     }
                 }
                 //else

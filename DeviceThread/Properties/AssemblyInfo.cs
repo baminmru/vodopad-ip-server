@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("STKService")]
-[assembly: AssemblyCopyright("Copyright ©  2007")]
+[assembly: AssemblyCopyright("Copyright ©  2011-2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly:  AssemblyVersion("2015.10.07.200")]
-[assembly: AssemblyFileVersion("2015.10.07.200")]
+[assembly:  AssemblyVersion("2016.02.05.300")]
+[assembly: AssemblyFileVersion("2016.02.05.300")]
