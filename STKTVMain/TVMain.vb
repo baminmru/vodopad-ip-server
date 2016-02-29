@@ -125,11 +125,6 @@ Public Class TVMain
             " " + d.Hour.ToString() + ":" + d.Minute.ToString() + ":" + d.Second.ToString() + "','YYYY-MM-DD HH24:MI:SS')"
     End Function
 
-    Public Function OracleTimeStamp(ByVal d As Date) As String
-        Return "TO_TIMESTAMP('" + d.Year.ToString() + "-" + d.Month.ToString() + "-" + d.Day.ToString() + _
-            " " + d.Hour.ToString() + ":" + d.Minute.ToString() + ":" + d.Second.ToString() + "." + d.Millisecond.ToString().PadLeft(3, "0") + "','YYYY-MM-DD HH24:MI:SS.FF')"
-    End Function
-
     Public Sub ClearDBArchString(ByVal ArchType As Int32, ByVal ArchYear As Int32, _
     ByVal ArchMonth As Int32, ByVal ArchDay As Int32, ByVal ArchHour As Int32, ByVal id_bd As Int32)
         Dim cmd As New OracleCommand()
@@ -151,7 +146,6 @@ Public Class TVMain
             'SyncLock connection
             cmd.Connection = connection
             cmd.ExecuteNonQuery()
-            cmd.Dispose()
             'End SyncLock
         Catch ex As Exception
             Console.WriteLine(ex.Message)
@@ -168,7 +162,6 @@ Public Class TVMain
             ''SyncLock connection
             cmd.Connection = connection
             cmd.ExecuteNonQuery()
-            cmd.Dispose()
             '' End SyncLock
         Catch ex As Exception
             Console.WriteLine(ex.Message)
@@ -222,12 +215,9 @@ Public Class TVMain
                 da.Fill(dt)
             End SyncLock
 
-            da.Dispose()
-            cmd.Dispose()
             If dt.Rows.Count > 0 Then
 
                 If dt.Rows(0)("CNT") > 0 Then
-
                     Return True
                 End If
             End If
@@ -267,8 +257,7 @@ Public Class TVMain
             SyncLock connection
                 da.Fill(dt)
             End SyncLock
-            da.Dispose()
-            cmd.Dispose()
+
             If dt.Rows.Count > 0 Then
 
                 Return dt.Rows(0)("dcounter")
@@ -299,8 +288,7 @@ Public Class TVMain
             SyncLock connection
                 da.Fill(dt)
             End SyncLock
-            da.Dispose()
-            cmd.Dispose()
+
             Return dt
 
         Catch ex As Exception
@@ -309,7 +297,137 @@ Public Class TVMain
         Return dt
     End Function
 
-   
+    'Public Function GetDBRecords(ByVal id_bd As String, ByVal after As Date, ByVal befor As Date, ByVal archtype As Short) As DataTable
+    '    Dim dt As DataTable = Nothing
+    '    Dim dr As OracleDataReader
+    '    Dim cmd As New OracleCommand()
+    '    after = after.AddSeconds(-1)
+    '    befor = befor.AddSeconds(1)
+
+    '    cmd.CommandText = "select * from v_" & DBTableName & " where dcounter>=" + _
+    '    OracleDate(after) + " and dcounter<=" + _
+    '    OracleDate(befor) + " and id_ptype=" + archtype.ToString + _
+    '    "and id_bd=" + id_bd + " "
+    '    dt = New DataTable
+    '    dt.Columns.Add("id_bd", GetType(System.Int32))
+    '    dt.Columns.Add("DCALL", GetType(System.DateTime))
+    '    dt.Columns.Add("DCOUNTER", GetType(System.DateTime))
+    '    dt.Columns.Add("id_ptype", GetType(System.Int32))
+    '    dt.Columns.Add("t1", GetType(System.Double))
+    '    dt.Columns.Add("t2", GetType(System.Double))
+    '    dt.Columns.Add("t3", GetType(System.Double))
+    '    dt.Columns.Add("t4", GetType(System.Double))
+    '    dt.Columns.Add("t5", GetType(System.Double))
+    '    dt.Columns.Add("t6", GetType(System.Double))
+    '    dt.Columns.Add("p1", GetType(System.Double))
+    '    dt.Columns.Add("p2", GetType(System.Double))
+    '    dt.Columns.Add("p3", GetType(System.Double))
+    '    dt.Columns.Add("p4", GetType(System.Double))
+    '    dt.Columns.Add("g1", GetType(System.Double))
+    '    dt.Columns.Add("g2", GetType(System.Double))
+    '    dt.Columns.Add("g3", GetType(System.Double))
+    '    dt.Columns.Add("g4", GetType(System.Double))
+    '    dt.Columns.Add("g5", GetType(System.Double))
+    '    dt.Columns.Add("g6", GetType(System.Double))
+    '    dt.Columns.Add("m1", GetType(System.Double))
+    '    dt.Columns.Add("m2", GetType(System.Double))
+    '    dt.Columns.Add("m3", GetType(System.Double))
+    '    dt.Columns.Add("m4", GetType(System.Double))
+    '    dt.Columns.Add("m5", GetType(System.Double))
+    '    dt.Columns.Add("m6", GetType(System.Double))
+    '    dt.Columns.Add("v1", GetType(System.Double))
+    '    dt.Columns.Add("v2", GetType(System.Double))
+    '    dt.Columns.Add("v3", GetType(System.Double))
+    '    dt.Columns.Add("v4", GetType(System.Double))
+    '    dt.Columns.Add("v5", GetType(System.Double))
+    '    dt.Columns.Add("v6", GetType(System.Double))
+    '    dt.Columns.Add("q1", GetType(System.Double))
+    '    dt.Columns.Add("q2", GetType(System.Double))
+    '    dt.Columns.Add("dt12", GetType(System.Double))
+    '    dt.Columns.Add("dt45", GetType(System.Double))
+    '    dt.Columns.Add("sp_TB1", GetType(System.Double))
+    '    dt.Columns.Add("sp_TB2", GetType(System.Double))
+    '    dt.Columns.Add("tce1", GetType(System.Double))
+    '    dt.Columns.Add("tce2", GetType(System.Double))
+    '    dt.Columns.Add("tair1", GetType(System.Double))
+    '    dt.Columns.Add("tair2", GetType(System.Double))
+    '    dt.Columns.Add("hc_code", GetType(System.String))
+    '    dt.Columns.Add("hc_1", GetType(System.String))
+    '    dt.Columns.Add("hc_2", GetType(System.String))
+
+    '    Dim drow As DataRow
+
+
+    '    Try
+    '        SyncLock connection
+    '            cmd.Connection = connection
+    '            dr = cmd.ExecuteReader()
+    '        End SyncLock
+    '        If dr.HasRows Then
+    '            While dr.Read()
+    '                drow = dt.NewRow
+
+    '                'dr("ID") = ID
+    '                drow("id_bd") = dr.Item("id_bd")
+    '                drow("DCALL") = dr.Item("DCALL")
+    '                drow("DCOUNTER") = dr.Item("DCOUNTER")
+    '                drow("id_ptype") = dr.Item("id_ptype")
+    '                drow("t1") = dr.Item("t1")
+    '                drow("t2") = dr.Item("t2")
+    '                drow("t3") = dr.Item("t3")
+    '                drow("t4") = dr.Item("t4")
+    '                drow("t5") = dr.Item("t5")
+    '                drow("t6") = dr.Item("t6")
+    '                drow("p1") = dr.Item("p1")
+    '                drow("p2") = dr.Item("p2")
+    '                drow("p3") = dr.Item("p3")
+    '                drow("p4") = dr.Item("p4")
+    '                drow("g1") = dr.Item("g1")
+    '                drow("g2") = dr.Item("g2")
+    '                drow("g3") = dr.Item("g3")
+    '                drow("g4") = dr.Item("g4")
+    '                drow("g5") = dr.Item("g5")
+    '                drow("g6") = dr.Item("g6")
+    '                drow("m1") = dr.Item("m1")
+    '                drow("m2") = dr.Item("m2")
+    '                drow("m3") = dr.Item("m3")
+    '                drow("m4") = dr.Item("m4")
+    '                drow("m5") = dr.Item("m5")
+    '                drow("m6") = dr.Item("m6")
+
+    '                drow("v1") = dr.Item("v1")
+    '                drow("v2") = dr.Item("v2")
+    '                drow("v3") = dr.Item("v3")
+    '                drow("v4") = dr.Item("v4")
+    '                drow("v5") = dr.Item("v5")
+    '                drow("v6") = dr.Item("v6")
+    '                drow("Q1") = dr.Item("Q1")
+    '                drow("Q2") = dr.Item("Q2")
+
+    '                drow("dt12") = dr.Item("dt12")
+    '                drow("dt45") = dr.Item("dt45")
+    '                drow("sp_TB1") = dr.Item("sp_TB1")
+    '                drow("sp_TB2") = dr.Item("sp_TB2")
+    '                drow("tce1") = dr.Item("tce1")
+    '                drow("tce2") = dr.Item("tce2")
+    '                drow("tair1") = dr.Item("tair1")
+    '                drow("tair2") = dr.Item("tair2")
+    '                drow("hc_code") = dr.Item("hc_code")
+    '                drow("hc_1") = dr.Item("hc_1")
+    '                drow("hc_2") = dr.Item("hc_2")
+
+
+    '                dt.Rows.Add(drow)
+    '            End While
+    '        End If
+    '        Return dt
+
+    '    Catch ex As Exception
+    '        Console.WriteLine(ex.Message)
+    '    End Try
+    '    Return dt
+    'End Function
+
 
 
     Public Function GetDBRecords2(ByVal id_bd As String, ByVal after As Date, ByVal befor As Date, ByVal archtype As Short) As DataTable
@@ -338,8 +456,7 @@ Public Class TVMain
             SyncLock connection
                 da.Fill(dt)
             End SyncLock
-            da.Dispose()
-            cmd.Dispose()
+
             Return dt
 
         Catch ex As Exception
@@ -367,8 +484,6 @@ Public Class TVMain
             SyncLock connection
                 da.Fill(dt)
             End SyncLock
-            da.Dispose()
-            cmd.Dispose()
         Catch
         End Try
 
@@ -398,8 +513,6 @@ Public Class TVMain
             SyncLock connection
                 da.Fill(dt)
             End SyncLock
-            da.Dispose()
-            cmd.Dispose()
         Catch
         End Try
 
@@ -434,8 +547,6 @@ Public Class TVMain
             SyncLock connection
                 da.Fill(dt)
             End SyncLock
-            da.Dispose()
-            cmd.Dispose()
         Catch
         End Try
 
@@ -463,8 +574,6 @@ Public Class TVMain
             SyncLock connection
                 da.Fill(dt)
             End SyncLock
-            da.Dispose()
-            cmd.Dispose()
         Catch
         End Try
 
@@ -495,8 +604,6 @@ Public Class TVMain
             SyncLock connection
                 da.Fill(dt)
             End SyncLock
-            da.Dispose()
-            cmd.Dispose()
         Catch
         End Try
 
@@ -526,7 +633,6 @@ Public Class TVMain
             SyncLock connection
                 da.Fill(dt)
             End SyncLock
-            da.Dispose()
         Catch
         End Try
 
@@ -534,7 +640,6 @@ Public Class TVMain
             cmd.CommandText = "update bdevices set nplock =sysdate + (0.00001*" + LockSeconds.ToString + ") where bdevices.id_bd=" + DevID.ToString()
             cmd.ExecuteNonQuery()
             SaveLog(DevID, 0, "??", 1, "Блокировка  устройства на " + LockSeconds.ToString + " сек.")
-            cmd.Dispose()
             Return True
         End If
         Return False
@@ -558,7 +663,6 @@ Public Class TVMain
             SyncLock connection
                 da.Fill(dt)
             End SyncLock
-            da.Dispose()
         Catch
         End Try
 
@@ -566,7 +670,6 @@ Public Class TVMain
             cmd.CommandText = "update bdevices set nplock = null where bdevices.id_bd=" + DevID.ToString()
             cmd.ExecuteNonQuery()
             SaveLog(DevID, 0, "??", 1, "Снятие блокировки устройства ")
-            cmd.Dispose()
             Return True
         End If
         Return False
@@ -592,12 +695,9 @@ Public Class TVMain
                 da.Fill(dt)
             End SyncLock
 
-            da.Dispose()
-            cmd.Dispose()
+
             Return Convert.ToDateTime(dt.Rows(0)("d"))
         Catch
-            da.Dispose()
-            cmd.Dispose()
             Return System.DateTime.Now
         End Try
 
@@ -629,15 +729,11 @@ Public Class TVMain
                 End If
                 dr.Close()
             End SyncLock
-            dr.Dispose()
-            cmd.Dispose()
-
             Return dt
 
         Catch ex As Exception
             'MsgBox(ex.Message)
             Console.WriteLine(ex.Message)
-            cmd.Dispose()
         End Try
         Return dt
     End Function
@@ -683,19 +779,14 @@ Public Class TVMain
                 HasRows = dr.HasRows
                 If dr.HasRows Then
                     dr.Read()
-                    IPstr = dr("NPIP").ToString & ""
+                    IPstr = dr("NPIP").ToString
                     deviceid = Convert.ToInt32(dr("id_dev").ToString)
                     DrvStr = "" & dr("dllname")
-                    NPPassword = dr("nppassword").ToString() & ""
-                    Try
-                        cspeed = dr("cspeed")
-                        cdatabit = dr("cdatabit")
-                        cstopbits = dr("cstopbits")
-                        connectlimit = dr("connectlimit")
-                    Catch ex As Exception
-
-                    End Try
-                    
+                    NPPassword = dr("nppassword").ToString
+                    cspeed = dr("cspeed")
+                    cdatabit = dr("cdatabit")
+                    cstopbits = dr("cstopbits")
+                    connectlimit = dr("connectlimit")
                     If dr("cparity") = "N" Then
                         cparity = "None"
                     End If
@@ -711,14 +802,12 @@ Public Class TVMain
                     If dr("cparity") = "M" Then
                         cparity = "Mark"
                     End If
-                    ipport = dr("ipport").ToString() & ""
-                    transport = dr("transport") & ""
-                    phone = dr("cphone") & ""
+                    ipport = dr("ipport").ToString()
+                    transport = dr("transport")
+                    phone = dr("cphone")
 
                 End If
                 dr.Close()
-                dr.Dispose()
-                cmd.Dispose()
             End SyncLock
             If HasRows = False Then
                 SaveLog(id_bd, 0, "??", 1, "Не обнаружена запись об устройстве в базе данных")
@@ -752,6 +841,17 @@ Public Class TVMain
 
         If Not TVD Is Nothing Then
 
+            'Dim xml As XmlDocument
+            'xml = New XmlDocument
+            'Try
+            '    xml.Load(System.IO.Path.GetDirectoryName(Me.GetType().Assembly.Location()) + "\Config" + DrvStr + ".xml")
+            'Catch
+            '    'MsgBox("Не найден файл конфигурации:" + System.IO.Path.GetDirectoryName(Me.GetType().Assembly.Location()) + "\Config" + DrvStr + ".xml")
+            '    Return False
+            'End Try
+
+            'Dim node As XmlElement
+            'node = xml.LastChild()
 
 
             TVD.ServerIp = IPstr
@@ -861,16 +961,11 @@ Public Class TVMain
 
                 TVD.CloseTransportConnect()
                 FreeModem()
-                UnLockDevice(id_bd)
                 m_ConnectStatus = "Ошибка транспортa. " + msg
                 SaveLog(id_bd, 0, "??", 1, "Ошибка транспорта. " + msg)
-                ClearDuration()
-                SaveLog(id_bd, 0, "??", 1, "Сеанс завершен")
                 Return False
             End If
-
-            SaveLog(id_bd, 0, "??", 1, "Транспортный уровень инициализирован")
-            ClearDuration()
+            'SaveLog(id_bd, 0, "??", 1, "Транспортный уровень инициализирован")
 
             cmd = Nothing
             DeviceReady = True
@@ -1233,7 +1328,6 @@ Public Class TVMain
             If Not TVD.IsConnected Then
                 m_ConnectStatus = "Ошибка протокола обмена. " + TVD.DriverTransport.GetError
                 TVD.CloseTransportConnect()
-                UnLockDevice(TVD.DeviceID)
             End If
         End If
 
@@ -1669,10 +1763,9 @@ Public Class TVMain
     End Sub
 
     Public Function QueryExec(ByVal s As String) As Boolean
-        Dim cmd As OracleCommand
-        cmd = New OracleCommand
         Try
-
+            Dim cmd As OracleCommand
+            cmd = New OracleCommand
             cmd.CommandType = CommandType.Text
             cmd.CommandText = s
             cmd.Connection = dbconnect()
@@ -1683,18 +1776,7 @@ Public Class TVMain
         Catch ex As Exception
             Debug.Print(s + " err:")
             Debug.Print(ex.Message)
-            Try
-                cmd.Dispose()
-            Catch ex1 As Exception
-
-            End Try
-
             Return False
-        End Try
-        Try
-            cmd.Dispose()
-        Catch ex1 As Exception
-
         End Try
         Return True
     End Function
@@ -1716,16 +1798,6 @@ Public Class TVMain
             da.Fill(dt)
         Catch ex As Exception
             Debug.Print(s + " Err:" + ex.Message)
-        End Try
-        Try
-            da.Dispose()
-        Catch ex As Exception
-
-        End Try
-        Try
-            cmd.Dispose()
-        Catch ex As Exception
-
         End Try
 
 
@@ -1931,13 +2003,10 @@ Public Class TVMain
 
         End Try
 
+
         LastLog = DateTime.Now
-        'query = "insert into logcall( ID_BD,  ID_PTYPE ,  CPORT , NSESSION,  DBEG,  DURATION,  CEXAMINE ,  CRESULT) values(" & _
-        'id_bd.ToString() & "," & id_ptype.ToString() & ",'" & cport & "',0,SYSTIMESTAMP," & duration.ToString() & "," & cEXAMINE.ToString & ",'" & S180(cresult) & "')"
         query = "insert into logcall( ID_BD,  ID_PTYPE ,  CPORT , NSESSION,  DBEG,  DURATION,  CEXAMINE ,  CRESULT) values(" & _
-        id_bd.ToString() & "," & id_ptype.ToString() & ",'" & cport & "',0," + OracleTimeStamp(LastLog) + "," & duration.ToString() & "," & cEXAMINE.ToString & ",'" & S180(cresult) & "')"
-
-
+        id_bd.ToString() & "," & id_ptype.ToString() & ",'" & cport & "',0," & OracleDate(DateTime.Now) & "," & duration.ToString() & "," & cEXAMINE.ToString & ",'" & S180(cresult) & "')"
         QueryExec(query)
 
     End Sub

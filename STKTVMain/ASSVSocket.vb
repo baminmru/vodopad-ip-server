@@ -106,16 +106,17 @@ Public Class ASSVSocket
 
 
     Public Overrides Function Read(ByRef buf() As Byte, ByVal offset As Integer, ByVal dlength As Integer) As Integer
-        ' LOG("ASSV Socket Read")
+        LOG("ASSV Socket Read")
         Dim tmpSize As Integer
         Dim tmpoffset As Integer
         Dim tmpcount As Integer
 
         Dim l As Integer
-        Dim i As Integer
         Dim c As Integer
-        c = 0
+        Dim i As Integer
+
         l = 0
+        c = 0
 
         If IPSocket Is Nothing Then
             mLastError = "Сокет не установлен"
@@ -129,20 +130,24 @@ Public Class ASSVSocket
             Return 0
         End If
 
-        c = 0
-        l = IPSocket.Available
-        If l = 0 And c < 5 Then
-            System.Threading.Thread.Sleep(50)
-            l = IPSocket.Available
-            c += 1
-        End If
+
+        'l = IPSocket.Available
+        'Console.WriteLine(".")
+        'While l = 0 And c < 10
+        '    System.Threading.Thread.Sleep(100)
+        '    l = IPSocket.Available
+        '    Console.Write(".")
+        '    c = c + 1
+        'End While
+
+
+        rawCount = 0
 
         tmpSize = 4096
         tmpoffset = 0
         IPSocket.ReceiveTimeout = 1500
 
         If IPSocket.Available > 0 Then
-            rawCount = 0
             While IPSocket.Available > 0
                 tmpSize = IPSocket.Available
                 tmpcount = IPSocket.Receive(rawBuffer, tmpoffset, tmpSize, Net.Sockets.SocketFlags.None)
@@ -153,13 +158,10 @@ Public Class ASSVSocket
             End While
 
         Else
-            'mLastError = "Данные не получены"
-            'LOG(mLastError)
+            mLastError = "Данные не получены"
+            LOG(mLastError)
             Return 0
         End If
-
-
-        dataCount = 0
 
 
         ' проверка CRC  ????
@@ -193,13 +195,6 @@ Public Class ASSVSocket
             End While
 
 
-            Dim sOut As String = ""
-            For i = 0 To dataCount - 1
-                sOut = sOut + " " + Hex(dataBuffer(i))
-            Next
-            LOG(sOut)
-
-
             If dataCount = 8 And dataBuffer(0) = &H9 And dataBuffer(1) = &H8E And dataBuffer(2) = &HE8 And dataBuffer(3) = &HA8 And dataBuffer(4) = &HA1 And dataBuffer(5) = &HAA And dataBuffer(6) = &HA0 And dataBuffer(7) = &HC Then
                 mLastError = "Ошибка взаимодействия АССВ"
                 LOG(mLastError)
@@ -229,7 +224,7 @@ Public Class ASSVSocket
             Return dataCount
 
         Else
-            mLastError = "Контрольная сумма АССВ не совпала"
+            mLastError = "Контрольная сумма не совпала"
             LOG(mLastError)
             Return 0
 
@@ -296,7 +291,6 @@ Public Class ASSVSocket
         For i = 0 To dataCount - 1
             sOut = sOut + " " + Hex(dataBuffer(i))
         Next
-        LOG(sOut)
 
 
         If dataCount = 8 And dataBuffer(0) = &H9 And dataBuffer(1) = &H8E And dataBuffer(2) = &HE8 And dataBuffer(3) = &HA8 And dataBuffer(4) = &HA1 And dataBuffer(5) = &HAA And dataBuffer(6) = &HA0 And dataBuffer(7) = &HC Then

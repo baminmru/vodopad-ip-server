@@ -1365,7 +1365,7 @@ namespace ASSVServerLib
                     }
                     else
                     {
-                        ErrorReport("Прибор ID " + dr["id_bd"].ToString() + " transport initialization Error!");
+                        ErrorReport("Прибор ID " + dr["id_bd"].ToString() + " transport initialization Error! Check IP:" + dr["NPIP"].ToString());
                     }
                 //}
                 //else

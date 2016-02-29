@@ -1181,7 +1181,7 @@ Public Class driver
                 .T3 = GetFlt(SI, 38, 0)
                 .P1 = GetFlt(SI, 40, 0)
                 .P2 = GetFlt(SI, 46, 0)
-                .errtime1 = 60 - .oktime1
+
             End If
             If DeviceSubtype = "AM" Then
                 .oktime1 = SI(4)
@@ -1197,7 +1197,6 @@ Public Class driver
                 .T3 = GetFlt(SI, 38 + 8, 0)
                 .P1 = GetFlt(SI, 40 + 8, 0)
                 .P2 = GetFlt(SI, 46 + 8, 0)
-                .errtime1 = 60 - .oktime1
             End If
 
             If DeviceSubtype = "E" Then
@@ -1217,12 +1216,8 @@ Public Class driver
                 .P1 = GetFlt(SI, 58, 0)
                 .P2 = GetFlt(SI, 62, 0)
 
-
-                .oktime1 = SI(4)
-                .oktime2 = SI(15)
-                .errtime1 = 60 - .oktime1
-                .errtime2 = 60 - .oktime2
-
+                .oktime1 = SI(15)
+                .errtime1 = SI(4) - .oktime1
 
             End If
         End With

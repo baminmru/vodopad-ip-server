@@ -912,8 +912,14 @@ mArchErr:
 
 
         '00 03 00 1C 00 00 85 DD 
+        Dim tv As Integer
         Dim Frame(10) As Byte
+        Dim ch As UInt16
         Dim b(4096) As Byte
+        Dim cnt As Integer
+    
+        Dim ptr As Integer
+        Dim sz As Integer
         Dim AErr As String = ""
 
        
@@ -1124,39 +1130,39 @@ archerr:
     Private PropVal(100) As Byte
 
  
-    'Public Function VerifySumm(ByVal Data() As Byte, ByVal offset As Integer, ByVal sz As Integer) As Boolean
-    '    Dim ch As Long
-    '    If sz <= 2 Then Return False
-    '    ch = CheckSum(Data, offset, sz - 2)
-    '    If Data(offset + sz - 2) = ch Mod 256 And Data(offset + sz - 1) = ch \ 256 Then
-    '        Return True
-    '    End If
-    '    Return False
-    'End Function
+    Public Function VerifySumm(ByVal Data() As Byte, ByVal offset As Integer, ByVal sz As Integer) As Boolean
+        Dim ch As Long
+        If sz <= 2 Then Return False
+        ch = CheckSum(Data, offset, sz - 2)
+        If Data(offset + sz - 2) = ch Mod 256 And Data(offset + sz - 1) = ch \ 256 Then
+            Return True
+        End If
+        Return False
+    End Function
 
 
 
-    'Private Function CheckSum(ByVal Data() As Byte, ByVal offset As Integer, ByVal sz As Integer) As UInt16
-    '    Dim s As UInt16
-    '    Dim sl As Long
-    '    sl = &HFFFF
-    '    On Error Resume Next
-    '    For i As Integer = 0 To sz - 1
+    Private Function CheckSum(ByVal Data() As Byte, ByVal offset As Integer, ByVal sz As Integer) As UInt16
+        Dim s As UInt16
+        Dim sl As Long
+        sl = &HFFFF
+        On Error Resume Next
+        For i As Integer = 0 To sz - 1
 
-    '        sl = ((sl \ 256) * 256 + ((sl Mod 256) Xor Data(offset + i))) And &HFFFF
-    '        For sh As Integer = 0 To 7
-    '            If (sl And 1) = 1 Then
-    '                sl = ((sl \ 2) Xor &HA001) And &HFFFF
-    '            Else
-    '                sl = (sl \ 2) And &HFFFF
-    '            End If
+            sl = ((sl \ 256) * 256 + ((sl Mod 256) Xor Data(offset + i))) And &HFFFF
+            For sh As Integer = 0 To 7
+                If (sl And 1) = 1 Then
+                    sl = ((sl \ 2) Xor &HA001) And &HFFFF
+                Else
+                    sl = (sl \ 2) And &HFFFF
+                End If
 
 
-    '        Next
-    '    Next
-    '    s = sl And &HFFFF
-    '    Return s
-    'End Function
+            Next
+        Next
+        s = sl And &HFFFF
+        Return s
+    End Function
 
     Public Function Bytes2Float(ByVal fbytes() As Byte, ByVal index As Int16) As Single
         If UBound(fbytes) - index < 3 Then
@@ -1267,14 +1273,13 @@ archerr:
         End If
 
         If cnt > 0 Then
-            If cnt = 5 And CRC(buffer, 4) = buffer(4) Then
-                If buffer(2) < 12 Then
-                    appstr = Mid("AbCdEFGHLnoPU", CInt(buffer(2) + 1), 1)
-                End If
-                appstr = appstr + buffer(3).ToString
-
-                sOut = sOut & vbCrLf & "App=" & appstr ' & " :"
+            If buffer(2) < 12 Then
+                appstr = Mid("AbCdEFGHLnoPU", CInt(buffer(2) + 1), 1)
             End If
+            appstr = appstr + buffer(3).ToString
+
+            sOut = sOut & vbCrLf & "App=" & appstr ' & " :"
+
             Return appstr
         Else
             Return ""
@@ -1306,25 +1311,23 @@ archerr:
             System.Threading.Thread.Sleep(400)
 
             If cnt = 5 Then
-                If cnt = 5 And CRC(buffer, 4) = buffer(4) Then
-                    dr = dt.NewRow
-                    dr("Название") = "Circuit # " & i.ToString & " mode"
-                    Select Case buffer(3)
-                        Case 0
-                            dr("Значение") = "Manuel"
-                        Case 1
-                            dr("Значение") = "Clock mode"
-                        Case 2
-                            dr("Значение") = "Comfort mode"
-                        Case 3
-                            dr("Значение") = "Reduced mode"
-                        Case 4
-                            dr("Значение") = "Standby mode"
-                        Case Else
-                            dr("Значение") = "Unknown mode"
-                    End Select
-                    dt.Rows.Add(dr)
-                End If
+                dr = dt.NewRow
+                dr("Название") = "Circuit # " & i.ToString & " mode"
+                Select Case buffer(3)
+                    Case 0
+                        dr("Значение") = "Manuel"
+                    Case 1
+                        dr("Значение") = "Clock mode"
+                    Case 2
+                        dr("Значение") = "Comfort mode"
+                    Case 3
+                        dr("Значение") = "Reduced mode"
+                    Case 4
+                        dr("Значение") = "Standby mode"
+                    Case Else
+                        dr("Значение") = "Unknown mode"
+                End Select
+                dt.Rows.Add(dr)
             End If
         Next
 
@@ -1358,25 +1361,31 @@ archerr:
             cmdOut(1) = v(1)
             cmdOut(2) = 0
             cmdOut(3) = 0
-            cmdOut(4) = CRC(cmdOut, 4)
+            cmdOut(4) = CRC(cmdOut, 2)
             MyTransport.Write(cmdOut, 0, 5)
             System.Threading.Thread.Sleep(500)
             cnt = MyTransport.Read(buffer, 0, 5)
             System.Threading.Thread.Sleep(400)
-            If cnt = 5 And CRC(buffer, 4) = buffer(4) Then
-                If buffer(0) = 2 And buffer(1) = cmdOut(0) Then
-                    dr = dt.NewRow
-                    dr("Название") = n
-                    dr("Значение") = buffer(2).ToString() ' & " ?  " & vx.ToString
-                    dt.Rows.Add(dr)
-                End If
-            End If
+            'Dim vx As Short
+            'vx = BitConverter.ToInt16(buffer, 2)
+            'If v(3) Then
+            '    vx = (vx And &HFF00) >> 8
+            'Else
+            '    vx = vx And &HFF
+            'End If
+
+
+            dr = dt.NewRow
+            dr("Название") = n
+            dr("Значение") = buffer(2).ToString() ' & " ?  " & vx.ToString
+            dt.Rows.Add(dr)
+
 
 
         Next
     End Sub
 
-    Private Sub DAN_C60(ByVal dt As DataTable)
+    Private Sub DAN_C60(dt As DataTable)
         Dim cmdOut(5) As Byte
         Dim buffer(10) As Byte
         Dim addr As Dictionary(Of String, Byte())
@@ -1402,7 +1411,7 @@ archerr:
             cmdOut(1) = v(1)
             cmdOut(2) = 0
             cmdOut(3) = 0
-            cmdOut(4) = CRC(cmdOut, 4)
+            cmdOut(4) = CRC(cmdOut, 2)
             MyTransport.Write(cmdOut, 0, 5)
             System.Threading.Thread.Sleep(500)
             cnt = MyTransport.Read(buffer, 0, 5)
@@ -1415,20 +1424,18 @@ archerr:
             '    vx = vx And &HFF
             'End If
 
-            If cnt = 5 And CRC(buffer, 4) = buffer(4) Then
-                If buffer(0) = 2 And buffer(1) = cmdOut(0) Then
-                    dr = dt.NewRow
-                    dr("Название") = n
-                    dr("Значение") = buffer(2).ToString() ' & " ?  " & vx.ToString
-                    dt.Rows.Add(dr)
-                End If
 
-            End If
+            dr = dt.NewRow
+            dr("Название") = n
+            dr("Значение") = buffer(2).ToString() ' & " ?  " & vx.ToString
+            dt.Rows.Add(dr)
+
+
 
         Next
     End Sub
 
-    Private Sub DAN_C66(ByVal dt As DataTable)
+    Private Sub DAN_C66(dt As DataTable)
         Dim cmdOut(5) As Byte
         Dim buffer(10) As Byte
         Dim addr As Dictionary(Of String, Byte())
@@ -1454,7 +1461,7 @@ archerr:
             cmdOut(1) = v(1)
             cmdOut(2) = 0
             cmdOut(3) = 0
-            cmdOut(4) = CRC(cmdOut, 4)
+            cmdOut(4) = CRC(cmdOut, 2)
             MyTransport.Write(cmdOut, 0, 5)
             System.Threading.Thread.Sleep(500)
             cnt = MyTransport.Read(buffer, 0, 5)
@@ -1467,21 +1474,20 @@ archerr:
             '    vx = vx And &HFF
             'End If
 
-            If cnt = 5 And CRC(buffer, 4) = buffer(4) Then
-                If buffer(0) = 2 And buffer(1) = cmdOut(0) Then
-                    dr = dt.NewRow
-                    dr("Название") = n
-                    dr("Значение") = buffer(2).ToString() ' & " ?  " & vx.ToString
-                    dt.Rows.Add(dr)
-                End If
-            End If
+
+            dr = dt.NewRow
+            dr("Название") = n
+            dr("Значение") = buffer(2).ToString() ' & " ?  " & vx.ToString
+            dt.Rows.Add(dr)
+
+
 
         Next
     End Sub
 
 
 
-    Private Sub DAN_C62(ByVal dt As DataTable)
+    Private Sub DAN_C62(dt As DataTable)
         Dim cmdOut(5) As Byte
         Dim buffer(10) As Byte
         Dim addr As Dictionary(Of String, Byte())
@@ -1507,7 +1513,7 @@ archerr:
             cmdOut(1) = v(1)
             cmdOut(2) = 0
             cmdOut(3) = 0
-            cmdOut(4) = CRC(cmdOut, 4)
+            cmdOut(4) = CRC(cmdOut, 2)
             MyTransport.Write(cmdOut, 0, 5)
             System.Threading.Thread.Sleep(500)
             cnt = MyTransport.Read(buffer, 0, 5)
@@ -1519,25 +1525,25 @@ archerr:
             'Else
             '    vx = vx And &HFF
             'End If
-            If cnt = 5 And CRC(buffer, 4) = buffer(4) Then
-                If buffer(0) = 2 And buffer(1) = cmdOut(0) Then
-                    dr = dt.NewRow
-                    dr("Название") = n
-                    dr("Значение") = buffer(2).ToString() ' & " ?  " & vx.ToString
-                    dt.Rows.Add(dr)
-                End If
-            End If
+
+
+            dr = dt.NewRow
+            dr("Название") = n
+            dr("Значение") = buffer(2).ToString() ' & " ?  " & vx.ToString
+            dt.Rows.Add(dr)
+
+
 
         Next
     End Sub
 
-    Private Sub DAN_WeekPlan(ByVal dt As DataTable)
+    Private Sub DAN_WeekPlan(dt As DataTable)
         Dim cmdOut(5) As Byte
         Dim buffer(100) As Byte
         Dim addr As Dictionary(Of String, Short)
         Dim dr As DataRow
 
-
+        
 
         addr = New Dictionary(Of String, Short)
         addr.Add("Monday Weekplan I", &H72)
@@ -1574,7 +1580,7 @@ archerr:
             cmdOut(1) = v And &HFF
             cmdOut(2) = 0
             cmdOut(3) = 0
-            cmdOut(4) = CRC(cmdOut, 4)
+            cmdOut(4) = CRC(cmdOut, 2)
             MyTransport.Write(cmdOut, 0, 5)
             System.Threading.Thread.Sleep(600)
             cnt = MyTransport.Read(buffer, 0, 5)
@@ -1609,7 +1615,7 @@ archerr:
             cmdOut(1) = (v + 1) And &HFF
             cmdOut(2) = 0
             cmdOut(3) = 0
-            cmdOut(4) = CRC(cmdOut, 4)
+            cmdOut(4) = CRC(cmdOut, 2)
             MyTransport.Write(cmdOut, 0, 5)
             System.Threading.Thread.Sleep(600)
             cnt = MyTransport.Read(buffer, 0, 5)
@@ -1639,7 +1645,7 @@ archerr:
             cmdOut(1) = (v + 2) And &HFF
             cmdOut(2) = 0
             cmdOut(3) = 0
-            cmdOut(4) = CRC(cmdOut, 4)
+            cmdOut(4) = CRC(cmdOut, 2)
             MyTransport.Write(cmdOut, 0, 5)
             System.Threading.Thread.Sleep(600)
             cnt = MyTransport.Read(buffer, 0, 5)
@@ -1692,13 +1698,13 @@ archerr:
     End Sub
 
 
-    Private Sub DAN_CommonParameters(ByVal dt As DataTable)
+    Private Sub DAN_CommonParameters(dt As DataTable)
         Dim cmdOut(5) As Byte
         Dim buffer(100) As Byte
 
         Dim dr As DataRow
 
-
+        
 
         Dim addr As Dictionary(Of String, Short)
         addr = New Dictionary(Of String, Short)
@@ -1726,36 +1732,32 @@ archerr:
         Dim cnt As Integer
         Dim i As Integer
 
-
+      
         For Each n As String In addr.Keys
             v = addr.Item(n)
             cmdOut(0) = &HC0 + ((v And &HF00) >> 8)
             cmdOut(1) = v And &HFF
             cmdOut(2) = 0
             cmdOut(3) = 0
-            cmdOut(4) = CRC(cmdOut, 4)
+            cmdOut(4) = CRC(cmdOut, 2)
             MyTransport.Write(cmdOut, 0, 5)
             System.Threading.Thread.Sleep(500)
             cnt = MyTransport.Read(buffer, 0, 5)
             System.Threading.Thread.Sleep(400)
 
-            If cnt = 5 And CRC(buffer, 4) = buffer(4) Then
-                If buffer(0) = 2 And buffer(1) = cmdOut(0) Then
-                    dr = dt.NewRow
-                    dr("Название") = n
-                    Dim vx As Short
+            dr = dt.NewRow
+            dr("Название") = n
+            Dim vx As Short
 
-                    'vx = BitConverter.ToInt16(buffer, 2)
-                    vx = Bytes2Int(buffer, 2)
+            'vx = BitConverter.ToInt16(buffer, 2)
+            vx = Bytes2Int(buffer, 2)
+            
+            'If v >= &HE46 Then
+            vx = vx / 128
+            'End If
 
-                    'If v >= &HE46 Then
-                    vx = vx / 128
-                    'End If
-
-                    dr("Значение") = vx.ToString
-                    dt.Rows.Add(dr)
-                End If
-            End If
+            dr("Значение") = vx.ToString
+            dt.Rows.Add(dr)
         Next
     End Sub
 

@@ -45,9 +45,9 @@
             Dim dd As DataTable
             Dim dt As DataTable
             If txtFilter.Text = "" Then
-                dt = TvMain.QuerySelect("select  ID_BD as ID, cshort as Узел,TO_CHAR(dbeg, 'HH24:MI:SS.FF') as Время,ctype as Тип,duration as Длительность,cresult as Текст from  v_logcall where dbeg >sysdate-10.0/24.0/60.0 order by TO_CHAR(dbeg, 'YYYY-MON-DD HH24:MI:SS.FF') desc,ID")
+                dt = TvMain.QuerySelect("select cshort as Узел,dbeg as Дата,ctype as Тип,duration as Длительность,cresult as Текст from  v_logcall where dbeg >sysdate-10.0/24.0/60.0 order by dbeg desc")
             Else
-                dt = TvMain.QuerySelect("select  ID_BD as ID, cshort as Узел,TO_CHAR(dbeg, 'HH24:MI:SS.FF') as Время,ctype as Тип,duration as Длительность,cresult as Текст from  v_logcall where dbeg >sysdate-10.0/24.0/60.0  and ( cshort like '%" + txtFilter.Text + "%'  or cresult like '%" + txtFilter.Text + "%' or ID_BD like '%" + txtFilter.Text + "%')  order by TO_CHAR(dbeg, 'YYYY-MM-DD HH24:MI:SS.FF') desc ,ID")
+                dt = TvMain.QuerySelect("select cshort as Узел,dbeg as Дата,ctype as Тип,duration as Длительность,cresult as Текст from  v_logcall where dbeg >sysdate-10.0/24.0/60.0  and ( cshort like '%" + txtFilter.Text + "%'  or cresult like '%" + txtFilter.Text + "%')  order by dbeg desc")
             End If
             If Not DataGridView1.DataSource Is Nothing Then
                 dd = DataGridView1.DataSource
@@ -62,7 +62,7 @@
                 Dim dt2 As DataTable
                 Dim q As String
 
-                q = "select bdevices.ID_BD ID, bgroups.cgrpnm as Группа, bbuildings.cshort as Узел, " & _
+                q = "select bgroups.cgrpnm as Группа, bbuildings.cshort as Узел, " & _
                         " case when (CCURR =1 and DNEXTCURR <sysdate) then ceil((sysdate-DNEXTCURR)*24 *60) else 0 end as Текущие   ," & _
                         " case when (CHOUR =1 and DNEXTHOUR <sysdate)then ceil((sysdate-DNEXTHOUR)*24 *60) else 0 end as Часовые ," & _
                         " case when (C24 =1 and DNEXT24 <sysdate) then ceil((sysdate-DNEXT24)*24 *60) else 0 end as Суточные ," & _
@@ -81,7 +81,7 @@
                         " or" & _
                         " (CSUM =1 and sysdate -DNEXTSUM > 15.0 /60 /24)" & _
                         " ) order by bgroups.cgrpnm,bbuildings.cshort"
-                'Debug.Print(q)
+                Debug.Print(q)
                 dt2 = TvMain.QuerySelect(q)
                 If Not DataGridView2.DataSource Is Nothing Then
                     dd = DataGridView2.DataSource
@@ -109,9 +109,5 @@
         TvMain = New STKTVMain.TVMain
         If TvMain.Init() = False Then Application.Exit()
         Timer1.Enabled = True
-    End Sub
-
-    Private Sub txtFilter_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtFilter.TextChanged
-
     End Sub
 End Class
