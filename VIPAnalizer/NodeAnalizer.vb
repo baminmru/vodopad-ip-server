@@ -534,6 +534,31 @@
             End If
         End If
 
+
+        If aCfg(cfgprefix + "p4") > 0 Then
+            If GetP(isHour, aLast, aCfg(cfgprefix + "p4")) = 0 Then
+                m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевое давление по каналу " + aCfg(cfgprefix + "p4").ToString + "', color='RED',PERROR=PERROR+1 where id_bd=" & id_bd.ToString)
+                WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевое давление по каналу " + aCfg(cfgprefix + "p4").ToString, aLast("DCOUNTER"), id_bd, nodename)
+            End If
+        End If
+
+        If aCfg(cfgprefix + "p5") > 0 Then
+            If GetP(isHour, aLast, aCfg(cfgprefix + "p5")) = 0 Then
+                m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевое давление по каналу " + aCfg(cfgprefix + "p5").ToString + "', color='RED',PERROR=PERROR+1 where id_bd=" & id_bd.ToString)
+                WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевое давление по каналу " + aCfg(cfgprefix + "p5").ToString, aLast("DCOUNTER"), id_bd, nodename)
+            End If
+        End If
+
+
+        If aCfg(cfgprefix + "p6") > 0 Then
+            If GetP(isHour, aLast, aCfg(cfgprefix + "p6")) = 0 Then
+                m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевое давление по каналу " + aCfg(cfgprefix + "p6").ToString + "', color='RED',PERROR=PERROR+1 where id_bd=" & id_bd.ToString)
+                WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевое давление по каналу " + aCfg(cfgprefix + "p6").ToString, aLast("DCOUNTER"), id_bd, nodename)
+            End If
+        End If
+
+
+
         If aCfg(cfgprefix + "p1") > 0 And aCfg(cfgprefix + "p2") > 0 Then
             If GetP(isHour, aLast, aCfg(cfgprefix + "p2")) >= GetP(isHour, aLast, aCfg(cfgprefix + "p1")) Then
                 m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница давлений между каналами " + aCfg(cfgprefix + "p1").ToString + " и " + aCfg(cfgprefix + "p2").ToString + "', color='RED',PERROR=PERROR+1 where id_bd=" & id_bd.ToString)
@@ -739,33 +764,33 @@
             End If
         End If
 
-        Dim gni As Double, gn1i As Double, gni1 As Double, gn1i1 As Double
+        Dim VPrev1 As Double, VPrev2 As Double, VLast1 As Double, VLast2 As Double
         '''''''''''''''''''''''''' РАСХОДЫ G
         If isOpen Then
             If aCfg(cfgprefix + "g1") > 0 And aCfg(cfgprefix + "g2") > 0 Then
-                gni = GetG(isHour, aPrev, aCfg(cfgprefix + "g1"))
-                gn1i = GetG(isHour, aPrev, aCfg(cfgprefix + "g2"))
-                gni1 = GetG(isHour, aLast, aCfg(cfgprefix + "g1"))
-                gn1i1 = GetG(isHour, aLast, aCfg(cfgprefix + "g2"))
+                VPrev1 = GetG(isHour, aPrev, aCfg(cfgprefix + "g1"))
+                VPrev2 = GetG(isHour, aPrev, aCfg(cfgprefix + "g2"))
+                VLast1 = GetG(isHour, aLast, aCfg(cfgprefix + "g1"))
+                VLast2 = GetG(isHour, aLast, aCfg(cfgprefix + "g2"))
 
-                If gni1 = 0 Then
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход G " + aCfg(cfgprefix + "g1").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход G " + aCfg(cfgprefix + "g1").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If gn1i1 = 0 Then
+                If VLast2 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход G " + aCfg(cfgprefix + "g2").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход G " + aCfg(cfgprefix + "g2").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k0") And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k0") And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Скачек расходов между циклами G " + aCfg(cfgprefix + "g1").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Скачек расходов между циклами G " + aCfg(cfgprefix + "g1").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gn1i - gn1i1) >= aCfgSezon(aCfg, "k0") And gn1i <> 0 And gn1i1 <> 0 Then
+                If Math.Abs(VPrev2 - VLast2) >= aCfgSezon(aCfg, "k0") And VPrev2 <> 0 And VLast2 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Скачек расходов между циклами G " + aCfg(cfgprefix + "g2").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Скачек расходов между циклами G " + aCfg(cfgprefix + "g2").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
                 'If UseGVSMax Then
-                '    If Math.Abs(gn1i1 - gni1) >= aCfgSezon(acfg,"k3") * GVSMax And gn1i1 <> 0 And gni1 <> 0 Then
+                '    If Math.Abs(VLast2 - VLast1) >= aCfgSezon(acfg,"k3") * GVSMax And VLast2 <> 0 And VLast1 <> 0 Then
                 '        m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между прямым и обратным трубопроводом G " + aCfg(cfgprefix + "g1").ToString + " и " + aCfg(cfgprefix + "g2").ToString + " >=GVSMAX', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                 '        WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между прямым и обратным трубопроводом G " + aCfg(cfgprefix + "g1").ToString + " и " + aCfg(cfgprefix + "g2").ToString + " >=GVSMAX", aLast("DCOUNTER"), id_bd, NodeNAME)
                 '    End If
@@ -773,26 +798,26 @@
             End If
         Else
             If aCfg(cfgprefix + "g1") > 0 Then
-                gni = GetG(isHour, aPrev, aCfg(cfgprefix + "g1"))
-                gni1 = GetG(isHour, aLast, aCfg(cfgprefix + "g1"))
-                If gni1 = 0 Then
+                VPrev1 = GetG(isHour, aPrev, aCfg(cfgprefix + "g1"))
+                VLast1 = GetG(isHour, aLast, aCfg(cfgprefix + "g1"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход G " + aCfg(cfgprefix + "g1").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход G " + aCfg(cfgprefix + "g1").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k1") * Math.Abs(gni) And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k1") * Math.Abs(VPrev1) And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между циклами G" + aCfg(cfgprefix + "g1").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между циклами G" + aCfg(cfgprefix + "g1").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
 
             End If
             If aCfg(cfgprefix + "g2") > 0 Then
-                gni = GetG(isHour, aPrev, aCfg(cfgprefix + "g2"))
-                gni1 = GetG(isHour, aLast, aCfg(cfgprefix + "g2"))
-                If gni1 = 0 Then
+                VPrev1 = GetG(isHour, aPrev, aCfg(cfgprefix + "g2"))
+                VLast1 = GetG(isHour, aLast, aCfg(cfgprefix + "g2"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход G " + aCfg(cfgprefix + "g2").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход G " + aCfg(cfgprefix + "g2").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k1") * Math.Abs(gni) And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k1") * Math.Abs(VPrev1) And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между циклами G" + aCfg(cfgprefix + "g2").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между циклами G" + aCfg(cfgprefix + "g2").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
@@ -802,28 +827,28 @@
 
         If isOpen Then
             If aCfg(cfgprefix + "g3") > 0 And aCfg(cfgprefix + "g4") > 0 Then
-                gni = GetG(isHour, aPrev, aCfg(cfgprefix + "g3"))
-                gn1i = GetG(isHour, aPrev, aCfg(cfgprefix + "g4"))
-                gni1 = GetG(isHour, aLast, aCfg(cfgprefix + "g3"))
-                gn1i1 = GetG(isHour, aLast, aCfg(cfgprefix + "g4"))
-                If gni1 = 0 Then
+                VPrev1 = GetG(isHour, aPrev, aCfg(cfgprefix + "g3"))
+                VPrev2 = GetG(isHour, aPrev, aCfg(cfgprefix + "g4"))
+                VLast1 = GetG(isHour, aLast, aCfg(cfgprefix + "g3"))
+                VLast2 = GetG(isHour, aLast, aCfg(cfgprefix + "g4"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход G " + aCfg(cfgprefix + "g3").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход G " + aCfg(cfgprefix + "g3").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If gn1i1 = 0 Then
+                If VLast2 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход G " + aCfg(cfgprefix + "g4").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход G " + aCfg(cfgprefix + "g4").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k0") And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k0") And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Скачек расходов между циклами G " + aCfg(cfgprefix + "g3").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Скачек расходов между циклами G " + aCfg(cfgprefix + "g3").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gn1i - gn1i1) >= aCfgSezon(aCfg, "k0") And gn1i <> 0 And gn1i1 <> 0 Then
+                If Math.Abs(VPrev2 - VLast2) >= aCfgSezon(aCfg, "k0") And VPrev2 <> 0 And VLast2 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Скачек расходов между циклами G " + aCfg(cfgprefix + "g4").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Скачек расходов между циклами G " + aCfg(cfgprefix + "g4").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
                 'If UseGVSMax Then
-                '    If Math.Abs(gn1i1 - gni1) >= aCfgSezon(acfg,"k3") * GVSMax And gn1i1 <> 0 And gni1 <> 0 Then
+                '    If Math.Abs(VLast2 - VLast1) >= aCfgSezon(acfg,"k3") * GVSMax And VLast2 <> 0 And VLast1 <> 0 Then
                 '        m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между прямым и обратным трубопроводом G " + aCfg(cfgprefix + "g3").ToString + " и " + aCfg(cfgprefix + "g4").ToString + " >=GVSMAX', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                 '        WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между прямым и обратным трубопроводом G " + aCfg(cfgprefix + "g3").ToString + " и " + aCfg(cfgprefix + "g4").ToString + " >=GVSMAX", aLast("DCOUNTER"), id_bd, NodeNAME)
                 '    End If
@@ -831,26 +856,26 @@
             End If
         Else
             If aCfg(cfgprefix + "g3") > 0 Then
-                gni = GetG(isHour, aPrev, aCfg(cfgprefix + "g3"))
-                gni1 = GetG(isHour, aLast, aCfg(cfgprefix + "g3"))
-                If gni1 = 0 Then
+                VPrev1 = GetG(isHour, aPrev, aCfg(cfgprefix + "g3"))
+                VLast1 = GetG(isHour, aLast, aCfg(cfgprefix + "g3"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход G " + aCfg(cfgprefix + "g3").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход G " + aCfg(cfgprefix + "g3").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k1") * Math.Abs(gni) And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k1") * Math.Abs(VPrev1) And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между циклами G" + aCfg(cfgprefix + "g3").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между циклами G" + aCfg(cfgprefix + "g3").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
 
             End If
             If aCfg(cfgprefix + "g4") > 0 Then
-                gni = GetG(isHour, aPrev, aCfg(cfgprefix + "g4"))
-                gni1 = GetG(isHour, aLast, aCfg(cfgprefix + "g4"))
-                If gni1 = 0 Then
+                VPrev1 = GetG(isHour, aPrev, aCfg(cfgprefix + "g4"))
+                VLast1 = GetG(isHour, aLast, aCfg(cfgprefix + "g4"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход G " + aCfg(cfgprefix + "g4").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход G " + aCfg(cfgprefix + "g4").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k1") * Math.Abs(gni) And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k1") * Math.Abs(VPrev1) And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между циклами G" + aCfg(cfgprefix + "g4").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между циклами G" + aCfg(cfgprefix + "g4").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
@@ -863,56 +888,56 @@
 
         If isOpen Then
             If aCfg(cfgprefix + "g5") > 0 And aCfg(cfgprefix + "g6") > 0 Then
-                gni = GetG(isHour, aPrev, aCfg(cfgprefix + "g5"))
-                gn1i = GetG(isHour, aPrev, aCfg(cfgprefix + "g6"))
-                gni1 = GetG(isHour, aLast, aCfg(cfgprefix + "g5"))
-                gn1i1 = GetG(isHour, aLast, aCfg(cfgprefix + "g6"))
-                If gni1 = 0 Then
+                VPrev1 = GetG(isHour, aPrev, aCfg(cfgprefix + "g5"))
+                VPrev2 = GetG(isHour, aPrev, aCfg(cfgprefix + "g6"))
+                VLast1 = GetG(isHour, aLast, aCfg(cfgprefix + "g5"))
+                VLast2 = GetG(isHour, aLast, aCfg(cfgprefix + "g6"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход G " + aCfg(cfgprefix + "g5").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход G " + aCfg(cfgprefix + "g5").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If gn1i1 = 0 Then
+                If VLast2 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход G " + aCfg(cfgprefix + "g6").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход G " + aCfg(cfgprefix + "g6").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k0") And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k0") And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Скачек расходов между циклами G " + aCfg(cfgprefix + "g5").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Скачек расходов между циклами G " + aCfg(cfgprefix + "g5").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gn1i - gn1i1) >= aCfgSezon(aCfg, "k0") And gn1i <> 0 And gn1i1 <> 0 Then
+                If Math.Abs(VPrev2 - VLast2) >= aCfgSezon(aCfg, "k0") And VPrev2 <> 0 And VLast2 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Скачек расходов между циклами G " + aCfg(cfgprefix + "g6").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Скачек расходов между циклами G " + aCfg(cfgprefix + "g6").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If UseGVSMax Then
-                    If Math.Abs(gn1i1 - gni1) >= aCfgSezon(aCfg, "k3") * GVSMax And gn1i1 <> 0 And gni1 <> 0 Then
-                        m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между прямым и обратным трубопроводом G " + aCfg(cfgprefix + "g5").ToString + " и " + aCfg(cfgprefix + "g6").ToString + " >=GVSMAX', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
-                        WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между прямым и обратным трубопроводом G " + aCfg(cfgprefix + "g5").ToString + " и " + aCfg(cfgprefix + "g6").ToString + " >=GVSMAX", aLast("DCOUNTER"), id_bd, NodeNAME)
-                    End If
-                End If
+                'If UseGVSMax Then
+                '    If Math.Abs(VLast2 - VLast1) >= aCfgSezon(aCfg, "k3") * GVSMax And VLast2 <> 0 And VLast1 <> 0 Then
+                '        m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между прямым и обратным трубопроводом G " + aCfg(cfgprefix + "g5").ToString + " и " + aCfg(cfgprefix + "g6").ToString + " >=GVSMAX', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
+                '        WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между прямым и обратным трубопроводом G " + aCfg(cfgprefix + "g5").ToString + " и " + aCfg(cfgprefix + "g6").ToString + " >=GVSMAX", aLast("DCOUNTER"), id_bd, NodeNAME)
+                '    End If
+                'End If
             End If
         Else
             If aCfg(cfgprefix + "g5") > 0 Then
-                gni = GetG(isHour, aPrev, aCfg(cfgprefix + "g5"))
-                gni1 = GetG(isHour, aLast, aCfg(cfgprefix + "g5"))
-                If gni1 = 0 Then
+                VPrev1 = GetG(isHour, aPrev, aCfg(cfgprefix + "g5"))
+                VLast1 = GetG(isHour, aLast, aCfg(cfgprefix + "g5"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход G " + aCfg(cfgprefix + "g5").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход G " + aCfg(cfgprefix + "g5").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
 
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k1") * Math.Abs(gni) And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k1") * Math.Abs(VPrev1) And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между циклами G" + aCfg(cfgprefix + "g5").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между циклами G" + aCfg(cfgprefix + "g5").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
 
             End If
             If aCfg(cfgprefix + "g6") > 0 Then
-                gni = GetG(isHour, aPrev, aCfg(cfgprefix + "g6"))
-                gni1 = GetG(isHour, aLast, aCfg(cfgprefix + "g6"))
-                If gni1 = 0 Then
+                VPrev1 = GetG(isHour, aPrev, aCfg(cfgprefix + "g6"))
+                VLast1 = GetG(isHour, aLast, aCfg(cfgprefix + "g6"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход G " + aCfg(cfgprefix + "g6").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход G " + aCfg(cfgprefix + "g6").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k1") * Math.Abs(gni) And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k1") * Math.Abs(VPrev1) And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между циклами G" + aCfg(cfgprefix + "g6").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между циклами G" + aCfg(cfgprefix + "g6").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
@@ -924,28 +949,28 @@
 
         If isOpen Then
             If aCfg(cfgprefix + "m1") > 0 And aCfg(cfgprefix + "m2") > 0 Then
-                gni = GetM(isHour, aPrev, aCfg(cfgprefix + "m1"))
-                gn1i = GetM(isHour, aPrev, aCfg(cfgprefix + "m2"))
-                gni1 = GetM(isHour, aLast, aCfg(cfgprefix + "m1"))
-                gn1i1 = GetM(isHour, aLast, aCfg(cfgprefix + "m2"))
-                If gni1 = 0 Then
+                VPrev1 = GetM(isHour, aPrev, aCfg(cfgprefix + "m1"))
+                VPrev2 = GetM(isHour, aPrev, aCfg(cfgprefix + "m2"))
+                VLast1 = GetM(isHour, aLast, aCfg(cfgprefix + "m1"))
+                VLast2 = GetM(isHour, aLast, aCfg(cfgprefix + "m2"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход M " + aCfg(cfgprefix + "m1").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход M " + aCfg(cfgprefix + "m1").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If gn1i1 = 0 Then
+                If VLast2 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход M " + aCfg(cfgprefix + "m2").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход M " + aCfg(cfgprefix + "m2").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k0") And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k0") And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Скачек расходов между циклами M " + aCfg(cfgprefix + "m1").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Скачек расходов между циклами М " + aCfg(cfgprefix + "m1").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gn1i - gn1i1) >= aCfgSezon(aCfg, "k0") And gn1i <> 0 And gn1i1 <> 0 Then
+                If Math.Abs(VPrev2 - VLast2) >= aCfgSezon(aCfg, "k0") And VPrev2 <> 0 And VLast2 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Скачек расходов между циклами M " + aCfg(cfgprefix + "m2").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Скачек расходов между циклами М " + aCfg(cfgprefix + "m2").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
                 'If UseGVSMax Then
-                '    If Math.Abs(gn1i1 - gni1) >= aCfgSezon(acfg,"k3") * GVSMax And gn1i1 <> 0 And gni1 <> 0 Then
+                '    If Math.Abs(VLast2 - VLast1) >= aCfgSezon(acfg,"k3") * GVSMax And VLast2 <> 0 And VLast1 <> 0 Then
                 '        m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между прямым и обратным трубопроводом M " + aCfg(cfgprefix + "m1").ToString + " и " + aCfg(cfgprefix + "m2").ToString + " >=GVSMAX', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                 '        WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между прямым и обратным трубопроводом M " + aCfg(cfgprefix + "m1").ToString + " и " + aCfg(cfgprefix + "m2").ToString + " >=GVSMAX", aLast("DCOUNTER"), id_bd, NodeNAME)
                 '    End If
@@ -953,26 +978,26 @@
             End If
         Else
             If aCfg(cfgprefix + "m1") > 0 Then
-                gni = GetM(isHour, aPrev, aCfg(cfgprefix + "m1"))
-                gni1 = GetM(isHour, aLast, aCfg(cfgprefix + "m1"))
-                If gni1 = 0 Then
+                VPrev1 = GetM(isHour, aPrev, aCfg(cfgprefix + "m1"))
+                VLast1 = GetM(isHour, aLast, aCfg(cfgprefix + "m1"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход M " + aCfg(cfgprefix + "m1").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход M " + aCfg(cfgprefix + "m1").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k1") * Math.Abs(gni) And gni <> 0 And gn1i <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k1") * Math.Abs(VPrev1) And VPrev1 <> 0 And VPrev2 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между циклами M" + aCfg(cfgprefix + "m1").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между циклами M" + aCfg(cfgprefix + "m1").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
 
             End If
             If aCfg(cfgprefix + "m2") > 0 Then
-                gni = GetM(isHour, aPrev, aCfg(cfgprefix + "m2"))
-                gni1 = GetM(isHour, aLast, aCfg(cfgprefix + "m2"))
-                If gni1 = 0 Then
+                VPrev1 = GetM(isHour, aPrev, aCfg(cfgprefix + "m2"))
+                VLast1 = GetM(isHour, aLast, aCfg(cfgprefix + "m2"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход M " + aCfg(cfgprefix + "m2").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход M " + aCfg(cfgprefix + "m2").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k1") * Math.Abs(gni) And gni <> 0 And gn1i <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k1") * Math.Abs(VPrev1) And VPrev1 <> 0 And VPrev2 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между циклами M" + aCfg(cfgprefix + "m2").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между циклами M" + aCfg(cfgprefix + "m2").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
@@ -982,29 +1007,29 @@
 
         If isOpen Then
             If aCfg(cfgprefix + "m3") > 0 And aCfg(cfgprefix + "m4") > 0 Then
-                gni = GetM(isHour, aPrev, aCfg(cfgprefix + "m3"))
-                gn1i = GetM(isHour, aPrev, aCfg(cfgprefix + "m4"))
-                gni1 = GetM(isHour, aLast, aCfg(cfgprefix + "m3"))
-                gn1i1 = GetM(isHour, aLast, aCfg(cfgprefix + "m4"))
-                If gni1 = 0 Then
+                VPrev1 = GetM(isHour, aPrev, aCfg(cfgprefix + "m3"))
+                VPrev2 = GetM(isHour, aPrev, aCfg(cfgprefix + "m4"))
+                VLast1 = GetM(isHour, aLast, aCfg(cfgprefix + "m3"))
+                VLast2 = GetM(isHour, aLast, aCfg(cfgprefix + "m4"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход M " + aCfg(cfgprefix + "m3").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход M " + aCfg(cfgprefix + "m3").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If gn1i1 = 0 Then
+                If VLast2 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход M " + aCfg(cfgprefix + "m4").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход M " + aCfg(cfgprefix + "m4").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
 
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k0") And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k0") And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Скачек расходов между циклами M " + aCfg(cfgprefix + "m3").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Скачек расходов между циклами М " + aCfg(cfgprefix + "m3").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gn1i - gn1i1) >= aCfgSezon(aCfg, "k0") And gn1i <> 0 And gn1i1 <> 0 Then
+                If Math.Abs(VPrev2 - VLast2) >= aCfgSezon(aCfg, "k0") And VPrev2 <> 0 And VLast2 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Скачек расходов между циклами M " + aCfg(cfgprefix + "m4").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Скачек расходов между циклами М " + aCfg(cfgprefix + "m4").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
                 If UseGVSMax Then
-                    If Math.Abs(gn1i1 - gni1) >= aCfgSezon(aCfg, "k3") * GVSMax And gn1i1 <> 0 And gni1 <> 0 Then
+                    If Math.Abs(VLast2 - VLast1) >= aCfgSezon(aCfg, "k3") * GVSMax And VLast2 <> 0 And VLast1 <> 0 Then
                         m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между прямым и обратным трубопроводом M " + aCfg(cfgprefix + "m3").ToString + " и " + aCfg(cfgprefix + "m4").ToString + " >=GVSMAX', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                         WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между прямым и обратным трубопроводом M " + aCfg(cfgprefix + "m3").ToString + " и " + aCfg(cfgprefix + "m4").ToString + " >=GVSMAX", aLast("DCOUNTER"), id_bd, NodeNAME)
                     End If
@@ -1012,26 +1037,26 @@
             End If
         Else
             If aCfg(cfgprefix + "m3") > 0 Then
-                gni = GetM(isHour, aPrev, aCfg(cfgprefix + "m3"))
-                gni1 = GetM(isHour, aLast, aCfg(cfgprefix + "m3"))
-                If gni1 = 0 Then
+                VPrev1 = GetM(isHour, aPrev, aCfg(cfgprefix + "m3"))
+                VLast1 = GetM(isHour, aLast, aCfg(cfgprefix + "m3"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход M " + aCfg(cfgprefix + "m3").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход M " + aCfg(cfgprefix + "m3").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k1") * Math.Abs(gni) And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k1") * Math.Abs(VPrev1) And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между циклами M" + aCfg(cfgprefix + "m3").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между циклами M" + aCfg(cfgprefix + "m3").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
 
             End If
             If aCfg(cfgprefix + "m4") > 0 Then
-                gni = GetM(isHour, aPrev, aCfg(cfgprefix + "m4"))
-                gni1 = GetM(isHour, aLast, aCfg(cfgprefix + "m4"))
-                If gni1 = 0 Then
+                VPrev1 = GetM(isHour, aPrev, aCfg(cfgprefix + "m4"))
+                VLast1 = GetM(isHour, aLast, aCfg(cfgprefix + "m4"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход M " + aCfg(cfgprefix + "m4").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход M " + aCfg(cfgprefix + "m4").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k1") * Math.Abs(gni) And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k1") * Math.Abs(VPrev1) And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между циклами M" + aCfg(cfgprefix + "m4").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между циклами M" + aCfg(cfgprefix + "m4").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
@@ -1044,30 +1069,30 @@
 
         If isOpen Then
             If aCfg(cfgprefix + "m5") > 0 And aCfg(cfgprefix + "m6") > 0 Then
-                gni = GetM(isHour, aPrev, aCfg(cfgprefix + "m5"))
-                gn1i = GetM(isHour, aPrev, aCfg(cfgprefix + "m6"))
-                gni1 = GetM(isHour, aLast, aCfg(cfgprefix + "m5"))
-                gn1i1 = GetM(isHour, aLast, aCfg(cfgprefix + "m6"))
-                If gni1 = 0 Then
+                VPrev1 = GetM(isHour, aPrev, aCfg(cfgprefix + "m5"))
+                VPrev2 = GetM(isHour, aPrev, aCfg(cfgprefix + "m6"))
+                VLast1 = GetM(isHour, aLast, aCfg(cfgprefix + "m5"))
+                VLast2 = GetM(isHour, aLast, aCfg(cfgprefix + "m6"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход M " + aCfg(cfgprefix + "m5").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход M " + aCfg(cfgprefix + "m5").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If gn1i1 = 0 Then
+                If VLast2 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход M " + aCfg(cfgprefix + "m6").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход M " + aCfg(cfgprefix + "m6").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
 
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k0") And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k0") And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Скачек расходов между циклами M " + aCfg(cfgprefix + "m5").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Скачек расходов между циклами М " + aCfg(cfgprefix + "m5").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gn1i - gn1i1) >= aCfgSezon(aCfg, "k0") And gn1i <> 0 And gn1i1 <> 0 Then
+                If Math.Abs(VPrev2 - VLast2) >= aCfgSezon(aCfg, "k0") And VPrev2 <> 0 And VLast2 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Скачек расходов между циклами M " + aCfg(cfgprefix + "m6").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Скачек расходов между циклами М " + aCfg(cfgprefix + "m6").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
 
                 If UseGVSMax Then
-                    If Math.Abs(gn1i1 - gni1) >= aCfgSezon(aCfg, "k3") * GVSMax And gn1i1 <> 0 And gni1 <> 0 Then
+                    If Math.Abs(VLast2 - VLast1) >= aCfgSezon(aCfg, "k3") * GVSMax And VLast2 <> 0 And VLast1 <> 0 Then
                         m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между прямым и обратным трубопроводом M " + aCfg(cfgprefix + "m5").ToString + " и " + aCfg(cfgprefix + "m6").ToString + " >=GVSMAX', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                         WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между прямым и обратным трубопроводом M " + aCfg(cfgprefix + "m5").ToString + " и " + aCfg(cfgprefix + "m6").ToString + " >=GVSMAX", aLast("DCOUNTER"), id_bd, NodeNAME)
                     End If
@@ -1075,26 +1100,28 @@
             End If
         Else
             If aCfg(cfgprefix + "m5") > 0 Then
-                gni = GetM(isHour, aPrev, aCfg(cfgprefix + "m5"))
-                gni1 = GetM(isHour, aLast, aCfg(cfgprefix + "m5"))
-                If gni1 = 0 Then
+                VPrev1 = GetM(isHour, aPrev, aCfg(cfgprefix + "m5"))
+                VLast1 = GetM(isHour, aLast, aCfg(cfgprefix + "m5"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход M " + aCfg(cfgprefix + "m5").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход M " + aCfg(cfgprefix + "m5").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k1") * Math.Abs(gni) And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k1") * Math.Abs(VPrev1) And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между циклами M" + aCfg(cfgprefix + "m5").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между циклами M" + aCfg(cfgprefix + "m5").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
 
             End If
             If aCfg(cfgprefix + "m6") > 0 Then
-                gni = GetM(isHour, aPrev, aCfg(cfgprefix + "m6"))
-                gni1 = GetM(isHour, aLast, aCfg(cfgprefix + "m6"))
-                If gni1 = 0 Then
+                VPrev1 = GetM(isHour, aPrev, aCfg(cfgprefix + "m6"))
+                VLast1 = GetM(isHour, aLast, aCfg(cfgprefix + "m6"))
+
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход M " + aCfg(cfgprefix + "m6").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход M " + aCfg(cfgprefix + "m6").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k1") * Math.Abs(gni) And gni <> 0 And gni1 <> 0 Then
+
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k1") * Math.Abs(VPrev1) And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между циклами M" + aCfg(cfgprefix + "m6").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между циклами M" + aCfg(cfgprefix + "m6").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
@@ -1110,29 +1137,29 @@
 
         If isOpen Then
             If aCfg(cfgprefix + "v1") > 0 And aCfg(cfgprefix + "v2") > 0 Then
-                gni = GetV(isHour, aPrev, aCfg(cfgprefix + "v1"))
-                gn1i = GetV(isHour, aPrev, aCfg(cfgprefix + "v2"))
-                gni1 = GetV(isHour, aLast, aCfg(cfgprefix + "v1"))
-                gn1i1 = GetV(isHour, aLast, aCfg(cfgprefix + "v2"))
-                If gni1 = 0 Then
+                VPrev1 = GetV(isHour, aPrev, aCfg(cfgprefix + "v1"))
+                VPrev2 = GetV(isHour, aPrev, aCfg(cfgprefix + "v2"))
+                VLast1 = GetV(isHour, aLast, aCfg(cfgprefix + "v1"))
+                VLast2 = GetV(isHour, aLast, aCfg(cfgprefix + "v2"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход V " + aCfg(cfgprefix + "v1").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход V " + aCfg(cfgprefix + "v1").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If gn1i1 = 0 Then
+                If VLast2 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход V " + aCfg(cfgprefix + "v2").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход V " + aCfg(cfgprefix + "v2").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k0") And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k0") And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Скачек расходов между циклами V " + aCfg(cfgprefix + "v1").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Скачек расходов между циклами V " + aCfg(cfgprefix + "v1").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gn1i - gn1i1) >= aCfgSezon(aCfg, "k0") And gn1i <> 0 And gn1i1 <> 0 Then
+                If Math.Abs(VPrev2 - VLast2) >= aCfgSezon(aCfg, "k0") And VPrev2 <> 0 And VLast2 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Скачек расходов между циклами V " + aCfg(cfgprefix + "v2").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Скачек расходов между циклами V " + aCfg(cfgprefix + "v2").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
 
                 If UseGVSMax Then
-                    If Math.Abs(gn1i1 - gni1) >= aCfgSezon(aCfg, "k3") * GVSMax And gn1i1 <> 0 And gni1 <> 0 Then
+                    If Math.Abs(VLast2 - VLast1) >= aCfgSezon(aCfg, "k3") * GVSMax And VLast2 <> 0 And VLast1 <> 0 Then
                         m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между прямым и обратным трубопроводом V " + aCfg(cfgprefix + "v1").ToString + " и " + aCfg(cfgprefix + "v2").ToString + " >=GVSMAX', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                         WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между прямым и обратным трубопроводом V " + aCfg(cfgprefix + "v1").ToString + " и " + aCfg(cfgprefix + "v2").ToString + " >=GVSMAX", aLast("DCOUNTER"), id_bd, NodeNAME)
                     End If
@@ -1141,26 +1168,26 @@
             End If
         Else
             If aCfg(cfgprefix + "v1") > 0 Then
-                gni = GetV(isHour, aPrev, aCfg(cfgprefix + "v1"))
-                gni1 = GetV(isHour, aLast, aCfg(cfgprefix + "v1"))
-                If gni1 = 0 Then
+                VPrev1 = GetV(isHour, aPrev, aCfg(cfgprefix + "v1"))
+                VLast1 = GetV(isHour, aLast, aCfg(cfgprefix + "v1"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход V " + aCfg(cfgprefix + "v1").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход V " + aCfg(cfgprefix + "v1").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k1") * Math.Abs(gni) And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k1") * Math.Abs(VPrev1) And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между циклами V" + aCfg(cfgprefix + "v1").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между циклами V" + aCfg(cfgprefix + "v1").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
 
             End If
             If aCfg(cfgprefix + "v2") > 0 Then
-                gni = GetV(isHour, aPrev, aCfg(cfgprefix + "v2"))
-                gni1 = GetV(isHour, aLast, aCfg(cfgprefix + "v2"))
-                If gni1 = 0 Then
+                VPrev1 = GetV(isHour, aPrev, aCfg(cfgprefix + "v2"))
+                VLast1 = GetV(isHour, aLast, aCfg(cfgprefix + "v2"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход V " + aCfg(cfgprefix + "v2").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход V " + aCfg(cfgprefix + "v2").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k1") * Math.Abs(gni) And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k1") * Math.Abs(VPrev1) And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между циклами V" + aCfg(cfgprefix + "v2").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между циклами V" + aCfg(cfgprefix + "v2").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
@@ -1170,30 +1197,30 @@
 
         If isOpen Then
             If aCfg(cfgprefix + "v3") > 0 And aCfg(cfgprefix + "v4") > 0 Then
-                gni = GetV(isHour, aPrev, aCfg(cfgprefix + "v3"))
-                gn1i = GetV(isHour, aPrev, aCfg(cfgprefix + "v4"))
-                gni1 = GetV(isHour, aLast, aCfg(cfgprefix + "v3"))
-                gn1i1 = GetV(isHour, aLast, aCfg(cfgprefix + "v4"))
-                If gni1 = 0 Then
+                VPrev1 = GetV(isHour, aPrev, aCfg(cfgprefix + "v3"))
+                VPrev2 = GetV(isHour, aPrev, aCfg(cfgprefix + "v4"))
+                VLast1 = GetV(isHour, aLast, aCfg(cfgprefix + "v3"))
+                VLast2 = GetV(isHour, aLast, aCfg(cfgprefix + "v4"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход V " + aCfg(cfgprefix + "v3").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход V " + aCfg(cfgprefix + "v3").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If gn1i1 = 0 Then
+                If VLast2 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход V " + aCfg(cfgprefix + "v4").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход V " + aCfg(cfgprefix + "v4").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
 
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k0") And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k0") And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Скачек расходов между циклами V " + aCfg(cfgprefix + "v3").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Скачек расходов между циклами V " + aCfg(cfgprefix + "v3").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gn1i - gn1i1) >= aCfgSezon(aCfg, "k0") And gn1i <> 0 And gn1i1 <> 0 Then
+                If Math.Abs(VPrev2 - VLast2) >= aCfgSezon(aCfg, "k0") And VPrev2 <> 0 And VLast2 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Скачек расходов между циклами V " + aCfg(cfgprefix + "v4").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Скачек расходов между циклами V " + aCfg(cfgprefix + "v4").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
 
                 If UseGVSMax Then
-                    If Math.Abs(gn1i1 - gni1) >= aCfgSezon(aCfg, "k3") * GVSMax And gn1i1 <> 0 And gni1 <> 0 Then
+                    If Math.Abs(VLast2 - VLast1) >= aCfgSezon(aCfg, "k3") * GVSMax And VLast2 <> 0 And VLast1 <> 0 Then
                         m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между прямым и обратным трубопроводом V " + aCfg(cfgprefix + "v3").ToString + " и " + aCfg(cfgprefix + "v4").ToString + " >=GVSMAX', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                         WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между прямым и обратным трубопроводом V " + aCfg(cfgprefix + "v3").ToString + " и " + aCfg(cfgprefix + "v4").ToString + " >=GVSMAX", aLast("DCOUNTER"), id_bd, NodeNAME)
                     End If
@@ -1201,26 +1228,26 @@
             End If
         Else
             If aCfg(cfgprefix + "v3") > 0 Then
-                gni = GetV(isHour, aPrev, aCfg(cfgprefix + "v3"))
-                gni1 = GetV(isHour, aLast, aCfg(cfgprefix + "v3"))
-                If gni1 = 0 Then
+                VPrev1 = GetV(isHour, aPrev, aCfg(cfgprefix + "v3"))
+                VLast1 = GetV(isHour, aLast, aCfg(cfgprefix + "v3"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход V " + aCfg(cfgprefix + "v3").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход V " + aCfg(cfgprefix + "v3").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k1") * Math.Abs(gni) And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k1") * Math.Abs(VPrev1) And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между циклами V" + aCfg(cfgprefix + "v3").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между циклами V" + aCfg(cfgprefix + "v3").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
 
             End If
             If aCfg(cfgprefix + "v4") > 0 Then
-                gni = GetV(isHour, aPrev, aCfg(cfgprefix + "v4"))
-                gni1 = GetV(isHour, aLast, aCfg(cfgprefix + "v4"))
-                If gni1 = 0 Then
+                VPrev1 = GetV(isHour, aPrev, aCfg(cfgprefix + "v4"))
+                VLast1 = GetV(isHour, aLast, aCfg(cfgprefix + "v4"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход V " + aCfg(cfgprefix + "v4").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход V " + aCfg(cfgprefix + "v4").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k1") * Math.Abs(gni) And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k1") * Math.Abs(VPrev1) And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между циклами V" + aCfg(cfgprefix + "v4").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между циклами V" + aCfg(cfgprefix + "v4").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
@@ -1233,30 +1260,30 @@
 
         If isOpen Then
             If aCfg(cfgprefix + "v5") > 0 And aCfg(cfgprefix + "v6") > 0 Then
-                gni = GetV(isHour, aPrev, aCfg(cfgprefix + "v5"))
-                gn1i = GetV(isHour, aPrev, aCfg(cfgprefix + "v6"))
-                gni1 = GetV(isHour, aLast, aCfg(cfgprefix + "v5"))
-                gn1i1 = GetV(isHour, aLast, aCfg(cfgprefix + "v6"))
-                gn1i1 = GetV(isHour, aLast, aCfg(cfgprefix + "v4"))
-                If gni1 = 0 Then
+                VPrev1 = GetV(isHour, aPrev, aCfg(cfgprefix + "v5"))
+                VPrev2 = GetV(isHour, aPrev, aCfg(cfgprefix + "v6"))
+                VLast1 = GetV(isHour, aLast, aCfg(cfgprefix + "v5"))
+                VLast2 = GetV(isHour, aLast, aCfg(cfgprefix + "v6"))
+
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход V " + aCfg(cfgprefix + "v5").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход V " + aCfg(cfgprefix + "v5").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If gn1i1 = 0 Then
+                If VLast2 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход V " + aCfg(cfgprefix + "v6").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход V " + aCfg(cfgprefix + "v6").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k0") And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k0") And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Скачек расходов между циклами V " + aCfg(cfgprefix + "v5").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Скачек расходов между циклами V " + aCfg(cfgprefix + "v5").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gn1i - gn1i1) >= aCfgSezon(aCfg, "k0") And gn1i <> 0 And gn1i1 <> 0 Then
+                If Math.Abs(VPrev2 - VLast2) >= aCfgSezon(aCfg, "k0") And VPrev2 <> 0 And VLast2 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Скачек расходов между циклами V " + aCfg(cfgprefix + "v6").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Скачек расходов между циклами V " + aCfg(cfgprefix + "v6").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
 
                 If UseGVSMax Then
-                    If Math.Abs(gn1i1 - gni1) >= aCfgSezon(aCfg, "k3") * GVSMax And gn1i1 <> 0 And gni1 <> 0 Then
+                    If Math.Abs(VLast2 - VLast1) >= aCfgSezon(aCfg, "k3") * GVSMax And VLast2 <> 0 And VLast1 <> 0 Then
                         m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между прямым и обратным трубопроводом V " + aCfg(cfgprefix + "v5").ToString + " и " + aCfg(cfgprefix + "v6").ToString + " >=GVSMAX', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                         WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между прямым и обратным трубопроводом V " + aCfg(cfgprefix + "v5").ToString + " и " + aCfg(cfgprefix + "v6").ToString + " >=GVSMAX", aLast("DCOUNTER"), id_bd, NodeNAME)
                     End If
@@ -1264,26 +1291,26 @@
             End If
         Else
             If aCfg(cfgprefix + "v5") > 0 Then
-                gni = GetV(isHour, aPrev, aCfg(cfgprefix + "v5"))
-                gni1 = GetV(isHour, aLast, aCfg(cfgprefix + "v5"))
-                If gni1 = 0 Then
+                VPrev1 = GetV(isHour, aPrev, aCfg(cfgprefix + "v5"))
+                VLast1 = GetV(isHour, aLast, aCfg(cfgprefix + "v5"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход V " + aCfg(cfgprefix + "v5").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход V " + aCfg(cfgprefix + "v5").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k1") * Math.Abs(gni) And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k1") * Math.Abs(VPrev1) And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между циклами V" + aCfg(cfgprefix + "v5").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между циклами V" + aCfg(cfgprefix + "v5").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
 
             End If
             If aCfg(cfgprefix + "v6") > 0 Then
-                gni = GetV(isHour, aPrev, aCfg(cfgprefix + "v6"))
-                gni1 = GetV(isHour, aLast, aCfg(cfgprefix + "v6"))
-                If gni1 = 0 Then
+                VPrev1 = GetV(isHour, aPrev, aCfg(cfgprefix + "v6"))
+                VLast1 = GetV(isHour, aLast, aCfg(cfgprefix + "v6"))
+                If VLast1 = 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Нулевой расход V " + aCfg(cfgprefix + "v6").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Нулевой расход V " + aCfg(cfgprefix + "v6").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If
-                If Math.Abs(gni - gni1) >= aCfgSezon(aCfg, "k1") * Math.Abs(gni) And gni <> 0 And gni1 <> 0 Then
+                If Math.Abs(VPrev1 - VLast1) >= aCfgSezon(aCfg, "k1") * Math.Abs(VPrev1) And VPrev1 <> 0 And VLast1 <> 0 Then
                     m_tvmain.QueryExec("Update Analizer set INFO =INFO||'" & vbCrLf & prefix + "Разница расходов между циклами V" + aCfg(cfgprefix + "v6").ToString + "', color='RED',GERROR=GERROR+1 where id_bd=" & id_bd.ToString)
                     WriteNC(ApplicationTypeEnum.AppAuto, prefix + "Разница расходов между циклами V" + aCfg(cfgprefix + "v6").ToString, aLast("DCOUNTER"), id_bd, NodeNAME)
                 End If

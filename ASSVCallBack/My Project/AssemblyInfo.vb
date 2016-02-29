@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("ASSVCallBack")> 
-<Assembly: AssemblyCopyright("Copyright ©  2015")> 
+<Assembly: AssemblyCopyright("Copyright ©  2011-2016")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -29,7 +29,7 @@ Imports System.Runtime.InteropServices
 '
 ' You can specify all the values or you can default the Build and Revision Numbers 
 ' by using the '*' as shown below:
-' <Assembly: AssemblyVersion("1.0.*")> 
+' <Assembly: AssemblyVersion("2016.02.05.300")> 
 
-<Assembly: AssemblyVersion("2015.10.7.200")> 
-<Assembly: AssemblyFileVersion("2015.10.7.200")> 
+<Assembly: AssemblyVersion("2016.02.05.300")> 
+<Assembly: AssemblyFileVersion("2016.02.05.300")> 

@@ -108,12 +108,13 @@ Public MustInherit Class GRPSSocket
                         End If
 
                         LOG("Caller ID=" + callerID)
-                    Else
-                        mLastError = "Идентификатор модуля CallerID не получен"
-                        LOG(mLastError)
+                        Return
+                   
                     End If
                 End If
             End While
+            mLastError = "Идентификатор модуля CallerID не получен"
+            LOG(mLastError)
         End If
     End Sub
 
@@ -254,7 +255,6 @@ Public MustInherit Class GRPSSocket
         Dim i As Integer
         Dim outBuf() As Byte
         i = 0
-    
 
         Dim sOut As String = ""
         For i = 0 To size - 1
@@ -274,11 +274,6 @@ Public MustInherit Class GRPSSocket
         Return outBuf
     End Function
 
-    
-
-
-
-  
 
     Public Overridable Function Connected() As Boolean
         If Not IPSocket Is Nothing Then

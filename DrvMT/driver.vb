@@ -725,7 +725,7 @@ Public Class driver
 
             Arch.archType = ArchType
 
-            If (ArchType = 3 And dt2 <= devdate.AddHours(-1)) Or (ArchType = 4 And dt2 <= devdate.AddHours(-25)) Then
+            If (ArchType = 3 And dt2 <= devdate.AddHours(-2)) Or (ArchType = 4 And dt2 <= devdate.AddHours(-25)) Then
 
                 If ArchType = archType_hour Then
                     dt2 = New Date(ArchYear, ArchMonth, ArchDay, ArchHour, 0, 0)
@@ -861,7 +861,7 @@ Public Class driver
                 End If
             Else
                 ok = False
-                retsum = "Архив еще не сформирован"
+                retsum = "Ошибка: Архив еще не сформирован"
                 EraseInputQueue()
                 isArchToDBWrite = False
                 Return retsum

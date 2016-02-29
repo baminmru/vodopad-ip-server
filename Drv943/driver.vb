@@ -2095,9 +2095,18 @@ finalRet:
         Dim i As Long
         On Error Resume Next
         ExtLong4 = 0
+
+        Dim arr(3) As Byte
         For i = 0 To 3
-            ExtLong4 = ExtLong4 + Asc(Mid(extStr, 1 + i, 1)) * (256 ^ (i))
-        Next i
+            arr(i) = Asc(Mid(extStr, 1 + i, 1))
+        Next
+
+        i = BitConverter.ToInt32(arr, 0)
+        ExtLong4 = i
+
+        'For i = 0 To 3
+        '    ExtLong4 = ExtLong4 + Asc(Mid(extStr, 1 + i, 1)) * (256 ^ (i))
+        'Next i
     End Function
 
 
