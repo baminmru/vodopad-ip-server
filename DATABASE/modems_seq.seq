@@ -1,0 +1,7 @@
+create sequence MODEMS_SEQ
+minvalue 1
+maxvalue 9999
+start with 20
+increment by 1
+nocache;
+

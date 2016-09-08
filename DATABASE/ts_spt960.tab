@@ -1,0 +1,61 @@
+create table TS_SPT960
+(
+  id_du        NUMBER(4) not null,
+  id_datatype  NUMBER(2) not null,
+  id_paramtype NUMBER(2) not null,
+  id_fun       NUMBER(5) not null,
+  cfun_dev     VARCHAR2(50),
+  cfunname     VARCHAR2(24),
+  cfundesc     VARCHAR2(128),
+  cminval      VARCHAR2(48),
+  cmaxval      VARCHAR2(48),
+  units        VARCHAR2(24),
+  twrite       VARCHAR2(1),
+  tread        VARCHAR2(1),
+  cinquiry     VARCHAR2(255),
+  sname        VARCHAR2(16),
+  intdec       NUMBER(2) default 0
+)
+;
+comment on column TS_SPT960.id_du
+  is '->DEVUNITS';
+comment on column TS_SPT960.id_datatype
+  is '->DATATYPE';
+comment on column TS_SPT960.id_paramtype
+  is '->PARAMTYPE';
+comment on column TS_SPT960.id_fun
+  is 'ID Функции';
+comment on column TS_SPT960.cfun_dev
+  is 'Номер функции по прибору';
+comment on column TS_SPT960.cfunname
+  is 'Условное Обозначение Функции';
+comment on column TS_SPT960.cfundesc
+  is 'Наименование Функции';
+comment on column TS_SPT960.cminval
+  is 'Диапазон От';
+comment on column TS_SPT960.cmaxval
+  is 'Диапазон До';
+comment on column TS_SPT960.units
+  is 'Еденицы Измерения';
+comment on column TS_SPT960.twrite
+  is 'Запись';
+comment on column TS_SPT960.tread
+  is 'Чтение';
+comment on column TS_SPT960.cinquiry
+  is 'Строка Запроса';
+comment on column TS_SPT960.sname
+  is 'Согласованное имя';
+comment on column TS_SPT960.intdec
+  is 'Делитель целого (знаков после точки)';
+alter table TS_SPT960
+  add constraint SPT960_PRI primary key (ID_FUN);
+alter table TS_SPT960
+  add constraint SPT960_DATATYPE foreign key (ID_DATATYPE)
+  references DATATYPE (ID_TYPE);
+alter table TS_SPT960
+  add constraint SPT960_DEVUNITS foreign key (ID_DU)
+  references DEVUNITS (ID_DU);
+alter table TS_SPT960
+  add constraint SPT960_PARAMTYPE foreign key (ID_PARAMTYPE)
+  references PARAMTYPE (ID_TYPE);
+

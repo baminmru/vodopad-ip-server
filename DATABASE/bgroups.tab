@@ -1,0 +1,24 @@
+create table BGROUPS
+(
+  id_grp  NUMBER(5) not null,
+  cgrpnm  VARCHAR2(36),
+  ctxt    VARCHAR2(400),
+  dupd    VARCHAR2(24),
+  hiderow NUMBER(1) default 0
+)
+;
+comment on table BGROUPS
+  is 'Группы узлов учета';
+comment on column BGROUPS.cgrpnm
+  is 'Название группы';
+comment on column BGROUPS.ctxt
+  is 'Описание';
+comment on column BGROUPS.dupd
+  is 'Дата последнего обновления';
+comment on column BGROUPS.hiderow
+  is 'Не отображать строку =1, 0 - отображать';
+alter table BGROUPS
+  add constraint BGROUPS_PRI primary key (ID_GRP);
+alter table BGROUPS
+  add constraint BGROUPS_UNI unique (CGRPNM);
+

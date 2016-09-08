@@ -1,0 +1,32 @@
+create table DEVICES
+(
+  id_dev     NUMBER(2) not null,
+  cdevname   VARCHAR2(24),
+  cdevdesc   VARCHAR2(254),
+  id_class   NUMBER(2),
+  dllname    VARCHAR2(80),
+  verifycols VARCHAR2(255) default 'V1;M1;Q1;'
+)
+;
+comment on table DEVICES
+  is 'Устройства';
+comment on column DEVICES.id_dev
+  is 'PK';
+comment on column DEVICES.cdevname
+  is 'Имя устройства';
+comment on column DEVICES.cdevdesc
+  is 'Описание';
+comment on column DEVICES.id_class
+  is '->DEVCLASSES';
+comment on column DEVICES.dllname
+  is 'Название DLL c драйвером';
+comment on column DEVICES.verifycols
+  is 'имена колонок для проверки соответствия суточных';
+alter table DEVICES
+  add constraint DEVICE_PRI primary key (ID_DEV);
+alter table DEVICES
+  add constraint DEVICE_UNI unique (CDEVNAME);
+alter table DEVICES
+  add constraint DEVICE_DEVCLASS foreign key (ID_CLASS)
+  references DEVCLASSES (ID_CLASS);
+

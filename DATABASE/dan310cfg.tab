@@ -1,0 +1,26 @@
+create table DAN310CFG
+(
+  app_name     VARCHAR2(120),
+  sgroup       VARCHAR2(255),
+  sparam       VARCHAR2(255),
+  sunit        VARCHAR2(40),
+  nscale       NUMBER,
+  stype        VARCHAR2(10),
+  ntypeno      NUMBER,
+  nmin         NUMBER(18,6),
+  nmax         NUMBER(18,6),
+  sdefault_val VARCHAR2(255),
+  sdescrip     VARCHAR2(255),
+  swritable    VARCHAR2(10),
+  spnu         VARCHAR2(10) not null,
+  dcfg_id      NUMBER not null,
+  das_id       NUMBER not null
+)
+;
+comment on column DAN310CFG.das_id
+  is '->DanSchema.DAS_ID';
+alter table DAN310CFG
+  add constraint DAN310CFG_PK primary key (DCFG_ID);
+alter table DAN310CFG
+  add constraint DAN310CFG_UK unique (SPNU, DAS_ID);
+

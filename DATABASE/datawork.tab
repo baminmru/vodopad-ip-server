@@ -1,0 +1,267 @@
+create table DATAWORK
+(
+  id          NUMBER(10),
+  id_bd       NUMBER(5) not null,
+  id_du       NUMBER(4),
+  id_ptype    NUMBER(2) not null,
+  dcall       DATE not null,
+  dcounter    DATE not null,
+  q1          NUMBER(18,6),
+  q2          NUMBER(18,6),
+  t1          NUMBER(18,6),
+  t2          NUMBER(18,6),
+  dt12        NUMBER(18,6),
+  t3          NUMBER(18,6),
+  t4          NUMBER(18,6),
+  t5          NUMBER(18,6),
+  dt45        NUMBER(18,6),
+  t6          NUMBER(18,6),
+  v1          NUMBER(18,6),
+  v2          NUMBER(18,6),
+  dv12        NUMBER(18,6),
+  v3          NUMBER(18,6),
+  v4          NUMBER(18,6),
+  v5          NUMBER(18,6),
+  dv45        NUMBER(18,6),
+  v6          NUMBER(18,6),
+  m1          NUMBER(18,6),
+  m2          NUMBER(18,6),
+  dm12        NUMBER(18,6),
+  m3          NUMBER(18,6),
+  m4          NUMBER(18,6),
+  m5          NUMBER(18,6),
+  dm45        NUMBER(18,6),
+  m6          NUMBER(18,6),
+  p1          NUMBER(18,6),
+  p2          NUMBER(18,6),
+  p3          NUMBER(18,6),
+  p4          NUMBER(18,6),
+  p5          NUMBER(18,6),
+  p6          NUMBER(18,6),
+  g1          NUMBER(18,6),
+  g2          NUMBER(18,6),
+  g3          NUMBER(18,6),
+  g4          NUMBER(18,6),
+  g5          NUMBER(18,6),
+  g6          NUMBER(18,6),
+  tcool       NUMBER(18,6),
+  tce1        NUMBER(18,6),
+  tce2        NUMBER(18,6),
+  tsum1       NUMBER(18,6),
+  tsum2       NUMBER(18,6),
+  q1h         NUMBER(18,6),
+  q2h         NUMBER(18,6),
+  v1h         NUMBER(18,6),
+  v2h         NUMBER(18,6),
+  v4h         NUMBER(18,6),
+  v5h         NUMBER(18,6),
+  errtime     NUMBER(12),
+  errtimeh    NUMBER(12),
+  hc          VARCHAR2(180),
+  sp          NUMBER(3),
+  sp_tb1      NUMBER(3),
+  sp_tb2      NUMBER(3),
+  datecounter DATE,
+  dg12        NUMBER(18,6),
+  dg45        NUMBER(18,6),
+  dp12        NUMBER(18,6),
+  dp45        NUMBER(18,6),
+  unitsr      VARCHAR2(12),
+  q3          NUMBER(18,6),
+  q4          NUMBER(18,6),
+  patm        NUMBER(18,6),
+  q5          NUMBER(18,6),
+  dq12        NUMBER(18,6),
+  dq45        NUMBER(18,6),
+  pxb         NUMBER(18,6),
+  dq          NUMBER(18,6),
+  hc_1        VARCHAR2(180),
+  hc_2        VARCHAR2(180),
+  thot        NUMBER(18,6),
+  dans1       NUMBER(18,6),
+  dans2       NUMBER(18,6),
+  dans3       NUMBER(18,6),
+  dans4       NUMBER(18,6),
+  dans5       NUMBER(18,6),
+  dans6       NUMBER(18,6),
+  check_a     NUMBER(1),
+  oktime      NUMBER(18,6),
+  worktime    NUMBER(18,6),
+  tair1       NUMBER(18,6),
+  tair2       NUMBER(18,6),
+  hc_code     VARCHAR2(180)
+)
+;
+comment on table DATAWORK
+  is 'Текущие значения';
+comment on column DATAWORK.id
+  is '.';
+comment on column DATAWORK.id_bd
+  is '.->BDEVICES';
+comment on column DATAWORK.id_du
+  is '.->DEVUNITS';
+comment on column DATAWORK.id_ptype
+  is '.->PARAMTYPE';
+comment on column DATAWORK.dcall
+  is '.';
+comment on column DATAWORK.dcounter
+  is '.';
+comment on column DATAWORK.q1
+  is 'Тепловая энергия канал 1';
+comment on column DATAWORK.q2
+  is 'Тепловая энергия канал 2';
+comment on column DATAWORK.t1
+  is 'Температура по каналу 1';
+comment on column DATAWORK.t2
+  is 'Температура по каналу 2';
+comment on column DATAWORK.dt12
+  is 'Разность Температур по каналу 1 и 2';
+comment on column DATAWORK.t3
+  is 'Температура по каналу 3';
+comment on column DATAWORK.t4
+  is 'Температура по каналу 4';
+comment on column DATAWORK.t5
+  is 'Температура по каналу 5';
+comment on column DATAWORK.dt45
+  is 'Разность Температур по каналу 4 и 5';
+comment on column DATAWORK.t6
+  is 'Температура по каналу 6';
+comment on column DATAWORK.v1
+  is 'Объемный расход воды по каналу 1';
+comment on column DATAWORK.v2
+  is 'Объемный расход воды по каналу 2';
+comment on column DATAWORK.dv12
+  is 'Разность объемов канал 1  (расход ГВС)';
+comment on column DATAWORK.v3
+  is 'Объемный расход воды по каналу 3';
+comment on column DATAWORK.v4
+  is 'Объемный расход воды по каналу 4';
+comment on column DATAWORK.v5
+  is 'Объемный расход воды по каналу 5';
+comment on column DATAWORK.dv45
+  is 'Разность объемов канал 2';
+comment on column DATAWORK.v6
+  is 'Объемный расход воды по каналу 6';
+comment on column DATAWORK.m1
+  is 'Масса воды по каналу 1';
+comment on column DATAWORK.m2
+  is 'Масса воды по каналу 2';
+comment on column DATAWORK.dm12
+  is 'Разность масс канал 1  (расход ГВС)';
+comment on column DATAWORK.m3
+  is 'Масса воды по каналу 3';
+comment on column DATAWORK.m4
+  is 'Масса воды по каналу 4';
+comment on column DATAWORK.m5
+  is 'Масса воды по каналу 5';
+comment on column DATAWORK.dm45
+  is 'Разность масс канал 2';
+comment on column DATAWORK.m6
+  is 'Масса воды по каналу 6';
+comment on column DATAWORK.p1
+  is 'Давление в трубопроводе 1';
+comment on column DATAWORK.p2
+  is 'Давление в трубопроводе 2';
+comment on column DATAWORK.p3
+  is 'Давление в трубопроводе 3';
+comment on column DATAWORK.p4
+  is 'Давление в трубопроводе 4';
+comment on column DATAWORK.p5
+  is 'Давление в трубопроводе 5';
+comment on column DATAWORK.p6
+  is 'Давление в трубопроводе 6';
+comment on column DATAWORK.g1
+  is 'Текущее значение расхода в трубопроводе 1';
+comment on column DATAWORK.g2
+  is 'Текущее значение расхода в трубопроводе 2';
+comment on column DATAWORK.g3
+  is 'Текущее значение расхода в трубопроводе 3';
+comment on column DATAWORK.g4
+  is 'Текущее значение расхода в трубопроводе 4';
+comment on column DATAWORK.g5
+  is 'Текущее значение расхода в трубопроводе 5';
+comment on column DATAWORK.g6
+  is 'Текущее значение расхода в трубопроводе 6';
+comment on column DATAWORK.tcool
+  is 'Температура холодной воды';
+comment on column DATAWORK.tce1
+  is 'Температура холодного конца канал 1';
+comment on column DATAWORK.tce2
+  is 'Температура холодного конца канал 2';
+comment on column DATAWORK.tsum1
+  is 'Тотальное время счета TB1';
+comment on column DATAWORK.tsum2
+  is 'Тотальное время счета TB2';
+comment on column DATAWORK.q1h
+  is 'Тепловая энергия канал 1 нарастающим итогом';
+comment on column DATAWORK.q2h
+  is 'Тепловая энергия канал 2 нарастающим итогом';
+comment on column DATAWORK.v1h
+  is 'Объемный расход воды по каналу 1  нарастающим итогом';
+comment on column DATAWORK.v2h
+  is 'Объемный расход воды по каналу 2  нарастающим итогом';
+comment on column DATAWORK.v4h
+  is 'Объемный расход воды по каналу 4  нарастающим итогом';
+comment on column DATAWORK.v5h
+  is 'Объемный расход воды по каналу 5  нарастающим итогом';
+comment on column DATAWORK.errtime
+  is 'Время аварии';
+comment on column DATAWORK.errtimeh
+  is 'Время аварии нарастающим итогом';
+comment on column DATAWORK.hc
+  is 'Нештатные ситуации общ';
+comment on column DATAWORK.sp
+  is 'Схема потребления';
+comment on column DATAWORK.sp_tb1
+  is 'Схема потребления TB1';
+comment on column DATAWORK.sp_tb2
+  is 'Схема потребления TB2';
+comment on column DATAWORK.datecounter
+  is 'Дата и время часов счетчика';
+comment on column DATAWORK.dg12
+  is 'G1-G2';
+comment on column DATAWORK.dg45
+  is 'G4-G5';
+comment on column DATAWORK.dp12
+  is 'P1-P2';
+comment on column DATAWORK.dp45
+  is 'P4-P5';
+comment on column DATAWORK.unitsr
+  is '.Единицы измерения расхода';
+comment on column DATAWORK.q3
+  is 'Тепловая энергия канал 3';
+comment on column DATAWORK.q4
+  is 'Тепловая энергия канал 4';
+comment on column DATAWORK.patm
+  is 'Атмосферное давление';
+comment on column DATAWORK.q5
+  is 'Тепловая энергия канал 5';
+comment on column DATAWORK.dq12
+  is 'Тепловая энергия потребитель 1';
+comment on column DATAWORK.dq45
+  is 'Тепловая энергия потребитель 2';
+comment on column DATAWORK.pxb
+  is 'Давление холодной воды';
+comment on column DATAWORK.dq
+  is 'Расход энергии потребитель 1';
+comment on column DATAWORK.hc_1
+  is 'Нештатная ситуация 1 (ТВ1 или внешняя)';
+comment on column DATAWORK.hc_2
+  is 'Нештатная ситуация 2 (ТВ2 или внутренняя)';
+comment on column DATAWORK.thot
+  is 'Температура горячей воды';
+comment on column DATAWORK.check_a
+  is 'Проверка архивных данных на НС (0 - не производилась, 1 - произведена)';
+comment on column DATAWORK.oktime
+  is 'Время безошиб.работы';
+comment on column DATAWORK.worktime
+  is 'Время работы';
+comment on column DATAWORK.tair1
+  is 'Температура воздуха канал 1';
+comment on column DATAWORK.tair2
+  is 'Температура воздуха канал 2';
+comment on column DATAWORK.hc_code
+  is 'Код нештатной ситуации тепловычислителя';
+alter table DATAWORK
+  add constraint DATAWORK_PK primary key (ID_BD, ID_PTYPE, DCOUNTER, DCALL);
+

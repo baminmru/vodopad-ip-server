@@ -1,0 +1,39 @@
+create table CONNECTIONS
+(
+  id_conn   NUMBER(6) not null,
+  id_cp     NUMBER(4) not null,
+  id_modem  NUMBER(4) not null,
+  id_ip     NUMBER(4) not null,
+  connected CHAR(1),
+  dupd      CHAR(12),
+  id_md     CHAR(1)
+)
+;
+comment on table CONNECTIONS
+  is 'Подключения';
+comment on column CONNECTIONS.id_conn
+  is 'PK';
+comment on column CONNECTIONS.id_cp
+  is '->COMPORTS';
+comment on column CONNECTIONS.id_modem
+  is '->MODEMS';
+comment on column CONNECTIONS.id_ip
+  is '->IPADDR';
+comment on column CONNECTIONS.connected
+  is '''1'' - подключен  ''0'' - отключен';
+comment on column CONNECTIONS.id_md
+  is '''1'' - автоматический опрос  ''2'' - ручной опрос';
+alter table CONNECTIONS
+  add constraint CONNECTIONS_PRI primary key (ID_CONN);
+alter table CONNECTIONS
+  add constraint CONNECTIONS_UNI unique (ID_CP, ID_IP, ID_MD);
+alter table CONNECTIONS
+  add constraint CONNECTIONS_COMPORTS foreign key (ID_CP)
+  references COMPORTS (ID_CP);
+alter table CONNECTIONS
+  add constraint CONNECTIONS_IPADDR foreign key (ID_IP)
+  references IPADDR (ID_IP);
+alter table CONNECTIONS
+  add constraint CONNECTIONS_MODEMS foreign key (ID_MODEM)
+  references MODEMS (ID_MODEM);
+

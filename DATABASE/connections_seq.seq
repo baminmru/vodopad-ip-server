@@ -1,0 +1,7 @@
+create sequence CONNECTIONS_SEQ
+minvalue 1
+maxvalue 999999
+start with 240
+increment by 1
+nocache;
+

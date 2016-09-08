@@ -1,0 +1,109 @@
+create table PLANCALL
+(
+  id_bd          NUMBER(5) not null,
+  dbeg           DATE,
+  cstatus        NUMBER(2) default 0,
+  icall          NUMBER(6),
+  numcall        NUMBER(2),
+  ccurr          VARCHAR2(1) default '0',
+  chour          VARCHAR2(1) default '0',
+  c24            VARCHAR2(1) default '0',
+  csum           VARCHAR2(1) default '0',
+  numhour        NUMBER(2),
+  num24          NUMBER(2),
+  nmaxcall       NUMBER(2),
+  minrepeat      NUMBER(2) default 0,
+  dupd           VARCHAR2(12),
+  id_usr         NUMBER(4),
+  dlock          DATE,
+  dbeg24         DATE,
+  icall24        NUMBER(6),
+  dbegcurr       DATE,
+  icallcurr      NUMBER(6),
+  dbegsum        DATE,
+  icallsum       NUMBER(6),
+  chnronly       CHAR(1),
+  c24nronly      CHAR(1),
+  dnexthour      DATE,
+  dnext24        DATE,
+  dnextcurr      DATE,
+  dnextsum       DATE,
+  dlastcall      DATE,
+  dlastday       DATE,
+  dlasthour      DATE,
+  mustrepeatday  VARCHAR2(1),
+  mustrepeathour VARCHAR2(1),
+  ncall          NUMBER(2) default 0
+)
+;
+comment on table PLANCALL
+  is 'План опроса устройств';
+comment on column PLANCALL.id_bd
+  is '->BDEVICES';
+comment on column PLANCALL.dbeg
+  is 'Дата начала опроса  часовых';
+comment on column PLANCALL.cstatus
+  is '0 - норма   1 - заблокирован пользователем   2 - заблокирован системой';
+comment on column PLANCALL.icall
+  is 'Интервал опроса (минут) часовых';
+comment on column PLANCALL.numcall
+  is 'Сколько раз опросить (0 - циклический опрос)';
+comment on column PLANCALL.ccurr
+  is '''1'' - опрашивать текущие';
+comment on column PLANCALL.chour
+  is '''1'' - опрашивать часовые';
+comment on column PLANCALL.c24
+  is '''1'' - опрашивать суточные';
+comment on column PLANCALL.csum
+  is '''1'' - опрашивать итоговые';
+comment on column PLANCALL.numhour
+  is 'За сколько часов опрашивать часовые';
+comment on column PLANCALL.num24
+  is 'За сколько суток опрашивать суточные';
+comment on column PLANCALL.nmaxcall
+  is 'Max число попыток дозвона';
+comment on column PLANCALL.minrepeat
+  is 'При неудачом дозвоне повторить через MINREPEAT минут';
+comment on column PLANCALL.dlock
+  is 'Когда заблокирован';
+comment on column PLANCALL.dbeg24
+  is 'Дата начала опроса  суточных';
+comment on column PLANCALL.icall24
+  is 'Интервал опроса (часов) суточных';
+comment on column PLANCALL.dbegcurr
+  is 'Дата начала опроса мгновенных';
+comment on column PLANCALL.icallcurr
+  is 'Интервал опроса (минут) мгновенных';
+comment on column PLANCALL.dbegsum
+  is 'Дата начала опроса тотальных';
+comment on column PLANCALL.icallsum
+  is 'Интервал опроса (минут) тотальных';
+comment on column PLANCALL.chnronly
+  is 'Только непрочитанные суточные';
+comment on column PLANCALL.c24nronly
+  is 'Только непрочитанные часовые';
+comment on column PLANCALL.dnexthour
+  is 'Дата следующего опроса часовых';
+comment on column PLANCALL.dnext24
+  is 'Дата следующего опроса суточных';
+comment on column PLANCALL.dnextcurr
+  is 'Дата следующего опроса мгновенных';
+comment on column PLANCALL.dnextsum
+  is 'Дата следующего опроса тотальных';
+comment on column PLANCALL.dlastcall
+  is 'Дата последнего опроса счетчика';
+comment on column PLANCALL.dlastday
+  is 'Дата последнего опроса суточных';
+comment on column PLANCALL.dlasthour
+  is 'Дата последнего опроса часовых';
+comment on column PLANCALL.mustrepeatday
+  is 'Требование повтора съема суточных';
+comment on column PLANCALL.mustrepeathour
+  is 'Требование повтора съема часовых';
+comment on column PLANCALL.ncall
+  is 'Номер  попытки  соединения в  текущем цикле опроса';
+create index PLAN_ID_BD on PLANCALL (ID_BD);
+alter table PLANCALL
+  add constraint PLAN_BDEV foreign key (ID_BD)
+  references BDEVICES (ID_BD);
+

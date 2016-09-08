@@ -1,0 +1,14 @@
+create table TS_VKT7
+(
+  id_du        NUMBER(4) not null,
+  id_datatype  NUMBER(2) not null,
+  id_paramtype NUMBER(2) not null,
+  id_fun       NUMBER(5) not null,
+  cfunname     VARCHAR2(25),
+  cfundesc     VARCHAR2(128),
+  units        VARCHAR2(24),
+  lcalc        VARCHAR2(1),
+  sname        VARCHAR2(16)
+)
+;
+

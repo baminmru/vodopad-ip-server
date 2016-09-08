@@ -1,0 +1,9 @@
+create table COLORS
+(
+  colorid NUMBER not null,
+  color   NUMBER not null
+)
+;
+alter table COLORS
+  add constraint COLORS_PK primary key (COLORID);
+

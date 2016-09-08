@@ -1,0 +1,9 @@
+create table TEMP_
+(
+  cshort     VARCHAR2(64),
+  id_bd      NUMBER(4),
+  chng_count NUMBER(4),
+  id         NUMBER(4)
+)
+;
+

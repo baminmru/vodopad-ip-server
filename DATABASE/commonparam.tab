@@ -1,0 +1,28 @@
+create table COMMONPARAM
+(
+  maxdiffsek             NUMBER(4),
+  checkdiff              VARCHAR2(1),
+  csign                  VARCHAR2(1),
+  maxdiffarc             NUMBER(4),
+  anal_hour_depth        NUMBER(3),
+  anal_day_depth         NUMBER(3),
+  show_param_borders_asm VARCHAR2(1)
+)
+;
+comment on table COMMONPARAM
+  is 'ќбщие параметры';
+comment on column COMMONPARAM.maxdiffsek
+  is '–азница между врем. счетчика и сист. временем, при которой выводить сообщение, сек (в завис. от checkdiff)';
+comment on column COMMONPARAM.checkdiff
+  is 'контроль ухода времени счетчика (''0'' - да, ''1'' - нет)';
+comment on column COMMONPARAM.csign
+  is '''0''  - регистрир.;  ''1'' - регистрир. и сигнализир. (при превыш. maxdiffsek)';
+comment on column COMMONPARAM.maxdiffarc
+  is '–азница между врем. счетчика и сист. временем, при которой выводить сообщение и не сохран€ть архивы, мин (в завис. от checkdiff)';
+comment on column COMMONPARAM.anal_hour_depth
+  is '√лубина анализа часовых архивов, час';
+comment on column COMMONPARAM.anal_day_depth
+  is '√лубина анализа суточных архивов, сут';
+comment on column COMMONPARAM.show_param_borders_asm
+  is 'ѕоказывать и требовать регистрации сообщений об Ќ—, относ€щихс€ только к выходу за границы значений параметров';
+

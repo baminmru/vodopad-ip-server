@@ -1,0 +1,7 @@
+create sequence DEVSCHEMA_SEQ
+minvalue 1
+maxvalue 999999999
+start with 41
+increment by 1
+nocache;
+

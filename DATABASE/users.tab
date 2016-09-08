@@ -1,0 +1,28 @@
+create table USERS
+(
+  usersid       NUMBER not null,
+  login         VARCHAR2(60) not null,
+  password      VARCHAR2(60) not null,
+  locked        NUMBER(1) default 0,
+  allowrequery  NUMBER(1) default 0,
+  allowreport   NUMBER(1) default 1,
+  allowtemplate NUMBER(1) default 1
+)
+;
+comment on table USERS
+  is 'таблица пользователей для WEB доступа';
+comment on column USERS.usersid
+  is 'идентификатор пользователя';
+comment on column USERS.login
+  is 'логин';
+comment on column USERS.password
+  is 'пароль';
+comment on column USERS.locked
+  is 'заблокирован вход';
+comment on column USERS.allowrequery
+  is 'разрешен переопрос с сайта';
+alter table USERS
+  add constraint USERS_PK primary key (USERSID);
+alter table USERS
+  add constraint USERS_UK unique (LOGIN);
+

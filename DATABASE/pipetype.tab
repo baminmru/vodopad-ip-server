@@ -1,0 +1,11 @@
+create table PIPETYPE
+(
+  id_pipe  NUMBER(3) not null,
+  pipename VARCHAR2(128)
+)
+;
+comment on table PIPETYPE
+  is 'Классы приборов';
+alter table PIPETYPE
+  add constraint PIPETYPE_PRI primary key (ID_PIPE);
+

@@ -1,0 +1,7 @@
+create sequence BGROUPS_SEQ
+minvalue 1
+maxvalue 99999
+start with 39
+increment by 1
+nocache;
+

@@ -1,0 +1,33 @@
+create table COMPORTS
+(
+  id_cp     NUMBER(4) not null,
+  id_ip     NUMBER(4) not null,
+  comport   VARCHAR2(5) not null,
+  dupd      CHAR(12),
+  ctypecall VARCHAR2(1),
+  catscode  VARCHAR2(16),
+  useduntil DATE
+)
+;
+comment on table COMPORTS
+  is 'Порты RS232';
+comment on column COMPORTS.id_cp
+  is 'PK';
+comment on column COMPORTS.id_ip
+  is '->IPADDR';
+comment on column COMPORTS.comport
+  is 'COM Port';
+comment on column COMPORTS.ctypecall
+  is '''T'' - тоновый  ''P'' - пульсовый';
+comment on column COMPORTS.catscode
+  is 'Код местной атс';
+comment on column COMPORTS.useduntil
+  is 'Используется системой ( занят) до указанного времени';
+alter table COMPORTS
+  add constraint COMPORT_PRI primary key (ID_CP);
+alter table COMPORTS
+  add constraint COMPORT_UNI unique (COMPORT, ID_IP);
+alter table COMPORTS
+  add constraint COMPORT_IPADDR foreign key (ID_IP)
+  references IPADDR (ID_IP);
+

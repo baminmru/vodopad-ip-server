@@ -1,0 +1,27 @@
+create table LOGCALL
+(
+  id_bd    NUMBER(5),
+  id_ptype NUMBER(1),
+  cport    VARCHAR2(2),
+  nsession NUMBER(12) not null,
+  dbeg     DATE not null,
+  duration NUMBER(5),
+  cexamine VARCHAR2(20),
+  cresult  VARCHAR2(180),
+  tsbeg    TIMESTAMP(6)
+)
+;
+comment on table LOGCALL
+  is 'Журнал опроса';
+comment on column LOGCALL.dbeg
+  is 'Начало операции';
+comment on column LOGCALL.duration
+  is 'Длительность (сек)';
+comment on column LOGCALL.cexamine
+  is 'Запрос';
+comment on column LOGCALL.cresult
+  is 'Результат';
+create index LOGCALL_DBEG on LOGCALL (DBEG);
+create index LOGCALL_NSESSION on LOGCALL (NSESSION);
+create index LOGCALL_TSBEG on LOGCALL (TSBEG);
+

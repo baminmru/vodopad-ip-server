@@ -1,0 +1,21 @@
+create table IPADDR
+(
+  id_ip        NUMBER(4) not null,
+  cipaddr      VARCHAR2(20) not null,
+  machine      VARCHAR2(64),
+  terminal     VARCHAR2(16),
+  auto_process NUMBER(10),
+  auto_op_req  NUMBER(3)
+)
+;
+comment on column IPADDR.cipaddr
+  is 'IP адрес';
+comment on column IPADDR.auto_process
+  is 'Идентификатор приложения автоопроса';
+comment on column IPADDR.auto_op_req
+  is 'Команда/статус для автоопроса';
+alter table IPADDR
+  add constraint IPADDR_PRI primary key (ID_IP);
+alter table IPADDR
+  add constraint IPADDR_UNI unique (CIPADDR);
+

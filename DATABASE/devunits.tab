@@ -1,0 +1,30 @@
+create table DEVUNITS
+(
+  id_du     NUMBER(4) not null,
+  id_dev    NUMBER(2) not null,
+  cunitname VARCHAR2(24) not null,
+  cunitdesc VARCHAR2(255),
+  ctable    VARCHAR2(24)
+)
+;
+comment on table DEVUNITS
+  is 'Элементы устройств';
+comment on column DEVUNITS.id_du
+  is 'PK';
+comment on column DEVUNITS.id_dev
+  is '->DEVICES';
+comment on column DEVUNITS.cunitname
+  is 'Имя устройства';
+comment on column DEVUNITS.cunitdesc
+  is 'Описание';
+comment on column DEVUNITS.ctable
+  is 'Таблица описания счетчика';
+create index DEVUNITS_ID_DEV on DEVUNITS (ID_DEV);
+alter table DEVUNITS
+  add constraint DEVUNITS_PRI primary key (ID_DU);
+alter table DEVUNITS
+  add constraint DEVUNITS_UNI unique (CUNITNAME);
+alter table DEVUNITS
+  add constraint DEVUNITS_DEVICE foreign key (ID_DEV)
+  references DEVICES (ID_DEV);
+

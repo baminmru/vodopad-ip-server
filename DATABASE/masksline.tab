@@ -1,0 +1,36 @@
+create table MASKSLINE
+(
+  id_maskl  NUMBER(12) not null,
+  id_mask   NUMBER(12) not null,
+  cfld      VARCHAR2(240) not null,
+  cheader   VARCHAR2(16),
+  denter    DATE,
+  id_usr    NUMBER(4),
+  id_type   NUMBER(2),
+  sequence  NUMBER(4),
+  colwidth  NUMBER(5,2),
+  colformat VARCHAR2(1),
+  colhidden NUMBER(1) default 0
+)
+;
+comment on table MASKSLINE
+  is 'Поля шаблона';
+comment on column MASKSLINE.id_maskl
+  is 'PK';
+comment on column MASKSLINE.id_mask
+  is '->MASKS';
+comment on column MASKSLINE.cfld
+  is 'Имя поля';
+comment on column MASKSLINE.cheader
+  is 'Имя заголовка для таблицы';
+comment on column MASKSLINE.id_type
+  is '->PARAMTYPE';
+create index MASKSLINE_ID_MASK on MASKSLINE (ID_MASK);
+alter table MASKSLINE
+  add constraint MASKSLINE_PRI primary key (ID_MASKL);
+alter table MASKSLINE
+  add constraint MASKSLINE_UNI unique (CFLD, ID_MASK);
+alter table MASKSLINE
+  add constraint MASKSLINE_TYPE foreign key (ID_TYPE)
+  references PARAMTYPE (ID_TYPE);
+

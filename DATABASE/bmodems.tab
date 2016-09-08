@@ -1,0 +1,50 @@
+create table BMODEMS
+(
+  id_modem     NUMBER(5) not null,
+  id_bd        NUMBER(5),
+  cphone       VARCHAR2(24),
+  cspeed       VARCHAR2(6),
+  cdatabit     VARCHAR2(1),
+  cparity      VARCHAR2(1),
+  cstopbits    VARCHAR2(1),
+  cprefphone   VARCHAR2(10),
+  connectlimit NUMBER(5),
+  paramlimit   NUMBER(3,1),
+  dupd         VARCHAR2(12),
+  id_usr       NUMBER(3),
+  ctowncode    VARCHAR2(16)
+)
+;
+comment on table BMODEMS
+  is 'Модемы в узлах учета';
+comment on column BMODEMS.id_modem
+  is 'PK';
+comment on column BMODEMS.id_bd
+  is '->BDEVICES';
+comment on column BMODEMS.cphone
+  is 'Телефон';
+comment on column BMODEMS.cspeed
+  is 'Скорость бод';
+comment on column BMODEMS.cdatabit
+  is 'Биты данных';
+comment on column BMODEMS.cparity
+  is 'Четность';
+comment on column BMODEMS.cstopbits
+  is 'Стоповые биты';
+comment on column BMODEMS.cprefphone
+  is 'Префикс местной АТС';
+comment on column BMODEMS.connectlimit
+  is 'Лимит времени на установку связи';
+comment on column BMODEMS.paramlimit
+  is 'Лимит времени на опрос 1 параметра';
+comment on column BMODEMS.dupd
+  is 'Дата последнего обновления';
+comment on column BMODEMS.ctowncode
+  is 'Код города';
+create index BMODEMS_ID_BD on BMODEMS (ID_BD);
+alter table BMODEMS
+  add constraint BMODEMS_PRI primary key (ID_MODEM);
+alter table BMODEMS
+  add constraint BMODEMS_BDEVICES foreign key (ID_BD)
+  references BDEVICES (ID_BD);
+

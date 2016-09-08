@@ -1,0 +1,17 @@
+create table TDENSITY
+(
+  t       NUMBER(3),
+  p       NUMBER(2),
+  density NUMBER(6,2)
+)
+;
+comment on table TDENSITY
+  is 'Таблица плотностей';
+comment on column TDENSITY.t
+  is 'Темрература';
+comment on column TDENSITY.p
+  is 'Давление кгс/см2';
+comment on column TDENSITY.density
+  is 'Плотность кг/ь3';
+create index TDENSITY_T on TDENSITY (T);
+

@@ -1,0 +1,43 @@
+create table VKT2M_II
+(
+  id_du        NUMBER(4) not null,
+  id_datatype  NUMBER(2) not null,
+  id_paramtype NUMBER(2) not null,
+  id_fun       NUMBER(5) not null,
+  cfunname     VARCHAR2(25),
+  cfundesc     VARCHAR2(128),
+  units        VARCHAR2(24),
+  lcalc        VARCHAR2(1),
+  sname        VARCHAR2(16)
+)
+;
+comment on column VKT2M_II.id_du
+  is '->DEVUNITS';
+comment on column VKT2M_II.id_datatype
+  is '->DATATYPE';
+comment on column VKT2M_II.id_paramtype
+  is '->PARAMTYPE';
+comment on column VKT2M_II.id_fun
+  is 'ID Функции';
+comment on column VKT2M_II.cfunname
+  is 'Условное Обозначение Функции';
+comment on column VKT2M_II.cfundesc
+  is 'Наименование Функции';
+comment on column VKT2M_II.units
+  is 'Еденицы Измерения';
+comment on column VKT2M_II.lcalc
+  is 'Вычисляемый Параметр';
+comment on column VKT2M_II.sname
+  is 'Согласованное имя';
+alter table VKT2M_II
+  add constraint VKT2M_II_PRI primary key (ID_FUN);
+alter table VKT2M_II
+  add constraint VKT2M_II_DATATYPE foreign key (ID_DATATYPE)
+  references DATATYPE (ID_TYPE);
+alter table VKT2M_II
+  add constraint VKT2M_II_DEVUNITS foreign key (ID_DU)
+  references DEVUNITS (ID_DU);
+alter table VKT2M_II
+  add constraint VKT2M_II_PARAMTYPE foreign key (ID_PARAMTYPE)
+  references PARAMTYPE (ID_TYPE);
+

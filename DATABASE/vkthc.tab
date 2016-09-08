@@ -1,0 +1,19 @@
+create table VKTHC
+(
+  typesys CHAR(1),
+  tp      NUMBER(2),
+  code    CHAR(2),
+  hc      VARCHAR2(80)
+)
+;
+comment on table VKTHC
+  is 'Нештатные ситуации ВКТ';
+comment on column VKTHC.typesys
+  is '''O'' - open ''C'' - closed ''G'' - hot water null - any';
+comment on column VKTHC.tp
+  is 'Использование датчиков';
+comment on column VKTHC.code
+  is 'Код НС';
+comment on column VKTHC.hc
+  is 'Нештатная ситуация';
+

@@ -1,0 +1,15 @@
+create table USERGROUP
+(
+  usersid NUMBER not null,
+  id_grp  NUMBER not null
+)
+;
+comment on table USERGROUP
+  is 'разрешенные для пользователя группы';
+comment on column USERGROUP.usersid
+  is 'ид  пользователя';
+comment on column USERGROUP.id_grp
+  is 'ид группы';
+alter table USERGROUP
+  add constraint USREGROUP_PK primary key (USERSID, ID_GRP);
+

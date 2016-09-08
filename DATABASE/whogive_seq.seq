@@ -1,0 +1,7 @@
+create sequence WHOGIVE_SEQ
+minvalue 1
+maxvalue 99999
+start with 120
+increment by 1
+nocache;
+

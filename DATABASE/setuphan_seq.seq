@@ -1,0 +1,7 @@
+create sequence SETUPHAN_SEQ
+minvalue 1
+maxvalue 9999
+start with 7393
+increment by 1
+nocache;
+

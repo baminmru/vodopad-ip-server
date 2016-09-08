@@ -1,0 +1,16 @@
+create table MASKSLINE_BACKUP
+(
+  id_maskl  NUMBER(12) not null,
+  id_mask   NUMBER(12) not null,
+  cfld      VARCHAR2(240) not null,
+  cheader   VARCHAR2(16),
+  denter    DATE,
+  id_usr    NUMBER(4),
+  id_type   NUMBER(2),
+  sequence  NUMBER(4),
+  colwidth  NUMBER(5,2),
+  colformat VARCHAR2(1),
+  colhidden NUMBER(1) default 0
+)
+;
+

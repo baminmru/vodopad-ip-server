@@ -1,0 +1,7 @@
+create sequence EDIZM_SEQ
+minvalue 1
+maxvalue 9999
+start with 61
+increment by 1
+cache 20;
+

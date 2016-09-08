@@ -1,0 +1,19 @@
+create table SPT960HC
+(
+  code  VARCHAR2(20),
+  hc    VARCHAR2(256),
+  tube  VARCHAR2(8),
+  scode VARCHAR2(2)
+)
+;
+comment on table SPT960HC
+  is 'Нештатные ситуации СПТ-960';
+comment on column SPT960HC.code
+  is 'Код НС';
+comment on column SPT960HC.hc
+  is 'Описание НС';
+comment on column SPT960HC.tube
+  is 'Номеры труб, для которых определена НС';
+comment on column SPT960HC.scode
+  is 'Код НС без номера трубы';
+

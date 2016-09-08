@@ -1,0 +1,27 @@
+create table WHOGIVETOP
+(
+  id_whotop NUMBER(5) not null,
+  cname     VARCHAR2(64),
+  caddress  VARCHAR2(200),
+  cfio      VARCHAR2(64),
+  cphone    VARCHAR2(32),
+  dupd      VARCHAR2(12)
+)
+;
+comment on table WHOGIVETOP
+  is 'Вышестоящая снабжающая организация';
+comment on column WHOGIVETOP.id_whotop
+  is 'PK';
+comment on column WHOGIVETOP.cname
+  is 'Название';
+comment on column WHOGIVETOP.caddress
+  is 'Адрес';
+comment on column WHOGIVETOP.cfio
+  is 'Контактное лицо';
+comment on column WHOGIVETOP.cphone
+  is 'Телефон';
+alter table WHOGIVETOP
+  add constraint WHOGIVETOP_ primary key (ID_WHOTOP);
+alter table WHOGIVETOP
+  add constraint WHOGIVETOP_UNI unique (CNAME);
+

@@ -1,0 +1,44 @@
+create table DEVSCHEMAPARAM
+(
+  dsp_id    NUMBER(8) not null,
+  name      VARCHAR2(255) not null,
+  pos_left  NUMBER(7,2) default 0 not null,
+  pos_top   NUMBER(7,2) default 0 not null,
+  hideparam NUMBER(1) default 0 not null,
+  ds_id     NUMBER(5) not null,
+  dspipe_id NUMBER,
+  edizm_id  NUMBER
+)
+;
+comment on table DEVSCHEMAPARAM
+  is 'Параметры на схеме';
+comment on column DEVSCHEMAPARAM.dsp_id
+  is 'Идентификатор';
+comment on column DEVSCHEMAPARAM.name
+  is 'Название параметра';
+comment on column DEVSCHEMAPARAM.pos_left
+  is 'Координата  X на схеме ';
+comment on column DEVSCHEMAPARAM.pos_top
+  is 'Кордината Y на схеме ';
+comment on column DEVSCHEMAPARAM.hideparam
+  is '1 - скрыть параметр, 0 - отображать';
+comment on column DEVSCHEMAPARAM.ds_id
+  is '-> devschema.ds_id';
+comment on column DEVSCHEMAPARAM.dspipe_id
+  is '->devschemapipes.dspipe_id  ( труба  к которой привязан параметр)';
+comment on column DEVSCHEMAPARAM.edizm_id
+  is '->EDIZM.EDIZM_ID';
+alter table DEVSCHEMAPARAM
+  add constraint DSP_PK primary key (DSP_ID);
+alter table DEVSCHEMAPARAM
+  add constraint DSP_UK unique (DS_ID, NAME);
+alter table DEVSCHEMAPARAM
+  add constraint DSP_FK1 foreign key (DS_ID)
+  references DEVSCHEMA (DS_ID);
+alter table DEVSCHEMAPARAM
+  add constraint DSP_FK2 foreign key (EDIZM_ID)
+  references EDIZM (EDIZM_ID);
+alter table DEVSCHEMAPARAM
+  add constraint DSP_FK3 foreign key (DSPIPE_ID)
+  references DEVSCHEMAPIPES (DSPIPE_ID);
+

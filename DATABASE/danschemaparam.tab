@@ -1,0 +1,41 @@
+create table DANSCHEMAPARAM
+(
+  dasp_id        NUMBER(8) not null,
+  name           VARCHAR2(255) not null,
+  pos_left       NUMBER(7,2) default 0 not null,
+  pos_top        NUMBER(7,2) default 0 not null,
+  hideparam      NUMBER(1) default 0 not null,
+  das_id         NUMBER(5) not null,
+  dcfg_id        NUMBER not null,
+  hidefromschema NUMBER(1) default 0
+)
+;
+comment on table DANSCHEMAPARAM
+  is 'Параметры на схеме';
+comment on column DANSCHEMAPARAM.dasp_id
+  is 'Идентификатор';
+comment on column DANSCHEMAPARAM.name
+  is 'Название параметра';
+comment on column DANSCHEMAPARAM.pos_left
+  is 'Координата  X на схеме ';
+comment on column DANSCHEMAPARAM.pos_top
+  is 'Кордината Y на схеме ';
+comment on column DANSCHEMAPARAM.hideparam
+  is '1 - скрыть параметр, 0 - отображать';
+comment on column DANSCHEMAPARAM.das_id
+  is '-> DANschema.das_id';
+comment on column DANSCHEMAPARAM.dcfg_id
+  is '->DAN310CFG.DCFG_ID';
+comment on column DANSCHEMAPARAM.hidefromschema
+  is '1 - не показывать на схеме, 0 - показывать';
+alter table DANSCHEMAPARAM
+  add constraint DASP_PK primary key (DASP_ID);
+alter table DANSCHEMAPARAM
+  add constraint DASP_UK unique (DAS_ID, DCFG_ID);
+alter table DANSCHEMAPARAM
+  add constraint DASP_FK1 foreign key (DAS_ID)
+  references DANSCHEMA (DAS_ID);
+alter table DANSCHEMAPARAM
+  add constraint DASP_FK2 foreign key (DCFG_ID)
+  references DAN310CFG (DCFG_ID);
+

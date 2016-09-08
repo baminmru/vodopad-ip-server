@@ -1,0 +1,26 @@
+create table SETUPHANLINE
+(
+  id_sh   NUMBER(4),
+  id_dev  NUMBER(2),
+  id_mask NUMBER(4)
+)
+;
+comment on table SETUPHANLINE
+  is 'Системные шаблоны';
+comment on column SETUPHANLINE.id_sh
+  is '->SETUPHAN';
+comment on column SETUPHANLINE.id_dev
+  is '->DEVICES';
+comment on column SETUPHANLINE.id_mask
+  is '->MASKS';
+create index SHLINE_ID_SH on SETUPHANLINE (ID_SH);
+alter table SETUPHANLINE
+  add constraint SHLINE_DEVICES foreign key (ID_DEV)
+  references DEVICES (ID_DEV);
+alter table SETUPHANLINE
+  add constraint SHLINE_MASKS foreign key (ID_MASK)
+  references MASKS (ID_MASK);
+alter table SETUPHANLINE
+  add constraint SHLINE_SETUPHAN foreign key (ID_SH)
+  references SETUPHAN (ID_SH);
+

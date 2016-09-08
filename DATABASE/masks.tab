@@ -1,0 +1,34 @@
+create table MASKS
+(
+  id_mask NUMBER(4) not null,
+  cname   VARCHAR2(80),
+  dupd    VARCHAR2(12),
+  ctype   VARCHAR2(1),
+  id_usr  NUMBER(4),
+  id_dev  NUMBER(2),
+  id_type NUMBER(2)
+)
+;
+comment on table MASKS
+  is 'Шаблоны опроса';
+comment on column MASKS.id_mask
+  is 'PK';
+comment on column MASKS.cname
+  is 'Имя шаблона';
+comment on column MASKS.ctype
+  is '''1'' - оперативные  ''2'' - системные';
+comment on column MASKS.id_dev
+  is '->DEVICES';
+comment on column MASKS.id_type
+  is '->PARAMTYPE';
+alter table MASKS
+  add constraint MASKS_PRI primary key (ID_MASK);
+alter table MASKS
+  add constraint MASKS_UNI unique (CNAME, ID_DEV, ID_TYPE);
+alter table MASKS
+  add constraint MASKS_DEVICES foreign key (ID_DEV)
+  references DEVICES (ID_DEV);
+alter table MASKS
+  add constraint MASKS_PARAMTYPE foreign key (ID_TYPE)
+  references PARAMTYPE (ID_TYPE);
+

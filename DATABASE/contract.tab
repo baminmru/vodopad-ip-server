@@ -1,0 +1,272 @@
+create table CONTRACT
+(
+  id_bd  NUMBER(5),
+  fld12  VARCHAR2(48),
+  fld13  VARCHAR2(48),
+  fld16  VARCHAR2(48),
+  fld17  VARCHAR2(48),
+  fld18  VARCHAR2(48),
+  fld20  VARCHAR2(48),
+  fld21  VARCHAR2(48),
+  fld22  VARCHAR2(48),
+  fld23  VARCHAR2(48),
+  fld25  VARCHAR2(48),
+  fld26  VARCHAR2(48),
+  fld27  VARCHAR2(48),
+  fld28  VARCHAR2(48),
+  fld29  VARCHAR2(48),
+  fld30  VARCHAR2(48),
+  fld33  VARCHAR2(48),
+  fld34  VARCHAR2(48),
+  fld35  VARCHAR2(48),
+  fld36  VARCHAR2(48),
+  fld37  VARCHAR2(48),
+  fld40  VARCHAR2(48),
+  fld41  VARCHAR2(48),
+  fld42  VARCHAR2(48),
+  fld43  VARCHAR2(48),
+  fld46  VARCHAR2(48),
+  fld47  VARCHAR2(48),
+  fld50  VARCHAR2(48),
+  fld51  VARCHAR2(48),
+  fld52  VARCHAR2(48),
+  fld53  VARCHAR2(48),
+  fld55  VARCHAR2(48),
+  fld56  VARCHAR2(48),
+  fld57  VARCHAR2(48),
+  fld59  VARCHAR2(48),
+  fld60  VARCHAR2(48),
+  fld61  VARCHAR2(48),
+  fld62  VARCHAR2(48),
+  fld63  VARCHAR2(48),
+  fld64  VARCHAR2(48),
+  fld65  VARCHAR2(48),
+  fld66  VARCHAR2(48),
+  fld67  VARCHAR2(48),
+  fld68  VARCHAR2(48),
+  fld70  VARCHAR2(48),
+  fld71  VARCHAR2(48),
+  fld72  VARCHAR2(48),
+  fld73  VARCHAR2(48),
+  fld81  VARCHAR2(48),
+  fld82  VARCHAR2(48),
+  fld83  VARCHAR2(48),
+  fld84  VARCHAR2(48),
+  fld85  VARCHAR2(48),
+  fld86  VARCHAR2(48),
+  fld87  VARCHAR2(48),
+  fld88  VARCHAR2(48),
+  fld89  VARCHAR2(48),
+  fld90  VARCHAR2(48),
+  fld92  VARCHAR2(48),
+  fld93  VARCHAR2(48),
+  fld94  VARCHAR2(48),
+  fld95  VARCHAR2(48),
+  fld96  VARCHAR2(48),
+  fld97  VARCHAR2(48),
+  fld98  VARCHAR2(48),
+  fld99  VARCHAR2(48),
+  fld100 VARCHAR2(48),
+  fld101 VARCHAR2(48),
+  fld102 VARCHAR2(48),
+  fld103 VARCHAR2(48),
+  fld104 VARCHAR2(48),
+  fld105 VARCHAR2(48),
+  fld107 VARCHAR2(48),
+  fld108 VARCHAR2(48),
+  fld109 VARCHAR2(48),
+  fld110 VARCHAR2(48),
+  fld111 VARCHAR2(48),
+  fld113 VARCHAR2(48),
+  fld115 VARCHAR2(48),
+  fld116 VARCHAR2(48),
+  fld117 VARCHAR2(48),
+  fld118 VARCHAR2(48),
+  fld119 VARCHAR2(48),
+  fld120 VARCHAR2(48),
+  fld121 VARCHAR2(48),
+  fld122 VARCHAR2(48),
+  fld123 VARCHAR2(48)
+)
+;
+comment on column CONTRACT.id_bd
+  is '.->BDEVICES';
+comment on column CONTRACT.fld12
+  is '№ прибора';
+comment on column CONTRACT.fld13
+  is '№ключа';
+comment on column CONTRACT.fld16
+  is 'DyГВС';
+comment on column CONTRACT.fld17
+  is 'DyОБР';
+comment on column CONTRACT.fld18
+  is 'DyПР';
+comment on column CONTRACT.fld20
+  is 'Инспектор';
+comment on column CONTRACT.fld21
+  is 'G(гвс)ПР';
+comment on column CONTRACT.fld22
+  is 'Gгвс';
+comment on column CONTRACT.fld23
+  is 'Gоб(гвс min)';
+comment on column CONTRACT.fld25
+  is 'Gпр(гвс min)';
+comment on column CONTRACT.fld26
+  is 'Gпр_minОБ';
+comment on column CONTRACT.fld27
+  is 'Gпр_minПР';
+comment on column CONTRACT.fld28
+  is 'GпрОБ';
+comment on column CONTRACT.fld29
+  is 'GпрПР';
+comment on column CONTRACT.fld30
+  is 'Gут';
+comment on column CONTRACT.fld33
+  is 'Договор';
+comment on column CONTRACT.fld34
+  is 'Договор G2';
+comment on column CONTRACT.fld35
+  is 'Договор G1';
+comment on column CONTRACT.fld36
+  is 'Источник';
+comment on column CONTRACT.fld37
+  is 'Магистраль';
+comment on column CONTRACT.fld40
+  is 'Расходомер';
+comment on column CONTRACT.fld41
+  is 'Расходомер ГВС';
+comment on column CONTRACT.fld42
+  is 'Робр';
+comment on column CONTRACT.fld43
+  is 'Рпр';
+comment on column CONTRACT.fld46
+  is 'Т_график';
+comment on column CONTRACT.fld47
+  is 'Теп_камера';
+comment on column CONTRACT.fld50
+  is 'Формула';
+comment on column CONTRACT.fld51
+  is 'Наименование счетчика';
+comment on column CONTRACT.fld52
+  is 'Схема';
+comment on column CONTRACT.fld53
+  is 'Qот';
+comment on column CONTRACT.fld55
+  is 'Qгвс';
+comment on column CONTRACT.fld56
+  is 'Qну';
+comment on column CONTRACT.fld57
+  is 'Gот';
+comment on column CONTRACT.fld59
+  is 'Gну';
+comment on column CONTRACT.fld60
+  is 'Часов_архив';
+comment on column CONTRACT.fld61
+  is 'Сут_архив';
+comment on column CONTRACT.fld62
+  is 'Термопреобр ГВС';
+comment on column CONTRACT.fld63
+  is 'Т1';
+comment on column CONTRACT.fld64
+  is 'Т2';
+comment on column CONTRACT.fld65
+  is 'Т3';
+comment on column CONTRACT.fld66
+  is 'Т4';
+comment on column CONTRACT.fld67
+  is 'Gтех';
+comment on column CONTRACT.fld68
+  is 'Gтех_гвс';
+comment on column CONTRACT.fld70
+  is 'Qтех';
+comment on column CONTRACT.fld71
+  is 'Qвент';
+comment on column CONTRACT.fld72
+  is 'Тхв';
+comment on column CONTRACT.fld73
+  is 'Расходомер ГВСц';
+comment on column CONTRACT.fld81
+  is 'Формула2';
+comment on column CONTRACT.fld82
+  is 'Термопреобр';
+comment on column CONTRACT.fld83
+  is 'Gвент';
+comment on column CONTRACT.fld84
+  is 'Код УУТЭ';
+comment on column CONTRACT.fld85
+  is 'Сист_теплопотребления';
+comment on column CONTRACT.fld86
+  is 'Qтех_гвс';
+comment on column CONTRACT.fld87
+  is 'Qтех_гвс ср';
+comment on column CONTRACT.fld88
+  is 'Qгвс ср';
+comment on column CONTRACT.fld89
+  is 'Дата поверки';
+comment on column CONTRACT.fld90
+  is 'Фамилия';
+comment on column CONTRACT.fld92
+  is 'Узел учета';
+comment on column CONTRACT.fld93
+  is 'Стр.адрес';
+comment on column CONTRACT.fld94
+  is 'G(гвс)ОБР';
+comment on column CONTRACT.fld95
+  is 'DyГВСц';
+comment on column CONTRACT.fld96
+  is 'Цена_имп_M1';
+comment on column CONTRACT.fld97
+  is 'Цена_имп_M2';
+comment on column CONTRACT.fld98
+  is 'Цена_имп_M1гв';
+comment on column CONTRACT.fld99
+  is 'Цена_имп_M2гв';
+comment on column CONTRACT.fld100
+  is 'Доп_погр_изм_M1%';
+comment on column CONTRACT.fld101
+  is 'Доп_погр_изм_M2%';
+comment on column CONTRACT.fld102
+  is 'Доп_погр_изм_M1гв%';
+comment on column CONTRACT.fld103
+  is 'Доп_погр_изм_M2гв%';
+comment on column CONTRACT.fld104
+  is 'Расходомер M2';
+comment on column CONTRACT.fld105
+  is 'Преобразователь давления';
+comment on column CONTRACT.fld107
+  is 'Модем';
+comment on column CONTRACT.fld108
+  is 'Постфикс схемы (BAMI)';
+comment on column CONTRACT.fld109
+  is 'Схема измерения';
+comment on column CONTRACT.fld110
+  is 'PпрГВС';
+comment on column CONTRACT.fld111
+  is 'PобрГВС';
+comment on column CONTRACT.fld113
+  is 'Схема_ГВС';
+comment on column CONTRACT.fld115
+  is 'Gгвс_ч';
+comment on column CONTRACT.fld116
+  is 'Gгвс_max';
+comment on column CONTRACT.fld117
+  is 'DуГВС2';
+comment on column CONTRACT.fld118
+  is 'G(гвс)ПР2';
+comment on column CONTRACT.fld119
+  is 'Gпр(гвс min)2';
+comment on column CONTRACT.fld120
+  is 'Расходомер ГВС2';
+comment on column CONTRACT.fld121
+  is 'Gотоп';
+comment on column CONTRACT.fld122
+  is 'Gв';
+comment on column CONTRACT.fld123
+  is 'Gгвс_м';
+create index CONTRACT_ID_BD on CONTRACT (ID_BD);
+alter table CONTRACT
+  add constraint CONTRACT_BDEVICES foreign key (ID_BD)
+  references BDEVICES (ID_BD)
+  novalidate
+  disable;
+

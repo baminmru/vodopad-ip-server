@@ -1,0 +1,22 @@
+create table SPT961HC
+(
+  code  VARCHAR2(20),
+  hc    VARCHAR2(256),
+  tube  VARCHAR2(12),
+  scode VARCHAR2(8),
+  nsds  NUMBER(1)
+)
+;
+comment on table SPT961HC
+  is 'Нештатные ситуации СПТ-961';
+comment on column SPT961HC.code
+  is 'Код НС';
+comment on column SPT961HC.hc
+  is 'Описание НС';
+comment on column SPT961HC.tube
+  is 'Номеры труб, для которых определена НС';
+comment on column SPT961HC.scode
+  is 'Код НС без номера трубы';
+comment on column SPT961HC.nsds
+  is 'НС = 0, ДС = 1';
+

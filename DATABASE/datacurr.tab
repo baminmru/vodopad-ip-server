@@ -1,0 +1,524 @@
+create table DATACURR
+(
+  id          NUMBER(10),
+  id_bd       NUMBER(5) not null,
+  id_du       NUMBER(4),
+  id_ptype    NUMBER(2) not null,
+  dcall       DATE not null,
+  dcounter    DATE not null,
+  q1          NUMBER(18,6),
+  q2          NUMBER(18,6),
+  t1          NUMBER(18,6),
+  t2          NUMBER(18,6),
+  dt12        NUMBER(18,6),
+  t3          NUMBER(18,6),
+  t4          NUMBER(18,6),
+  t5          NUMBER(18,6),
+  dt45        NUMBER(18,6),
+  t6          NUMBER(18,6),
+  v1          NUMBER(18,6),
+  v2          NUMBER(18,6),
+  dv12        NUMBER(18,6),
+  v3          NUMBER(18,6),
+  v4          NUMBER(18,6),
+  v5          NUMBER(18,6),
+  dv45        NUMBER(18,6),
+  v6          NUMBER(18,6),
+  m1          NUMBER(18,6),
+  m2          NUMBER(18,6),
+  dm12        NUMBER(18,6),
+  m3          NUMBER(18,6),
+  m4          NUMBER(18,6),
+  m5          NUMBER(18,6),
+  dm45        NUMBER(18,6),
+  m6          NUMBER(18,6),
+  p1          NUMBER(18,6),
+  p2          NUMBER(18,6),
+  p3          NUMBER(18,6),
+  p4          NUMBER(18,6),
+  p5          NUMBER(18,6),
+  p6          NUMBER(18,6),
+  g1          NUMBER(18,6),
+  g2          NUMBER(18,6),
+  g3          NUMBER(18,6),
+  g4          NUMBER(18,6),
+  g5          NUMBER(18,6),
+  g6          NUMBER(18,6),
+  tcool       NUMBER(18,6),
+  tce1        NUMBER(18,6),
+  tce2        NUMBER(18,6),
+  tsum1       NUMBER(18,6),
+  tsum2       NUMBER(18,6),
+  q1h         NUMBER(18,6),
+  q2h         NUMBER(18,6),
+  v1h         NUMBER(18,6),
+  v2h         NUMBER(18,6),
+  v4h         NUMBER(18,6),
+  v5h         NUMBER(18,6),
+  errtime     NUMBER(12),
+  errtimeh    NUMBER(12),
+  hc          VARCHAR2(180),
+  sp          NUMBER(3),
+  sp_tb1      NUMBER(3),
+  sp_tb2      NUMBER(3),
+  datecounter DATE,
+  dg12        NUMBER(18,6),
+  dg45        NUMBER(18,6),
+  dp12        NUMBER(18,6),
+  dp45        NUMBER(18,6),
+  unitsr      VARCHAR2(12),
+  q3          NUMBER(18,6),
+  q4          NUMBER(18,6),
+  patm        NUMBER(18,6),
+  q5          NUMBER(18,6),
+  dq12        NUMBER(18,6),
+  dq45        NUMBER(18,6),
+  pxb         NUMBER(18,6),
+  dq          NUMBER(18,6),
+  hc_1        VARCHAR2(180),
+  hc_2        VARCHAR2(180),
+  thot        NUMBER(18,6),
+  dans1       NUMBER(18,6),
+  dans2       NUMBER(18,6),
+  dans3       NUMBER(18,6),
+  dans4       NUMBER(18,6),
+  dans5       NUMBER(18,6),
+  dans6       NUMBER(18,6),
+  check_a     NUMBER(1),
+  oktime      NUMBER(18,6),
+  worktime    NUMBER(18,6),
+  tair1       NUMBER(18,6),
+  tair2       NUMBER(18,6),
+  hc_code     VARCHAR2(180),
+  errtime2    NUMBER(12),
+  oktime2     NUMBER(18,6),
+  q6          NUMBER(18,6),
+  d_eql_24    VARCHAR2(2) default '0',
+  hcraw1      VARCHAR2(40),
+  hcraw2      VARCHAR2(40),
+  hcraw       VARCHAR2(40)
+)
+partition by range (ID_PTYPE, ID_BD)
+(
+  partition DATACURR_01_01 values less than (1, 10)
+    tablespace USERS,
+  partition DATACURR_01_02 values less than (1, 20)
+    tablespace USERS,
+  partition DATACURR_01_03 values less than (1, 30)
+    tablespace USERS,
+  partition DATACURR_01_04 values less than (1, 40)
+    tablespace USERS,
+  partition DATACURR_01_05 values less than (1, 50)
+    tablespace USERS,
+  partition DATACURR_01_06 values less than (1, 60)
+    tablespace USERS,
+  partition DATACURR_01_07 values less than (1, 70)
+    tablespace USERS,
+  partition DATACURR_01_08 values less than (1, 80)
+    tablespace USERS,
+  partition DATACURR_01_09 values less than (1, 90)
+    tablespace USERS,
+  partition DATACURR_01_10 values less than (1, 100)
+    tablespace USERS,
+  partition DATACURR_01_11 values less than (1, 110)
+    tablespace USERS,
+  partition DATACURR_01_12 values less than (1, 120)
+    tablespace USERS,
+  partition DATACURR_01_13 values less than (1, 130)
+    tablespace USERS,
+  partition DATACURR_01_14 values less than (1, 140)
+    tablespace USERS,
+  partition DATACURR_01_15 values less than (1, 150)
+    tablespace USERS,
+  partition DATACURR_01_16 values less than (1, 160)
+    tablespace USERS,
+  partition DATACURR_01_17 values less than (1, 170)
+    tablespace USERS,
+  partition DATACURR_01_18 values less than (1, 180)
+    tablespace USERS,
+  partition DATACURR_01_19 values less than (1, 190)
+    tablespace USERS,
+  partition DATACURR_01_20 values less than (1, 200)
+    tablespace USERS,
+  partition DATACURR_01_21 values less than (1, 210)
+    tablespace USERS,
+  partition DATACURR_01_22 values less than (1, 220)
+    tablespace USERS,
+  partition DATACURR_01_23 values less than (1, 230)
+    tablespace USERS,
+  partition DATACURR_01_24 values less than (1, 240)
+    tablespace USERS,
+  partition DATACURR_01_25 values less than (1, 250)
+    tablespace USERS,
+  partition DATACURR_01_26 values less than (1, 260)
+    tablespace USERS,
+  partition DATACURR_01_27 values less than (1, 270)
+    tablespace USERS,
+  partition DATACURR_01_28 values less than (1, 280)
+    tablespace USERS,
+  partition DATACURR_01_29 values less than (1, 290)
+    tablespace USERS,
+  partition DATACURR_01_30 values less than (1, MAXVALUE)
+    tablespace USERS,
+  partition DATACURR_02_01 values less than (2, 10)
+    tablespace USERS,
+  partition DATACURR_02_02 values less than (2, 20)
+    tablespace USERS,
+  partition DATACURR_02_03 values less than (2, 30)
+    tablespace USERS,
+  partition DATACURR_02_04 values less than (2, 40)
+    tablespace USERS,
+  partition DATACURR_02_05 values less than (2, 50)
+    tablespace USERS,
+  partition DATACURR_02_06 values less than (2, 60)
+    tablespace USERS,
+  partition DATACURR_02_07 values less than (2, 70)
+    tablespace USERS,
+  partition DATACURR_02_08 values less than (2, 80)
+    tablespace USERS,
+  partition DATACURR_02_09 values less than (2, 90)
+    tablespace USERS,
+  partition DATACURR_02_10 values less than (2, 100)
+    tablespace USERS,
+  partition DATACURR_02_11 values less than (2, 110)
+    tablespace USERS,
+  partition DATACURR_02_12 values less than (2, 120)
+    tablespace USERS,
+  partition DATACURR_02_13 values less than (2, 130)
+    tablespace USERS,
+  partition DATACURR_02_14 values less than (2, 140)
+    tablespace USERS,
+  partition DATACURR_02_15 values less than (2, 150)
+    tablespace USERS,
+  partition DATACURR_02_16 values less than (2, 160)
+    tablespace USERS,
+  partition DATACURR_02_17 values less than (2, 170)
+    tablespace USERS,
+  partition DATACURR_02_18 values less than (2, 180)
+    tablespace USERS,
+  partition DATACURR_02_19 values less than (2, 190)
+    tablespace USERS,
+  partition DATACURR_02_20 values less than (2, 200)
+    tablespace USERS,
+  partition DATACURR_02_21 values less than (2, 210)
+    tablespace USERS,
+  partition DATACURR_02_22 values less than (2, 220)
+    tablespace USERS,
+  partition DATACURR_02_23 values less than (2, 230)
+    tablespace USERS,
+  partition DATACURR_02_24 values less than (2, 240)
+    tablespace USERS,
+  partition DATACURR_02_25 values less than (2, 250)
+    tablespace USERS,
+  partition DATACURR_02_26 values less than (2, 260)
+    tablespace USERS,
+  partition DATACURR_02_27 values less than (2, 270)
+    tablespace USERS,
+  partition DATACURR_02_28 values less than (2, 280)
+    tablespace USERS,
+  partition DATACURR_02_29 values less than (2, 290)
+    tablespace USERS,
+  partition DATACURR_02_30 values less than (2, MAXVALUE)
+    tablespace USERS,
+  partition DATACURR_03_01 values less than (3, 10)
+    tablespace USERS,
+  partition DATACURR_03_02 values less than (3, 20)
+    tablespace USERS,
+  partition DATACURR_03_03 values less than (3, 30)
+    tablespace USERS,
+  partition DATACURR_03_04 values less than (3, 40)
+    tablespace USERS,
+  partition DATACURR_03_05 values less than (3, 50)
+    tablespace USERS,
+  partition DATACURR_03_06 values less than (3, 60)
+    tablespace USERS,
+  partition DATACURR_03_07 values less than (3, 70)
+    tablespace USERS,
+  partition DATACURR_03_08 values less than (3, 80)
+    tablespace USERS,
+  partition DATACURR_03_09 values less than (3, 90)
+    tablespace USERS,
+  partition DATACURR_03_10 values less than (3, 100)
+    tablespace USERS,
+  partition DATACURR_03_11 values less than (3, 110)
+    tablespace USERS,
+  partition DATACURR_03_12 values less than (3, 120)
+    tablespace USERS,
+  partition DATACURR_03_13 values less than (3, 130)
+    tablespace USERS,
+  partition DATACURR_03_14 values less than (3, 140)
+    tablespace USERS,
+  partition DATACURR_03_15 values less than (3, 150)
+    tablespace USERS,
+  partition DATACURR_03_16 values less than (3, 160)
+    tablespace USERS,
+  partition DATACURR_03_17 values less than (3, 170)
+    tablespace USERS,
+  partition DATACURR_03_18 values less than (3, 180)
+    tablespace USERS,
+  partition DATACURR_03_19 values less than (3, 190)
+    tablespace USERS,
+  partition DATACURR_03_20 values less than (3, 200)
+    tablespace USERS,
+  partition DATACURR_03_21 values less than (3, 210)
+    tablespace USERS,
+  partition DATACURR_03_22 values less than (3, 220)
+    tablespace USERS,
+  partition DATACURR_03_23 values less than (3, 230)
+    tablespace USERS,
+  partition DATACURR_03_24 values less than (3, 240)
+    tablespace USERS,
+  partition DATACURR_03_25 values less than (3, 250)
+    tablespace USERS,
+  partition DATACURR_03_26 values less than (3, 260)
+    tablespace USERS,
+  partition DATACURR_03_27 values less than (3, 270)
+    tablespace USERS,
+  partition DATACURR_03_28 values less than (3, 280)
+    tablespace USERS,
+  partition DATACURR_03_29 values less than (3, 290)
+    tablespace USERS,
+  partition DATACURR_03_30 values less than (3, MAXVALUE)
+    tablespace USERS,
+  partition DATACURR_04_01 values less than (4, 10)
+    tablespace USERS,
+  partition DATACURR_04_02 values less than (4, 20)
+    tablespace USERS,
+  partition DATACURR_04_03 values less than (4, 30)
+    tablespace USERS,
+  partition DATACURR_04_04 values less than (4, 40)
+    tablespace USERS,
+  partition DATACURR_04_05 values less than (4, 50)
+    tablespace USERS,
+  partition DATACURR_04_06 values less than (4, 60)
+    tablespace USERS,
+  partition DATACURR_04_07 values less than (4, 70)
+    tablespace USERS,
+  partition DATACURR_04_08 values less than (4, 80)
+    tablespace USERS,
+  partition DATACURR_04_09 values less than (4, 90)
+    tablespace USERS,
+  partition DATACURR_04_10 values less than (4, 100)
+    tablespace USERS,
+  partition DATACURR_04_11 values less than (4, 110)
+    tablespace USERS,
+  partition DATACURR_04_12 values less than (4, 120)
+    tablespace USERS,
+  partition DATACURR_04_13 values less than (4, 130)
+    tablespace USERS,
+  partition DATACURR_04_14 values less than (4, 140)
+    tablespace USERS,
+  partition DATACURR_04_15 values less than (4, 150)
+    tablespace USERS,
+  partition DATACURR_04_16 values less than (4, 160)
+    tablespace USERS,
+  partition DATACURR_04_17 values less than (4, 170)
+    tablespace USERS,
+  partition DATACURR_04_18 values less than (4, 180)
+    tablespace USERS,
+  partition DATACURR_04_19 values less than (4, 190)
+    tablespace USERS,
+  partition DATACURR_04_20 values less than (4, 200)
+    tablespace USERS,
+  partition DATACURR_04_21 values less than (4, 210)
+    tablespace USERS,
+  partition DATACURR_04_22 values less than (4, 220)
+    tablespace USERS,
+  partition DATACURR_04_23 values less than (4, 230)
+    tablespace USERS,
+  partition DATACURR_04_24 values less than (4, 240)
+    tablespace USERS,
+  partition DATACURR_04_25 values less than (4, 250)
+    tablespace USERS,
+  partition DATACURR_04_26 values less than (4, 260)
+    tablespace USERS,
+  partition DATACURR_04_27 values less than (4, 270)
+    tablespace USERS,
+  partition DATACURR_04_28 values less than (4, 280)
+    tablespace USERS,
+  partition DATACURR_04_29 values less than (4, 290)
+    tablespace USERS,
+  partition DATACURR_04_30 values less than (4, MAXVALUE)
+    tablespace USERS
+);
+comment on table DATACURR
+  is 'Текущие значения';
+comment on column DATACURR.id
+  is '.';
+comment on column DATACURR.id_bd
+  is '.->BDEVICES';
+comment on column DATACURR.id_du
+  is '.->DEVUNITS';
+comment on column DATACURR.id_ptype
+  is '.->PARAMTYPE';
+comment on column DATACURR.dcall
+  is '.';
+comment on column DATACURR.dcounter
+  is '.';
+comment on column DATACURR.q1
+  is 'Тепловая энергия канал 1';
+comment on column DATACURR.q2
+  is 'Тепловая энергия канал 2';
+comment on column DATACURR.t1
+  is 'Температура по каналу 1';
+comment on column DATACURR.t2
+  is 'Температура по каналу 2';
+comment on column DATACURR.dt12
+  is 'Разность Температур по каналу 1 и 2';
+comment on column DATACURR.t3
+  is 'Температура по каналу 3';
+comment on column DATACURR.t4
+  is 'Температура по каналу 4';
+comment on column DATACURR.t5
+  is 'Температура по каналу 5';
+comment on column DATACURR.dt45
+  is 'Разность Температур по каналу 4 и 5';
+comment on column DATACURR.t6
+  is 'Температура по каналу 6';
+comment on column DATACURR.v1
+  is 'Объемный расход воды по каналу 1';
+comment on column DATACURR.v2
+  is 'Объемный расход воды по каналу 2';
+comment on column DATACURR.dv12
+  is 'Разность объемов канал 1  (расход ГВС)';
+comment on column DATACURR.v3
+  is 'Объемный расход воды по каналу 3';
+comment on column DATACURR.v4
+  is 'Объемный расход воды по каналу 4';
+comment on column DATACURR.v5
+  is 'Объемный расход воды по каналу 5';
+comment on column DATACURR.dv45
+  is 'Разность объемов канал 2';
+comment on column DATACURR.v6
+  is 'Объемный расход воды по каналу 6';
+comment on column DATACURR.m1
+  is 'Масса воды по каналу 1';
+comment on column DATACURR.m2
+  is 'Масса воды по каналу 2';
+comment on column DATACURR.dm12
+  is 'Разность масс канал 1  (расход ГВС)';
+comment on column DATACURR.m3
+  is 'Масса воды по каналу 3';
+comment on column DATACURR.m4
+  is 'Масса воды по каналу 4';
+comment on column DATACURR.m5
+  is 'Масса воды по каналу 5';
+comment on column DATACURR.dm45
+  is 'Разность масс канал 2';
+comment on column DATACURR.m6
+  is 'Масса воды по каналу 6';
+comment on column DATACURR.p1
+  is 'Давление в трубопроводе 1';
+comment on column DATACURR.p2
+  is 'Давление в трубопроводе 2';
+comment on column DATACURR.p3
+  is 'Давление в трубопроводе 3';
+comment on column DATACURR.p4
+  is 'Давление в трубопроводе 4';
+comment on column DATACURR.p5
+  is 'Давление в трубопроводе 5';
+comment on column DATACURR.p6
+  is 'Давление в трубопроводе 6';
+comment on column DATACURR.g1
+  is 'Текущее значение расхода в трубопроводе 1';
+comment on column DATACURR.g2
+  is 'Текущее значение расхода в трубопроводе 2';
+comment on column DATACURR.g3
+  is 'Текущее значение расхода в трубопроводе 3';
+comment on column DATACURR.g4
+  is 'Текущее значение расхода в трубопроводе 4';
+comment on column DATACURR.g5
+  is 'Текущее значение расхода в трубопроводе 5';
+comment on column DATACURR.g6
+  is 'Текущее значение расхода в трубопроводе 6';
+comment on column DATACURR.tcool
+  is 'Температура холодной воды';
+comment on column DATACURR.tce1
+  is 'Температура холодного конца канал 1';
+comment on column DATACURR.tce2
+  is 'Температура холодного конца канал 2';
+comment on column DATACURR.tsum1
+  is 'Тотальное время счета TB1';
+comment on column DATACURR.tsum2
+  is 'Тотальное время счета TB2';
+comment on column DATACURR.q1h
+  is 'Тепловая энергия канал 1 нарастающим итогом';
+comment on column DATACURR.q2h
+  is 'Тепловая энергия канал 2 нарастающим итогом';
+comment on column DATACURR.v1h
+  is 'Объемный расход воды по каналу 1  нарастающим итогом';
+comment on column DATACURR.v2h
+  is 'Объемный расход воды по каналу 2  нарастающим итогом';
+comment on column DATACURR.v4h
+  is 'Объемный расход воды по каналу 4  нарастающим итогом';
+comment on column DATACURR.v5h
+  is 'Объемный расход воды по каналу 5  нарастающим итогом';
+comment on column DATACURR.errtime
+  is 'Время аварии по  ТВ 1';
+comment on column DATACURR.errtimeh
+  is 'Время аварии нарастающим итогом';
+comment on column DATACURR.hc
+  is 'Нештатные ситуации общ';
+comment on column DATACURR.sp
+  is 'Схема потребления';
+comment on column DATACURR.sp_tb1
+  is 'Схема потребления TB1';
+comment on column DATACURR.sp_tb2
+  is 'Схема потребления TB2';
+comment on column DATACURR.datecounter
+  is 'Дата и время часов счетчика';
+comment on column DATACURR.dg12
+  is 'G1-G2';
+comment on column DATACURR.dg45
+  is 'G4-G5';
+comment on column DATACURR.dp12
+  is 'P1-P2';
+comment on column DATACURR.dp45
+  is 'P4-P5';
+comment on column DATACURR.unitsr
+  is '.Единицы измерения расхода';
+comment on column DATACURR.q3
+  is 'Тепловая энергия канал 3';
+comment on column DATACURR.q4
+  is 'Тепловая энергия канал 4';
+comment on column DATACURR.patm
+  is 'Атмосферное давление';
+comment on column DATACURR.q5
+  is 'Тепловая энергия канал 5';
+comment on column DATACURR.dq12
+  is 'Тепловая энергия потребитель 1';
+comment on column DATACURR.dq45
+  is 'Тепловая энергия потребитель 2';
+comment on column DATACURR.pxb
+  is 'Давление холодной воды';
+comment on column DATACURR.dq
+  is 'Расход энергии потребитель 1';
+comment on column DATACURR.hc_1
+  is 'Нештатная ситуация 1 (ТВ1 или внешняя)';
+comment on column DATACURR.hc_2
+  is 'Нештатная ситуация 2 (ТВ2 или внутренняя)';
+comment on column DATACURR.thot
+  is 'Температура горячей воды';
+comment on column DATACURR.check_a
+  is 'Проверка архивных данных на НС (0 - не производилась, 1 - произведена)';
+comment on column DATACURR.oktime
+  is 'Время безошиб.работы по ТВ1';
+comment on column DATACURR.worktime
+  is 'Время работы';
+comment on column DATACURR.tair1
+  is 'Температура воздуха канал 1';
+comment on column DATACURR.tair2
+  is 'Температура воздуха канал 2';
+comment on column DATACURR.hc_code
+  is 'Код нештатной ситуации тепловычислителя';
+comment on column DATACURR.errtime2
+  is 'Время аварии по ТВ 2';
+comment on column DATACURR.oktime2
+  is 'Время безошиб.работы  по ТВ2';
+comment on column DATACURR.q6
+  is 'Тепловая энергия канал 6';
+create index DATACURR_DCALL2 on DATACURR (DCALL, ID_BD, ID_PTYPE);
+create index DATACURR_DCOUNTER2 on DATACURR (DCOUNTER, ID_BD, ID_PTYPE);
+alter table DATACURR
+  add constraint DATACURR_PK primary key (ID_BD, ID_PTYPE, DCOUNTER, DCALL);
+

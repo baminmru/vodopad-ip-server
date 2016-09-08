@@ -1,0 +1,58 @@
+create table TS_SPT961
+(
+  id_du        NUMBER(4) not null,
+  id_datatype  NUMBER(2),
+  id_paramtype NUMBER(2) not null,
+  id_fun       NUMBER(5) not null,
+  cfun_dev     VARCHAR2(50),
+  cfunname     VARCHAR2(25),
+  cfundesc     VARCHAR2(128),
+  cminval      VARCHAR2(50),
+  cmaxval      VARCHAR2(50),
+  units        VARCHAR2(24),
+  twrite       VARCHAR2(1),
+  tread        VARCHAR2(1),
+  cinquiry     VARCHAR2(255),
+  sname        VARCHAR2(16)
+)
+;
+comment on column TS_SPT961.id_du
+  is '->DEVUNITS';
+comment on column TS_SPT961.id_datatype
+  is '->DATATYPE';
+comment on column TS_SPT961.id_paramtype
+  is '->PARAMTYPE';
+comment on column TS_SPT961.id_fun
+  is 'ID Функции';
+comment on column TS_SPT961.cfun_dev
+  is 'Номер функции по прибору';
+comment on column TS_SPT961.cfunname
+  is 'Условное Обозначение Функции';
+comment on column TS_SPT961.cfundesc
+  is 'Наименование Функции';
+comment on column TS_SPT961.cminval
+  is 'Диапазон От';
+comment on column TS_SPT961.cmaxval
+  is 'Диапазон До';
+comment on column TS_SPT961.units
+  is 'Еденицы Измерения';
+comment on column TS_SPT961.twrite
+  is 'Запись';
+comment on column TS_SPT961.tread
+  is 'Чтение';
+comment on column TS_SPT961.cinquiry
+  is 'Строка Запроса';
+comment on column TS_SPT961.sname
+  is 'Согласованное имя';
+alter table TS_SPT961
+  add constraint SPT961_PRI primary key (ID_FUN);
+alter table TS_SPT961
+  add constraint SPT961_DATATYPE foreign key (ID_DATATYPE)
+  references DATATYPE (ID_TYPE);
+alter table TS_SPT961
+  add constraint SPT961_DEVUNITS foreign key (ID_DU)
+  references DEVUNITS (ID_DU);
+alter table TS_SPT961
+  add constraint SPT961_PARAMTYPE foreign key (ID_PARAMTYPE)
+  references PARAMTYPE (ID_TYPE);
+

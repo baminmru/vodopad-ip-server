@@ -1,0 +1,19 @@
+create table MISSINGPASS
+(
+  id_bd    NUMBER not null,
+  archdate DATE not null,
+  devname  VARCHAR2(255) not null,
+  trycount NUMBER default '0' not null
+)
+;
+comment on table MISSINGPASS
+  is 'регистрация факта обработки пропущенных архивово для минимизации повторных чтений проблемных записей';
+comment on column MISSINGPASS.archdate
+  is 'дата архива';
+comment on column MISSINGPASS.devname
+  is 'устройство и тип архива';
+comment on column MISSINGPASS.trycount
+  is 'количество попыток';
+alter table MISSINGPASS
+  add constraint MISSINGPASS_PK primary key (ID_BD, ARCHDATE, DEVNAME);
+

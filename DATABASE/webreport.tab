@@ -1,0 +1,27 @@
+create table WEBREPORT
+(
+  webreportid NUMBER not null,
+  createdate  DATE default sysdate,
+  usersid     NUMBER not null,
+  id_bd       NUMBER not null,
+  id_ptype    NUMBER not null,
+  dfrom       DATE not null,
+  dto         DATE not null,
+  templateid  NUMBER,
+  reportfile  VARCHAR2(500),
+  reportready NUMBER(1) default 0,
+  reportmsg   VARCHAR2(128)
+)
+;
+alter table WEBREPORT
+  add constraint WEBREPORT_PK primary key (WEBREPORTID);
+alter table WEBREPORT
+  add constraint WEBREPORT_DEV foreign key (ID_BD)
+  references BDEVICES (ID_BD);
+alter table WEBREPORT
+  add constraint WEBREPORT_PTYPE foreign key (ID_PTYPE)
+  references PARAMTYPE (ID_TYPE);
+alter table WEBREPORT
+  add constraint WEBREPORT_USR foreign key (USERSID)
+  references USERS (USERSID);
+

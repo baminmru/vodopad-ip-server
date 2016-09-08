@@ -1,0 +1,20 @@
+create table DATATYPE
+(
+  id_class NUMBER(2) not null,
+  id_type  NUMBER(2) not null,
+  ctype    VARCHAR2(24) not null
+)
+;
+comment on table DATATYPE
+  is 'Типы данных';
+comment on column DATATYPE.ctype
+  is 'Тип данных';
+create index DATATYPE_ID_CLASS on DATATYPE (ID_CLASS);
+alter table DATATYPE
+  add constraint DATATYPE_PRI primary key (ID_TYPE);
+alter table DATATYPE
+  add constraint DATATYPE_UNI unique (CTYPE);
+alter table DATATYPE
+  add constraint DATATYPE_CLASS foreign key (ID_CLASS)
+  references DEVCLASSES (ID_CLASS);
+

@@ -1,0 +1,7 @@
+create sequence DANCFG_SEQ
+minvalue 1
+maxvalue 999999999
+start with 3008
+increment by 1
+nocache;
+

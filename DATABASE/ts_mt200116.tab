@@ -1,0 +1,60 @@
+create table TS_MT200116
+(
+  id_du        NUMBER(4) not null,
+  id_datatype  NUMBER(2) not null,
+  id_paramtype NUMBER(2) not null,
+  id_fun       NUMBER(5) not null,
+  cfun_dev     VARCHAR2(48),
+  cfunname     VARCHAR2(24),
+  cfundesc     VARCHAR2(128),
+  cminval      VARCHAR2(48),
+  cmaxval      VARCHAR2(48),
+  units        VARCHAR2(24),
+  twrite       CHAR(1),
+  tread        CHAR(1),
+  cinquiry     VARCHAR2(255),
+  sname        VARCHAR2(16)
+)
+;
+comment on table TS_MT200116
+  is 'Теплосчетчик MT200116';
+comment on column TS_MT200116.id_du
+  is '->DEVUNITS';
+comment on column TS_MT200116.id_datatype
+  is '->DATATYPE';
+comment on column TS_MT200116.id_paramtype
+  is '->PARAMTYPE';
+comment on column TS_MT200116.id_fun
+  is 'ID Функции';
+comment on column TS_MT200116.cfun_dev
+  is 'Номер функции по прибору';
+comment on column TS_MT200116.cfunname
+  is 'Условное обозначение';
+comment on column TS_MT200116.cfundesc
+  is 'Наименование функции';
+comment on column TS_MT200116.cminval
+  is 'Min';
+comment on column TS_MT200116.cmaxval
+  is 'Max';
+comment on column TS_MT200116.units
+  is 'Единицы измерения';
+comment on column TS_MT200116.twrite
+  is 'Запись';
+comment on column TS_MT200116.tread
+  is 'Чтение';
+comment on column TS_MT200116.cinquiry
+  is 'Строка запроса';
+comment on column TS_MT200116.sname
+  is 'Согласованное имя';
+alter table TS_MT200116
+  add constraint MT200116_PRI primary key (ID_FUN);
+alter table TS_MT200116
+  add constraint MT200116_DATATYPE foreign key (ID_DATATYPE)
+  references DATATYPE (ID_TYPE);
+alter table TS_MT200116
+  add constraint MT200116_DEVUNITS foreign key (ID_DU)
+  references DEVUNITS (ID_DU);
+alter table TS_MT200116
+  add constraint MT200116_PARAMTYPE foreign key (ID_PARAMTYPE)
+  references PARAMTYPE (ID_TYPE);
+

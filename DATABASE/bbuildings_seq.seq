@@ -1,0 +1,7 @@
+create sequence BBUILDINGS_SEQ
+minvalue 1
+maxvalue 99999
+start with 473
+increment by 1
+nocache;
+

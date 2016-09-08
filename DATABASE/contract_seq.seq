@@ -1,0 +1,7 @@
+create sequence CONTRACT_SEQ
+minvalue 1
+maxvalue 99999999
+start with 124
+increment by 1
+nocache;
+

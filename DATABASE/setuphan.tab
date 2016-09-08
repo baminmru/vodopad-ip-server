@@ -1,0 +1,58 @@
+create table SETUPHAN
+(
+  id_sh        NUMBER(4) not null,
+  id_ip        NUMBER(4) not null,
+  maxread1     NUMBER(2),
+  distsec      NUMBER(3),
+  save24       VARCHAR2(1),
+  savehour     VARCHAR2(1),
+  savecurr     VARCHAR2(1),
+  savesum      VARCHAR2(1),
+  id_mask_curr NUMBER(4),
+  id_mask_hour NUMBER(4),
+  id_mask_24   NUMBER(4),
+  id_mask_sum  NUMBER(4),
+  numhour      NUMBER(2),
+  num24        NUMBER(2),
+  id_bd        NUMBER(5),
+  id_mask_sys  NUMBER(4)
+)
+;
+comment on table SETUPHAN
+  is 'Настройки ручного опроса';
+comment on column SETUPHAN.id_sh
+  is 'PK';
+comment on column SETUPHAN.id_ip
+  is '->IPADDR';
+comment on column SETUPHAN.maxread1
+  is 'К-во попыток считывания 1 параметра';
+comment on column SETUPHAN.distsec
+  is 'Интервал опроса мгновенных';
+comment on column SETUPHAN.save24
+  is 'Сохранять суточные';
+comment on column SETUPHAN.savehour
+  is 'Сохранять часовые';
+comment on column SETUPHAN.savecurr
+  is 'Сохранять мгновенные';
+comment on column SETUPHAN.savesum
+  is 'Сохранять итоговые';
+comment on column SETUPHAN.id_mask_curr
+  is 'Шаблон опроса текущих   ->MASKS';
+comment on column SETUPHAN.id_mask_hour
+  is 'Шаблон опроса часовых   ->MASKS';
+comment on column SETUPHAN.id_mask_24
+  is 'Шаблон опроса суточных  ->MASKS';
+comment on column SETUPHAN.id_mask_sum
+  is 'Шаблон опроса итоговых  ->MASKS';
+comment on column SETUPHAN.numhour
+  is 'За сколько часов опрашивать часовые';
+comment on column SETUPHAN.num24
+  is 'За сколько суток опрашивать суточные';
+comment on column SETUPHAN.id_bd
+  is '->BDEVICES';
+comment on column SETUPHAN.id_mask_sys
+  is 'Шаблон опроса системных  ->MASKS';
+create index SETUPHUN_ID_BD on SETUPHAN (ID_BD);
+alter table SETUPHAN
+  add constraint SETUPHAN_PRI primary key (ID_SH);
+

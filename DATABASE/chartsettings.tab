@@ -1,0 +1,18 @@
+create table CHARTSETTINGS
+(
+  id_bd    NUMBER(5) not null,
+  ptype    NUMBER(2) not null,
+  pname    VARCHAR2(64) not null,
+  chartnum NUMBER(2) not null,
+  varnum   NUMBER(2) not null,
+  valcount NUMBER(2),
+  width    NUMBER(2),
+  color    NUMBER(8),
+  enable   CHAR(1),
+  colormin NUMBER(8),
+  colormax NUMBER(8),
+  widthmin NUMBER(2),
+  widthmax NUMBER(2)
+)
+;
+

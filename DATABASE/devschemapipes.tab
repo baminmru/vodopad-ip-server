@@ -1,0 +1,24 @@
+create table DEVSCHEMAPIPES
+(
+  dspipe_id   NUMBER not null,
+  inputnumber NUMBER not null,
+  pipenumber  NUMBER not null,
+  pipetype_id NUMBER not null,
+  ds_id       NUMBER not null
+)
+;
+comment on column DEVSCHEMAPIPES.dspipe_id
+  is 'id трубопровода';
+comment on column DEVSCHEMAPIPES.inputnumber
+  is 'номер теплового ввода';
+comment on column DEVSCHEMAPIPES.pipenumber
+  is 'номер трубы';
+comment on column DEVSCHEMAPIPES.pipetype_id
+  is 'тип трубы->PIPETYPE';
+comment on column DEVSCHEMAPIPES.ds_id
+  is '->DEVSCEMA';
+alter table DEVSCHEMAPIPES
+  add constraint DSPIPE_PK primary key (DSPIPE_ID);
+alter table DEVSCHEMAPIPES
+  add constraint DSPIPE_UK unique (DS_ID, INPUTNUMBER, PIPENUMBER);
+

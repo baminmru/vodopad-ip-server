@@ -1,0 +1,20 @@
+create table DEVSCHEMA
+(
+  ds_id        NUMBER(5) not null,
+  name         VARCHAR2(255),
+  schema_image BLOB
+)
+;
+comment on table DEVSCHEMA
+  is 'изображение схемы подключения';
+comment on column DEVSCHEMA.ds_id
+  is 'Идентификатор';
+comment on column DEVSCHEMA.name
+  is 'Название схемы';
+comment on column DEVSCHEMA.schema_image
+  is 'Картинка схемы';
+alter table DEVSCHEMA
+  add constraint DEVSCHEMA_PK primary key (DS_ID);
+alter table DEVSCHEMA
+  add constraint DENSCHEMA_NAME unique (NAME);
+

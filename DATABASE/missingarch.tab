@@ -1,0 +1,18 @@
+create table MISSINGARCH
+(
+  id_bd    NUMBER not null,
+  archdate DATE not null,
+  devname  VARCHAR2(255)
+)
+;
+comment on table MISSINGARCH
+  is 'Список пропущенных часовых архивов по данным ПУТЭ';
+comment on column MISSINGARCH.id_bd
+  is '-> bdevices';
+comment on column MISSINGARCH.archdate
+  is 'Дата пропущенного часового архива';
+comment on column MISSINGARCH.devname
+  is 'Название узла';
+alter table MISSINGARCH
+  add constraint MISSINGARCH_PK primary key (ID_BD, ARCHDATE);
+

@@ -1,0 +1,7 @@
+create sequence PLANCALL_SEQ
+minvalue 1
+maxvalue 99999
+start with 133
+increment by 1
+nocache;
+

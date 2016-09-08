@@ -1,0 +1,25 @@
+create table EDIZM
+(
+  edizm_id      NUMBER not null,
+  name          VARCHAR2(40) not null,
+  possibleparam VARCHAR2(1024),
+  edizm_base    NUMBER,
+  multipicator  NUMBER(18,6) default '1',
+  divider       NUMBER(18,6) default '1'
+)
+;
+comment on table EDIZM
+  is 'Единицы измерения для параметров';
+comment on column EDIZM.name
+  is 'Название единицы измерения';
+comment on column EDIZM.possibleparam
+  is 'Допустимые параметры через запятую';
+comment on column EDIZM.edizm_base
+  is 'базвая единица измерения';
+comment on column EDIZM.multipicator
+  is 'на что умножить для перевода в базовую единицу';
+comment on column EDIZM.divider
+  is 'на что разделить для перевода в базовую единицу';
+alter table EDIZM
+  add constraint EDIZM_PK primary key (EDIZM_ID);
+

@@ -1,0 +1,29 @@
+create table WEBTEMPLATE
+(
+  webtemplateid NUMBER not null,
+  id_bd         NUMBER not null,
+  id_ptype      NUMBER not null,
+  filename      VARCHAR2(255),
+  name          VARCHAR2(255),
+  userid        NUMBER
+)
+;
+comment on table WEBTEMPLATE
+  is 'Шаблоны отчетов на будущее';
+comment on column WEBTEMPLATE.webtemplateid
+  is 'id шаблона';
+comment on column WEBTEMPLATE.id_bd
+  is 'устройство';
+comment on column WEBTEMPLATE.id_ptype
+  is 'тип архива';
+comment on column WEBTEMPLATE.filename
+  is 'имя файла шаблона';
+comment on column WEBTEMPLATE.name
+  is 'название шаблона';
+comment on column WEBTEMPLATE.userid
+  is 'пользователь';
+alter table WEBTEMPLATE
+  add constraint WEBTEMPLATE_PK primary key (WEBTEMPLATEID);
+alter table WEBTEMPLATE
+  add constraint WEBTEMPLATE_UK unique (ID_BD, ID_PTYPE, FILENAME);
+

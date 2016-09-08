@@ -1,0 +1,59 @@
+create table TS_TSRV03
+(
+  id_du        NUMBER(4) not null,
+  id_datatype  NUMBER(2) not null,
+  id_paramtype NUMBER(2) not null,
+  id_fun       NUMBER(5) not null,
+  cfunname     VARCHAR2(16) not null,
+  cfundesc     VARCHAR2(128),
+  units        VARCHAR2(16),
+  sname        VARCHAR2(16),
+  query_type   NUMBER(2) not null,
+  channel_num  NUMBER(2),
+  page_addr    VARCHAR2(32),
+  offs_count   VARCHAR2(32),
+  param_addr   VARCHAR2(32),
+  param_size   VARCHAR2(32)
+)
+;
+comment on column TS_TSRV03.id_du
+  is '->DEVUNITS';
+comment on column TS_TSRV03.id_datatype
+  is '->DATATYPE';
+comment on column TS_TSRV03.id_paramtype
+  is '->PARAMTYPE (0-системные,1-мгновенные,2-итоговые,3-часовые,4-суточные,5-НС,6-расчетный)';
+comment on column TS_TSRV03.id_fun
+  is 'ID Функции (primary key)';
+comment on column TS_TSRV03.cfunname
+  is 'Условное Обозначение Функции';
+comment on column TS_TSRV03.cfundesc
+  is 'Наименование Функции';
+comment on column TS_TSRV03.units
+  is 'Единицы Измерения';
+comment on column TS_TSRV03.sname
+  is 'Согласованное имя';
+comment on column TS_TSRV03.query_type
+  is 'Тип зароса (0 - ОЗУ, 1 - флэш, 2 - час.арх., 3 - сут.арх., 4 - вычисл., 5 - Danfoss)';
+comment on column TS_TSRV03.channel_num
+  is 'Номер измерительного канала прибора';
+comment on column TS_TSRV03.page_addr
+  is 'Адрес страницы в ОЗУ или флэш (HEX)';
+comment on column TS_TSRV03.offs_count
+  is 'Смещение внутри страницы памяти или пакета в единицах, заданных STEP (HEX)';
+comment on column TS_TSRV03.param_addr
+  is 'Адрес параметра, как в документации на счетчик (HEX)';
+comment on column TS_TSRV03.param_size
+  is 'Размер считываемых со счетчика данных, в байтах';
+create index TSRV03_SNAME on TS_TSRV03 (SNAME);
+alter table TS_TSRV03
+  add constraint TSRV03_PRI primary key (ID_FUN);
+alter table TS_TSRV03
+  add constraint TSRV03_DATATYPE foreign key (ID_DATATYPE)
+  references DATATYPE (ID_TYPE);
+alter table TS_TSRV03
+  add constraint TSRV03_DEVUNITS foreign key (ID_DU)
+  references DEVUNITS (ID_DU);
+alter table TS_TSRV03
+  add constraint TSRV03_PARAMTYPE foreign key (ID_PARAMTYPE)
+  references PARAMTYPE (ID_TYPE);
+

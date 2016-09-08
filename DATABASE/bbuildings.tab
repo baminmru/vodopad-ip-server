@@ -1,0 +1,54 @@
+create table BBUILDINGS
+(
+  id_bu           NUMBER(5) not null,
+  id_grp          NUMBER(5),
+  cshort          VARCHAR2(24),
+  cfull           VARCHAR2(400),
+  cfio1           VARCHAR2(64),
+  cphone1         VARCHAR2(32),
+  cfio2           VARCHAR2(64),
+  cphone2         VARCHAR2(32),
+  caddress        VARCHAR2(200),
+  dupd            VARCHAR2(12),
+  id_who          NUMBER(5),
+  id_usr          NUMBER(4),
+  anal_day_method NUMBER(2),
+  mapx            NUMBER(11,7) default 0,
+  mapy            NUMBER(11,7) default 0,
+  fulladdress     VARCHAR2(200)
+)
+;
+comment on table BBUILDINGS
+  is 'Узлы учета';
+comment on column BBUILDINGS.id_bu
+  is 'PK';
+comment on column BBUILDINGS.id_grp
+  is '->BGROUPS';
+comment on column BBUILDINGS.cshort
+  is 'Краткое наименование';
+comment on column BBUILDINGS.cfull
+  is 'Полное наименование';
+comment on column BBUILDINGS.caddress
+  is 'Адрес';
+comment on column BBUILDINGS.dupd
+  is 'Дата последнего обновления';
+comment on column BBUILDINGS.id_who
+  is '->WHOGIVE';
+comment on column BBUILDINGS.anal_day_method
+  is 'Номер метода анализа суточных архивов';
+comment on column BBUILDINGS.mapx
+  is 'X координата на карте';
+comment on column BBUILDINGS.mapy
+  is 'Y координата на карте';
+comment on column BBUILDINGS.fulladdress
+  is 'Полный адрес';
+create index BBUILDINGS_BGRP on BBUILDINGS (ID_GRP);
+create index BBUILDINGS_ID_WHO on BBUILDINGS (ID_WHO);
+alter table BBUILDINGS
+  add constraint BBUILDINGS_PRI primary key (ID_BU);
+alter table BBUILDINGS
+  add constraint BBUILDINGS_UNI unique (CSHORT);
+alter table BBUILDINGS
+  add constraint BBUILDINGS_BGROUPS foreign key (ID_GRP)
+  references BGROUPS (ID_GRP);
+

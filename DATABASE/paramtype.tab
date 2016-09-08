@@ -1,0 +1,20 @@
+create table PARAMTYPE
+(
+  id_class NUMBER(2) not null,
+  id_type  NUMBER(2) not null,
+  ctype    VARCHAR2(64) not null
+)
+;
+comment on table PARAMTYPE
+  is 'Типы параметров';
+comment on column PARAMTYPE.ctype
+  is 'Тип параметра; 0-сист.; 1-мгн.;2-итог.;3-час.;4-сут.;5-НС ';
+create index PARAMTYPE_ID_CLASS on PARAMTYPE (ID_CLASS);
+alter table PARAMTYPE
+  add constraint PARAMTYPE_PRI primary key (ID_TYPE);
+alter table PARAMTYPE
+  add constraint PARAMTYPE_UNI unique (CTYPE);
+alter table PARAMTYPE
+  add constraint PARAMTYPE_CLASS foreign key (ID_CLASS)
+  references DEVCLASSES (ID_CLASS);
+

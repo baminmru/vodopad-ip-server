@@ -1,0 +1,20 @@
+create table DANSCHEMA
+(
+  das_id       NUMBER(5) not null,
+  name         VARCHAR2(255),
+  schema_image BLOB
+)
+;
+comment on table DANSCHEMA
+  is 'изображение схемы подключения данфос';
+comment on column DANSCHEMA.das_id
+  is 'Идентификатор';
+comment on column DANSCHEMA.name
+  is 'Название схемы';
+comment on column DANSCHEMA.schema_image
+  is 'Картинка схемы';
+alter table DANSCHEMA
+  add constraint DANSCHEMA_PK primary key (DAS_ID);
+alter table DANSCHEMA
+  add constraint DANSCHEMA_NAME unique (NAME);
+

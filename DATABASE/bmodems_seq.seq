@@ -1,0 +1,7 @@
+create sequence BMODEMS_SEQ
+minvalue 1
+maxvalue 99999
+start with 430
+increment by 1
+nocache;
+

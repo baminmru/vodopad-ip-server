@@ -1,0 +1,21 @@
+create table ANALIZER
+(
+  id_bd          NUMBER(5) not null,
+  dlast          DATE not null,
+  lastlink       DATE,
+  lastwholecheck DATE,
+  hmissing       NUMBER(5),
+  dmissing       NUMBER(5),
+  hccount        NUMBER(5),
+  status         NUMBER(5),
+  linkerrors     NUMBER(5),
+  perror         NUMBER(5),
+  terror         NUMBER(5),
+  gerror         NUMBER(5),
+  color          VARCHAR2(20),
+  info           VARCHAR2(4000)
+)
+;
+alter table ANALIZER
+  add constraint ANALIZER_PK primary key (ID_BD);
+

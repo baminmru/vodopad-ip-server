@@ -1,0 +1,36 @@
+create table VALUEBOUNDS
+(
+  id_bd NUMBER(5) not null,
+  pname VARCHAR2(64) not null,
+  ptype NUMBER(2) not null,
+  pmin  NUMBER(16,4),
+  pmax  NUMBER(16,4),
+  ismin CHAR(1),
+  ismax CHAR(1),
+  sezon INTEGER default 0 not null
+)
+;
+comment on table VALUEBOUNDS
+  is 'Граничные значения проверяемых параметров';
+comment on column VALUEBOUNDS.id_bd
+  is '.->BDEVICES';
+comment on column VALUEBOUNDS.pname
+  is 'Имя параметра';
+comment on column VALUEBOUNDS.ptype
+  is '.->PARAMTYPE';
+comment on column VALUEBOUNDS.pmin
+  is 'Минимальное значение';
+comment on column VALUEBOUNDS.pmax
+  is 'Максимальное значение';
+comment on column VALUEBOUNDS.ismin
+  is 'Проверять на минимум';
+comment on column VALUEBOUNDS.ismax
+  is 'Проверять на максимум';
+comment on column VALUEBOUNDS.sezon
+  is '0 - Отопительный сезон, 1 - Летний сезон';
+alter table VALUEBOUNDS
+  add constraint VALUEBOUNDS_PK primary key (ID_BD, PTYPE, PNAME, SEZON);
+alter table VALUEBOUNDS
+  add constraint SEZON_CHECK
+  check (SEZON in (0,1));
+

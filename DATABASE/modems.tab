@@ -1,0 +1,22 @@
+create table MODEMS
+(
+  id_modem NUMBER(4) not null,
+  cshort   VARCHAR2(24),
+  cfull    VARCHAR2(128),
+  cinit    VARCHAR2(254),
+  dupd     CHAR(12),
+  cdtr     VARCHAR2(1) default '1',
+  cdsr     VARCHAR2(1) default '1'
+)
+;
+comment on column MODEMS.id_modem
+  is 'PK';
+comment on column MODEMS.cdtr
+  is '''1'' - DTR';
+comment on column MODEMS.cdsr
+  is '''1'' - DSR';
+alter table MODEMS
+  add constraint MODEMS_PRI primary key (ID_MODEM);
+alter table MODEMS
+  add constraint MODEMS_UNI unique (CSHORT);
+

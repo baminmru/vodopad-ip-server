@@ -1,0 +1,155 @@
+create table BDEVICES
+(
+  id_bd         NUMBER(5) not null,
+  id_bu         NUMBER(5) not null,
+  id_dev        NUMBER(2) not null,
+  dupd          VARCHAR2(12),
+  id_mask_curr  NUMBER(4),
+  id_mask_hour  NUMBER(4),
+  id_mask_24    NUMBER(4),
+  id_mask_sum   NUMBER(4),
+  id_pl         NUMBER(5),
+  dentmask      DATE,
+  id_usrmask    NUMBER(4),
+  dentdev       DATE,
+  id_usrdev     NUMBER(4),
+  askbus        CHAR(1),
+  cxlsfile      VARCHAR2(240),
+  csheet        VARCHAR2(80),
+  id_mask_sys   NUMBER(4),
+  scheme_fn     VARCHAR2(240),
+  scheme_name   VARCHAR2(240),
+  repmaskfileh  VARCHAR2(240),
+  repmasksheeth VARCHAR2(240),
+  npip          VARCHAR2(40),
+  nppassword    VARCHAR2(60),
+  npquery       NUMBER(1) default 0,
+  nplock        DATE,
+  hiderow       NUMBER(1) default 0,
+  transport     NUMBER(1) default 0,
+  ipport        NUMBER(5),
+  macaddr       VARCHAR2(18),
+  ipgw          VARCHAR2(40),
+  ipmask        VARCHAR2(40),
+  nocport       VARCHAR2(40),
+  direct_adsl   VARCHAR2(40),
+  srv_ip_id     NUMBER(5),
+  reportproc    VARCHAR2(64),
+  coldwater     NUMBER(1),
+  callerid      VARCHAR2(30),
+  hourshift     NUMBER(3) default 0,
+  nzcols        VARCHAR2(255) default 'T1;M1;Q1',
+  linked_id_bd  NUMBER(5),
+  l_nzcols      VARCHAR2(255) default 'T1;M1;Q1',
+  das_id        NUMBER(5)
+)
+;
+comment on table BDEVICES
+  is 'Подключенные к узлу устройства';
+comment on column BDEVICES.id_bd
+  is 'ID';
+comment on column BDEVICES.id_bu
+  is '->BBUILDINGS';
+comment on column BDEVICES.id_dev
+  is '->DEVICES';
+comment on column BDEVICES.dupd
+  is 'Дата последнего обновления параметров';
+comment on column BDEVICES.id_mask_curr
+  is 'Шаблон опроса текущих   ->MASKS';
+comment on column BDEVICES.id_mask_hour
+  is 'Шаблон опроса часовых   ->MASKS';
+comment on column BDEVICES.id_mask_24
+  is 'Шаблон опроса суточных  ->MASKS';
+comment on column BDEVICES.id_mask_sum
+  is 'Шаблон опроса итоговых  ->MASKS';
+comment on column BDEVICES.id_pl
+  is 'План опроса  ->PLANCALL';
+comment on column BDEVICES.dentmask
+  is 'Последняя дата ввода/корректировки шаблонов';
+comment on column BDEVICES.id_usrmask
+  is 'Пользователь, изменивший шаблоны';
+comment on column BDEVICES.dentdev
+  is 'Последняя дата ввода/корректировки типа счетчика';
+comment on column BDEVICES.id_usrdev
+  is 'Пользователь, изменивший тип счетчика';
+comment on column BDEVICES.askbus
+  is '''1''  - протокол ASKBus (для узлов с контроллером ASKBus)';
+comment on column BDEVICES.cxlsfile
+  is 'Имя файла шаблона отчета по суточным архивам';
+comment on column BDEVICES.csheet
+  is 'Имя листа шаблона отчета по суточным архивам';
+comment on column BDEVICES.id_mask_sys
+  is 'Шаблон опроса системных  ->MASKS (для копирования в руч.опрос)';
+comment on column BDEVICES.scheme_fn
+  is 'Имя файла схемы оборудования';
+comment on column BDEVICES.scheme_name
+  is 'Имя схемы оборудования';
+comment on column BDEVICES.repmaskfileh
+  is 'Имя файла шаблона отчета по часовым архивам';
+comment on column BDEVICES.repmasksheeth
+  is 'Имя листа шаблона отчета часовым архивам';
+comment on column BDEVICES.npip
+  is 'IP адрес NPORT';
+comment on column BDEVICES.nppassword
+  is 'Пароль к NPORT';
+comment on column BDEVICES.npquery
+  is 'Опрашивать по IP';
+comment on column BDEVICES.nplock
+  is 'Время до которого устройство считается заблокированным';
+comment on column BDEVICES.hiderow
+  is 'Не отображать строку =1, 0 - отображать';
+comment on column BDEVICES.transport
+  is 'Модем-0, COM-1, NPort-2, VSX или другойе устр-во-3';
+comment on column BDEVICES.ipport
+  is 'IP-порт для VSX или другого устр-ва';
+comment on column BDEVICES.macaddr
+  is 'MAC -адрес устройства';
+comment on column BDEVICES.ipgw
+  is 'Адрес шлюза (default gateway)';
+comment on column BDEVICES.ipmask
+  is 'IP-маска';
+comment on column BDEVICES.nocport
+  is 'Порт коммутатора в БД NOC';
+comment on column BDEVICES.direct_adsl
+  is 'соединение прямое/ADSL';
+comment on column BDEVICES.srv_ip_id
+  is '->IPADDR  ID сервера опроса';
+comment on column BDEVICES.reportproc
+  is 'Имя схемы измерения для тгк1';
+comment on column BDEVICES.coldwater
+  is 'Есть контроль холодной воды =1, нет=0';
+comment on column BDEVICES.callerid
+  is 'Идентификатор устройства для  АССВ';
+comment on column BDEVICES.hourshift
+  is 'Сдвиг  для расчета соответствия суточных и часовых';
+comment on column BDEVICES.nzcols
+  is 'Колонки, которые не должны быть  нулевыми для отопительного сезона';
+comment on column BDEVICES.linked_id_bd
+  is 'связный архив';
+comment on column BDEVICES.l_nzcols
+  is 'Колонки, которые не должны быть  нулевыми для межотопительного сезона';
+comment on column BDEVICES.das_id
+  is 'Идентификатор  схемы климатического контроллера -> DANSCHEMA';
+create index BDEVICES_ID_BU on BDEVICES (ID_BU);
+create index BDEVICES_ID_DEV on BDEVICES (ID_DEV);
+alter table BDEVICES
+  add constraint BDEVICES_PRI primary key (ID_BD);
+alter table BDEVICES
+  add constraint BDEVICES_BBUILDINGS foreign key (ID_BU)
+  references BBUILDINGS (ID_BU);
+alter table BDEVICES
+  add constraint BDEVICES_DEV foreign key (ID_DEV)
+  references DEVICES (ID_DEV);
+alter table BDEVICES
+  add constraint BDEVICES_MC foreign key (ID_MASK_CURR)
+  references MASKS (ID_MASK);
+alter table BDEVICES
+  add constraint BDEVICES_MH foreign key (ID_MASK_HOUR)
+  references MASKS (ID_MASK);
+alter table BDEVICES
+  add constraint BDEVICES_MSUM foreign key (ID_MASK_SUM)
+  references MASKS (ID_MASK);
+alter table BDEVICES
+  add constraint BDEVICES_M24 foreign key (ID_MASK_24)
+  references MASKS (ID_MASK);
+

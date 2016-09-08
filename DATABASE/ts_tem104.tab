@@ -1,0 +1,59 @@
+create table TS_TEM104
+(
+  id_du        NUMBER(4) not null,
+  id_datatype  NUMBER(2) not null,
+  id_paramtype NUMBER(2) not null,
+  id_fun       NUMBER(5) not null,
+  cfunname     VARCHAR2(16) not null,
+  cfundesc     VARCHAR2(128),
+  units        VARCHAR2(16),
+  sname        VARCHAR2(16),
+  query_type   NUMBER(2) not null,
+  channel_num  NUMBER(2),
+  page_addr    VARCHAR2(32),
+  offs_count   VARCHAR2(32),
+  param_addr   VARCHAR2(32),
+  param_size   VARCHAR2(32)
+)
+;
+comment on column TS_TEM104.id_du
+  is '->DEVUNITS';
+comment on column TS_TEM104.id_datatype
+  is '->DATATYPE';
+comment on column TS_TEM104.id_paramtype
+  is '->PARAMTYPE';
+comment on column TS_TEM104.id_fun
+  is 'ID Функции (primary key)';
+comment on column TS_TEM104.cfunname
+  is 'Условное Обозначение Функции';
+comment on column TS_TEM104.cfundesc
+  is 'Наименование Функции';
+comment on column TS_TEM104.units
+  is 'Единицы Измерения';
+comment on column TS_TEM104.sname
+  is 'Согласованное имя';
+comment on column TS_TEM104.query_type
+  is 'Тип зароса (0 - ОЗУ, 1 - флэш, 2 - час.арх., 3 - сут.арх., 4 - вычисл., 5 - Danfoss';
+comment on column TS_TEM104.channel_num
+  is 'Номер измерительного канала прибора';
+comment on column TS_TEM104.page_addr
+  is 'Адрес страницы в ОЗУ или флэш (HEX)';
+comment on column TS_TEM104.offs_count
+  is 'Смещение внутри страницы памяти или пакета в единицах, заданных STEP (HEX)';
+comment on column TS_TEM104.param_addr
+  is 'Адрес параметра, как в документации на счетчик (HEX)';
+comment on column TS_TEM104.param_size
+  is 'Размер считываемых со счетчика данных, в байтах';
+create index TEM104_SNAME on TS_TEM104 (SNAME);
+alter table TS_TEM104
+  add constraint TEM104_PRI primary key (ID_FUN);
+alter table TS_TEM104
+  add constraint TEM104_DATATYPE foreign key (ID_DATATYPE)
+  references DATATYPE (ID_TYPE);
+alter table TS_TEM104
+  add constraint TEM104_DEVUNITS foreign key (ID_DU)
+  references DEVUNITS (ID_DU);
+alter table TS_TEM104
+  add constraint TEM104_PARAMTYPE foreign key (ID_PARAMTYPE)
+  references PARAMTYPE (ID_TYPE);
+

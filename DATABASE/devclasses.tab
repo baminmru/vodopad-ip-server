@@ -1,0 +1,11 @@
+create table DEVCLASSES
+(
+  id_class  NUMBER(2) not null,
+  classname VARCHAR2(24)
+)
+;
+comment on table DEVCLASSES
+  is 'Классы приборов';
+alter table DEVCLASSES
+  add constraint DEVCLASS_PRI primary key (ID_CLASS);
+

@@ -1,0 +1,28 @@
+create table QLIST
+(
+  qlistid   NUMBER(18) not null,
+  id_bd     NUMBER(5) not null,
+  processed NUMBER(1) default 0,
+  qdate     DATE,
+  id_ptype  NUMBER(2)
+)
+;
+comment on table QLIST
+  is 'Запрос на опрос архивов';
+comment on column QLIST.id_bd
+  is '->BDEVICES';
+comment on column QLIST.processed
+  is 'количество неудачных попыток опроса по данной строке (0-9)';
+comment on column QLIST.qdate
+  is 'Дата начала опроса';
+comment on column QLIST.id_ptype
+  is '->PARAMTYPE';
+alter table QLIST
+  add constraint QLIST_PK primary key (QLISTID);
+alter table QLIST
+  add constraint QLIST_BDEV foreign key (ID_BD)
+  references BDEVICES (ID_BD);
+alter table QLIST
+  add constraint QLIST_PTYPE foreign key (ID_PTYPE)
+  references PARAMTYPE (ID_TYPE);
+

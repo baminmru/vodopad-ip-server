@@ -1,0 +1,7 @@
+create sequence USERS_SEQ
+minvalue 1
+maxvalue 99999
+start with 11
+increment by 1
+nocache;
+

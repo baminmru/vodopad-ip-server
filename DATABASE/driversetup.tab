@@ -1,0 +1,15 @@
+create table DRIVERSETUP
+(
+  id_bd    NUMBER(10) not null,
+  setupxml BLOB
+)
+;
+comment on table DRIVERSETUP
+  is 'дополнительные настройки для драйверов ( данфос, opc и т.п.)';
+comment on column DRIVERSETUP.id_bd
+  is 'Идентификатор';
+comment on column DRIVERSETUP.setupxml
+  is 'Файл настройки';
+alter table DRIVERSETUP
+  add constraint DRIVERSETUP_UK unique (ID_BD);
+

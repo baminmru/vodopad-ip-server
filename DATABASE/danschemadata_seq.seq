@@ -1,0 +1,7 @@
+create sequence DANSCHEMADATA_SEQ
+minvalue 1
+maxvalue 999999999
+start with 14
+increment by 1
+nocache;
+

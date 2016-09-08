@@ -1,0 +1,7 @@
+create sequence COMPORTS_SEQ
+minvalue 1
+maxvalue 9999
+start with 240
+increment by 1
+cache 2;
+

@@ -1,0 +1,275 @@
+create table D_HOUR
+(
+  id          NUMBER(10),
+  id_bd       NUMBER(5) not null,
+  id_du       NUMBER(4),
+  id_ptype    NUMBER(2) not null,
+  dcall       DATE not null,
+  dcounter    DATE not null,
+  q1          NUMBER(18,6),
+  q2          NUMBER(18,6),
+  t1          NUMBER(18,6),
+  t2          NUMBER(18,6),
+  dt12        NUMBER(18,6),
+  t3          NUMBER(18,6),
+  t4          NUMBER(18,6),
+  t5          NUMBER(18,6),
+  dt45        NUMBER(18,6),
+  t6          NUMBER(18,6),
+  v1          NUMBER(18,6),
+  v2          NUMBER(18,6),
+  dv12        NUMBER(18,6),
+  v3          NUMBER(18,6),
+  v4          NUMBER(18,6),
+  v5          NUMBER(18,6),
+  dv45        NUMBER(18,6),
+  v6          NUMBER(18,6),
+  m1          NUMBER(18,6),
+  m2          NUMBER(18,6),
+  dm12        NUMBER(18,6),
+  m3          NUMBER(18,6),
+  m4          NUMBER(18,6),
+  m5          NUMBER(18,6),
+  dm45        NUMBER(18,6),
+  m6          NUMBER(18,6),
+  p1          NUMBER(18,6),
+  p2          NUMBER(18,6),
+  p3          NUMBER(18,6),
+  p4          NUMBER(18,6),
+  p5          NUMBER(18,6),
+  p6          NUMBER(18,6),
+  g1          NUMBER(18,6),
+  g2          NUMBER(18,6),
+  g3          NUMBER(18,6),
+  g4          NUMBER(18,6),
+  g5          NUMBER(18,6),
+  g6          NUMBER(18,6),
+  tcool       NUMBER(18,6),
+  tce1        NUMBER(18,6),
+  tce2        NUMBER(18,6),
+  tsum1       NUMBER(18,6),
+  tsum2       NUMBER(18,6),
+  q1h         NUMBER(18,6),
+  q2h         NUMBER(18,6),
+  v1h         NUMBER(18,6),
+  v2h         NUMBER(18,6),
+  v4h         NUMBER(18,6),
+  v5h         NUMBER(18,6),
+  errtime     NUMBER(12),
+  errtimeh    NUMBER(12),
+  hc          VARCHAR2(180),
+  sp          NUMBER(3),
+  sp_tb1      NUMBER(3),
+  sp_tb2      NUMBER(3),
+  datecounter DATE,
+  dg12        NUMBER(18,6),
+  dg45        NUMBER(18,6),
+  dp12        NUMBER(18,6),
+  dp45        NUMBER(18,6),
+  unitsr      VARCHAR2(12),
+  q3          NUMBER(18,6),
+  q4          NUMBER(18,6),
+  patm        NUMBER(18,6),
+  q5          NUMBER(18,6),
+  dq12        NUMBER(18,6),
+  dq45        NUMBER(18,6),
+  pxb         NUMBER(18,6),
+  dq          NUMBER(18,6),
+  hc_1        VARCHAR2(180),
+  hc_2        VARCHAR2(180),
+  thot        NUMBER(18,6),
+  dans1       NUMBER(18,6),
+  dans2       NUMBER(18,6),
+  dans3       NUMBER(18,6),
+  dans4       NUMBER(18,6),
+  dans5       NUMBER(18,6),
+  dans6       NUMBER(18,6),
+  check_a     NUMBER(1),
+  oktime      NUMBER(18,6),
+  worktime    NUMBER(18,6),
+  tair1       NUMBER(18,6),
+  tair2       NUMBER(18,6),
+  hc_code     VARCHAR2(180),
+  errtime2    NUMBER(12),
+  oktime2     NUMBER(18,6)
+)
+;
+comment on table D_HOUR
+  is 'Текущие значения';
+comment on column D_HOUR.id
+  is '.';
+comment on column D_HOUR.id_bd
+  is '.->BDEVICES';
+comment on column D_HOUR.id_du
+  is '.->DEVUNITS';
+comment on column D_HOUR.id_ptype
+  is '.->PARAMTYPE';
+comment on column D_HOUR.dcall
+  is '.';
+comment on column D_HOUR.dcounter
+  is '.';
+comment on column D_HOUR.q1
+  is 'Тепловая энергия канал 1';
+comment on column D_HOUR.q2
+  is 'Тепловая энергия канал 2';
+comment on column D_HOUR.t1
+  is 'Температура по каналу 1';
+comment on column D_HOUR.t2
+  is 'Температура по каналу 2';
+comment on column D_HOUR.dt12
+  is 'Разность Температур по каналу 1 и 2';
+comment on column D_HOUR.t3
+  is 'Температура по каналу 3';
+comment on column D_HOUR.t4
+  is 'Температура по каналу 4';
+comment on column D_HOUR.t5
+  is 'Температура по каналу 5';
+comment on column D_HOUR.dt45
+  is 'Разность Температур по каналу 4 и 5';
+comment on column D_HOUR.t6
+  is 'Температура по каналу 6';
+comment on column D_HOUR.v1
+  is 'Объемный расход воды по каналу 1';
+comment on column D_HOUR.v2
+  is 'Объемный расход воды по каналу 2';
+comment on column D_HOUR.dv12
+  is 'Разность объемов канал 1  (расход ГВС)';
+comment on column D_HOUR.v3
+  is 'Объемный расход воды по каналу 3';
+comment on column D_HOUR.v4
+  is 'Объемный расход воды по каналу 4';
+comment on column D_HOUR.v5
+  is 'Объемный расход воды по каналу 5';
+comment on column D_HOUR.dv45
+  is 'Разность объемов канал 2';
+comment on column D_HOUR.v6
+  is 'Объемный расход воды по каналу 6';
+comment on column D_HOUR.m1
+  is 'Масса воды по каналу 1';
+comment on column D_HOUR.m2
+  is 'Масса воды по каналу 2';
+comment on column D_HOUR.dm12
+  is 'Разность масс канал 1  (расход ГВС)';
+comment on column D_HOUR.m3
+  is 'Масса воды по каналу 3';
+comment on column D_HOUR.m4
+  is 'Масса воды по каналу 4';
+comment on column D_HOUR.m5
+  is 'Масса воды по каналу 5';
+comment on column D_HOUR.dm45
+  is 'Разность масс канал 2';
+comment on column D_HOUR.m6
+  is 'Масса воды по каналу 6';
+comment on column D_HOUR.p1
+  is 'Давление в трубопроводе 1';
+comment on column D_HOUR.p2
+  is 'Давление в трубопроводе 2';
+comment on column D_HOUR.p3
+  is 'Давление в трубопроводе 3';
+comment on column D_HOUR.p4
+  is 'Давление в трубопроводе 4';
+comment on column D_HOUR.p5
+  is 'Давление в трубопроводе 5';
+comment on column D_HOUR.p6
+  is 'Давление в трубопроводе 6';
+comment on column D_HOUR.g1
+  is 'Текущее значение расхода в трубопроводе 1';
+comment on column D_HOUR.g2
+  is 'Текущее значение расхода в трубопроводе 2';
+comment on column D_HOUR.g3
+  is 'Текущее значение расхода в трубопроводе 3';
+comment on column D_HOUR.g4
+  is 'Текущее значение расхода в трубопроводе 4';
+comment on column D_HOUR.g5
+  is 'Текущее значение расхода в трубопроводе 5';
+comment on column D_HOUR.g6
+  is 'Текущее значение расхода в трубопроводе 6';
+comment on column D_HOUR.tcool
+  is 'Температура холодной воды';
+comment on column D_HOUR.tce1
+  is 'Температура холодного конца канал 1';
+comment on column D_HOUR.tce2
+  is 'Температура холодного конца канал 2';
+comment on column D_HOUR.tsum1
+  is 'Тотальное время счета TB1';
+comment on column D_HOUR.tsum2
+  is 'Тотальное время счета TB2';
+comment on column D_HOUR.q1h
+  is 'Тепловая энергия канал 1 нарастающим итогом';
+comment on column D_HOUR.q2h
+  is 'Тепловая энергия канал 2 нарастающим итогом';
+comment on column D_HOUR.v1h
+  is 'Объемный расход воды по каналу 1  нарастающим итогом';
+comment on column D_HOUR.v2h
+  is 'Объемный расход воды по каналу 2  нарастающим итогом';
+comment on column D_HOUR.v4h
+  is 'Объемный расход воды по каналу 4  нарастающим итогом';
+comment on column D_HOUR.v5h
+  is 'Объемный расход воды по каналу 5  нарастающим итогом';
+comment on column D_HOUR.errtime
+  is 'Время аварии по  ТВ 1';
+comment on column D_HOUR.errtimeh
+  is 'Время аварии нарастающим итогом';
+comment on column D_HOUR.hc
+  is 'Нештатные ситуации общ';
+comment on column D_HOUR.sp
+  is 'Схема потребления';
+comment on column D_HOUR.sp_tb1
+  is 'Схема потребления TB1';
+comment on column D_HOUR.sp_tb2
+  is 'Схема потребления TB2';
+comment on column D_HOUR.datecounter
+  is 'Дата и время часов счетчика';
+comment on column D_HOUR.dg12
+  is 'G1-G2';
+comment on column D_HOUR.dg45
+  is 'G4-G5';
+comment on column D_HOUR.dp12
+  is 'P1-P2';
+comment on column D_HOUR.dp45
+  is 'P4-P5';
+comment on column D_HOUR.unitsr
+  is '.Единицы измерения расхода';
+comment on column D_HOUR.q3
+  is 'Тепловая энергия канал 3';
+comment on column D_HOUR.q4
+  is 'Тепловая энергия канал 4';
+comment on column D_HOUR.patm
+  is 'Атмосферное давление';
+comment on column D_HOUR.q5
+  is 'Тепловая энергия канал 5';
+comment on column D_HOUR.dq12
+  is 'Тепловая энергия потребитель 1';
+comment on column D_HOUR.dq45
+  is 'Тепловая энергия потребитель 2';
+comment on column D_HOUR.pxb
+  is 'Давление холодной воды';
+comment on column D_HOUR.dq
+  is 'Расход энергии потребитель 1';
+comment on column D_HOUR.hc_1
+  is 'Нештатная ситуация 1 (ТВ1 или внешняя)';
+comment on column D_HOUR.hc_2
+  is 'Нештатная ситуация 2 (ТВ2 или внутренняя)';
+comment on column D_HOUR.thot
+  is 'Температура горячей воды';
+comment on column D_HOUR.check_a
+  is 'Проверка архивных данных на НС (0 - не производилась, 1 - произведена)';
+comment on column D_HOUR.oktime
+  is 'Время безошиб.работы по ТВ1';
+comment on column D_HOUR.worktime
+  is 'Время работы';
+comment on column D_HOUR.tair1
+  is 'Температура воздуха канал 1';
+comment on column D_HOUR.tair2
+  is 'Температура воздуха канал 2';
+comment on column D_HOUR.hc_code
+  is 'Код нештатной ситуации тепловычислителя';
+comment on column D_HOUR.errtime2
+  is 'Время аварии по ТВ 2';
+comment on column D_HOUR.oktime2
+  is 'Время безошиб.работы  по ТВ2';
+create index D_HOUR_DCALL2 on D_HOUR (DCALL, ID_BD, ID_PTYPE);
+create index D_HOUR_DCOUNTER2 on D_HOUR (DCOUNTER, ID_BD, ID_PTYPE);
+alter table D_HOUR
+  add constraint D_HOUR_PK primary key (ID_BD, ID_PTYPE, DCOUNTER, DCALL);
+

@@ -1,0 +1,42 @@
+create table HCMESSAGES
+(
+  id_bd     NUMBER(5),
+  msg_type  NUMBER(2),
+  msg_text  VARCHAR2(4000),
+  was_reg   NUMBER(1),
+  dt_got    DATE,
+  dt_reg    DATE,
+  node_name VARCHAR2(80),
+  id_ip_got NUMBER(4),
+  id_ip_reg NUMBER(4),
+  appl_type NUMBER(1),
+  id        NUMBER(9) not null
+)
+;
+comment on table HCMESSAGES
+  is 'Сообщения о нештатных ситуациях';
+comment on column HCMESSAGES.id_bd
+  is '-> BDEVICES';
+comment on column HCMESSAGES.msg_type
+  is 'Тип сообщения';
+comment on column HCMESSAGES.msg_text
+  is 'Текст сообщения';
+comment on column HCMESSAGES.was_reg
+  is '0 - незарегистр., 1 - зарегистр.';
+comment on column HCMESSAGES.dt_got
+  is 'Дата получения сообщения';
+comment on column HCMESSAGES.dt_reg
+  is 'Дата регистрации сообщения';
+comment on column HCMESSAGES.node_name
+  is 'Название узла учета';
+comment on column HCMESSAGES.id_ip_got
+  is '->IPADDR (где зафиксирована)';
+comment on column HCMESSAGES.id_ip_reg
+  is '->IPADDR (где зарегистрирована)';
+comment on column HCMESSAGES.appl_type
+  is 'Тип ПО, где зафиксирована НС (0 - автомат, 1 - ручной)';
+create index HCMESSAGES_DTGOT on HCMESSAGES (DT_GOT);
+create index HCMESSAGES_IDX on HCMESSAGES (WAS_REG, ID_BD, DT_GOT);
+alter table HCMESSAGES
+  add constraint HCMESSAGES_UK primary key (ID);
+

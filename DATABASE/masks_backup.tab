@@ -1,0 +1,14 @@
+create table MASKS_BACKUP
+(
+  id_mask NUMBER(4) not null,
+  cname   VARCHAR2(80),
+  dupd    VARCHAR2(12),
+  ctype   VARCHAR2(1),
+  id_usr  NUMBER(4),
+  id_dev  NUMBER(2),
+  id_type NUMBER(2)
+)
+;
+alter table MASKS_BACKUP
+  add constraint MASKSB_PRI primary key (ID_MASK);
+
