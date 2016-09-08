@@ -11,152 +11,17 @@ Public Class driver
 
 
 
-    Private Structure MArchive
-        Public DateArch As DateTime
-        Public HC As Long
-        Public MsgHC As String
-
-        Public HCtv1 As Long
-        Public MsgHCtv1 As String
-
-        Public HCtv2 As Long
-        Public MsgHCtv2 As String
-
-        Public G1 As Single
-        Public G2 As Single
-        Public G3 As Single
-        Public G4 As Single
-        Public G5 As Single
-        Public G6 As Single
-
-        Public t1 As Single
-        Public t2 As Single
-        Public t3 As Single
-        Public t4 As Single
-        Public t5 As Single
-        Public t6 As Single
-
-        Public p1 As Single
-        Public p2 As Single
-        Public p3 As Single
-        Public p4 As Single
-
-        Public dt12 As Single
-        Public dt45 As Single
-
-        Public tx1 As Single
-        Public tx2 As Single
-
-        Public tair1 As Single
-        Public tair2 As Single
-
-        Public SP As Long
-        Public SPtv1 As Long
-        Public SPtv2 As Long
 
 
-        Public archType As Short
-    End Structure
 
-    Private Structure Archive
-        Public DateArch As DateTime
-
-        Public HC As Long
-        Public MsgHC As String
-
-        Public HCtv1 As Long
-        Public MsgHCtv1 As String
-
-        Public HCtv2 As Long
-        Public MsgHCtv2 As String
-
-        Public Tw1 As Single
-        Public Tw2 As Single
-
-        Public P1 As Single
-        Public T1 As Single
-        Public M2 As Single
-        Public V1 As Single
-
-        Public P2 As Single
-        Public T2 As Single
-        Public M3 As Single
-        Public V2 As Single
-
-        Public V3 As Single
-        Public M1 As Single
-
-        Public Q1 As Single
-        Public Q2 As Single
-
-        Public QG1 As Single
-        Public QG2 As Single
-
-        Public SP As Long
-        Public SPtv1 As Long
-        Public SPtv2 As Long
-
-        Public tx1 As Long
-        Public tx2 As Long
-        Public tair1 As Long
-        Public tair2 As Long
-
-        Public T3 As Single
-        Public T4 As Single
-        Public T5 As Single
-        Public T6 As Single
-        Public P3 As Single
-        Public P4 As Single
-        Public v4 As Single
-        Public v5 As Single
-        Public v6 As Single
-        Public M4 As Single
-        Public M5 As Single
-        Public M6 As Single
-
-        Public archType As Short
-    End Structure
-
-    Private Structure TArchive
-        Public DateArch As DateTime
-
-
-        Public V1 As Double
-        Public V2 As Double
-        Public V3 As Double
-        Public V4 As Double
-        Public V5 As Double
-        Public V6 As Double
-
-        Public M1 As Double
-        Public M2 As Double
-        Public M3 As Double
-        Public M4 As Double
-        Public M5 As Double
-        Public M6 As Double
-        Public Q1 As Double
-        Public Q2 As Double
-
-        Public TW1 As Double
-        Public TW2 As Double
-        Public Q3 As Double
-        Public Q4 As Double
-
-        Public archType As Short
-    End Structure
-
-    Dim tArch As TArchive
     Dim IsTArchToRead As Boolean = False
     ' Dim WithEvents tim As System.Timers.Timer
 
     Dim tv As Short
 
-    Dim archType_hour = 3
-    Dim archType_day = 4
 
 
-    Dim Arch As Archive
-    Dim mArch As MArchive
+
 
     Dim WillCountToRead As Short = 0
     Dim IsBytesToRead As Boolean = False
@@ -206,9 +71,9 @@ Public Class driver
 
     Private m_serverip As String
 
- 
 
-  
+
+
 
     Public Sub ConnectTV1()
         EraseInputQueue()
@@ -315,7 +180,7 @@ Public Class driver
             tv = 0
 
             Dim sret As String
-          
+
             WaitForData()
 
             sret = GetAndProcessData()
@@ -341,7 +206,7 @@ Public Class driver
 
     Private m_readRAMByteCount As Short
 
-    Public Overrides Function ReadArch(ByVal ArchType As Short, ByVal ArchYear As Short, _
+    Public Overrides Function ReadArch(ByVal ArchType As Short, ByVal ArchYear As Short,
     ByVal ArchMonth As Short, ByVal ArchDay As Short, ByVal ArchHour As Short) As String
 
 
@@ -402,7 +267,7 @@ tryagain1a:
                 bArr(5) = ArchDay Mod 32
                 bArr(6) = ArchHour Mod 24
                 Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, ArchHour, 0, 0)
-                'Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+                Arch.DateArch = Arch.DateArch.AddSeconds(-1)
             End If
 
             If (ArchType = archType_day) Then
@@ -412,7 +277,7 @@ tryagain1a:
                 bArr(5) = ArchDay Mod 32
                 bArr(6) = &H0
                 Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, 0, 0, 0)
-                'Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+                Arch.DateArch = Arch.DateArch.AddSeconds(-1)
             End If
 
 
@@ -427,7 +292,7 @@ tryagain1a:
 
             write(bArr, 9)
 
-        
+
             WaitForData()
 
             ret = GetAndProcessData()
@@ -505,7 +370,7 @@ tryagain2a:
                 bArr(5) = ArchDay Mod 32
                 bArr(6) = ArchHour Mod 24
                 Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, ArchHour, 0, 0)
-                'Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+                Arch.DateArch = Arch.DateArch.AddSeconds(-1)
             End If
 
             If (ArchType = archType_day) Then
@@ -515,7 +380,7 @@ tryagain2a:
                 bArr(5) = ArchDay Mod 32
                 bArr(6) = &H0
                 Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, 0, 0, 0)
-                'Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+                Arch.DateArch = Arch.DateArch.AddSeconds(-1)
             End If
 
 
@@ -532,7 +397,7 @@ tryagain2a:
             IsBytesToRead = True
             write(bArr, 9)
 
-          
+
             WaitForData()
 
             ret = GetAndProcessData()
@@ -568,7 +433,7 @@ tryagain2a:
             End If
 
 finalRet:
-            If tv1OK Then 'And tv2OK Then
+            If tv1OK Or tv2OK Then
                 retsum = "Архив прочитан" & vbCrLf & retsum
                 retsum = retsum & vbCrLf
                 retsum = retsum & vbCrLf
@@ -598,7 +463,7 @@ finalRet:
                     retstring += Hex(buf(i)) + " "
                 Next
                 KC = 0
-                KC = 255 - ((Int(buf(1)) + Int(buf(2)) + _
+                KC = 255 - ((Int(buf(1)) + Int(buf(2)) +
                     Int(buf(3)) + Int(buf(4)) + Int(buf(5))) Mod 256)
                 retstring += vbCrLf
                 If (KC <> buf(6)) Then
@@ -652,7 +517,7 @@ finalRet:
                 If (tv = 1) Then
                     'mArch.HCtv1 = Asc(Mid(str, Adr, 1)) * 256& ^ 2 + Asc(Mid(str, Adr + 1, 1)) * 256& + Asc(Mid(str, Adr + 2, 1))
                     mArch.HCtv1 = Asc(Mid(str, Adr + 2, 1)) * 256& ^ 2 + Asc(Mid(str, Adr + 1, 1)) * 256& + Asc(Mid(str, Adr, 1))
-                    mArch.MsgHCtv1 = DeCodeHC(mArch.HCtv1)
+                    mArch.MsgHC_1 = DeCodeHC(mArch.HCtv1)
                     mArch.SPtv1 = Asc(Mid(str, Adr + 3, 1))
                     mArch.G1 = FloatExt(Mid(str, Adr + 4, 4))
                     mArch.G2 = FloatExt(Mid(str, Adr + 4 * 2, 4))
@@ -735,7 +600,7 @@ finalRet:
                 If (tv = 1) Then
                     Arch.HCtv1 = Asc(Mid(hourstr, Adr + 2, 1)) * 256& ^ 2 + Asc(Mid(hourstr, Adr + 1, 1)) * 256& + Asc(Mid(hourstr, Adr, 1))
                     'Arch.HCtv1 = Asc(Mid(hourstr, Adr, 1)) * 256& ^ 2 + Asc(Mid(hourstr, Adr + 1, 1)) * 256& + Asc(Mid(hourstr, Adr + 2, 1))
-                    Arch.MsgHCtv1 = DeCodeHC(Arch.HCtv1)
+                    Arch.MsgHC_1 = DeCodeHC(Arch.HCtv1)
                     Arch.SPtv1 = Asc(Mid(hourstr, Adr + 3, 1))
                     Arch.P1 = FloatExt(Mid(hourstr, Adr + 4, 4))
                     Arch.P2 = FloatExt(Mid(hourstr, Adr + 4 * 2, 4))
@@ -751,14 +616,14 @@ finalRet:
                     Arch.M2 = FloatExt(Mid(hourstr, Adr + 4 * 12, 4))
                     Arch.M3 = FloatExt(Mid(hourstr, Adr + 4 * 13, 4))
                     Arch.Q1 = FloatExt(Mid(hourstr, Adr + 4 * 14, 4))
-                    Arch.Tw1 = FloatExt(Mid(hourstr, Adr + 4 * 15, 4))
-                    Arch.QG1 = FloatExt(Mid(hourstr, Adr + 4 * 16, 4))
+                    Arch.WORKTIME1 = FloatExt(Mid(hourstr, Adr + 4 * 15, 4))
+                    Arch.Q4 = FloatExt(Mid(hourstr, Adr + 4 * 16, 4))
                 End If
 
                 If (tv = 2) Then
                     'Arch.HCtv2 = Asc(Mid(hourstr, Adr, 1)) * 256& ^ 2 + Asc(Mid(hourstr, Adr + 1, 1)) * 256& + Asc(Mid(hourstr, Adr + 2, 1))
                     Arch.HCtv2 = Asc(Mid(hourstr, Adr + 2, 1)) * 256& ^ 2 + Asc(Mid(hourstr, Adr + 1, 1)) * 256& + Asc(Mid(hourstr, Adr, 1))
-                    Arch.MsgHCtv2 = DeCodeHC(Arch.HCtv1)
+                    Arch.MsgHC_2 = DeCodeHC(Arch.HCtv1)
                     Arch.SPtv2 = Asc(Mid(hourstr, Adr + 3, 1))
                     Arch.P3 = FloatExt(Mid(hourstr, Adr + 4, 4))
                     Arch.P4 = FloatExt(Mid(hourstr, Adr + 4 * 2, 4))
@@ -774,8 +639,8 @@ finalRet:
                     Arch.M5 = FloatExt(Mid(hourstr, Adr + 4 * 12, 4))
                     Arch.M6 = FloatExt(Mid(hourstr, Adr + 4 * 13, 4))
                     Arch.Q2 = FloatExt(Mid(hourstr, Adr + 4 * 14, 4))
-                    Arch.Tw2 = FloatExt(Mid(hourstr, Adr + 4 * 15, 4))
-                    Arch.QG2 = FloatExt(Mid(hourstr, Adr + 4 * 16, 4))
+                    Arch.WORKTIME2 = FloatExt(Mid(hourstr, Adr + 4 * 15, 4))
+                    Arch.Q5 = FloatExt(Mid(hourstr, Adr + 4 * 16, 4))
                 End If
 
                 m_isArchToDBWrite = True
@@ -808,7 +673,7 @@ finalRet:
                     'Arch.HCtv1 = Asc(Mid(hourstr, Adr, 1)) * 256& ^ 2 + Asc(Mid(hourstr, Adr + 1, 1)) * 256& + Asc(Mid(hourstr, Adr + 2, 1))
                     Arch.HCtv1 = Asc(Mid(hourstr, Adr + 2, 1)) * 256& ^ 2 + Asc(Mid(hourstr, Adr + 1, 1)) * 256& + Asc(Mid(hourstr, Adr, 1))
 
-                    Arch.MsgHCtv1 = DeCodeHC(Arch.HCtv1)
+                    Arch.MsgHC_1 = DeCodeHC(Arch.HCtv1)
 
                     Arch.SPtv1 = Asc(Mid(hourstr, Adr + 3, 1))
                     Arch.P1 = FloatExt(Mid(hourstr, Adr + 4, 4))
@@ -825,14 +690,14 @@ finalRet:
                     Arch.M2 = FloatExt(Mid(hourstr, Adr + 4 * 12, 4))
                     Arch.M3 = FloatExt(Mid(hourstr, Adr + 4 * 13, 4))
                     Arch.Q1 = FloatExt(Mid(hourstr, Adr + 4 * 14, 4))
-                    Arch.Tw1 = FloatExt(Mid(hourstr, Adr + 4 * 15, 4))
-                    Arch.QG1 = FloatExt(Mid(hourstr, Adr + 4 * 16, 4))
+                    Arch.WORKTIME1 = FloatExt(Mid(hourstr, Adr + 4 * 15, 4))
+                    Arch.Q4 = FloatExt(Mid(hourstr, Adr + 4 * 16, 4))
                 End If
 
                 If (tv = 2) Then
                     'Arch.HCtv2 = Asc(Mid(hourstr, Adr, 1)) * 256& ^ 2 + Asc(Mid(hourstr, Adr + 1, 1)) * 256& + Asc(Mid(hourstr, Adr + 2, 1))
                     Arch.HCtv2 = Asc(Mid(hourstr, Adr + 2, 1)) * 256& ^ 2 + Asc(Mid(hourstr, Adr + 1, 1)) * 256& + Asc(Mid(hourstr, Adr, 1))
-                    Arch.MsgHCtv2 = DeCodeHC(Arch.HCtv1)
+                    Arch.MsgHC_2 = DeCodeHC(Arch.HCtv1)
                     Arch.SPtv2 = Asc(Mid(hourstr, Adr + 3, 1))
                     Arch.P3 = FloatExt(Mid(hourstr, Adr + 4, 4))
                     Arch.P4 = FloatExt(Mid(hourstr, Adr + 4 * 2, 4))
@@ -848,8 +713,8 @@ finalRet:
                     Arch.M5 = FloatExt(Mid(hourstr, Adr + 4 * 12, 4))
                     Arch.M6 = FloatExt(Mid(hourstr, Adr + 4 * 13, 4))
                     Arch.Q2 = FloatExt(Mid(hourstr, Adr + 4 * 14, 4))
-                    Arch.Tw2 = FloatExt(Mid(hourstr, Adr + 4 * 15, 4))
-                    Arch.QG2 = FloatExt(Mid(hourstr, Adr + 4 * 16, 4))
+                    Arch.WORKTIME2 = FloatExt(Mid(hourstr, Adr + 4 * 15, 4))
+                    Arch.Q5 = FloatExt(Mid(hourstr, Adr + 4 * 16, 4))
                 End If
 
                 m_isArchToDBWrite = True
@@ -925,7 +790,7 @@ finalRet:
         End Try
         Return ""
     End Function
-    Public Function DeCodeHCNumber(ByVal CodeHC As Long, ByVal tv As Int32) As String
+    Public Overrides Function DeCodeHCNumber(ByVal CodeHC As Long, Optional tv As Integer = 0) As String
 
         DeCodeHCNumber = ""
         'CodeHC = CodeHC And ( 2 ^ 5 + 2 ^ 4 + 2 ^ 3 + 2 ^ 2 + 2 ^ 1 + 2 ^ 0)
@@ -1130,7 +995,7 @@ finalRet:
         End If
     End Function
 
-    Public Function DeCodeHCText(ByVal CodeHC As Long) As String
+    Public Overrides Function DeCodeHCText(ByVal CodeHC As Long) As String
 
         DeCodeHCText = ""
         'CodeHC = CodeHC And ( 2 ^ 5 + 2 ^ 4 + 2 ^ 3 + 2 ^ 2 + 2 ^ 1 + 2 ^ 0)
@@ -1252,7 +1117,7 @@ finalRet:
                     & "НС23" & ";"
         End If
     End Function
-    Public Function DeCodeHC(ByVal CodeHC As Long) As String
+    Public Overrides Function DeCodeHC(ByVal CodeHC As Long) As String
 
         DeCodeHC = ""
         'CodeHC = CodeHC And ( 2 ^ 5 + 2 ^ 4 + 2 ^ 3 + 2 ^ 2 + 2 ^ 1 + 2 ^ 0)
@@ -1426,136 +1291,133 @@ finalRet:
         Next i
         FloatExt = ((-1) ^ s) * f * (2.0! ^ (E - 127))
     End Function
-    Private Function OracleDate(ByVal d As Date) As String
-        Return "to_date('" + d.Year.ToString() + "-" + d.Month.ToString() + "-" + d.Day.ToString() + _
-            " " + d.Hour.ToString() + ":" + d.Minute.ToString() + ":" + d.Second.ToString() + "','YYYY-MM-DD HH24:MI:SS')"
-    End Function
-    Public Overrides Function WriteArchToDB() As String
-        '!!!!!!!!!!!!!!! 943 -  xx.59.59-> xx+1.00.00 !!!!
-        'If Arch.archType <> 4 Then
-        '    Arch.DateArch = Arch.DateArch.AddSeconds(1)
-        'End If
 
-        WriteArchToDB = "INSERT INTO " & DBTableName & "(id_bd,DCALL,DCOUNTER,DATECOUNTER,id_ptype,t1,t2,t3,t4,t5,t6,tce1,tce2,tair1,tair2,p1,p2,p3,p4,v1,v2,v3,v4,v5,v6,m1,m2,m3,m4,m5,m6,sp_TB1,sp_TB2,q1,q2,q4,q5,TSUM1,TSUM2,hc_code,hc,hc_1,hc_2,hcraw,hcraw1,hcraw2) values ("
-        WriteArchToDB = WriteArchToDB + DeviceID.ToString() + ","
-        WriteArchToDB = WriteArchToDB + "SYSDATE" + ","
-        WriteArchToDB = WriteArchToDB + OracleDate(Arch.DateArch) + ","
-        WriteArchToDB = WriteArchToDB + OracleDate(Arch.DateArch) + ","
-        WriteArchToDB = WriteArchToDB + Arch.archType.ToString + ","
-        WriteArchToDB = WriteArchToDB + Arch.T1.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.T2.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.T3.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.T4.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.T5.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.T6.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.tx1.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.tx2.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.tair1.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.tair2.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.P1.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.P2.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.P3.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.P4.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.V1.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.V2.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.V3.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.v4.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.v5.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.v6.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.M1.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.M2.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.M3.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.M4.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.M5.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.M6.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.SPtv1.ToString + ","
-        WriteArchToDB = WriteArchToDB + Arch.SPtv2.ToString + ","
-        WriteArchToDB = WriteArchToDB + Arch.Q1.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.QG1.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.Q2.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.QG2.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.Tw1.ToString.Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.Tw2.ToString.Replace(",", ".") + ","
+    'Public Overrides Function WriteArchToDB() As String
+    '    '!!!!!!!!!!!!!!! 943 -  xx.59.59-> xx+1.00.00 !!!!
+    '    'If Arch.archType <> 4 Then
+    '    '    Arch.DateArch = Arch.DateArch.AddSeconds(1)
+    '    'End If
+
+    '    WriteArchToDB = "INSERT INTO " & DBTableName & "(id_bd,DCALL,DCOUNTER,DATECOUNTER,id_ptype,t1,t2,t3,t4,t5,t6,tce1,tce2,tair1,tair2,p1,p2,p3,p4,v1,v2,v3,v4,v5,v6,m1,m2,m3,m4,m5,m6,sp_TB1,sp_TB2,q1,q2,q4,q5,TSUM1,TSUM2,hc_code,hc,hc_1,hc_2,hcraw,hcraw1,hcraw2) values ("
+    '    WriteArchToDB = WriteArchToDB + DeviceID.ToString() + ","
+    '    WriteArchToDB = WriteArchToDB + "SYSDATE" + ","
+    '    WriteArchToDB = WriteArchToDB + OracleDate(Arch.DateArch) + ","
+    '    WriteArchToDB = WriteArchToDB + OracleDate(Arch.DateArch) + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.archType.ToString + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.T1.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.T2.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.T3.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.T4.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.T5.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.T6.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.tx1.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.tx2.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.tair1.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.tair2.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.P1.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.P2.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.P3.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.P4.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.V1.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.V2.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.V3.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.v4.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.v5.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.v6.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.M1.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.M2.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.M3.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.M4.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.M5.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.M6.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.SPtv1.ToString + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.SPtv2.ToString + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.Q1.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.Q4.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.Q2.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.Q5.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.WORKTIME1.ToString.Replace(",", ".") + ","
+    '    WriteArchToDB = WriteArchToDB + Arch.WORKTIME2.ToString.Replace(",", ".") + ","
 
 
 
-        If DeCodeHCNumber(Arch.HCtv1, 1) = "" And DeCodeHCNumber(Arch.HCtv2, 2) = "" Then
-            WriteArchToDB = WriteArchToDB + "'-','Нет НС',"
-        ElseIf DeCodeHCNumber(Arch.HCtv1, 1) = "" Then
-            WriteArchToDB = WriteArchToDB + "'" + DeCodeHCNumber(Arch.HCtv2, 2) + "','" + S180("Счетчик: кан2:" + DeCodeHCText(Arch.HCtv2)) + "',"
-        ElseIf DeCodeHCNumber(Arch.HCtv2, 2) = "" Then
-            WriteArchToDB = WriteArchToDB + "'" + DeCodeHCNumber(Arch.HCtv1, 1) + "','" + S180("Счетчик: кан1:" + DeCodeHCText(Arch.HCtv1)) + "',"
-        Else
-            WriteArchToDB = WriteArchToDB + "'" + S180(DeCodeHCNumber(Arch.HCtv1, 1) + DeCodeHCNumber(Arch.HCtv2, 2)) + "','" + S180("Счетчик: кан1:" + DeCodeHCText(Arch.HCtv1) + "кан2:" + DeCodeHCText(Arch.HCtv2)) + "',"
-        End If
+    '    If DeCodeHCNumber(Arch.HCtv1, 1) = "" And DeCodeHCNumber(Arch.HCtv2, 2) = "" Then
+    '        WriteArchToDB = WriteArchToDB + "'-','Нет НС',"
+    '    ElseIf DeCodeHCNumber(Arch.HCtv1, 1) = "" Then
+    '        WriteArchToDB = WriteArchToDB + "'" + DeCodeHCNumber(Arch.HCtv2, 2) + "','" + S180("Счетчик: кан2:" + DeCodeHCText(Arch.HCtv2)) + "',"
+    '    ElseIf DeCodeHCNumber(Arch.HCtv2, 2) = "" Then
+    '        WriteArchToDB = WriteArchToDB + "'" + DeCodeHCNumber(Arch.HCtv1, 1) + "','" + S180("Счетчик: кан1:" + DeCodeHCText(Arch.HCtv1)) + "',"
+    '    Else
+    '        WriteArchToDB = WriteArchToDB + "'" + S180(DeCodeHCNumber(Arch.HCtv1, 1) + DeCodeHCNumber(Arch.HCtv2, 2)) + "','" + S180("Счетчик: кан1:" + DeCodeHCText(Arch.HCtv1) + "кан2:" + DeCodeHCText(Arch.HCtv2)) + "',"
+    '    End If
 
-        'WriteArchToDB = WriteArchToDB + "'" + DeCodeHCNumber(Arch.HCtv1, 1) + ";" + DeCodeHCNumber(Arch.HCtv2, 2) + "',"
-        WriteArchToDB = WriteArchToDB + "'" + S180(DeCodeHCText(Arch.HCtv1)) + "',"
-        WriteArchToDB = WriteArchToDB + "'" + S180(DeCodeHCText(Arch.HCtv2)) + "',"
+    '    'WriteArchToDB = WriteArchToDB + "'" + DeCodeHCNumber(Arch.HCtv1, 1) + ";" + DeCodeHCNumber(Arch.HCtv2, 2) + "',"
+    '    WriteArchToDB = WriteArchToDB + "'" + S180(DeCodeHCText(Arch.HCtv1)) + "',"
+    '    WriteArchToDB = WriteArchToDB + "'" + S180(DeCodeHCText(Arch.HCtv2)) + "',"
 
-        WriteArchToDB = WriteArchToDB + "'" + DeCodeHCRaw(Arch.HC) + "'" + ","
-        WriteArchToDB = WriteArchToDB + "'" + DeCodeHCRaw(Arch.HCtv1) + "'" + ","
-        WriteArchToDB = WriteArchToDB + "'" + DeCodeHCRaw(Arch.HCtv2) + "'"
+    '    WriteArchToDB = WriteArchToDB + "'" + DeCodeHCRaw(Arch.HC) + "'" + ","
+    '    WriteArchToDB = WriteArchToDB + "'" + DeCodeHCRaw(Arch.HCtv1) + "'" + ","
+    '    WriteArchToDB = WriteArchToDB + "'" + DeCodeHCRaw(Arch.HCtv2) + "'"
 
-        WriteArchToDB = WriteArchToDB + ")"
-    End Function
-    Public Overrides Function WriteMArchToDB() As String
-        WriteMArchToDB = ""
-        Try
-            WriteMArchToDB = "INSERT INTO " & DBTableName & "(id_bd,DCALL,DCOUNTER,DATECOUNTER,id_ptype,t1,t2,t3,t4,t5,t6,p1,p2,p3,p4,g1,g2,g3,g4,g5,g6,dt12,dt45,sp_TB1,sp_TB2,tce1,tce2,tair1,tair2,hc_code,hc,hc_1,hc_2,hcraw,hcraw1,hcraw2) values ("
-            WriteMArchToDB = WriteMArchToDB + DeviceID.ToString() + ","
-            WriteMArchToDB = WriteMArchToDB + "SYSDATE" + ","
+    '    WriteArchToDB = WriteArchToDB + ")"
+    'End Function
+    'Public Overrides Function WriteMArchToDB() As String
+    '    WriteMArchToDB = ""
+    '    Try
+    '        WriteMArchToDB = "INSERT INTO " & DBTableName & "(id_bd,DCALL,DCOUNTER,DATECOUNTER,id_ptype,t1,t2,t3,t4,t5,t6,p1,p2,p3,p4,g1,g2,g3,g4,g5,g6,dt12,dt45,sp_TB1,sp_TB2,tce1,tce2,tair1,tair2,hc_code,hc,hc_1,hc_2,hcraw,hcraw1,hcraw2) values ("
+    '        WriteMArchToDB = WriteMArchToDB + DeviceID.ToString() + ","
+    '        WriteMArchToDB = WriteMArchToDB + "SYSDATE" + ","
 
-            WriteMArchToDB = WriteMArchToDB + OracleDate(mArch.DateArch) + ","
-            WriteMArchToDB = WriteMArchToDB + OracleDate(mArch.DateArch) + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.archType.ToString + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.t1.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.t2.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.t3.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.t4.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.t5.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.t6.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.p1.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.p2.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.p3.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.p4.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.G1.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.G2.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.G3.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.G4.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.G5.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.G6.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.dt12.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.dt45.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.SPtv1.ToString + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.SPtv2.ToString + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.tx1.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.tx2.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.tair1.ToString.Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.tair2.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + OracleDate(mArch.DateArch) + ","
+    '        WriteMArchToDB = WriteMArchToDB + OracleDate(mArch.DateArch) + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.archType.ToString + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.t1.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.t2.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.t3.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.t4.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.t5.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.t6.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.p1.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.p2.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.p3.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.p4.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.G1.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.G2.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.G3.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.G4.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.G5.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.G6.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.dt12.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.dt45.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.SPtv1.ToString + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.SPtv2.ToString + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.tx1.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.tx2.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.tair1.ToString.Replace(",", ".") + ","
+    '        WriteMArchToDB = WriteMArchToDB + mArch.tair2.ToString.Replace(",", ".") + ","
 
 
 
-            If DeCodeHCNumber(mArch.HCtv1, 1) = "" And DeCodeHCNumber(mArch.HCtv2, 2) = "" Then
-                WriteMArchToDB = WriteMArchToDB + "'-','Нет НС',"
-            ElseIf DeCodeHCNumber(mArch.HCtv1, 1) = "" Then
-                WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCNumber(mArch.HCtv2, 2) + "','" + S180("Счетчик: кан2:" + DeCodeHCText(mArch.HCtv2)) + "',"
-            ElseIf DeCodeHCNumber(mArch.HCtv2, 2) = "" Then
-                WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCNumber(mArch.HCtv1, 1) + "','" + S180("Счетчик: кан1:" + DeCodeHCText(mArch.HCtv1)) + "',"
-            Else
-                WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCNumber(mArch.HCtv1, 1) + DeCodeHCNumber(mArch.HCtv2, 2) + "','" + S180("Счетчик: кан1:" + DeCodeHCText(mArch.HCtv1) + "кан2:" + DeCodeHCText(mArch.HCtv2)) + "',"
-            End If
+    '        If DeCodeHCNumber(mArch.HCtv1, 1) = "" And DeCodeHCNumber(mArch.HCtv2, 2) = "" Then
+    '            WriteMArchToDB = WriteMArchToDB + "'-','Нет НС',"
+    '        ElseIf DeCodeHCNumber(mArch.HCtv1, 1) = "" Then
+    '            WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCNumber(mArch.HCtv2, 2) + "','" + S180("Счетчик: кан2:" + DeCodeHCText(mArch.HCtv2)) + "',"
+    '        ElseIf DeCodeHCNumber(mArch.HCtv2, 2) = "" Then
+    '            WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCNumber(mArch.HCtv1, 1) + "','" + S180("Счетчик: кан1:" + DeCodeHCText(mArch.HCtv1)) + "',"
+    '        Else
+    '            WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCNumber(mArch.HCtv1, 1) + DeCodeHCNumber(mArch.HCtv2, 2) + "','" + S180("Счетчик: кан1:" + DeCodeHCText(mArch.HCtv1) + "кан2:" + DeCodeHCText(mArch.HCtv2)) + "',"
+    '        End If
 
-            WriteMArchToDB = WriteMArchToDB + "'" + S180(DeCodeHCText(mArch.HCtv1)) + "',"
-            WriteMArchToDB = WriteMArchToDB + "'" + S180(DeCodeHCText(mArch.HCtv2)) + "',"
-            WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCRaw(mArch.HC) + "'" + ","
-            WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCRaw(mArch.HCtv1) + "'" + ","
-            WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCRaw(mArch.HCtv2) + "'"
-            WriteMArchToDB = WriteMArchToDB + ")"
-        Catch
-        End Try
-        'Return WriteMArchToDB
-    End Function
+    '        WriteMArchToDB = WriteMArchToDB + "'" + S180(DeCodeHCText(mArch.HCtv1)) + "',"
+    '        WriteMArchToDB = WriteMArchToDB + "'" + S180(DeCodeHCText(mArch.HCtv2)) + "',"
+    '        WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCRaw(mArch.HC) + "'" + ","
+    '        WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCRaw(mArch.HCtv1) + "'" + ","
+    '        WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCRaw(mArch.HCtv2) + "'"
+    '        WriteMArchToDB = WriteMArchToDB + ")"
+    '    Catch
+    '    End Try
+    '    'Return WriteMArchToDB
+    'End Function
 
 
 
@@ -1567,114 +1429,9 @@ finalRet:
         bufferindex = 0
         System.Threading.Thread.Sleep(150)
         MyTransport.CleanPort()
-      
+
     End Sub
-    Private Sub cleararchive(ByRef arc As Archive)
-        arc.DateArch = DateTime.MinValue
 
-        arc.HC = 0
-        arc.MsgHC = ""
-
-        arc.HCtv1 = 0
-        arc.MsgHCtv1 = ""
-
-        arc.HCtv2 = 0
-        arc.MsgHCtv2 = ""
-
-        arc.Tw1 = 0
-        arc.Tw2 = 0
-
-        arc.P1 = 0
-        arc.T1 = 0
-        arc.M2 = 0
-        arc.V1 = 0
-
-        arc.P2 = 0
-        arc.T2 = 0
-        arc.M3 = 0
-        arc.V2 = 0
-
-        arc.V3 = 0
-        arc.M1 = 0
-
-        arc.Q1 = 0
-        arc.Q2 = 0
-
-        arc.QG1 = 0
-        arc.QG2 = 0
-
-        arc.SP = 0
-        arc.SPtv1 = 0
-        arc.SPtv2 = 0
-
-        arc.tx1 = 0
-        arc.tx2 = 0
-        arc.tair1 = 0
-        arc.tair2 = 0
-
-        arc.T3 = 0
-        arc.T4 = 0
-        arc.T5 = 0
-        arc.T6 = 0
-        arc.P3 = 0
-        arc.P4 = 0
-        arc.v4 = 0
-        arc.v5 = 0
-        arc.v6 = 0
-        arc.M4 = 0
-        arc.M5 = 0
-        arc.M6 = 0
-
-        arc.archType = 0
-        isArchToDBWrite = False
-    End Sub
-    Private Sub clearMarchive(ByRef marc As MArchive)
-        marc.DateArch = DateTime.MinValue
-        marc.HC = 0
-        marc.MsgHC = ""
-
-        marc.HCtv1 = 0
-        marc.MsgHCtv1 = ""
-
-        marc.HCtv2 = 0
-        marc.MsgHCtv2 = ""
-
-        marc.G1 = 0
-        marc.G2 = 0
-        marc.G3 = 0
-        marc.G4 = 0
-        marc.G5 = 0
-        marc.G6 = 0
-
-        marc.t1 = 0
-        marc.t2 = 0
-        marc.t3 = 0
-        marc.t4 = 0
-        marc.t5 = 0
-        marc.t6 = 0
-
-        marc.p1 = 0
-        marc.p2 = 0
-        marc.p3 = 0
-        marc.p4 = 0
-
-        marc.dt12 = 0
-        marc.dt45 = 0
-
-        marc.tx1 = 0
-        marc.tx2 = 0
-
-        marc.tair1 = 0
-        marc.tair2 = 0
-
-        marc.SP = 0
-        marc.SPtv1 = 0
-        marc.SPtv2 = 0
-
-
-        marc.archType = 0
-        isMArchToDBWrite = False
-    End Sub
     Public Overrides Function ReadMArch() As String
         If (IsBytesToRead = True) Then
             Return ""
@@ -1730,7 +1487,7 @@ finalRet:
         tv = 2
         'tim.Start()
         write(bArr, 9)
-       
+
         WaitForData()
 
         ret = GetAndProcessData()
@@ -1950,30 +1707,7 @@ finalRet:
 
     End Function
 
-    Private Sub clearTarchive(ByRef marc As TArchive)
-        marc.DateArch = DateTime.MinValue
 
-
-        marc.V1 = 0
-        marc.V2 = 0
-        marc.V3 = 0
-        marc.V4 = 0
-        marc.V5 = 0
-        marc.V6 = 0
-        marc.M1 = 0
-        marc.M2 = 0
-        marc.M3 = 0
-        marc.M4 = 0
-        marc.M5 = 0
-        marc.M6 = 0
-        marc.Q1 = 0
-        marc.Q2 = 0
-        marc.TW1 = 0
-        marc.TW2 = 0
-
-        marc.archType = 2
-        isTArchToDBWrite = False
-    End Sub
 
     Public Overrides Function ReadTArch() As String
         Dim bArr(0 To 8) As Byte
@@ -1997,7 +1731,7 @@ finalRet:
             tArch.M2 = ExtLong4(Mid(InpStrB, 1 + 8 * 4, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 4 + 4, 4))
             tArch.M3 = ExtLong4(Mid(InpStrB, 1 + 8 * 5, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 5 + 4, 4))
             tArch.Q1 = ExtLong4(Mid(InpStrB, 1 + 8 * 6, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 6 + 4, 4))
-            tArch.TW1 = ExtLong4(Mid(InpStrB, 1 + 8 * 7, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 7 + 4, 4))
+            tArch.WORKTIME1 = ExtLong4(Mid(InpStrB, 1 + 8 * 7, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 7 + 4, 4))
             tArch.Q2 = ExtLong4(Mid(InpStrB, 1 + 8 * 8, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 8 + 4, 4))
 
             InpStrB = ReadRAMSync(&H520, 8 * 4)
@@ -2009,7 +1743,7 @@ finalRet:
                 tArch.M2 = tArch.M2 + FloatExt(Mid(InpStrB, 1 + 4 * 4, 4))
                 tArch.M3 = tArch.M3 + FloatExt(Mid(InpStrB, 1 + 4 * 5, 4))
                 tArch.Q1 = tArch.Q1 + FloatExt(Mid(InpStrB, 1 + 4 * 6, 4))
-                tArch.TW1 = tArch.TW1 + FloatExt(Mid(InpStrB, 1 + 4 * 7, 4))
+                tArch.WORKTIME1 = tArch.WORKTIME1 + FloatExt(Mid(InpStrB, 1 + 4 * 7, 4))
                 tArch.Q2 = tArch.Q2 + FloatExt(Mid(InpStrB, 1 + 4 * 8, 4))
             Else
                 Return "Ошибка чтения тотального архива "
@@ -2030,7 +1764,7 @@ finalRet:
             tArch.M5 = ExtLong4(Mid(InpStrB, 1 + 8 * 4, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 4 + 4, 4))
             tArch.M6 = ExtLong4(Mid(InpStrB, 1 + 8 * 5, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 5 + 4, 4))
             tArch.Q3 = ExtLong4(Mid(InpStrB, 1 + 8 * 6, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 6 + 4, 4))
-            tArch.TW2 = ExtLong4(Mid(InpStrB, 1 + 8 * 7, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 7 + 4, 4))
+            tArch.WORKTIME2 = ExtLong4(Mid(InpStrB, 1 + 8 * 7, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 7 + 4, 4))
             tArch.Q4 = ExtLong4(Mid(InpStrB, 1 + 8 * 8, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 8 + 4, 4))
 
             InpStrB = ReadRAMSync(&H568, 8 * 4)
@@ -2042,7 +1776,7 @@ finalRet:
                 tArch.M5 = tArch.M5 + FloatExt(Mid(InpStrB, 1 + 4 * 4, 4))
                 tArch.M6 = tArch.M6 + FloatExt(Mid(InpStrB, 1 + 4 * 5, 4))
                 tArch.Q3 = tArch.Q3 + FloatExt(Mid(InpStrB, 1 + 4 * 6, 4))
-                tArch.TW2 = tArch.TW2 + FloatExt(Mid(InpStrB, 1 + 4 * 7, 4))
+                tArch.WORKTIME2 = tArch.WORKTIME2 + FloatExt(Mid(InpStrB, 1 + 4 * 7, 4))
                 tArch.Q4 = tArch.Q4 + FloatExt(Mid(InpStrB, 1 + 4 * 8, 4))
             Else
                 Return "Ошибка чтения тотального архива "
@@ -2062,34 +1796,34 @@ finalRet:
         Return "Итоговый архив прочитан"
     End Function
 
-    Public Overrides Function WriteTArchToDB() As String
-        WriteTArchToDB = "INSERT INTO " & DBTableName & "(id_bd,DCALL,DCOUNTER,DATECOUNTER,id_ptype,Q1,Q2,Q4,Q5,M1,M2,M3,M4,M5,M6,v1,v2,v3,v4,v5,v6,TSUM1,TSUM2) values ("
-        WriteTArchToDB = WriteTArchToDB + DeviceID.ToString() + ","
-        WriteTArchToDB = WriteTArchToDB + "SYSDATE" + ","
-        WriteTArchToDB = WriteTArchToDB + OracleDate(tArch.DateArch) + ","
-        WriteTArchToDB = WriteTArchToDB + OracleDate(tArch.DateArch) + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.archType.ToString + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.Q1.ToString.Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.Q2.ToString.Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.Q3.ToString.Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.Q4.ToString.Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.M1.ToString.Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.M2.ToString.Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.M3.ToString.Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.M4.ToString.Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.M5.ToString.Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.M6.ToString.Replace(",", ".") + ","
+    'Public Overrides Function WriteTArchToDB() As String
+    '    WriteTArchToDB = "INSERT INTO " & DBTableName & "(id_bd,DCALL,DCOUNTER,DATECOUNTER,id_ptype,Q1,Q2,Q4,Q5,M1,M2,M3,M4,M5,M6,v1,v2,v3,v4,v5,v6,TSUM1,TSUM2) values ("
+    '    WriteTArchToDB = WriteTArchToDB + DeviceID.ToString() + ","
+    '    WriteTArchToDB = WriteTArchToDB + "SYSDATE" + ","
+    '    WriteTArchToDB = WriteTArchToDB + OracleDate(tArch.DateArch) + ","
+    '    WriteTArchToDB = WriteTArchToDB + OracleDate(tArch.DateArch) + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.archType.ToString + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.Q1.ToString.Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.Q2.ToString.Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.Q3.ToString.Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.Q4.ToString.Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.M1.ToString.Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.M2.ToString.Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.M3.ToString.Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.M4.ToString.Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.M5.ToString.Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.M6.ToString.Replace(",", ".") + ","
 
-        WriteTArchToDB = WriteTArchToDB + tArch.V1.ToString.Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.V2.ToString.Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.V3.ToString.Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.V4.ToString.Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.V5.ToString.Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.V6.ToString.Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.TW1.ToString.Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.TW2.ToString.Replace(",", ".")
-        WriteTArchToDB = WriteTArchToDB + ")"
-    End Function
+    '    WriteTArchToDB = WriteTArchToDB + tArch.V1.ToString.Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.V2.ToString.Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.V3.ToString.Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.V4.ToString.Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.V5.ToString.Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.V6.ToString.Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.WORKTIME1.ToString.Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.WORKTIME2.ToString.Replace(",", ".")
+    '    WriteTArchToDB = WriteTArchToDB + ")"
+    'End Function
 
     Private Function ExtLong4(ByVal extStr As String) As Double
         Dim i As Long
@@ -2115,16 +1849,7 @@ finalRet:
         If MyTransport Is Nothing Then Return False
         Return mIsConnected And MyTransport.IsConnected
     End Function
-    Private Function S180(ByVal s As String) As String
 
-        Dim outs As String
-        outs = s
-        If outs.Length <= 180 Then
-            Return outs
-        End If
-        outs = outs.Substring(0, 180)
-        Return outs
-    End Function
 
     Public Overrides Function ReadSystemParameters() As System.Data.DataTable
   
@@ -2329,7 +2054,7 @@ finalRet:
             dr = dt.NewRow
             dr("Название") = "Цена импульса ВС1"
             dr("Значение") = Mid(InpStrG, 32 + 20 + 16 * 12, 8)
-            dr = dt.NewRow
+            dt.Rows.Add(dr)
 
             dr = dt.NewRow
             dr("Название") = "Верхняя уставка на V1"
@@ -2345,10 +2070,11 @@ finalRet:
             dr("Название") = "Договорной часовой объём в трубе 1"
             dr("Значение") = Mid(InpStrG, 32 + 25 + 16 * 15, 8)
             dt.Rows.Add(dr)
+
             dr = dt.NewRow
             dr("Название") = "Цена импульса ВС2"
             dr("Значение") = Mid(InpStrG, 32 + 25 + 16 * 16, 8)
-            dr = dt.NewRow
+            dt.Rows.Add(dr)
 
             dr = dt.NewRow
             dr("Название") = "Верхняя уставка на V2"
@@ -2364,10 +2090,11 @@ finalRet:
             dr("Название") = "Договорной часовой объём в трубе 2"
             dr("Значение") = Mid(InpStrG, 32 + 30 + 16 * 19, 8)
             dt.Rows.Add(dr)
+
             dr = dt.NewRow
             dr("Название") = "Цена импульса ВС3"
             dr("Значение") = Mid(InpStrG, 32 + 30 + 16 * 20, 8)
-            dr = dt.NewRow
+            dt.Rows.Add(dr)
 
             dr = dt.NewRow
             dr("Название") = "Верхняя уставка на V3"
@@ -2408,6 +2135,7 @@ finalRet:
             dr("Название") = "Константное значение часового тепла"
             dr("Значение") = Mid(InpStrG, 32 + 40 + 16 * 28, 8)
             dt.Rows.Add(dr)
+
             dr = dt.NewRow
             dr("Название") = "Вкл/Выкл автоматической печати суточных отчетов по вводу"
             dr("Значение") = Mid(InpStrG, 32 + 40 + 16 * 29, 8)
@@ -2498,7 +2226,7 @@ finalRet:
             dr = dt.NewRow
             dr("Название") = "Цена импульса ВС1"
             dr("Значение") = Mid(InpStrG, 20 + 16 * 12, 8)
-            dr = dt.NewRow
+            dt.Rows.Add(dr)
 
             dr = dt.NewRow
             dr("Название") = "Верхняя уставка на V1"
@@ -2517,7 +2245,7 @@ finalRet:
             dr = dt.NewRow
             dr("Название") = "Цена импульса ВС2"
             dr("Значение") = Mid(InpStrG, 25 + 16 * 16, 8)
-            dr = dt.NewRow
+            dt.Rows.Add(dr)
 
             dr = dt.NewRow
             dr("Название") = "Верхняя уставка на V2"
@@ -2536,7 +2264,7 @@ finalRet:
             dr = dt.NewRow
             dr("Название") = "Цена импульса ВС3"
             dr("Значение") = Mid(InpStrG, 30 + 16 * 20, 8)
-            dr = dt.NewRow
+            dt.Rows.Add(dr)
 
             dr = dt.NewRow
             dr("Название") = "Верхняя уставка на V3"

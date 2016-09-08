@@ -137,6 +137,7 @@ namespace STKService
 
           
             DateTime SrvDate;
+            DateTime ddd;
             Boolean DeviceOK ;
             Int16 archType_hour = 3;
             Int16 archType_day = 4;
@@ -145,9 +146,10 @@ namespace STKService
             Int16 ncall=0;
             Int16 nmaxcall=5;
             Int16 minrepeat = 5;
+            
             try
             {
-
+                #region "init"
                 ncall = Convert.ToInt16(dr["ncall"]);
                 nmaxcall = Convert.ToInt16(dr["nmaxcall"]);
                 minrepeat = Convert.ToInt16(dr["minrepeat"]);
@@ -231,14 +233,15 @@ namespace STKService
                                 {
                                     TvMain.SetNCALLToPlanCall(id_bdc.ToString(), 0);
                                     
-                                    DateTime  ddd = SrvDate;
+                                     ddd = SrvDate;
                                     try
                                     {
                                         ddd = Convert.ToDateTime(dr["dnextcurr"].ToString());
                                     }
-                                    catch
+                                    catch(System.Exception ex)
                                     {
                                         InfoReport("Прибор ID=  " + id_bdc.ToString() + " error converting dnextcurr :" + dr["dnextcurr"].ToString());
+                                        TvMain.SaveLog(id_bdc, 3, "??", 0, "Ошибка преобразования даты (dnextcurr) :" + dr["dnextcurr"].ToString() + " " + ex.Message);
                                     }
                                     while (ddd < SrvDate)
                                     {
@@ -263,6 +266,8 @@ namespace STKService
                                 }
                             }
                             DeviceOK = false;
+                            TvMain.UnLockDevice(id_bdc); 
+                            TvMain.SaveLog(id_bdc,0,"??",1,"Снятие блокировки устройства");
                         }
                     }
                     else
@@ -304,14 +309,15 @@ namespace STKService
                                 {
                                     TvMain.SetNCALLToPlanCall(id_bdc.ToString(), 0);
 
-                                    DateTime ddd = SrvDate;
+                                    ddd = SrvDate;
                                     try
                                     {
                                         ddd = Convert.ToDateTime(dr["dnextcurr"].ToString());
                                     }
-                                    catch
+                                    catch (System.Exception ex)
                                     {
                                         InfoReport("Прибор ID=  " + id_bdc.ToString() + " error converting dnextcurr :" + dr["dnextcurr"].ToString());
+                                        TvMain.SaveLog(id_bdc, 3, "??", 0, "Ошибка преобразования даты (dnextcurr) :" + dr["dnextcurr"].ToString() + " " + ex.Message);
                                     }
                                     while (ddd < SrvDate)
                                     {
@@ -342,21 +348,23 @@ namespace STKService
                         
                         
                     }
+                #endregion "init"
                     if (DeviceOK)
                     {
 
                         TvMain.SetNCALLToPlanCall(id_bdc.ToString(), 0);
                         TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dlock", DateTime.Now);
+ ddd = SrvDate;
+#region                 "hour"
 
-                        DateTime ddd;
-                        ddd = SrvDate;
                         try
                         {
                             ddd = Convert.ToDateTime(dr["dnexthour"].ToString());
                         }
-                        catch
+                        catch(System.Exception ex)
                         {
                             InfoReport("Прибор ID=  " + id_bdc.ToString() + " error while convert dnexthour :" + dr["dnexthour"].ToString());
+                            TvMain.SaveLog(id_bdc, 3, "??", 0, "Ошибка преобразования даты (dnexthour) :" + dr["dnexthour"].ToString() + " " + ex.Message);
                         }
                         if (TvMain.TVD.IsConnected()  && chour && ddd <= SrvDate)
                         {
@@ -406,7 +414,7 @@ namespace STKService
                                                                 TvMain.SaveLog(id_bdc, archType_hour, "??", 1, "Часовой архив за дату:" + tempdate.ToString() + ":OK");
                                                                 TvMain.ClearDBArchString(archType_hour, tempdate.Year, tempdate.Month, tempdate.Day, tempdate.Hour, id_bdc);
                                                                 TvMain.WriteArchToDB();
-                                                                TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dlasthour", tempdate.AddSeconds(-1));
+                                                                TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dlasthour", tempdate);
                                                             }
 
                                                         }
@@ -414,7 +422,7 @@ namespace STKService
                                                         {
                                                             TvMain.SaveLog(id_bdc, archType_hour, "??", 1, "Ошибка чтения часового архива за дату:" + tempdate.ToString() + " " + str);
                                                             WarningReport("Прибор ID: " + dr["id_bd"].ToString() + " не прочтен  часовой архив за " + tempdate.ToString() + "\r\n" + str);
-                                                            TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dlasthour", tempdate.AddSeconds(-1));
+                                                            TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dlasthour", tempdate);
                                                         }
                                                     }
                                                 }
@@ -440,8 +448,14 @@ namespace STKService
                                 }
                                 else
                                 {
-                                    tempdate = SrvDate;
-                                    //tempdate = tempdate.AddHours(1);
+                                    tempdate = ddd;
+
+                                    while (tempdate.AddHours(1) <= SrvDate)
+                                    {
+                                        tempdate = tempdate.AddHours(1);
+                                    }
+                                   
+
                                     bool ReadHOK;
                                     ReadHOK = false;
 
@@ -485,7 +499,7 @@ namespace STKService
                                                                 ReadHOK = true;
 
                                                                 // фиксируем последний удачный архив
-                                                                TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dlasthour", tempdate.AddSeconds(-1));
+                                                                TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dlasthour", tempdate);
                                                             }
 
                                                         }
@@ -511,10 +525,7 @@ namespace STKService
                                     // сдвигаем указатель на нужное количество минут
                                     if (TvMain.TVD.IsConnected())
                                     {
-
-                                          
-                                        TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dnexthour", SrvDate); 
-                                        TvMain.AddMinutesToPlanCall(id_bdc.ToString(), "dnexthour", icall);
+                                        TvMain.AddMinutesToPlanCall(id_bdc.ToString(), "dnexthour", icall );
                                     }
 
                                  
@@ -525,8 +536,9 @@ namespace STKService
                            
                         }//if (chour)
 
-
-                        ddd = SrvDate;
+#endregion "hour"
+               #region "day"         
+ddd = SrvDate;
                         try
                         {
                             ddd = Convert.ToDateTime(dr["dnext24"].ToString());
@@ -589,7 +601,7 @@ namespace STKService
 
 
                                                             // записываем последний удачный
-                                                            TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dlastday", tempdate.AddSeconds(-1));
+                                                            TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dlastday", tempdate);
                                                         }
                                                         else
                                                         {
@@ -664,7 +676,7 @@ namespace STKService
                                                             if (!ReadDOK)
                                                             {
                                                                 ReadDOK = true;
-                                                                TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dlastday", tempdate.AddSeconds(-1));
+                                                                TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dlastday", tempdate);
                                                             }
                                                         }
 
@@ -698,6 +710,10 @@ namespace STKService
                             }
                         }//if (c24)
 
+#endregion "day"
+
+
+                        #region "moment"
                         if ( ccurr)
 
                             ddd = SrvDate;
@@ -849,9 +865,9 @@ namespace STKService
                             }
                         }//if (ccurr)
 
-
-
-
+                        #endregion "moment"
+                        
+                        #region "missing hour"
                         TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dlastcall", SrvDate);
 
                         // try to load missing hour archives
@@ -867,19 +883,48 @@ namespace STKService
 
                             DateTime tempdate;
                             DataTable missing;
-                            missing = TvMain.QuerySelect("select ARCHDATE from missingarch where id_bd=" + id_bdc.ToString() + " and ARCHDATE>SYSDATE-32 and ARCHDATE<SYSDATE-4/24 and ARCHDATE<" + TvMain.OracleDate(ddd) + "  and DEVNAME like '%Час%' order by archdate desc  "); // and devname not like '%Нули%'");
+                            Boolean GetRow=false;
+                            int GRCount=0;
+                            int TryCount = 0;
+                            DataTable missingpass;
+                            missing = TvMain.QuerySelect("select ARCHDATE,DEVNAME from missingarch where id_bd=" + id_bdc.ToString() + " and ARCHDATE>SYSDATE-32 and ARCHDATE<SYSDATE-4/24 and ARCHDATE<" + TvMain.OracleDate(ddd) + "  and DEVNAME like '%Час%' order by archdate desc  "); // and devname not like '%Нули%'");
 
                             try
                             {
+                                if (missing.Rows.Count > 0)
+                                {
                                 TvMain.LockDevice(id_bdc, 400 * missing.Rows.Count, true);
-                                for (int j = 0; j < missing.Rows.Count && j <15 ; j++)
+                                    TvMain.SaveLog(id_bdc, archType_hour, "??", 1, "Чтение пропущенных часовых ( " + missing.Rows.Count.ToString() +" записей)");
+                                }
+
+                                for (int j = 0; j < missing.Rows.Count && GRCount <15 ; j++)
                                 {
                                     tempdate = (DateTime)(missing.Rows[j]["ARCHDATE"]);
+                                    GetRow = false;
+                                    missingpass = TvMain.QuerySelect("select TRYCOUNT from missingpass where id_bd=" + id_bdc.ToString() + " and ARCHDATE=" + TvMain.OracleDate(tempdate) + "  and DEVNAME ='" + missing.Rows[j]["DEVNAME"] + "'  "); // and devname not like '%Нули%'");
+                                    if (missingpass.Rows.Count == 0)
+                                    {
+                                        GetRow = true;
+                                        TryCount = 0;
+                                    }
+                                    else
+                                    {
+                                        TryCount = int.Parse(missingpass.Rows[0]["TRYCOUNT"].ToString());
+                                        if (TryCount < 5)
+                                        {
+                                            GetRow = true;
+                                        }
+                                    }
+
+                                    
                                     if (TvMain.TVD.IsConnected())
                                     {
                                         TvMain.HoldLine();
 
                                         String str;
+                                        if (GetRow)
+                                        {
+                                            GRCount++;
 
                                         InfoReport("Прибор ID=  " + id_bdc.ToString() + " чтение пропущенного часового архива за " + tempdate.ToString());
                                         TvMain.ClearDuration();
@@ -897,7 +942,7 @@ namespace STKService
                                                 {
                                                     if (TvMain.TVD.isArchToDBWrite)
                                                     {
-                                                        TvMain.SaveLog(id_bdc, archType_hour, "??", 1, "Часовой архив за дату:" + tempdate.ToString() + ":OK");
+                                                            TvMain.SaveLog(id_bdc, archType_hour, "??", 1, "Пропущенный часовой архив за дату:" + tempdate.ToString() + ":OK");
                                                         TvMain.ClearDBArchString(archType_hour, tempdate.Year, tempdate.Month, tempdate.Day, tempdate.Hour, id_bdc);
                                                         TvMain.WriteArchToDB();
                                                     }
@@ -910,6 +955,20 @@ namespace STKService
                                                 TvMain.SaveLog(id_bdc, archType_hour, "??", 1, "Ошибка чтения пропущенного часового архива за дату:" + tempdate.ToString());
                                             }
                                         }
+
+                                            String q;
+                                            if (TryCount == 0)
+                                            {
+                                                q = "insert into missingpass(id_bd,archdate,devname,trycount) values(" + dr["id_bd"].ToString() + "," + TvMain.OracleDate(tempdate) + ",'" + missing.Rows[j]["DEVNAME"].ToString() + "'," + (TryCount + 1).ToString() + ")";
+                                            }
+                                            else
+                                            {
+                                                q = "update missingpass set trycount=" +(TryCount + 1).ToString() + " where id_bd = "+ dr["id_bd"].ToString() + " and archdate=" + TvMain.OracleDate(tempdate) + " and devname ='" + missing.Rows[j]["DEVNAME"].ToString() + "'";
+                                            }
+
+                                            TvMain.QueryExec(q); 
+
+                                        }
                                     }
                                 }
 
@@ -921,7 +980,10 @@ namespace STKService
                             }
                         }// (missing hour)
 
+#endregion "missinghour"
+                      
 
+                        #region "missing day"
                         // try to load missing day archives
                         {
 
@@ -936,18 +998,50 @@ namespace STKService
                             }
                             DateTime tempdate;
                             DataTable missing;
-                            missing = TvMain.QuerySelect("select ARCHDATE from missingarch where id_bd=" + id_bdc.ToString() + " and ARCHDATE>SYSDATE-32 and ARCHDATE<SYSDATE-1 and  ARCHDATE<" + TvMain.OracleDate(ddd) + " and DEVNAME like '%Суточ%'  order by archdate desc "); //and devname not like '%Нули%'");
+                            Boolean GetRow = false;
+                            int GRCount = 0;
+                            int TryCount = 0;
+                            DataTable missingpass;
+                            missing = TvMain.QuerySelect("select ARCHDATE,DEVNAME from missingarch where id_bd=" + id_bdc.ToString() + " and ARCHDATE>SYSDATE-32 and ARCHDATE<SYSDATE-1 and  ARCHDATE<" + TvMain.OracleDate(ddd) + " and DEVNAME like '%Суточ%'  order by archdate desc "); //and devname not like '%Нули%'");
 
                             try
                             {
+                                if (missing.Rows.Count > 0)
+                                {
                                 TvMain.LockDevice(id_bdc, 400 * missing.Rows.Count, true);
-                                for (int j = 0; j < missing.Rows.Count && j <15; j++)
+                                    TvMain.SaveLog(id_bdc, archType_hour, "??", 1, "Чтение пропущенных суточных ( " + missing.Rows.Count.ToString() + " записей)");
+                                }
+
+                                for (int j = 0; j < missing.Rows.Count && GRCount < 15; j++)
                                 {
                                     tempdate = (DateTime)(missing.Rows[j]["ARCHDATE"]);
+
+                                    GetRow = false;
+                                    missingpass = TvMain.QuerySelect("select TRYCOUNT from missingpass where id_bd=" + id_bdc.ToString() + " and ARCHDATE=" + TvMain.OracleDate(tempdate) + "  and DEVNAME ='" + missing.Rows[j]["DEVNAME"] + "'  "); // and devname not like '%Нули%'");
+                                    if (missingpass.Rows.Count == 0)
+                                    {
+                                        GetRow = true;
+                                        TryCount = 0;
+                                    }
+                                    else
+                                    {
+                                        TryCount = int.Parse(missingpass.Rows[0]["TRYCOUNT"].ToString());
+                                        if (TryCount < 5)
+                                        {
+                                            GetRow = true;
+                                        }
+                                    }
+
+
+
                                     if (TvMain.TVD.IsConnected())
                                     {
                                         TvMain.HoldLine();
 
+
+                                        if (GetRow)
+                                        {
+                                            GRCount++;
                                         String str;
 
                                         InfoReport("Прибор ID=  " + id_bdc.ToString() + " чтение пропущенного суточного архива за  " + tempdate.ToString());
@@ -979,6 +1073,21 @@ namespace STKService
                                                 TvMain.SaveLog(id_bdc, archType_day, "??", 1, "Ошибка чтения пропущенного суточного архива за дату:" + tempdate.ToString());
                                             }
                                         }
+
+
+                                            String q;
+                                            if (TryCount == 0)
+                                            {
+                                                q = "insert into missingpass(id_bd,archdate,devname,trycount) values(" + dr["id_bd"].ToString() + "," + TvMain.OracleDate(tempdate) + ",'" + missing.Rows[j]["DEVNAME"].ToString() + "'," + (TryCount + 1).ToString() + ")";
+                                            }
+                                            else
+                                            {
+                                                q = "update missingpass set trycount=" + (TryCount + 1).ToString() + " where id_bd = " + dr["id_bd"].ToString() + " and archdate=" + TvMain.OracleDate(tempdate) + " and devname ='" + missing.Rows[j]["DEVNAME"].ToString() + "'";
+                                            }
+
+                                            TvMain.QueryExec(q);
+                                        }
+
                                     }
                                 }
 
@@ -989,7 +1098,8 @@ namespace STKService
 
                             }
                         }// (missing day)
-
+                      
+                        #endregion "missing day"
 
 
 
@@ -1000,14 +1110,7 @@ namespace STKService
                         // try to load missing hour archives
                         {
 
-                            ddd = SrvDate;
-                            try
-                            {
-                                ddd = Convert.ToDateTime(dr["dnexthour"].ToString());
-                            }
-                            catch
-                            {
-                            }
+                           
 
                             DateTime tempdate;
                             DataTable missing;
@@ -1015,6 +1118,7 @@ namespace STKService
 
                             try
                             {
+                                if (missing.Rows.Count > 0)
                                 TvMain.LockDevice(id_bdc, 400 * missing.Rows.Count, true);
                                 for (int j = 0; j < missing.Rows.Count && j < 6; j++)
                                 {
@@ -1090,7 +1194,100 @@ namespace STKService
 
                         #endregion
 
+ #region "qlist day"
 
+                        TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dlastcall", SrvDate);
+
+                        // try to load missing hour archives
+                        {
+
+                          
+
+                            DateTime tempdate;
+                            DataTable missing;
+                            missing = TvMain.QuerySelect("select QLISTID, QDATE,PROCESSED from QLIST where id_bd=" + id_bdc.ToString() + " and id_PTYPE=4 ");
+
+                            try
+                            {
+                                if (missing.Rows.Count > 0)
+                                {
+                                TvMain.LockDevice(id_bdc, 400 * missing.Rows.Count, true);
+                                }
+                                for (int j = 0; j < missing.Rows.Count && j < 6; j++)
+                                {
+
+
+                                    tempdate = (DateTime)(missing.Rows[j]["QDATE"]);
+                                    if (TvMain.TVD.IsConnected())
+                                    {
+                                        TvMain.HoldLine();
+
+                                        String str;
+
+                                        InfoReport("Прибор ID=  " + id_bdc.ToString() + " чтение суточного архива по запросу " + tempdate.ToString());
+                                        TvMain.ClearDuration();
+                                        str = TvMain.readarch(archType_day, tempdate.Year, tempdate.Month, tempdate.Day, 0);
+                                        if (str.Length == 0)
+                                        {
+
+                                            WarningReport("Прибор ID= " + dr["id_bd"].ToString() + " " + str + " " + tempdate.ToString());
+                                            TvMain.SaveLog(id_bdc, archType_hour, "??", 1, "Ошибка чтения  суточного архива по запросу за дату:" + tempdate.ToString() + " " + str);
+                                            if (Convert.ToInt16(missing.Rows[j]["PROCESSED"]) < 9)
+                                            {
+                                                TvMain.QueryExec("update QLIST set processed=processed+1 where QLISTID=" + missing.Rows[j]["QLISTID"].ToString());
+                                            }
+                                            else
+                                            {
+                                                TvMain.QueryExec("delete from QLIST where QLISTID=" + missing.Rows[j]["QLISTID"].ToString());
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (str.Substring(0, 6) != "Ошибка")
+                                            {
+                                                //if (TvMain.CheckForArch(archType_day, tempdate.Year, tempdate.Month, tempdate.Day, tempdate.Hour, id_bdc) == false)
+                                                {
+                                                    if (TvMain.TVD.isArchToDBWrite)
+                                                    {
+                                                        TvMain.SaveLog(id_bdc, archType_day, "??", 1, "Суточный архив по запросу за дату:" + tempdate.ToString() + ":OK");
+                                                        TvMain.ClearDBArchString(archType_day, tempdate.Year, tempdate.Month, tempdate.Day, tempdate.Hour, id_bdc);
+                                                        TvMain.WriteArchToDB();
+                                                        TvMain.QueryExec("delete from QLIST where QLISTID=" + missing.Rows[j]["QLISTID"].ToString());
+
+                                                    }
+
+                                                }
+                                            }
+                                            else
+                                            {
+
+                                                WarningReport("Прибор ID= " + dr["id_bd"].ToString() + " " + str + tempdate.ToString());
+                                                TvMain.SaveLog(id_bdc, archType_day, "??", 1, "Ошибка чтения суточного архива по запросу за дату:" + tempdate.ToString() + " " + str);
+                                                if (Convert.ToInt16(missing.Rows[j]["PROCESSED"]) < 9)
+                                                {
+                                                    TvMain.QueryExec("update QLIST set processed=processed+1 where QLISTID=" + missing.Rows[j]["QLISTID"].ToString());
+                                                }
+                                                else
+                                                {
+                                                    TvMain.QueryExec("delete from QLIST where QLISTID=" + missing.Rows[j]["QLISTID"].ToString());
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }//try
+                            catch (Exception Ex)
+                            {
+
+                                ErrorReport("Прибор ID= " + dr["id_bd"].ToString() + " Ошибка чтения суточного архива по запросу, " + Ex.Message);
+
+                            }
+                        }// (QLIST day)
+
+                        #endregion
+
+                      
 
                       
                         TvMain.UnLockDevice(id_bdc);
@@ -1143,7 +1340,7 @@ namespace STKService
                     try
                     {
                         VIPAnalizer.NodeAnalizer na = new VIPAnalizer.NodeAnalizer();
-                        na.AnalizeNode(TvMain, id_bdc, 14,true);
+                        na.AnalizeNode(TvMain, id_bdc, 14,false);
                         TvMain.SaveLog(id_bdc, 0, "??", 1, "Анализ данных");
                     }
                     catch (System.Exception ex)

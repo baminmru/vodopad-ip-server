@@ -45,9 +45,9 @@
             Dim dd As DataTable
             Dim dt As DataTable
             If txtFilter.Text = "" Then
-                dt = TvMain.QuerySelect("select  ID_BD as ID, cshort as Узел,TO_CHAR(dbeg, 'HH24:MI:SS.FF') as Время,ctype as Тип,duration as Длительность,cresult as Текст from  v_logcall where dbeg >sysdate-10.0/24.0/60.0 order by TO_CHAR(dbeg, 'YYYY-MON-DD HH24:MI:SS.FF') desc,ID")
+                dt = TvMain.QuerySelect("select  ID_BD as ID, cshort as Узел,TO_CHAR(tsbeg, 'HH24:MI:SS.FF') as Время,ctype as Тип,duration as Длительность,cresult as Текст from  v_logcall where tsbeg >sysdate-10.0/24.0/60.0 order by TO_CHAR(tsbeg, 'YYYY-MON-DD HH24:MI:SS.FF') desc,ID")
             Else
-                dt = TvMain.QuerySelect("select  ID_BD as ID, cshort as Узел,TO_CHAR(dbeg, 'HH24:MI:SS.FF') as Время,ctype as Тип,duration as Длительность,cresult as Текст from  v_logcall where dbeg >sysdate-10.0/24.0/60.0  and ( cshort like '%" + txtFilter.Text + "%'  or cresult like '%" + txtFilter.Text + "%' or ID_BD like '%" + txtFilter.Text + "%')  order by TO_CHAR(dbeg, 'YYYY-MM-DD HH24:MI:SS.FF') desc ,ID")
+                dt = TvMain.QuerySelect("select  ID_BD as ID, cshort as Узел,TO_CHAR(tsbeg, 'HH24:MI:SS.FF') as Время,ctype as Тип,duration as Длительность,cresult as Текст from  v_logcall where tsbeg >sysdate-10.0/24.0/60.0  and ( cshort like '%" + txtFilter.Text + "%'  or cresult like '%" + txtFilter.Text + "%' or ID_BD like '%" + txtFilter.Text + "%')  order by TO_CHAR(tsbeg, 'YYYY-MM-DD HH24:MI:SS.FF') desc ,ID")
             End If
             If Not DataGridView1.DataSource Is Nothing Then
                 dd = DataGridView1.DataSource
@@ -109,9 +109,5 @@
         TvMain = New STKTVMain.TVMain
         If TvMain.Init() = False Then Application.Exit()
         Timer1.Enabled = True
-    End Sub
-
-    Private Sub txtFilter_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtFilter.TextChanged
-
     End Sub
 End Class

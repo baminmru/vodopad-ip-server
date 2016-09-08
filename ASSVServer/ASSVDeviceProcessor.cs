@@ -110,27 +110,27 @@ namespace ASSVServerLib
                     //if (TvMain.LockDevice(DivID, 6000, false))
                     {
 
-                        oRS = TvMain.QuerySelect("select plancall.*,npip,nppassword,ipport,transport,sysdate ServerDate from bdevices join plancall on bdevices.id_bd=plancall.id_bd  where bdevices.id_bd=" + DivID.ToString());
-                        if (oRS != null)
+                    oRS = TvMain.QuerySelect("select plancall.*,npip,nppassword,ipport,transport,sysdate ServerDate from bdevices join plancall on bdevices.id_bd=plancall.id_bd  where bdevices.id_bd=" + DivID.ToString());
+                    if (oRS != null)
+                    {
+
+                        if (oRS.Rows.Count > 0)
                         {
-
-                            if (oRS.Rows.Count > 0)
+                            try
                             {
-                                try
-                                {
-                                    dr = oRS.Rows[0];
-                                    ProcessPlan(dr);
+                                dr = oRS.Rows[0];
+                                ProcessPlan(dr);
 
-                                }
-                                catch (Exception Ex)
-                                {
-                                    ErrorReport("Прибор ID=  " + DivID.ToString() + " error:" + Ex.Message);
-                                    dr = null;
-                                }
                             }
-                            oRS = null;
-
+                            catch (Exception Ex)
+                            {
+                                ErrorReport("Прибор ID=  " + DivID.ToString() + " error:" + Ex.Message);
+                                dr = null;
+                            }
                         }
+                        oRS = null;
+
+                    }
 
                     }
 
@@ -174,6 +174,7 @@ namespace ASSVServerLib
 
         private void ProcessPlan(DataRow dr)
         {
+
 
 
             DateTime SrvDate;
@@ -681,8 +682,13 @@ namespace ASSVServerLib
                                 }
                                 else
                                 {
-                                    tempdate = SrvDate;
-                                    //tempdate = tempdate.AddHours(1);
+                                    tempdate = ddd;
+
+                                    while (tempdate.AddHours(1) <= SrvDate)
+                                    {
+                                        tempdate = tempdate.AddHours(1);
+                                    }
+
                                     bool ReadHOK;
                                     ReadHOK = false;
 
@@ -748,7 +754,7 @@ namespace ASSVServerLib
                                                 else
                                                 {
                                                     TvMain.SaveLog(id_bdc, archType_hour, "??", 1, "Часовой архив за дату " + tempdate.ToString() + "  уже есть в базе");
-                                                    TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dnexthour", tempdate.AddSeconds(-1));
+                                                    //TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dnexthour", tempdate.AddSeconds(-1));
                                                     InfoReport("Прибор ID=  " + id_bdc.ToString() + " архив за дату " + tempdate.ToString() + "  уже есть в базе");
                                                 }
                                             }
@@ -762,7 +768,7 @@ namespace ASSVServerLib
                                     // сдвигаем указатель на нужное количество минут
                                     if (TvMain.TVD.IsConnected())
                                     {
-                                        TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dnexthour", SrvDate);
+                                        //TvMain.SetTimeToPlanCall(id_bdc.ToString(), "dnexthour", SrvDate);
                                         TvMain.AddMinutesToPlanCall(id_bdc.ToString(), "dnexthour", icall);
                                     }
 
@@ -997,6 +1003,7 @@ namespace ASSVServerLib
 
                             try
                             {
+                                    if (missing.Rows.Count > 0)
                                 TvMain.LockDevice(id_bdc, 400 * missing.Rows.Count, true);
                                 for (int j = 0; j < missing.Rows.Count && j < 6; j++)
                                 {
@@ -1095,6 +1102,7 @@ namespace ASSVServerLib
 
                             try
                             {
+                                if (missing.Rows.Count > 0)
                                 TvMain.LockDevice(id_bdc, 400 * missing.Rows.Count, true);
                                 for (int j = 0; j < missing.Rows.Count && j < 6; j++)
                                 {
@@ -1199,12 +1207,18 @@ namespace ASSVServerLib
 
                             DateTime tempdate;
                             DataTable missing;
-                            missing = TvMain.QuerySelect("select ARCHDATE from missingarch where id_bd=" + id_bdc.ToString() + " and ARCHDATE>SYSDATE-32 and ARCHDATE<SYSDATE-2 / 24  and ARCHDATE<" + TvMain.OracleDate(ddd) + "  and DEVNAME like '%Час%' order by archdate desc "); // and devname not like '%Нули%'");
+                                Boolean GetRow = false;
+                                int GRCount = 0;
+                                int TryCount = 0;
+                                DataTable missingpass;
+                                missing = TvMain.QuerySelect("select ARCHDATE,DEVNAME from missingarch where id_bd=" + id_bdc.ToString() + " and ARCHDATE>SYSDATE-32 and ARCHDATE<SYSDATE-2 / 24  and ARCHDATE<" + TvMain.OracleDate(ddd) + "  and DEVNAME like '%Час%' order by archdate desc "); // and devname not like '%Нули%'");
 
                             try
                             {
+                                    if (missing.Rows.Count > 0)
                                 TvMain.LockDevice(id_bdc, 400 * missing.Rows.Count, true);
-                                for (int j = 0; j < missing.Rows.Count && j < 6; j++)
+
+                                    for (int j = 0; j < missing.Rows.Count && GRCount < 6; j++)
                                 {
 
                                     if (SequenceErrorCount > 2)
@@ -1212,9 +1226,29 @@ namespace ASSVServerLib
                                         goto ClosePlan;
                                     }
                                     tempdate = (DateTime)(missing.Rows[j]["ARCHDATE"]);
+
+                                        GetRow = false;
+                                        missingpass = TvMain.QuerySelect("select TRYCOUNT from missingpass where id_bd=" + id_bdc.ToString() + " and ARCHDATE=" + TvMain.OracleDate(tempdate) + "  and DEVNAME ='" + missing.Rows[j]["DEVNAME"] + "'  "); // and devname not like '%Нули%'");
+                                        if (missingpass.Rows.Count == 0)
+                                        {
+                                            GetRow = true;
+                                            TryCount = 0;
+                                        }
+                                        else
+                                        {
+                                            TryCount = int.Parse(missingpass.Rows[0]["TRYCOUNT"].ToString());
+                                            if (TryCount < 5)
+                                            {
+                                                GetRow = true;
+                                            }
+                                        }
+
                                     if (TvMain.TVD.IsConnected())
                                     {
                                         TvMain.HoldLine();
+                                            if (GetRow)
+                                            {
+                                                GRCount++;
 
                                         String str;
 
@@ -1224,7 +1258,7 @@ namespace ASSVServerLib
                                         if (str.Length == 0)
                                         {
                                             SequenceErrorCount += 1;
-                                            WarningReport("Прибор ID= " + dr["id_bd"].ToString() + " " + str + " " + tempdate.ToString());
+                                                    WarningReport("Прибор ID= " + id_bdc.ToString() + " " + str + " " + tempdate.ToString());
                                             TvMain.SaveLog(id_bdc, archType_hour, "??", 1, "Ошибка чтения пропущенного часового архива за дату:" + tempdate.ToString() +" " + str);
                                         }
                                         else
@@ -1246,10 +1280,23 @@ namespace ASSVServerLib
                                             else
                                             {
                                                 SequenceErrorCount += 1;
-                                                WarningReport("Прибор ID= " + dr["id_bd"].ToString() + " " + str + tempdate.ToString());
+                                                        WarningReport("Прибор ID= " + id_bdc.ToString() + " " + str + tempdate.ToString());
                                                 TvMain.SaveLog(id_bdc, archType_hour, "??", 1, "Ошибка чтения пропущенного часового архива за дату:" + tempdate.ToString()+" " + str);
                                             }
                                         }
+
+                                                String q;
+                                                if (TryCount == 0)
+                                                {
+                                                    q = "insert into missingpass(id_bd,archdate,devname,trycount) values(" + id_bdc.ToString() + "," + TvMain.OracleDate(tempdate) + ",'" + missing.Rows[j]["DEVNAME"].ToString() + "'," + (TryCount + 1).ToString() + ")";
+                                                }
+                                                else
+                                                {
+                                                    q = "update missingpass set trycount=" + (TryCount + 1).ToString() + " where id_bd = " + id_bdc.ToString() + " and archdate=" + TvMain.OracleDate(tempdate) + " and devname ='" + missing.Rows[j]["DEVNAME"].ToString() + "'";
+                                                }
+
+                                                TvMain.QueryExec(q);
+                                            }
                                     }
                                 }
 
@@ -1280,12 +1327,17 @@ namespace ASSVServerLib
                             }
                             DateTime tempdate;
                             DataTable missing;
-                            missing = TvMain.QuerySelect("select ARCHDATE from missingarch where id_bd=" + id_bdc.ToString() + " and ARCHDATE>SYSDATE-32 and ARCHDATE<" + TvMain.OracleDate(ddd) + " and DEVNAME like '%Суточ%'  order by archdate desc "); //and devname not like '%Нули%'");
+                            Boolean GetRow = false;
+                            int GRCount = 0;
+                            int TryCount = 0;
+                            DataTable missingpass;
+                            missing = TvMain.QuerySelect("select ARCHDATE,DEVNAME from missingarch where id_bd=" + id_bdc.ToString() + " and ARCHDATE>SYSDATE-32 and ARCHDATE<" + TvMain.OracleDate(ddd) + " and DEVNAME like '%Суточ%'  order by archdate desc "); //and devname not like '%Нули%'");
 
                             try
                             {
+                                if (missing.Rows.Count > 0)
                                 TvMain.LockDevice(id_bdc, 400 * missing.Rows.Count, true);
-                                for (int j = 0; j < missing.Rows.Count && j <6; j++)
+                                for (int j = 0; j < missing.Rows.Count && GRCount < 6; j++)
                                 {
 
                                     if (SequenceErrorCount > 2)
@@ -1293,9 +1345,29 @@ namespace ASSVServerLib
                                         goto ClosePlan;
                                     }
                                     tempdate = (DateTime)(missing.Rows[j]["ARCHDATE"]);
+
+                                    GetRow = false;
+                                    missingpass = TvMain.QuerySelect("select TRYCOUNT from missingpass where id_bd=" + id_bdc.ToString() + " and ARCHDATE=" + TvMain.OracleDate(tempdate) + "  and DEVNAME ='" + missing.Rows[j]["DEVNAME"] + "'  "); // and devname not like '%Нули%'");
+                                    if (missingpass.Rows.Count == 0)
+                                    {
+                                        GetRow = true;
+                                        TryCount = 0;
+                                    }
+                                    else
+                                    {
+                                        TryCount = int.Parse(missingpass.Rows[0]["TRYCOUNT"].ToString());
+                                        if (TryCount < 5)
+                                        {
+                                            GetRow = true;
+                                        }
+                                    }
+
                                     if (TvMain.TVD.IsConnected())
                                     {
                                         TvMain.HoldLine();
+                                        if (GetRow)
+                                        {
+                                            GRCount++;
 
                                         String str;
 
@@ -1331,6 +1403,19 @@ namespace ASSVServerLib
                                                 TvMain.SaveLog(id_bdc, archType_day, "??", 1, "Ошибка чтения пропущенного суточного архива за дату:" + tempdate.ToString() + " " + str);
                                             }
                                         }
+
+                                            String q;
+                                            if (TryCount == 0)
+                                            {
+                                                q = "insert into missingpass(id_bd,archdate,devname,trycount) values(" + dr["id_bd"].ToString() + "," + TvMain.OracleDate(tempdate) + ",'" + missing.Rows[j]["DEVNAME"].ToString() + "'," + (TryCount + 1).ToString() + ")";
+                                            }
+                                            else
+                                            {
+                                                q = "update missingpass set trycount=" + (TryCount + 1).ToString() + " where id_bd = " + dr["id_bd"].ToString() + " and archdate=" + TvMain.OracleDate(tempdate) + " and devname ='" + missing.Rows[j]["DEVNAME"].ToString() + "'";
+                                            }
+
+                                            TvMain.QueryExec(q);
+                                        }
                                     }
                                 }
 
@@ -1343,6 +1428,7 @@ namespace ASSVServerLib
                             }
                         }// (missing day)
 #endregion
+
 
 #region "Closing plan process"
                     ClosePlan:
@@ -1379,6 +1465,8 @@ namespace ASSVServerLib
             }
 #endregion
 
+           
+
         }
 
 
@@ -1401,7 +1489,7 @@ namespace ASSVServerLib
                     try
                     {
                         VIPAnalizer.NodeAnalizer na = new VIPAnalizer.NodeAnalizer();
-                        na.AnalizeNode(TvMain, id_bdc, 14,true);
+                        na.AnalizeNode(TvMain, id_bdc, 32,false);
                         TvMain.SaveLog(id_bdc, 0, "??", 1, "Анализ данных");
                     }
                     catch (System.Exception ex)

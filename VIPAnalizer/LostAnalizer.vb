@@ -32,6 +32,7 @@ Public Class LostAnalizer
         d2 = d1.AddDays(1)
 
         dt0 = tvmain.QuerySelect("select HOURSHIFT,VERIFYCOLS from bdevices join devices on bdevices.id_dev=devices.id_dev where id_bd=" & id_bd.ToString)
+       
 
         If dt0.Rows.Count = 1 Then
             Try
@@ -234,7 +235,26 @@ Public Class LostAnalizer
     Private Sub CheckLost(ByVal id As Integer, ByVal ptype As Integer, ByVal deep As Integer)
         Dim dt As DataTable
         Dim dtcheck As DataTable
-        dt = tvmain.QuerySelect("select dcounter from  datacurr where id_bd= " + id.ToString() + " and id_ptype=" + ptype.ToString + " and dcounter>=SYSDATE-" + deep.ToString + " order by dcounter")
+        Dim dtp As DataTable
+        Dim mindate As Date
+
+
+
+        dtp = tvmain.QuerySelect("select * from  plancall where id_bd= " + id.ToString())
+        If dtp.Rows.Count = 1 Then
+            mindate = dtp.Rows(0)("dbegcurr")
+            If mindate < DateTime.Now.AddDays(-31) Then
+                mindate = DateTime.Now.AddDays(-31)
+            End If
+        Else
+            mindate = DateTime.Now.AddDays(-31)
+        End If
+
+
+        tvmain.QueryExec("delete from missingpass where id_bd= " + id.ToString() + " and  archdate < SYSDATE-62")
+
+
+        dt = tvmain.QuerySelect("select dcounter from  datacurr where id_bd= " + id.ToString() + " and id_ptype=" + ptype.ToString + " and dcounter>=" + tvmain.OracleDate(mindate) + " and dcounter>=  SYSDATE-" + deep.ToString + " order by dcounter")
         Dim i As Integer
         Dim j As Integer
         Dim k As Integer
@@ -252,7 +272,15 @@ Public Class LostAnalizer
                             ' save to missing archive
                             dtcheck = tvmain.QuerySelect("select count(*) cnt from missingarch where DEVNAME like '% Часовой' and id_bd= " + id.ToString() + " and archdate=" + OracleDate(dprev.AddHours(k)))
                             If dtcheck.Rows(0)("cnt") = 0 Then
-                                tvmain.QueryExec("insert into missingarch(id_bd,ARCHDATE,DEVNAME) values(" + id_bd.ToString + "," + OracleDate(dprev.AddHours(k)) + ",'" + NodeName + "; Часовой')")
+                                dtcheck = tvmain.QuerySelect("select TRYCOUNT from missingpass where DEVNAME like '%Часовой' and id_bd= " + id.ToString() + " and archdate=" + OracleDate(dprev.AddHours(k)))
+                                If dtcheck.Rows.Count = 0 Then
+                                    tvmain.QueryExec("insert into missingarch(id_bd,ARCHDATE,DEVNAME) values(" + id_bd.ToString + "," + OracleDate(dprev.AddHours(k)) + ",'" + NodeName + "; Часовой')")
+                                Else
+                                    If dtcheck.Rows(0)("TRYCOUNT") < 5 Then
+                                        tvmain.QueryExec("insert into missingarch(id_bd,ARCHDATE,DEVNAME) values(" + id_bd.ToString + "," + OracleDate(dprev.AddHours(k)) + ",'" + NodeName + "; Часовой')")
+                                    End If
+                                End If
+
                             End If
                         Next
 
@@ -266,9 +294,19 @@ Public Class LostAnalizer
                     If j > 1 Then
                         For k = 1 To j - 1
                             ' save to missing archive
-                            dtcheck = tvmain.QuerySelect("select count(*) cnt from missingarch where DEVNAME like '%Суточный' and id_bd= " + id.ToString() + " and archdate=" + OracleDate(dprev.AddHours(k)))
+                            dtcheck = tvmain.QuerySelect("select count(*) cnt from missingarch where DEVNAME like '%Суточный' and id_bd= " + id.ToString() + " and archdate=" + OracleDate(dprev.AddDays(k)))
                             If dtcheck.Rows(0)("cnt") = 0 Then
-                                tvmain.QueryExec("insert into missingarch(id_bd,ARCHDATE,DEVNAME) values(" + id_bd.ToString + "," + OracleDate(dprev.AddDays(k)) + ",'" + NodeName + ";Суточный')")
+
+                                dtcheck = tvmain.QuerySelect("select TRYCOUNT from missingpass where DEVNAME like '%Суточный' and id_bd= " + id.ToString() + " and archdate=" + OracleDate(dprev.AddDays(k)))
+                                If dtcheck.Rows.Count = 0 Then
+                                    tvmain.QueryExec("insert into missingarch(id_bd,ARCHDATE,DEVNAME) values(" + id_bd.ToString + "," + OracleDate(dprev.AddDays(k)) + ",'" + NodeName + "; Суточный')")
+                                Else
+                                    If dtcheck.Rows(0)("TRYCOUNT") < 5 Then
+                                        tvmain.QueryExec("insert into missingarch(id_bd,ARCHDATE,DEVNAME) values(" + id_bd.ToString + "," + OracleDate(dprev.AddDays(k)) + ",'" + NodeName + ";Суточный')")
+                                    End If
+                                End If
+
+
                             End If
                         Next
                     End If
@@ -285,7 +323,14 @@ Public Class LostAnalizer
                         ' save to missing archive
                         dtcheck = tvmain.QuerySelect("select count(*) cnt from missingarch where DEVNAME like '% Часовой' and id_bd= " + id.ToString() + " and archdate=" + OracleDate(dprev.AddHours(k)))
                         If dtcheck.Rows(0)("cnt") = 0 Then
-                            tvmain.QueryExec("insert into missingarch(id_bd,ARCHDATE,DEVNAME) values(" + id_bd.ToString + "," + OracleDate(dprev.AddHours(k)) + ",'" + NodeName + "; Часовой')")
+                            dtcheck = tvmain.QuerySelect("select TRYCOUNT from missingpass where DEVNAME like '% Часовой' and id_bd= " + id.ToString() + " and archdate=" + OracleDate(dprev.AddHours(k)))
+                            If dtcheck.Rows.Count = 0 Then
+                                tvmain.QueryExec("insert into missingarch(id_bd,ARCHDATE,DEVNAME) values(" + id_bd.ToString + "," + OracleDate(dprev.AddHours(k)) + ",'" + NodeName + "; Часовой')")
+                            Else
+                                If dtcheck.Rows(0)("TRYCOUNT") < 5 Then
+                                    tvmain.QueryExec("insert into missingarch(id_bd,ARCHDATE,DEVNAME) values(" + id_bd.ToString + "," + OracleDate(dprev.AddHours(k)) + ",'" + NodeName + "; Часовой')")
+                                End If
+                            End If
                         End If
                         'Application.DoEvents()
                     Next
@@ -299,14 +344,25 @@ Public Class LostAnalizer
                 If j > 1 Then
                     For k = 1 To j - 1
                         ' save to missing archive
-                        dtcheck = tvmain.QuerySelect("select count(*) cnt from missingarch where DEVNAME like '% Суточный' and id_bd= " + id.ToString() + " and archdate=" + OracleDate(dprev.AddHours(k)))
+                        dtcheck = tvmain.QuerySelect("select count(*) cnt from missingarch where DEVNAME like '% Суточный' and id_bd= " + id.ToString() + " and archdate=" + OracleDate(dprev.AddDays(k)))
                         If dtcheck.Rows(0)("cnt") = 0 Then
-                            tvmain.QueryExec("insert into missingarch(id_bd,ARCHDATE,DEVNAME) values(" + id_bd.ToString + "," + OracleDate(dprev.AddDays(k)) + ",'" + NodeName + "; Суточный')")
+
+                            dtcheck = tvmain.QuerySelect("select TRYCOUNT from missingpass where DEVNAME like '% Суточный' and id_bd= " + id.ToString() + " and archdate=" + OracleDate(dprev.AddDays(k)))
+                            If dtcheck.Rows.Count = 0 Then
+                                tvmain.QueryExec("insert into missingarch(id_bd,ARCHDATE,DEVNAME) values(" + id_bd.ToString + "," + OracleDate(dprev.AddDays(k)) + ",'" + NodeName + "; Суточный')")
+                            Else
+                                If dtcheck.Rows(0)("TRYCOUNT") < 5 Then
+                                    tvmain.QueryExec("insert into missingarch(id_bd,ARCHDATE,DEVNAME) values(" + id_bd.ToString + "," + OracleDate(dprev.AddDays(k)) + ",'" + NodeName + "; Суточный')")
+                                End If
+                            End If
+
                         End If
                         'Application.DoEvents()
                     Next
                 End If
             End If
+
+
 
         End If
 
@@ -316,15 +372,47 @@ Public Class LostAnalizer
 
 
     Private Sub CheckSuspect(ByVal id As Integer, ByVal ptype As Integer, ByVal deep As Integer)
-        Dim dt As DataTable
+        Dim dt As DataTable, dt2 As DataTable
         Dim dtcheck As DataTable
         Dim dtVerify As DataTable
         Dim vcol As String = ""
         Dim ww As String
+        Dim dtp As DataTable
+        Dim mindate As Date
+
+
+
+        dtp = tvmain.QuerySelect("select * from  plancall where id_bd= " + id.ToString())
+        If dtp.Rows.Count = 1 Then
+            mindate = dtp.Rows(0)("dbegcurr")
+            If mindate < DateTime.Now.AddDays(-31) Then
+                mindate = DateTime.Now.AddDays(-31)
+            End If
+        Else
+            mindate = DateTime.Now.AddDays(-31)
+        End If
+
+        dt2 = tvmain.QuerySelect("select sezon from  analizer_cfg where id_bd=" + id_bd.ToString)
+        Dim sezon As Integer = 0
+        If dt2.Rows.Count > 0 Then
+            Try
+                sezon = dt2.Rows(0)("sezon")
+            Catch ex As Exception
+                sezon = 0
+            End Try
+        Else
+            sezon = 0
+        End If
 
         Try
             dtVerify = tvmain.QuerySelect("select * from  bdevices  where id_bd= " + id.ToString())
-            vcol = dtVerify.Rows(0)("nzcols").ToString().ToUpper()
+            If sezon = 0 Then
+                vcol = dtVerify.Rows(0)("nzcols").ToString().ToUpper()
+            Else
+                vcol = dtVerify.Rows(0)("l_nzcols").ToString().ToUpper()
+            End If
+
+
         Catch ex As Exception
             vcol = ""
         End Try
@@ -348,15 +436,15 @@ Public Class LostAnalizer
         Catch ex As Exception
 
         End Try
-
+        
         Try
-            dt = tvmain.QuerySelect("select dcounter from  datacurr where (  " + ww + "  ) and id_bd= " + id.ToString() + " and id_ptype=" + ptype.ToString + " and dcounter>=SYSDATE-" + deep.ToString() + " order by dcounter")
+            dt = tvmain.QuerySelect("select dcounter from  datacurr where (  " + ww + "  ) and id_bd= " + id.ToString() + " and id_ptype=" + ptype.ToString + " and dcounter>=" + tvmain.OracleDate(mindate) + " and dcounter>=SYSDATE-" + deep.ToString() + " order by dcounter")
         Catch ex As Exception
             dt = New DataTable
         End Try
 
-        
 
+        
 
 
         Dim dcur As DateTime
@@ -367,9 +455,18 @@ Public Class LostAnalizer
                 dcur = dt.Rows(i)("DCOUNTER")
 
                 If ptype = 3 Then
-                    dtcheck = tvmain.QuerySelect("select count(*) cnt from missingarch where DEVNAME like '%Часовой' and id_bd= " + id.ToString() + " and archdate=" + OracleDate(dcur))
+                    dtcheck = tvmain.QuerySelect("select count(*) cnt from missingarch where DEVNAME like '% Часовой' and id_bd= " + id.ToString() + " and archdate=" + OracleDate(dcur))
                     If dtcheck.Rows(0)("cnt") = 0 Then
-                        tvmain.QueryExec("insert into missingarch(id_bd,ARCHDATE,DEVNAME) values(" + id_bd.ToString + "," + OracleDate(dcur) + ",'" + NodeName + "; НУЛИ; Часовой')")
+
+                        dtcheck = tvmain.QuerySelect("select TRYCOUNT from missingpass where DEVNAME like '%Часовой' and id_bd= " + id.ToString() + " and archdate=" + OracleDate(dcur))
+                        If dtcheck.Rows.Count = 0 Then
+                            tvmain.QueryExec("insert into missingarch(id_bd,ARCHDATE,DEVNAME) values(" + id_bd.ToString + "," + OracleDate(dcur) + ",'" + NodeName + "; НУЛИ; Часовой')")
+                        Else
+                            If dtcheck.Rows(0)("TRYCOUNT") < 5 Then
+                                tvmain.QueryExec("insert into missingarch(id_bd,ARCHDATE,DEVNAME) values(" + id_bd.ToString + "," + OracleDate(dcur) + ",'" + NodeName + "; НУЛИ; Часовой')")
+                            End If
+                        End If
+
                     End If
 
                 End If
@@ -377,7 +474,15 @@ Public Class LostAnalizer
                 If ptype = 4 Then
                     dtcheck = tvmain.QuerySelect("select count(*) cnt from missingarch where DEVNAME like '%Суточный' and id_bd= " + id.ToString() + " and archdate=" + OracleDate(dcur))
                     If dtcheck.Rows(0)("cnt") = 0 Then
-                        tvmain.QueryExec("insert into missingarch(id_bd,ARCHDATE,DEVNAME) values(" + id_bd.ToString + "," + OracleDate(dcur) + ",'" + NodeName + "; НУЛИ; Суточный')")
+                        dtcheck = tvmain.QuerySelect("select TRYCOUNT from missingpass where DEVNAME like '% Суточный' and id_bd= " + id.ToString() + " and archdate=" + OracleDate(dcur))
+                        If dtcheck.Rows.Count = 0 Then
+                            tvmain.QueryExec("insert into missingarch(id_bd,ARCHDATE,DEVNAME) values(" + id_bd.ToString + "," + OracleDate(dcur) + ",'" + NodeName + "; НУЛИ; Суточный')")
+                        Else
+                            If dtcheck.Rows(0)("TRYCOUNT") < 5 Then
+                                tvmain.QueryExec("insert into missingarch(id_bd,ARCHDATE,DEVNAME) values(" + id_bd.ToString + "," + OracleDate(dcur) + ",'" + NodeName + "; НУЛИ; Суточный')")
+                            End If
+                        End If
+
                     End If
                 End If
             Next

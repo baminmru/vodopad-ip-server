@@ -1,7 +1,7 @@
 ﻿Imports System.Data
 Imports STKTVMain
 Imports System.IO.Ports
-Imports Oracle.DataAccess
+Imports System.Xml
 
 
 Public Class Caller
@@ -17,13 +17,35 @@ Public Class Caller
         Return s
     End Function
 
-    Private Sub LOG(ByVal s As String)
-        Try
-            System.IO.File.AppendAllText(GetMyDir() + "\ASSV_LOG_" + Date.Now.ToString("yyyyMMdd") + "_.txt", Date.Now.ToString("yyyy.MM.dd HH:mm:ss") + " " + s + vbCrLf)
-        Catch ex As Exception
+    Protected Shared m_LogEnabled As Boolean = False
+    Protected Shared m_Inited As Boolean = False
 
+    Protected Shared Sub CheckLog()
+        If m_Inited Then Exit Sub
+        Dim xml As XmlDocument
+        xml = New XmlDocument
+        xml.Load(GetMyDir() + "\Config.xml")
+        Dim node As XmlElement
+        node = xml.FirstChild()
+
+        Try
+            m_LogEnabled = (node.Attributes.GetNamedItem("LogEnabled").Value.ToLower() = "true")
+        Catch
+            m_LogEnabled = False
         End Try
-        Console.WriteLine(s)
+        m_Inited = True
+    End Sub
+
+    Private Sub LOG(ByVal s As String)
+        CheckLog()
+        If m_LogEnabled Then
+            Try
+                System.IO.File.AppendAllText(GetMyDir() + "\LOGS\ASSV_LOG_" + Date.Now.ToString("yyyyMMdd") + "_.txt", Date.Now.ToString("yyyy.MM.dd HH:mm:ss") + " " + s + vbCrLf)
+            Catch ex As Exception
+
+            End Try
+            Console.WriteLine(s)
+        End If
     End Sub
 
     Public Sub New()
@@ -45,17 +67,18 @@ Public Class Caller
 
         IsScanning = True
         Try
-            Dim dt As DataTable
-            Dim dt1 As DataTable
-            dt = tvmain.QuerySelect("select cphone, bdevices.id_bd from bdevices join bmodems  on bdevices.id_bd=bmodems.id_bd join plancall on bdevices.id_bd=plancall.id_bd   where transport = 5 And npquery = 1 And (dlastcall is null or dlastcall < sysdate - 1 / 24 / 2 ) and (nplock is null or nplock < sysdate)")
-            Dim i As Integer
-            For i = 0 To dt.Rows.Count - 1
-                dt1 = tvmain.QuerySelect("select cphone, bdevices.id_bd from bdevices join bmodems  on bdevices.id_bd=bmodems.id_bd join plancall on bdevices.id_bd=plancall.id_bd   where transport = 5 And npquery = 1 And (dlastcall is null or dlastcall < sysdate - 1 / 24 / 2 ) and (nplock is null or nplock < sysdate) and bdevices.id_bd=" & dt.Rows(i)("id_bd").ToString())
-                If dt1.Rows.Count > 0 Then
-                    CallASSV(dt.Rows(i)("cphone"), dt.Rows(i)("id_bd").ToString())
-                End If
+        Dim dt As DataTable
+        Dim dt1 As DataTable
+            dt = tvmain.QuerySelect("select cphone, bdevices.id_bd from bdevices join bmodems  on bdevices.id_bd=bmodems.id_bd join plancall on bdevices.id_bd=plancall.id_bd   where transport = 5 And npquery = 1 And (dlastcall is null or dlastcall < sysdate - 1 / 24 / 6 ) and (nplock is null or nplock < sysdate)  and ( (plancall.chour=1 and nvl(plancall.DNEXTHOUR,sysdate-1)<=sysdate) or (plancall.ccurr=1 and nvl(plancall.dnextcurr,sysdate-1) <=sysdate) or (plancall.c24=1 and nvl(plancall.dnext24 ,sysdate-1)<=sysdate)  or (plancall.csum=1 and nvl(plancall.dnextsum ,sysdate-1)<=sysdate) or (bdevices.id_bd in (select distinct id_bd from qlist)) or bdevices.id_bd in (select distinct id_bd from missingarch where archdate < sysdate -1 ) ) order by plancall.dlastcall desc")
+        Dim i As Integer
+        For i = 0 To dt.Rows.Count - 1
+                LOG("Processing device " + dt.Rows(i)("id_bd").ToString())
+                dt1 = tvmain.QuerySelect("select cphone, bdevices.id_bd from bdevices join bmodems  on bdevices.id_bd=bmodems.id_bd join plancall on bdevices.id_bd=plancall.id_bd   where transport = 5 And npquery = 1 And (dlastcall is null or dlastcall < sysdate - 1 / 24 / 6 )  and (nplock is null or nplock < sysdate)  and ( (plancall.chour=1 and nvl(plancall.DNEXTHOUR,sysdate-1)<=sysdate) or (plancall.ccurr=1 and nvl(plancall.dnextcurr,sysdate-1) <=sysdate) or (plancall.c24=1 and nvl(plancall.dnext24 ,sysdate-1)<=sysdate)  or (plancall.csum=1 and nvl(plancall.dnextsum ,sysdate-1)<=sysdate) or (bdevices.id_bd in (select distinct id_bd from qlist)) or bdevices.id_bd in (select distinct id_bd from missingarch where archdate < sysdate -1 ) ) and bdevices.id_bd=" & dt.Rows(i)("id_bd").ToString())
+            If dt1.Rows.Count > 0 Then
 
-            Next
+                CallASSV(dt.Rows(i)("cphone"), dt.Rows(i)("id_bd").ToString())
+            End If
+        Next
         Catch ex As Exception
 
         End Try
@@ -108,7 +131,7 @@ Public Class Caller
 
                 End Try
 
-                bufStr = bufStr.Replace(vbCrLf, " ")
+                bufStr = bufStr.Replace(vbCrLf, "")
 
                 LOG("<<wait for:" + WaitStr + "<< received:" + bufStr)
 
@@ -183,12 +206,14 @@ Public Class Caller
 
     Private Sub CallASSV(ByVal pnum As String, ByVal id As String)
         If Trim(pnum & "") = "" Then
+            LOG("Phone num is empty")
             Exit Sub
         End If
         Dim callOK As Boolean = False
         Dim portname As String
         Dim initstr As String
         tvmain.ClearDuration()
+        System.Threading.Thread.Sleep(2000)
         portname = tvmain.GetNextModem("G")
         If portname <> "" Then
             LOG("Use " & portname & vbCrLf)
@@ -210,6 +235,7 @@ Public Class Caller
                 System.Threading.Thread.Sleep(100)
                 port.RtsEnable = True
                 port.DtrEnable = True
+
                 If initstr <> "" Then
 
                    
@@ -286,7 +312,7 @@ Public Class Caller
                 WaitOK()
 
                 If callOK Then
-                    tvmain.QueryExec("update plancall set dlastcall = sysdate where id_bd=" + id)
+                    tvmain.QueryExec("update plancall set dlastcall =sysdate where id_bd=" + id)
                     tvmain.SaveLog(Integer.Parse(id), 0, portname.Replace("COM", ""), 0, "Успешный вызов АССВ " + pnum)
                 Else
                     LOG("ATH0" & vbCrLf)
@@ -304,9 +330,14 @@ Public Class Caller
                 port.RtsEnable = False
                 port.DtrEnable = False
                 port.Close()
+            Else
+                LOG("Port open error")
             End If
 
             tvmain.FreeModem()
+            LOG("Free modem")
+        Else
+            LOG("No modem found")
         End If
 
 

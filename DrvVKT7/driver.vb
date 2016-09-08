@@ -8,97 +8,95 @@ Imports System.Threading
 
 
 
-Public Structure Archive
-    Public DateArch As DateTime
-    Public HC As Int32
-    Public MsgHC As String
+'Public Structure Archive
+'    Public DateArch As DateTime
+'    Public HC As Int32
+'    Public MsgHC As String
 
-    Public HCtv1 As Long
-    Public MsgHCtv1 As String
+'    Public HCtv1 As Long
 
-    Public HCtv2 As Long
-    Public MsgHCtv2 As String
+'    Public HCtv2 As Long
 
 
-    Public MsgHC_1 As String
-    Public MsgHC_2 As String
+'    Public MsgHC_1 As String
+'    Public MsgHC_2 As String
 
-    Public G1 As Single
-    Public G2 As Single
-    Public G3 As Single
-    Public G4 As Single
-    Public G5 As Single
-    Public G6 As Single
+'    Public G1 As Single
+'    Public G2 As Single
+'    Public G3 As Single
+'    Public G4 As Single
+'    Public G5 As Single
+'    Public G6 As Single
 
-    Public t1 As Single
-    Public t2 As Single
-    Public t3 As Single
-    Public t4 As Single
-    Public t5 As Single
-    Public t6 As Single
+'    Public t1 As Single
+'    Public t2 As Single
+'    Public t3 As Single
+'    Public t4 As Single
+'    Public t5 As Single
+'    Public t6 As Single
 
-    Public p1 As Single
-    Public p2 As Single
-    Public p3 As Single
-    Public p4 As Single
-    Public p5 As Single
-
-
-    Public v1 As Single
-    Public v2 As Single
-    Public v3 As Single
-    Public v4 As Single
-    Public v5 As Single
-    Public v6 As Single
-
-    Public M1 As Single
-    Public M2 As Single
-    Public M3 As Single
-    Public M4 As Single
-    Public M5 As Single
-    Public M6 As Single
-
-    Public dt12 As Single
-    Public dt45 As Single
-
-    Public tx1 As Single
-    Public tx2 As Single
-
-    Public tair1 As Single
-    Public tair2 As Single
+'    Public p1 As Single
+'    Public p2 As Single
+'    Public p3 As Single
+'    Public p4 As Single
+'    Public p5 As Single
 
 
-    Public SPtv1 As Long
-    Public SPtv2 As Long
+'    Public v1 As Single
+'    Public v2 As Single
+'    Public v3 As Single
+'    Public v4 As Single
+'    Public v5 As Single
+'    Public v6 As Single
 
-    Public dQ1 As Single
-    Public dQ2 As Single
-    Public Q1 As Single
-    Public Q2 As Single
-    Public Q3 As Single
-    Public Q4 As Single
+'    Public M1 As Single
+'    Public M2 As Single
+'    Public M3 As Single
+'    Public M4 As Single
+'    Public M5 As Single
+'    Public M6 As Single
 
-    Public QG1 As Single
-    Public QG2 As Single
+'    Public dt12 As Single
+'    Public dt45 As Single
 
-    Public Errtime As Long
-    Public errtime1 As Int64
-    Public errtime2 As Int64
-    Public oktime1 As Int64
-    Public oktime2 As Int64
+'    Public tx1 As Single
+'    Public tx2 As Single
+
+'    Public tair1 As Single
+'    Public tair2 As Single
 
 
-    Public archType As Short
+'    Public SPtv1 As Long
+'    Public SPtv2 As Long
 
-    Public V1h As Single
-    Public V2h As Single
-    Public V3h As Single
-    Public V4h As Single
-    Public Q1H As Single
-    Public Q2H As Single
-    Public Tw1 As Single
-    Public Tw2 As Single
-End Structure
+'    Public dQ1 As Single
+'    Public dQ2 As Single
+'    Public Q1 As Single
+'    Public Q2 As Single
+'    Public Q3 As Single
+'    Public Q4 As Single
+
+'    Public Q4 As Single
+'    Public Q5 As Single
+
+'    Public Errtime As Long
+'    Public errtime1 As Int64
+'    Public errtime2 As Int64
+'    Public oktime1 As Int64
+'    Public oktime2 As Int64
+
+
+'    Public archType As Short
+
+'    Public V1h As Single
+'    Public V2h As Single
+'    Public V3h As Single
+'    Public V4h As Single
+'    Public Q1H As Single
+'    Public Q2H As Single
+'    Public Tw1 As Single
+'    Public Tw2 As Single
+'End Structure
 
 
 
@@ -125,19 +123,16 @@ Public Class driver
     Private SleepTime As Long
     Private SequenceErrorCount As Integer = 0
 
-    Dim tArch As Archive
+
     Dim IsTArchToRead As Boolean = False
     ' Dim WithEvents tim As System.Timers.Timer
 
     Dim tv As Short
 
-    Dim archType_hour = 3
-    Dim archType_day = 4
+
     Dim ActiveCount As Integer
 
 
-    Dim Arch As Archive
-    Dim mArch As Archive
 
     Dim WillCountToRead As Short = 0
     Dim IsBytesToRead As Boolean = False
@@ -288,17 +283,17 @@ Public Class driver
 
                 If Not b Is Nothing Then
                     If b.Length >= ActiveCount * 3 Then
-                    For i = 0 To ActiveCount - 1
-                        Try
-                            PropVal(ActiveElements(i)) = b(3 + i * 3)
-                        Catch ex As Exception
-                            Return False
-                        End Try
-                    Next
+                        For i = 0 To ActiveCount - 1
+                            Try
+                                PropVal(ActiveElements(i)) = b(3 + i * 3)
+                            Catch ex As Exception
+                                Return False
+                            End Try
+                        Next
                         Return True
+                    End If
                 End If
             End If
-        End If
         End If
         Return False
     End Function
@@ -337,7 +332,7 @@ Public Class driver
 
     Private m_readRAMByteCount As Short
 
-    Public Overrides Function ReadArch(ByVal ArchType As Short, ByVal ArchYear As Short, _
+    Public Overrides Function ReadArch(ByVal ArchType As Short, ByVal ArchYear As Short,
     ByVal ArchMonth As Short, ByVal ArchDay As Short, ByVal ArchHour As Short) As String
 
         Dim retsum As String
@@ -365,7 +360,7 @@ Public Class driver
             Dim checkdate As Date
 
             devdate = GetDeviceDate()
-            If SequenceErrorCount > 5 Then GoTo ArchErr
+            If SequenceErrorCount > 5 Then GoTo archErr
 
             If ArchType = archType_hour Then
                 checkdate = devdate.AddHours(-1)
@@ -394,7 +389,7 @@ Public Class driver
                         SetArchDate(dt2)
                         ok = Not IsError
                         tcnt += 1
-                        If SequenceErrorCount > 5 Then GoTo ArchErr
+                        If SequenceErrorCount > 5 Then GoTo archErr
                     End While
 
                     If IsError Then
@@ -408,7 +403,7 @@ Public Class driver
                     While Not ok And tcnt < 5
                         GetList(archType_hour)
                         ok = Not IsError
-                        If SequenceErrorCount > 5 Then GoTo ArchErr
+                        If SequenceErrorCount > 5 Then GoTo archErr
                     End While
                     If IsError Then
                         Return ErrorMessage
@@ -453,7 +448,7 @@ Public Class driver
                         SetArchDate(dt2)
                         ok = Not IsError
                         tcnt += 1
-                        If SequenceErrorCount > 5 Then GoTo ArchErr
+                        If SequenceErrorCount > 5 Then GoTo archErr
                     End While
                     If IsError Then
                         Return ErrorMessage
@@ -465,7 +460,7 @@ Public Class driver
                     While Not ok And tcnt < 5
                         GetList(archType_day)
                         ok = Not IsError
-                        If SequenceErrorCount > 5 Then GoTo ArchErr
+                        If SequenceErrorCount > 5 Then GoTo archErr
                     End While
                     If IsError Then
                         Return ErrorMessage
@@ -491,7 +486,7 @@ Public Class driver
                 EraseInputQueue()
             End While
 
-          
+
 
 
 
@@ -538,9 +533,9 @@ archErr:
 
 
 
- 
 
-    Public Function DeCodeHCNumber(ByVal CodeHC As Long) As String
+
+     Public overrides Function DeCodeHCNumber(ByVal CodeHC As Long, optional tv As Integer=0) as string
 
         Try
             If CodeHC >= 32 And CodeHC < 127 Then
@@ -554,7 +549,7 @@ archErr:
         End Try
 
     End Function
-    Public Function DeCodeHCText(ByVal CodeHC As Long) As String
+    Public overrides Function DeCodeHCText(ByVal CodeHC As Long) As String
         Try
             If CodeHC >= 32 And CodeHC < 127 Then
                 DeCodeHCText = Chr(CodeHC) + " "
@@ -568,7 +563,7 @@ archErr:
 
 
     End Function
-    Public Function DeCodeHC(ByVal CodeHC As Long) As String
+    Public overrides Function DeCodeHC(ByVal CodeHC As Long) As String
         Try
             If CodeHC >= 32 And CodeHC < 127 Then
                 DeCodeHC = Chr(CodeHC) + " "
@@ -583,147 +578,23 @@ archErr:
 
     End Function
 
-   
+
 
     Public Overrides Function WriteArchToDB() As String
-
-        'If Arch.archType <> 4 Then
-        '    Arch.DateArch = Arch.DateArch.AddSeconds(1)
-        'End If
-
-        WriteArchToDB = "INSERT INTO DATACURR(id_bd, id_ptype,DCALL,DCOUNTER,DATECOUNTER,t1,t2,t3,t4,t5,t6,tce1,tce2,tair1,tair2,p1,p2,p3,p4,v1,v2,v3,v4,v5,v6,m1,m2,m3,m4,m5,m6,dm12,V1H,V2H,V5H,V4H,q1h,q2h,sp_TB1,sp_TB2,q1,q2,q4,q5,TSUM1,TSUM2,hc,hc_code,hc_1,hc_2, oktime,oktime2,errtime,errtime2,hcraw) values ("
-        WriteArchToDB = WriteArchToDB + DeviceID.ToString() + ","
-        WriteArchToDB = WriteArchToDB + Arch.archType.ToString() + ","
-        WriteArchToDB = WriteArchToDB + "SYSDATE" + ","
-        WriteArchToDB = WriteArchToDB + OracleDate(Arch.DateArch) + ","
-        WriteArchToDB = WriteArchToDB + OracleDate(Arch.DateArch) + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.T1, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.T2, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.T3, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.T4, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.T5, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.T6, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.tx1, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.tx2, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.tair1, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.tair2, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.P1, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.P2, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.P3, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.P4, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.V1, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.V2, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.V3, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.v4, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.v5, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.v6, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.M1, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.M2, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.M3, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.M4, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.M5, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.M6, "##############0.000").Replace(",", ".") + ","
-        If Not Single.IsNaN(Arch.M1) And Not Single.IsNaN(Arch.M2) Then
-            WriteArchToDB = WriteArchToDB + NanFormat(Arch.M1 - Arch.M2, "##############0.000").Replace(",", ".") + ","
-        Else
-            WriteArchToDB = WriteArchToDB + "NULL,"
-        End If
-
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.V1h, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.V2h, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.V3h, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.V4h, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.Q1H, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.Q2H, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Arch.SPtv1.ToString + ","
-        WriteArchToDB = WriteArchToDB + Arch.SPtv2.ToString + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.Q1, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.Q2, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.QG1, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.QG2, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.Tw1, "##############0.000").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + NanFormat(Arch.Tw2, "##############0.000").Replace(",", ".") + ","
-
-        WriteArchToDB = WriteArchToDB + "'" + S180(DeCodeHCNumber(Arch.HCtv1)) + "','" + S180(Arch.MsgHC) + "',"
-        WriteArchToDB = WriteArchToDB + "'" + S180(Arch.MsgHC_1) + "','" + S180(Arch.MsgHC_2) + "',"
-        WriteArchToDB = WriteArchToDB + Format((Arch.oktime1), "##############0").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Format((Arch.oktime2), "##############0").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Format(Arch.errtime1, "##############0").Replace(",", ".") + ","
-        WriteArchToDB = WriteArchToDB + Format(Arch.errtime2, "##############0").Replace(",", ".")
-        WriteArchToDB = WriteArchToDB + ",'" + Arch.HCtv1.ToString().Replace(",", ".") + "'"
-        WriteArchToDB = WriteArchToDB + ")"
-        Debug.Print(WriteArchToDB)
-    End Function
-
-    Private Function OracleDate(ByVal d As Date) As String
-        Return "to_date('" + d.ToString("yyyy-MM-dd HH:mm:ss") + "','YYYY-MM-DD HH24:MI:SS')"
-    End Function
-    Public Overrides Function WriteMArchToDB() As String
-        WriteMArchToDB = ""
-        Try
-            WriteMArchToDB = "INSERT INTO DATACURR(id_bd, id_ptype,DCALL,DCOUNTER,DATECOUNTER,t1,t2,t3,t4,t5,t6,p1,p2,p3,p4,g1,g2,g3,g4,g5,g6,v1,v2,v3,v4,q1,q2,q3,q4,sp_TB1,sp_TB2,tce1,tce2,tair1,tair2,oktime,oktime2,ERRTIME,errtime2,hc_code,hc,hc_1,hc_2,hcraw) values ("
-            WriteMArchToDB = WriteMArchToDB + DeviceID.ToString() + ","
-            WriteMArchToDB = WriteMArchToDB + "1,"
-            WriteMArchToDB = WriteMArchToDB + "SYSDATE" + ","
-            WriteMArchToDB = WriteMArchToDB + OracleDate(mArch.DateArch) + ","
-            WriteMArchToDB = WriteMArchToDB + OracleDate(mArch.DateArch) + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.t1, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.t2, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.t3, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.t4, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.t5, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.t6, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.p1, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.p2, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.p3, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.p4, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.G1, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.G2, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.G3, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.G4, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.G5, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.G6, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.v1, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.v2, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.v3, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.v4, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.Q1, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.Q2, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.Q3, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.Q4, "##############0.000").Replace(",", ".") + ","
-
-            'WriteMArchToDB = WriteMArchToDB + Format(mArch.t1 - mArch.t2, "##############0.000").Replace(",", ".") + "," 'mArch.dt12
-            'WriteMArchToDB = WriteMArchToDB + Format(mArch.dt45, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.SPtv1.ToString + ","
-            WriteMArchToDB = WriteMArchToDB + mArch.SPtv2.ToString + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.tx1, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.tx2, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.tair1, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + NanFormat(mArch.tair2, "##############0.000").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + Format(mArch.oktime1, "##############0").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + Format(mArch.oktime2, "##############0").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + Format(mArch.errtime1, "##############0").Replace(",", ".") + ","
-            WriteMArchToDB = WriteMArchToDB + Format(mArch.errtime2, "##############0").Replace(",", ".") + ","
+        If Arch.HCtv1 = 0 Then Arch.HCtv1 = 32
+        If Arch.HCtv2 = 0 Then Arch.HCtv2 = 32
+        Return MyBase.WriteArchToDB()
 
 
-
-            WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCNumber(mArch.HC) + "','" + S180(DeCodeHCNumber(mArch.HC) + " " + DeCodeHCText(mArch.HC)) + "',"
-
-            WriteMArchToDB = WriteMArchToDB + "'" + S180(DeCodeHCNumber(mArch.HCtv1) + " " + DeCodeHCText(mArch.HCtv1)) + "',"
-            WriteMArchToDB = WriteMArchToDB + "'" + S180(DeCodeHCNumber(mArch.HCtv2) + " " + DeCodeHCText(mArch.HCtv2)) + "',"
-
-            WriteMArchToDB = WriteMArchToDB + "'" + mArch.HC.ToString().Replace(",", ".") + "'"
-
-            WriteMArchToDB = WriteMArchToDB + ")"
-        Catch
-        End Try
-        'Return WriteMArchToDB
     End Function
 
 
 
 
-     Public Overrides Sub EraseInputQueue()
+
+
+
+    Public Overrides Sub EraseInputQueue()
         If (IsBytesToRead = True) Then
             IsBytesToRead = False
         End If
@@ -731,142 +602,6 @@ archErr:
         'System.Threading.Thread.Sleep()
         MyTransport.CleanPort()
     End Sub
-
-    Private Sub cleararchive(ByRef arc As Archive)
-        arc.DateArch = DateTime.MinValue
-
-        arc.HC = 0
-        arc.MsgHC = ""
-
-        arc.HCtv1 = 0
-        arc.MsgHCtv1 = ""
-
-        arc.HCtv2 = 0
-        arc.MsgHCtv2 = ""
-
-        arc.Tw1 = Single.NaN
-        arc.Tw2 = Single.NaN
-
-        arc.p1 = Single.NaN
-        arc.t1 = Single.NaN
-        arc.M2 = Single.NaN
-        arc.v1 = Single.NaN
-
-        arc.p2 = Single.NaN
-        arc.t2 = Single.NaN
-        arc.M3 = Single.NaN
-        arc.v2 = Single.NaN
-
-        arc.v3 = Single.NaN
-        arc.M1 = Single.NaN
-
-        arc.Q1 = Single.NaN
-        arc.Q2 = Single.NaN
-        arc.Q3 = Single.NaN
-        arc.Q4 = Single.NaN
-
-        arc.QG1 = Single.NaN
-        arc.QG2 = Single.NaN
-
-
-        arc.SPtv1 = 0
-        arc.SPtv2 = 0
-
-        arc.tx1 = Single.NaN
-        arc.tx2 = Single.NaN
-        arc.tair1 = Single.NaN
-        arc.tair2 = Single.NaN
-
-        arc.t3 = Single.NaN
-        arc.t4 = Single.NaN
-        arc.t5 = Single.NaN
-        arc.t6 = Single.NaN
-        arc.p3 = Single.NaN
-        arc.p4 = Single.NaN
-        arc.v4 = Single.NaN
-        arc.v5 = Single.NaN
-        arc.v6 = Single.NaN
-        arc.M4 = Single.NaN
-        arc.M5 = Single.NaN
-        arc.M6 = Single.NaN
-
-        arc.archType = 0
-        isArchToDBWrite = False
-    End Sub
-    Private Sub clearMarchive(ByRef marc As Archive)
-        marc.DateArch = DateTime.MinValue
-        marc.HC = 0
-        marc.MsgHC = ""
-
-        marc.HCtv1 = 0
-        marc.MsgHCtv1 = ""
-
-        marc.HCtv2 = 0
-        marc.MsgHCtv2 = ""
-
-        marc.G1 = Single.NaN
-        marc.G2 = Single.NaN
-        marc.G3 = Single.NaN
-        marc.G4 = Single.NaN
-        marc.G5 = Single.NaN
-        marc.G6 = Single.NaN
-
-        marc.t1 = Single.NaN
-        marc.t2 = Single.NaN
-        marc.t3 = Single.NaN
-        marc.t4 = Single.NaN
-        marc.t5 = Single.NaN
-        marc.t6 = Single.NaN
-
-        marc.p1 = Single.NaN
-        marc.p2 = Single.NaN
-        marc.p3 = Single.NaN
-        marc.p4 = Single.NaN
-
-        marc.dt12 = Single.NaN
-        marc.dt45 = Single.NaN
-
-        marc.tx1 = Single.NaN
-        marc.tx2 = Single.NaN
-
-        marc.tair1 = Single.NaN
-        marc.tair2 = Single.NaN
-
-
-        marc.SPtv1 = 0
-        marc.SPtv2 = 0
-
-
-        marc.archType = 1
-        isMArchToDBWrite = False
-    End Sub
-
-    'Private Function ChanelToByte(ByVal ch As Byte) As Byte
-    '    '1 – первый канал,
-    '    '0 – второй канал,
-    '    '2 – холодная вода,
-    '    '4 – четвертый канал,
-    '    '3 – пятый канал.
-
-    '    Select Case ch
-    '        Case 1
-    '            Return 1
-    '        Case 2
-    '            Return 0
-    '        Case 3
-    '            Return 2
-    '        Case 4
-    '            Return 4
-    '        Case 5
-    '            Return 3
-    '        Case Else
-    '            Return ch
-    '    End Select
-    'End Function
-
-
-
-
 
 
 
@@ -965,16 +700,16 @@ archErr:
         mArch.DateArch = GetDeviceDate()
         mArch.M1 = tArch.M1
         mArch.M2 = tArch.M2
-        mArch.v1 = tArch.v1
-        mArch.v2 = tArch.v2
+        mArch.V1 = tArch.V1
+        mArch.V2 = tArch.V2
         mArch.Q1 = tArch.Q1
         mArch.Q2 = tArch.Q2
-        mArch.QG1 = tArch.QG1
-        mArch.QG2 = tArch.QG2
-        mArch.oktime1 = tArch.oktime1
-        mArch.oktime2 = tArch.oktime2
-        mArch.errtime1 = tArch.errtime1
-        mArch.errtime2 = tArch.errtime2
+        'mArch.Q4 = tArch.Q4
+        'mArch.Q5 = tArch.Q5
+        mArch.OKTIME1 = tArch.OKTIME1
+        mArch.OKTIME2 = tArch.OKTIME2
+        mArch.ERRTIME1 = tArch.ERRTIME1
+        mArch.ERRTIME2 = tArch.ERRTIME2
 
 
         Dim retsum As String
@@ -1012,36 +747,13 @@ ArchErr:
 
 
 
-    Private Sub clearTarchive(ByRef marc As Archive)
-        marc.DateArch = DateTime.MinValue
 
-
-        marc.V1 = Single.NaN
-        marc.V2 = Single.NaN
-        marc.V3 = Single.NaN
-        marc.V4 = Single.NaN
-        marc.V5 = Single.NaN
-        marc.V6 = Single.NaN
-        marc.M1 = Single.NaN
-        marc.M2 = Single.NaN
-        marc.M3 = Single.NaN
-        marc.M4 = Single.NaN
-        marc.M5 = Single.NaN
-        marc.M6 = Single.NaN
-        marc.Q1 = Single.NaN
-        marc.Q2 = Single.NaN
-        marc.TW1 = Single.NaN
-        marc.TW2 = Single.NaN
-
-        marc.archType = 2
-        isTArchToDBWrite = False
-    End Sub
 
     Public Overrides Function ReadTArch() As String
         Dim AErr As String = ""
         Dim tcnt As Integer
         Dim ok As Boolean
-        
+
         clearTarchive(tArch)
         EraseInputQueue()
         SequenceErrorCount = 0
@@ -1052,7 +764,7 @@ ArchErr:
         While Not ok And tcnt < 5
             ok = SetArchType(VKT7ArchType.AT_CurItog)
             tcnt += 1
-            If SequenceErrorCount > 5 Then GoTo ArchErr
+            If SequenceErrorCount > 5 Then GoTo archerr
         End While
 
         If IsError Then
@@ -1068,7 +780,7 @@ ArchErr:
         While Not ok And tcnt < 5
             GetList(2)
             ok = Not IsError
-            If SequenceErrorCount > 5 Then GoTo ArchErr
+            If SequenceErrorCount > 5 Then GoTo archerr
         End While
         If IsError Then
             Return ErrorMessage
@@ -1098,7 +810,7 @@ ArchErr:
 
         tArch.DateArch = GetDeviceDate()
 
-        If SequenceErrorCount > 5 Then GoTo ArchErr
+        If SequenceErrorCount > 5 Then GoTo archerr
 
 
         Dim retsum As String
@@ -1124,38 +836,38 @@ archerr:
 
     End Function
 
-    Public Overrides Function WriteTArchToDB() As String
-        WriteTArchToDB = "INSERT INTO DATACURR(id_bd,id_ptype,DCALL,DCOUNTER,DATECOUNTER,Q1H,Q2H,Q4,Q5,M1,M2,M3,M4,M5,M6,v1h,v2h,v3,v4h,v5h,v6,TSUM1,TSUM2,oktime,oktime2,ERRTIME,errtime2) values ("
-        WriteTArchToDB = WriteTArchToDB + DeviceID.ToString() + ","
-        WriteTArchToDB = WriteTArchToDB + tArch.archType.ToString() + ","
-        WriteTArchToDB = WriteTArchToDB + "SYSDATE" + ","
-        WriteTArchToDB = WriteTArchToDB + OracleDate(tArch.DateArch) + ","
-        WriteTArchToDB = WriteTArchToDB + OracleDate(tArch.DateArch) + ","
-        WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.Q1, "##############0.000").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.Q2, "##############0.000").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.QG1, "##############0.000").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.QG2, "##############0.000").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.M1, "##############0.000").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.M2, "##############0.000").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.M3, "##############0.000").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.M4, "##############0.000").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.M5, "##############0.000").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.M6, "##############0.000").Replace(",", ".") + ","
+    'Public Overrides Function WriteTArchToDB() As String
+    '    WriteTArchToDB = "INSERT INTO DATACURR(id_bd,id_ptype,DCALL,DCOUNTER,DATECOUNTER,Q1H,Q2H,Q4,Q5,M1,M2,M3,M4,M5,M6,v1h,v2h,v3,v4h,v5h,v6,TSUM1,TSUM2,oktime,oktime2,ERRTIME,errtime2) values ("
+    '    WriteTArchToDB = WriteTArchToDB + DeviceID.ToString() + ","
+    '    WriteTArchToDB = WriteTArchToDB + tArch.archType.ToString() + ","
+    '    WriteTArchToDB = WriteTArchToDB + "SYSDATE" + ","
+    '    WriteTArchToDB = WriteTArchToDB + OracleDate(tArch.DateArch) + ","
+    '    WriteTArchToDB = WriteTArchToDB + OracleDate(tArch.DateArch) + ","
+    '    WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.Q1, "##############0.000000").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.Q2, "##############0.000000").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.Q4, "##############0.000000").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.Q5, "##############0.000000").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.M1, "##############0.000000").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.M2, "##############0.000000").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.M3, "##############0.000000").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.M4, "##############0.000000").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.M5, "##############0.000000").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.M6, "##############0.000000").Replace(",", ".") + ","
 
-        WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.V1, "##############0.000").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.V2, "##############0.000").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.V3, "##############0.000").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.V4, "##############0.000").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.V5, "##############0.000").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.V6, "##############0.000").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.TW1, "##############0.000").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.TW2, "##############0.000").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + Format(tArch.oktime1, "##############0").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + Format(tArch.oktime2, "##############0").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + Format(tArch.errtime1, "##############0").Replace(",", ".") + ","
-        WriteTArchToDB = WriteTArchToDB + Format(tArch.errtime2, "##############0").Replace(",", ".")
-        WriteTArchToDB = WriteTArchToDB + ")"
-    End Function
+    '    WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.V1, "##############0.000000").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.V2, "##############0.000000").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.V3, "##############0.000000").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.V4, "##############0.000000").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.V5, "##############0.000000").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.V6, "##############0.000000").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.WORKTIME1, "##############0.000000").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + NanFormat(tArch.WORKTIME2, "##############0.000000").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.OKTIME1, "##############0").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.OKTIME2, "##############0").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.ERRTIME1, "##############0").Replace(",", ".") + ","
+    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.ERRTIME2, "##############0").Replace(",", ".")
+    '    WriteTArchToDB = WriteTArchToDB + ")"
+    'End Function
 
     Private Function ExtLong4(ByVal extStr As String) As Single
         Dim i As Long
@@ -1170,18 +882,19 @@ archerr:
         If MyTransport Is Nothing Then Return False
         Return mIsConnected And MyTransport.IsConnected
     End Function
-    Private Function S180(ByVal s As String) As String
+
+
+
+    Private Function S40(ByVal s As String) As String
 
         Dim outs As String
         outs = s
-        If outs.Length <= 180 Then
+        If outs.Length <= 40 Then
             Return outs
         End If
-        outs = outs.Substring(0, 180)
+        outs = outs.Substring(0, 40)
         Return outs
     End Function
-
-
 
 
     Private mIsError As Boolean
@@ -1826,14 +1539,16 @@ filldata:
             If NoNan Then Return 0
             Return Single.NaN
         End Try
-       
 
-       
+
+
 
     End Function
 
     Private Function TryGetElements(ByVal ElemTypes() As VKT7ElemType, ByVal elCnt As Integer, ByRef Arch As Object) As String
         IsError = False
+        Arch.MsgHC = ""
+
         SelectElements(ElemTypes, elCnt)
         Dim ElemType As VKT7ElemType
 
@@ -1884,159 +1599,176 @@ filldata:
 
 
                 If VerifySumm(b, 0, sz) Then
-                    EraseInputQueue()
+
+
                     SequenceErrorCount = 0
                     If (b(1) = &H83 Or b(1) = &H90) Then
                         IsError = True
                         ErrorMessage = "Ошибка запроса код:" & b(2)
                         Return ErrorMessage
                     End If
+                    If sz >= 4 And b(2) < sz Then
+                        EraseInputQueue()
+                        Dim z As Long
+                        Dim i As Integer
+                        Dim pSz As Integer
+                        Dim pRes As Integer
+                        Dim bQ As Byte
+                        Dim bNC As Byte
+                        Dim digs As Integer
 
-                    Dim z As ULong
-                    Dim i As Integer
-                    Dim pSz As Integer
-                    Dim pRes As Integer
-                    Dim bQ As Byte
-                    Dim bNC As Byte
-                    Dim digs As Integer
-
-                    pRes = 3
-                    For i = 0 To elCnt - 1
-                        ElemType = ElemTypes(i)
-                        sout = ""
-                        z = 0
-                        digs = 0
-                        If ElemType >= 0 Then
-                            digs = PropVal(DigMap(ElemType))
-                        End If
-                        IsError = False
-
-
-                        pSz = ElemSize(ElemType)
-                        'If pSz = 0 Then
-                        '    Debug.Print("Error")
-                        'End If
-                        bQ = b(pRes + pSz)
-                        bNC = b(pRes + pSz + 1)
-
-                        If bQ = (OPC_QUALITY_UNCERTAIN Or OPC_QUALITY_SENSOR_CAL) Then
-                            If bNC <> 0 And bNC <> 255 Then
-                                IsHC = True
-                                CurHC = bNC.ToString
+                        pRes = 3
+                        For i = 0 To elCnt - 1
+                            ElemType = ElemTypes(i)
+                            sout = ""
+                            z = 0
+                            digs = 0
+                            If ElemType >= 0 Then
+                                digs = PropVal(DigMap(ElemType))
                             End If
-                        End If
-                        If bQ = (OPC_QUALITY_BAD Or OPC_QUALITY_DEVICE_FAILURE) Then
-                            IsError = True
-                        End If
+                            IsError = False
 
-                        If bQ = (OPC_QUALITY_BAD Or OPC_QUALITY_CONFIG_ERROR) Then
-                            IsError = True
-                        End If
 
-                        If IsError = False Then
-                            If pSz = 1 Then
-                                z = b(pRes)
-                                sout = z.ToString()
+                            pSz = ElemSize(ElemType)
+                            Debug.Print(ElemType.ToString & " size=" & pSz.ToString() & "  ptr=" & pRes.ToString() & " digs=" & digs.ToString())
+                            'If pSz = 0 Then
+                            '    Debug.Print("Error")
+                            'End If
+
+                            CurHC = ""
+                            IsHC = False
+                            bQ = b(pRes + pSz)
+                            bNC = b(pRes + pSz + 1)
+
+                            If bQ = (OPC_QUALITY_UNCERTAIN Or OPC_QUALITY_SENSOR_CAL) Then
+                                If bNC <> 0 And bNC <> 255 Then
+                                    IsHC = True
+                                    CurHC = bNC.ToString
+                                End If
+                            End If
+                            If bQ = (OPC_QUALITY_BAD Or OPC_QUALITY_DEVICE_FAILURE) Then
+                                IsError = True
                             End If
 
-                            If pSz = 2 Then
-                                z = b(pRes + 1) * 256 + b(pRes)
-                                sout = SetDot(z.ToString(), digs)
+                            If bQ = (OPC_QUALITY_BAD Or OPC_QUALITY_CONFIG_ERROR) Then
+                                IsError = True
                             End If
 
+                            If IsError = False Then
+                                If pSz = 1 Then
+                                    z = b(pRes)
+                                    sout = z.ToString()
+                                End If
 
-                            If pSz = 4 Then
-                                If ElemType = VKT7ElemType.G1Type Or _
-                                   ElemType = VKT7ElemType.G2Type Or _
-                                   ElemType = VKT7ElemType.G3Type Or _
-                                   ElemType = VKT7ElemType.G1_2Type Or _
-                                   ElemType = VKT7ElemType.G2_2Type Or _
-                                   ElemType = VKT7ElemType.G3_2Type Then
-
-                                    Dim ddd As Single
-                                    ddd = BToSingle(b, pRes)
-                                    sout = ddd.ToString().Replace(",", ".")
-                                Else
-
-
-                                    z = b(pRes + 3) * 256L * 65536L + b(pRes + 2) * 65536L + b(pRes + 1) * 256L + b(pRes)
+                                If pSz = 2 Then
+                                    z = b(pRes + 1) * 256 + b(pRes)
                                     sout = SetDot(z.ToString(), digs)
                                 End If
+
+
+                                If pSz = 4 Then
+                                    If ElemType = VKT7ElemType.G1Type Or
+                                   ElemType = VKT7ElemType.G2Type Or
+                                   ElemType = VKT7ElemType.G3Type Or
+                                   ElemType = VKT7ElemType.G1_2Type Or
+                                   ElemType = VKT7ElemType.G2_2Type Or
+                                   ElemType = VKT7ElemType.G3_2Type Then
+
+                                        Dim ddd As Single
+                                        ddd = BToSingle(b, pRes)
+                                        sout = ddd.ToString().Replace(",", ".")
+                                    Else
+
+
+
+                                        Try
+                                            z = BitConverter.ToInt32(b, pRes)
+                                        Catch ex As Exception
+                                            z = b(pRes + 3) * 256L * 65536L + b(pRes + 2) * 65536L + b(pRes + 1) * 256L + b(pRes)
+                                        End Try
+
+
+                                        sout = SetDot(z.ToString(), digs)
+                                    End If
+                                End If
+
                             End If
 
-                        End If
+                            ''''  распихать по параметрам в зависимости от elementtype
+                            Try
+                                Select Case ElemType
+                                    Case VKT7ElemType.G1Type
+                                        Arch.G1 = GetValue(sout, IsError)
+                                        If IsError And lastArchType = 1 Then
+                                            AErr += "G1;"
+                                        End If
+                                        If IsHC Then
+                                            Arch.MsgHC += "G1:" + CurHC + " "
+                                        End If
 
-                        ''''  распихать по параметрам в зависимости от elementtype
-                        Try
+                                    Case VKT7ElemType.G2Type
+                                        Arch.G2 = GetValue(sout, IsError)
+                                        If IsError And lastArchType = 1 Then
+                                            AErr += "G2;"
+                                        End If
+                                        If IsHC Then
+                                            Arch.MsgHC += "G2:" + CurHC + " "
+                                        End If
 
-                        
+                                    Case VKT7ElemType.G3Type
+                                        Arch.G3 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "G3:" + CurHC + " "
+                                        End If
+                                        If IsError And lastArchType = 1 Then
+                                            AErr += "G3;"
+                                        End If
 
-                        Select Case ElemType
+                                    Case VKT7ElemType.G1_2Type
+                                        Arch.G4 = GetValue(sout, IsError)
+                                        If IsError And lastArchType = 1 Then
+                                            AErr += "G4;"
+                                        End If
+                                        If IsHC Then
+                                            Arch.MsgHC += "G4:" + CurHC + " "
+                                        End If
 
-                            Case VKT7ElemType.G1Type
-
-
-                                Arch.G1 = GetValue(sout, IsError)
-                                    If IsError And lastArchType = 1 Then
-                                        AErr += "G1;"
-                                    End If
-
-                            Case VKT7ElemType.G2Type
-
-                                Arch.G2 = GetValue(sout, IsError)
-                                    If IsError And lastArchType = 1 Then
-                                        AErr += "G2;"
-                                    End If
-
-                            Case VKT7ElemType.G3Type
-
-                                Arch.G3 = GetValue(sout, IsError)
-                                    If IsError And lastArchType = 1 Then
-                                        AErr += "G3;"
-                                    End If
-
-                            Case VKT7ElemType.G1_2Type
-
-                                Arch.G4 = GetValue(sout, IsError)
-                                    If IsError And lastArchType = 1 Then
-                                        AErr += "G4;"
-                                    End If
-
-                            Case VKT7ElemType.G2_2Type
-                                Arch.G5 = GetValue(sout, IsError)
-                                    If IsError And lastArchType = 1 Then
-                                        AErr += "G5;"
-                                    End If
-
-
-                            Case VKT7ElemType.G3_2Type
-                                Arch.G6 = GetValue(sout, IsError)
-                                    If IsError And lastArchType = 1 Then
-                                        AErr += "G6;"
-                                    End If
+                                    Case VKT7ElemType.G2_2Type
+                                        Arch.G5 = GetValue(sout, IsError)
+                                        If IsError And lastArchType = 1 Then
+                                            AErr += "G5;"
+                                        End If
+                                        If IsHC Then
+                                            Arch.MsgHC += "G5:" + CurHC + " "
+                                        End If
 
 
-                            Case VKT7ElemType.Qg_1TypeP
-                                Arch.QG1 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "QG1:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "QG1;"
-                                End If
+                                    Case VKT7ElemType.G3_2Type
+                                        Arch.G6 = GetValue(sout, IsError)
+                                        If IsError And lastArchType = 1 Then
+                                            AErr += "G6;"
+                                        End If
+                                        If IsHC Then
+                                            Arch.MsgHC += "G6:" + CurHC + " "
+                                        End If
 
+                                    Case VKT7ElemType.Qg_1TypeP
+                                        Arch.Q4 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "Q4:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "Q4;"
+                                        End If
 
-                            Case VKT7ElemType.Qg_2TypeP
-                                Arch.QG2 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "QG2:" + CurHC + " "
-                                End If
-                                If IsError Then
-
-                                        AErr += "QG2;"
-
-                                    End If
-
+                                    Case VKT7ElemType.Qg_2TypeP
+                                        Arch.Q5 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "Q5:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "Q5;"
+                                        End If
 
                             Case VKT7ElemType.M1_1Type
                                 Arch.M1 = GetValue(sout, IsError)
@@ -2044,10 +1776,7 @@ filldata:
                                     Arch.MsgHC += "M1:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "M1;"
-
-
                                     End If
 
                             Case VKT7ElemType.M2_1Type
@@ -2056,9 +1785,7 @@ filldata:
                                     Arch.MsgHC += "M2:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "M2;"
-
                                     End If
 
                             Case VKT7ElemType.M3_1Type
@@ -2067,11 +1794,8 @@ filldata:
                                     Arch.MsgHC += "M3:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "M3;"
-
                                     End If
-
 
                             Case VKT7ElemType.M1_2Type
                                 Arch.M4 = GetValue(sout, IsError)
@@ -2088,10 +1812,7 @@ filldata:
                                     Arch.MsgHC += "M5:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "M5;"
-
-
                                     End If
 
                             Case VKT7ElemType.M3_2Type
@@ -2102,7 +1823,25 @@ filldata:
                                 If IsError Then
                                         AErr += "M6;"
                                     End If
+                                    Case VKT7ElemType.Mg_2TypeP
+                                        dim mg2 as double
+                                        mg2 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "Mg2:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "Mg2;"
+                                        End If
 
+                                    Case VKT7ElemType.Mg_1TypeP
+                                        dim mg1 as double
+                                        mg1 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "Mg1:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "Mg1;"
+                                        End If
 
                             Case VKT7ElemType.V1_1Type
                                 Arch.V1 = GetValue(sout, IsError)
@@ -2110,9 +1849,7 @@ filldata:
                                     Arch.MsgHC += "V1:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "V1;"
-
                                     End If
 
                             Case VKT7ElemType.V2_1Type
@@ -2121,10 +1858,7 @@ filldata:
                                     Arch.MsgHC += "V2:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "V2;"
-
-
                                     End If
 
                             Case VKT7ElemType.V3_1Type
@@ -2133,21 +1867,16 @@ filldata:
                                     Arch.MsgHC += "V3:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "V3;"
-
                                     End If
 
                             Case VKT7ElemType.V1_2Type
-
                                 Arch.v4 = GetValue(sout, IsError)
                                 If IsHC Then
                                     Arch.MsgHC += "V4:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "V4;"
-
                                     End If
 
                             Case VKT7ElemType.V2_2Type
@@ -2156,9 +1885,7 @@ filldata:
                                     Arch.MsgHC += "V5:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "V5;"
-
                                     End If
 
                             Case VKT7ElemType.V3_2Type
@@ -2167,23 +1894,16 @@ filldata:
                                     Arch.MsgHC += "V6:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "V6;"
-
-
                                     End If
 
                             Case VKT7ElemType.Qo_1TypeP
-
                                 Arch.Q1 = GetValue(sout, IsError)
                                 If IsHC Then
                                     Arch.MsgHC += "Q1:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "Q1;"
-
-
                                     End If
 
                             Case VKT7ElemType.Qo_2TypeP
@@ -2192,11 +1912,8 @@ filldata:
                                     Arch.MsgHC += "Q2:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "Q2;"
-
                                     End If
-
 
                             Case VKT7ElemType.t1_1Type
                                 Arch.T1 = GetValue(sout, IsError)
@@ -2222,10 +1939,7 @@ filldata:
                                     Arch.MsgHC += "T3:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "T3;"
-
-
                                     End If
 
                             Case VKT7ElemType.t1_2Type
@@ -2234,10 +1948,7 @@ filldata:
                                     Arch.MsgHC += "T4:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "T4;"
-
-
                                     End If
 
                             Case VKT7ElemType.t2_2Type
@@ -2249,18 +1960,14 @@ filldata:
                                         AErr += "T5;"
                                     End If
 
-
                             Case VKT7ElemType.t3_2Type
                                 Arch.T6 = GetValue(sout, IsError)
                                 If IsHC Then
                                     Arch.MsgHC += "T6:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "T6;"
-
                                     End If
-
 
                             Case VKT7ElemType.NSPrintTypeM_1
                                 Try
@@ -2277,14 +1984,11 @@ filldata:
                                 End Try
 
                                 If IsError Then
-
                                         If Not OldVersion Then
                                             '       AErr += "HCtv2;"
                                         Else
                                             Arch.HCtv2 = 32
                                         End If
-
-
                                     End If
 
                             Case VKT7ElemType.P1_1Type
@@ -2293,77 +1997,61 @@ filldata:
                                     Arch.MsgHC += "P1:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "P1;"
-
                                     End If
 
                             Case VKT7ElemType.P2_1Type
-
                                 Arch.P2 = GetValue(sout, IsError)
                                 If IsHC Then
                                     Arch.MsgHC += "P2:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "P2;"
-
                                     End If
 
                             Case VKT7ElemType.P2_1Type
-
                                 Arch.P3 = GetValue(sout, IsError)
                                 If IsHC Then
                                     Arch.MsgHC += "P3:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "P3;"
-
-
                                     End If
 
                             Case VKT7ElemType.P2_2Type
-
                                 Arch.P4 = GetValue(sout, IsError)
                                 If IsHC Then
                                     Arch.MsgHC += "P4:" + CurHC + " "
                                 End If
                                 If IsError Then
-
                                         AErr += "P4;"
-
                                     End If
 
-
                             Case VKT7ElemType.QntType_1P
-
                                 Arch.errtime1 = GetValue(sout, IsError, True)
-                                If IsError Then
+                                    'If IsError Then
                                     'AErr += "errtime1;"
-                                End If
+                                    'End If
 
                             Case VKT7ElemType.Qnt_2TypeP
                                 Arch.errtime2 = GetValue(sout, IsError, True)
-                                If IsError Then
+                                    'If IsError Then
                                     'AErr += "errtime2;"
-                                End If
+                                    'End If
 
                             Case VKT7ElemType.QntType_1HIP
-
                                 Arch.oktime1 = GetValue(sout, IsError, True)
-                                If IsError Then
+                                    'If IsError Then
                                     'AErr += "oktime1;"
-                                End If
+                                    'End If
+
                             Case VKT7ElemType.Qnt_2TypeHIP
                                 Arch.oktime2 = GetValue(sout, IsError, True)
-                                If IsError Then
+                                    'If IsError Then
                                     'AErr += "oktime2;"
-                                End If
-
+                                    'End If
 
                             End Select
-
                         Catch ex As Exception
                             IsError = True
                             Return "Ошибка " + ex.Message
@@ -2378,6 +2066,8 @@ filldata:
                     Return AErr
 
                 End If
+                End If
+
 
         RaiseIdle()
         Thread.Sleep(CalcInterval(2))
@@ -2393,7 +2083,7 @@ filldata:
     End Function
 
 
-   
+
 
 
     Public Function Bytes2Float(ByVal fbytes() As Byte, ByVal index As Int16) As Single
@@ -2431,18 +2121,28 @@ filldata:
     End Function
 
 
-  
+        
 
 
     Private Function SetDot(ByVal S As String, ByVal dig As Integer) As String
         Dim oo As String
+        Dim sig As String
         If dig > 0 Then
+
+            If S.Substring(0, 1) = "-" Then
+                sig = "-"
+                oo = S.Substring(1)
+            Else
+                sig = ""
             oo = S
+            End If
+
+
             While Len(oo) < dig + 1
                 oo = "0" + oo
             End While
 
-            Return oo.Substring(0, oo.Length - dig) + "." + oo.Substring(oo.Length - dig, dig)
+            Return sig & oo.Substring(0, oo.Length - dig) + "." + oo.Substring(oo.Length - dig, dig)
         Else
             Return S
         End If
@@ -2702,7 +2402,7 @@ filldata:
         EraseInputQueue()
         MyTransport.Write(Frame, 0, 13)
         Thread.Sleep(200)
-      
+
         WaitForData()
 
         Dim b(4096) As Byte

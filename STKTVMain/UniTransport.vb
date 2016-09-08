@@ -1,7 +1,8 @@
 ﻿Option Explicit On
 Imports System.IO.Ports
+Imports System.Xml
 
-Public MustInherit Class TransportSetupData
+Public Class TransportSetupData
     Protected mBaudRate As Integer
     Public Overridable Property BaudRate() As Integer
         Get
@@ -33,11 +34,32 @@ Public MustInherit Class UniTransport
     Protected mCancelNow As Boolean = False
     Protected mError As String = ""
     Protected mSessionID As Guid = Guid.Empty
+    Protected Shared m_LogEnabled As Boolean = False
+    Protected Shared m_Inited As Boolean = False
+  
+    Protected Shared Sub Init()
+        If m_Inited Then Exit Sub
+        Dim xml As XmlDocument
+        xml = New XmlDocument
+        xml.Load(GetMyDir() + "\Config.xml")
+        Dim node As XmlElement
+        node = xml.FirstChild()
+
+        Try
+            m_LogEnabled = (node.Attributes.GetNamedItem("LogEnabled").Value.ToLower() = "true")
+        Catch
+            m_LogEnabled = False
+        End Try
+        m_Inited = True
+    End Sub
+
 
     Public Sub CancelNow()
         mCancelNow = True
     End Sub
 
+
+  
 
     Protected Shared Function GetMyDir() As String
         Dim s As String
@@ -46,13 +68,18 @@ Public MustInherit Class UniTransport
         Return s
     End Function
 
-    Protected Sub LOG(ByVal s As String)
-        Try
-            System.IO.File.AppendAllText(GetMyDir() + "\LOGS\" + TransportType() + "_LOG_" + Date.Now.ToString("yyyyMMdd") + "_" + SessionID + ".txt", Date.Now.ToString("yyyy.MM.dd HH:mm:ss") + " " + s + vbCrLf)
-        Catch ex As Exception
 
-        End Try
-        Console.WriteLine(s)
+
+    Protected Sub LOG(ByVal s As String)
+        Init()
+        If m_LogEnabled Then
+            Try
+                System.IO.File.AppendAllText(GetMyDir() + "\LOGS\" + TransportType() + "_LOG_" + Date.Now.ToString("yyyyMMdd") + "_" + SessionID + ".txt", Date.Now.ToString("yyyy.MM.dd HH:mm:ss") + " " + s + vbCrLf)
+            Catch ex As Exception
+
+            End Try
+            Console.WriteLine(s)
+        End If
     End Sub
 
     Public MustOverride Function TransportType() As String
@@ -70,7 +97,7 @@ Public MustInherit Class UniTransport
         End If
 
         If MSG <> "" Then
-            LOG(Action.ToString() + " " + MSG)
+        LOG(Action.ToString() + " " + MSG)
         End If
 
         RaiseEvent TransportAction(Action, MSG)
@@ -353,7 +380,7 @@ Public Class NportTransport
         OpenCount -= 1
         If OpenCount = 0 Then
             Try
-                IPSerial.nsio_end()
+            IPSerial.nsio_end()
             Catch ex As Exception
 
             End Try
@@ -839,7 +866,7 @@ Public Class ModemTransport
         Dim j As Integer
         For j = 0 To sz - 1
             If j < buf2.Length Then
-                bufStr = bufStr + Chr(buf2(j))
+            bufStr = bufStr + Chr(buf2(j))
             End If
 
         Next
@@ -889,7 +916,7 @@ Public Class ModemTransport
                 System.Threading.Thread.Sleep(1000)
                 SendIdle()
 
-
+              
 
                 System.Threading.Thread.Sleep(1000)
                 SendIdle()
@@ -1071,7 +1098,7 @@ Public Class ModemTransport
 
             If IsConnected Then
 
-
+                
                 Port.DtrEnable = True
                 Log("DTR =1")
                 System.Threading.Thread.Sleep(1000)
@@ -1168,7 +1195,7 @@ Public Class ModemTransport
         For j = 0 To i - 1
             If j < buf2.Length Then
                 Try
-                    bufStr = bufStr + Chr(buf2(j))
+            bufStr = bufStr + Chr(buf2(j))
                 Catch ex As Exception
 
                 End Try
@@ -1320,6 +1347,70 @@ Public Class VortexTransportSetupData
     End Sub
 End Class
 
+Public Class DummyTransport
+    Inherits UniTransport
+
+
+    Private mData As TransportSetupData
+
+
+    Public Sub New()
+        SendEvent(UnitransportAction.WakeUp, "")
+        mData = New TransportSetupData
+    End Sub
+
+    Protected Overrides Sub Finalize()
+
+        SendEvent(UnitransportAction.Destroy, "")
+        mData = Nothing
+    End Sub
+
+    Private Sub TryRead()
+    End Sub
+
+    Public Overrides Function BytesToRead() As Integer
+        TryRead()
+        Return 0
+    End Function
+
+    Public Overrides Function Connect() As Boolean
+        mIsConnected = True
+        SendEvent(UnitransportAction.Connected, "")
+        Return mIsConnected 
+    End Function
+
+    Public Overrides Function DisConnect() As Boolean
+        mIsConnected = False
+        Return Not mIsConnected
+    End Function
+
+    Public Overrides Function Read(ByVal buffer() As Byte, ByVal offset As Integer, ByVal count As Integer) As Integer
+        Return 0
+    End Function
+
+    Public Overrides Function SetupData() As TransportSetupData
+        Return mData
+    End Function
+
+    Public Overrides Function SetupTransport(ByRef SetupData As TransportSetupData) As Boolean
+        mData = SetupData
+    End Function
+
+    Public Overrides Function TransportType() As String
+        Return "DUMMY"
+    End Function
+
+    Public Overrides Sub Write(ByVal buffer() As Byte, ByVal offset As Integer, ByVal count As Integer, Optional ByVal NoReplay As Boolean = False)
+
+        LOG(">>w" + count.ToString)
+    End Sub
+
+    Public Overrides Sub CleanPort()
+    End Sub
+End Class
+
+
+
 Public Class VortexTransport
     Inherits UniTransport
 
@@ -1350,7 +1441,7 @@ Public Class VortexTransport
                         soc.Close()
                         SendEvent(UnitransportAction.Disconnected, "")
                     Catch ex As Exception
-                        Log(ex.Message)
+                        LOG(ex.Message)
                     End Try
                 End If
             End If
@@ -1403,7 +1494,7 @@ Public Class VortexTransport
             soc.Connect(mData.Host, mData.Port)
 
         Catch ex As System.Exception
-            Log("Connecting: " + ex.Message)
+            LOG("Connecting: " + ex.Message)
         End Try
         System.Threading.Thread.Sleep(1000)
         SendIdle()
@@ -1451,7 +1542,7 @@ Public Class VortexTransport
                 bufstr = bufstr + Chr(buf2(j))
             Next
             If bufstr <> "" Then
-                Log(">>r" + CntRead.ToString + ">>" + bufstr)
+                LOG(">>r" + CntRead.ToString + ">>" + bufstr)
             End If
         Catch ex As Exception
             'Stop
@@ -1495,7 +1586,7 @@ Public Class VortexTransport
         'For j = 0 To count - 1
         '    bufstr = bufstr + Chr(buf2(j))
         'Next
-        Log(">>w" + count.ToString) '+ ">>" + bufstr)
+        LOG(">>w" + count.ToString) '+ ">>" + bufstr)
     End Sub
 
     Public Overrides Sub CleanPort()
@@ -1504,9 +1595,11 @@ Public Class VortexTransport
 End Class
 
 
+
+
 Public Class GRPSTransportSetupData
     Inherits TransportSetupData
-
+   
     Public Sub New()
     End Sub
 End Class
@@ -1574,11 +1667,11 @@ Public Class GRPSTransport
         If tmpReadCount > 0 Then
             BytesReceived += tmpReadCount
             SendEvent(UnitransportAction.ReceiveData, "")
-            For i = 0 To tmpReadCount - 1
+                For i = 0 To tmpReadCount - 1
                 dataBuffer(DataCount) = tmpBuffer(i)
                 DataCount += 1
-            Next
-        End If
+                Next
+            End If
     End Sub
 
     'Private Sub TryRead()
@@ -1623,7 +1716,7 @@ Public Class GRPSTransport
     '        End If
     '    End If
     'End Sub
-
+   
     Public Overrides Function BytesToRead() As Integer
         TryRead()
         Return DataCount
@@ -1700,7 +1793,7 @@ Public Class GRPSTransport
         Log(">>w" + count.ToString) '+ ">>" + bufstr)
     End Sub
 
-
+    
 
     Public Overrides Sub CleanPort()
         'ReadCount = 0

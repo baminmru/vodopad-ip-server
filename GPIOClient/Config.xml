@@ -1,11 +1,15 @@
-<Config DataSource="ora11fan" 
-Oracle="//192.168.9.46:1521/ora11fan"
-UserID="counters"
-Password="counters" 
+<Config DataSource="APER3"
+Oracle="//192.168.9.36:1521/APER3.astrum.local"
+UserID="COUNTERS"
+Password="counters"
 TimeOut="1000"
 TimerInterval="1000"
-ShowHidden="true"
-        >
+RequestInterval="55000"
+ShowHidden ="false"
+LogEnabled ="true"
+SendToTGK ="false"
+AutoOpen="d"
+>
 </Config>
 
 

@@ -1,5 +1,5 @@
-<Config DataSource="29f"
-Oracle="//192.168.9.146:1521/xe"
+<Config DataSource="ORA11fan"
+Oracle="//192.168.9.46:1521/ora11fan"
 UserID="COUNTERS"
 Password="counters"
 TimeOut="1000"
@@ -10,3 +10,6 @@ SendToTGK ="true"
 AutoOpen="d"
 >
 </Config>
+
+
+

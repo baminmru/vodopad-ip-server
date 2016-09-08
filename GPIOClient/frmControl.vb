@@ -2,7 +2,7 @@
 Imports System.IO
 Imports STKTVMain
 Imports System.Data
-Imports Oracle.ManagedDataAccess.Client
+Imports Oracle.DataAccess.Client
 
 
 Public Class frmControl
@@ -81,6 +81,13 @@ Public Class frmControl
 
         cmdConnect.Enabled = True
         cmdDisconnect.Enabled = False
+
+        SetGray(lblClose1)
+        SetGray(lblClose2)
+        SetGray(lblClose3)
+        SetGray(lblOpen1)
+        SetGray(lblOpen2)
+        SetGray(lblOpen3)
     End Sub
 
 

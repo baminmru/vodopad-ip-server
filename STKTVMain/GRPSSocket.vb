@@ -1,4 +1,5 @@
 ﻿Imports System.Net.Sockets
+Imports System.Xml
 Public MustInherit Class GRPSSocket
 
 
@@ -54,23 +55,45 @@ Public MustInherit Class GRPSSocket
         Return s
     End Function
 
-    Protected Sub LOG(ByVal s As String)
 
-        Dim ep As String = ""
+    Protected Shared m_LogEnabled As Boolean = False
+    Protected Shared m_Inited As Boolean = False
 
-        If Not IPSocket Is Nothing Then
-            If IPSocket.Connected Then
-                ep = IPSocket.RemoteEndPoint.ToString()
-            End If
-
-        End If
+    Protected Shared Sub CheckLog()
+        If m_Inited Then Exit Sub
+        Dim xml As XmlDocument
+        xml = New XmlDocument
+        xml.Load(GetMyDir() + "\Config.xml")
+        Dim node As XmlElement
+        node = xml.FirstChild()
 
         Try
-            System.IO.File.AppendAllText(GetMyDir() + "\" + SocketType() + "_LOG_" + Date.Now.ToString("yyyyMMdd") + "_" + callerID + ".txt", Date.Now.ToString("yyyy.MM.dd HH:mm:ss") + " (" + ep + ") " + s + vbCrLf)
-        Catch ex As Exception
-
+            m_LogEnabled = (node.Attributes.GetNamedItem("LogEnabled").Value.ToLower() = "true")
+        Catch
+            m_LogEnabled = False
         End Try
-        Console.WriteLine(s)
+        m_Inited = True
+    End Sub
+    Protected Sub LOG(ByVal s As String)
+
+        CheckLog()
+        If m_LogEnabled Then
+            Dim ep As String = ""
+
+            If Not IPSocket Is Nothing Then
+                If IPSocket.Connected Then
+                    ep = IPSocket.RemoteEndPoint.ToString()
+                End If
+
+            End If
+
+            Try
+                System.IO.File.AppendAllText(GetMyDir() + "\LOGS\" + SocketType() + "_LOG_" + Date.Now.ToString("yyyyMMdd") + "_" + callerID + ".txt", Date.Now.ToString("yyyy.MM.dd HH:mm:ss") + " (" + ep + ") " + s + vbCrLf)
+            Catch ex As Exception
+
+            End Try
+            Console.WriteLine(s)
+        End If
     End Sub
 
     Public IPSocket As Socket
@@ -93,9 +116,9 @@ Public MustInherit Class GRPSSocket
                     mCallerID = ""
                     For i = 0 To rCnt - 1
                         If i < 8 Then
-                            If result(i) >= &H30 Then
-                                mCallerID = mCallerID + Chr(result(i))
-                            End If
+                        If result(i) >= &H30 Then
+                            mCallerID = mCallerID + Chr(result(i))
+                        End If
                         End If
 
                     Next
@@ -193,7 +216,7 @@ Public MustInherit Class GRPSSocket
 
 
         mLastError = ""
-
+       
         Dim isData As Boolean = False
         Dim sOut As String = ""
         For i = 0 To rawCount - 1
@@ -255,7 +278,7 @@ Public MustInherit Class GRPSSocket
         Dim i As Integer
         Dim outBuf() As Byte
         i = 0
-
+    
         Dim sOut As String = ""
         For i = 0 To size - 1
             sOut = sOut + " " + Hex(rawBuffer(i))
@@ -274,7 +297,7 @@ Public MustInherit Class GRPSSocket
         Return outBuf
     End Function
 
-
+    
     Public Overridable Function Connected() As Boolean
         If Not IPSocket Is Nothing Then
             Return IPSocket.Connected And HasID

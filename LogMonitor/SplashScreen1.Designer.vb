@@ -33,7 +33,7 @@ Partial Class SplashScreen1
         Me.ApplicationTitle.BackColor = System.Drawing.Color.Transparent
         Me.ApplicationTitle.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ApplicationTitle.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.ApplicationTitle.Location = New System.Drawing.Point(79, 9)
+        Me.ApplicationTitle.Location = New System.Drawing.Point(64, 82)
         Me.ApplicationTitle.Name = "ApplicationTitle"
         Me.ApplicationTitle.Size = New System.Drawing.Size(472, 42)
         Me.ApplicationTitle.TabIndex = 1
@@ -43,8 +43,8 @@ Partial Class SplashScreen1
         'Version
         '
         Me.Version.BackColor = System.Drawing.Color.Transparent
-        Me.Version.ForeColor = System.Drawing.SystemColors.GradientActiveCaption
-        Me.Version.Location = New System.Drawing.Point(469, 279)
+        Me.Version.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Version.Location = New System.Drawing.Point(414, 377)
         Me.Version.Name = "Version"
         Me.Version.Size = New System.Drawing.Size(159, 24)
         Me.Version.TabIndex = 2
@@ -56,7 +56,7 @@ Partial Class SplashScreen1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(630, 303)
+        Me.ClientSize = New System.Drawing.Size(601, 448)
         Me.ControlBox = False
         Me.Controls.Add(Me.Version)
         Me.Controls.Add(Me.ApplicationTitle)
