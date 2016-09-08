@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<opc_map>
+    <device
+      opcroot="ns=2;s=GIUSController.c5663bba-985d-444e-9e1c-92b819ffc5df"
+      curtime=""
+      serialnum=".SerialNumber"
+      model =".MeterModel"
+    />
+    <current
+      T1=".1.Current.TCW"
+      V1=".1.Current.VCW"
+      P1=".1.Current.PCW" 
+      ERR=".1.Current.ER"
+    />
+
+    <hourly
+        V1=".1.History.A101"
+		V1N=".1.History.A102"
+		P1=".1.History.A103"
+		T1=".1.History.A104"
+		ERR=".1.History.A105"
+      />
+
+      <dayly
+	     V1=".1.History.A110"
+         V1N=".1.History.A111"
+		 P1=".1.History.A112"
+		 T1=".1.History.A113"
+		 ERR=".1.History.A114"
+      />
+
+      <totals
+        V1N="1.Current.VCW"
+      />
+
+         
+
+         
+
+
+                
+</opc_map>
