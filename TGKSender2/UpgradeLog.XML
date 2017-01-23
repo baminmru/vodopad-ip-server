@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="TGKSender">
+</Property><Property Name="Solution File" Value="C:\bami\Service_2.2_oracle_provider_main\TGKSender2\TGKSender.sln">
+</Property><Property Name="User Options File" Value="C:\bami\Service_2.2_oracle_provider_main\TGKSender2\TGKSender.suo">
+</Property><Property Name="Date" Value="1 марта 2016 г.">
+</Property><Property Name="Time" Value="12:59">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="TGKSender.sln" Description="File successfully backed up as C:\bami\Service_2.2_oracle_provider_main\TGKSender2\Backup\TGKSender.sln">
+</Event><Event ErrorLevel="0" Project="" Source="TGKSender.suo" Description="File successfully backed up as C:\bami\Service_2.2_oracle_provider_main\TGKSender2\Backup\TGKSender.suo">
+</Event><Event ErrorLevel="0" Project="TGKSender" Source="TGKSender.vbproj" Description="Project file successfully backed up as C:\bami\Service_2.2_oracle_provider_main\TGKSender2\Backup\TGKSender.vbproj">
+</Event><Event ErrorLevel="0" Project="TGKSender" Source="TGKSender.vbproj.user" Description="Project user file successfully backed up as C:\bami\Service_2.2_oracle_provider_main\TGKSender2\Backup\TGKSender.vbproj.user">
+</Event><Event ErrorLevel="0" Project="TGKSender" Source="DB.vb" Description="File successfully backed up as C:\bami\Service_2.2_oracle_provider_main\TGKSender2\Backup\DB.vb">
+</Event><Event ErrorLevel="0" Project="TGKSender" Source="Module1.vb" Description="File successfully backed up as C:\bami\Service_2.2_oracle_provider_main\TGKSender2\Backup\Module1.vb">
+</Event><Event ErrorLevel="0" Project="TGKSender" Source="My Project\AssemblyInfo.vb" Description="File successfully backed up as C:\bami\Service_2.2_oracle_provider_main\TGKSender2\Backup\My Project\AssemblyInfo.vb">
+</Event><Event ErrorLevel="0" Project="TGKSender" Source="My Project\Application.Designer.vb" Description="File successfully backed up as C:\bami\Service_2.2_oracle_provider_main\TGKSender2\Backup\My Project\Application.Designer.vb">
+</Event><Event ErrorLevel="0" Project="TGKSender" Source="My Project\Resources.Designer.vb" Description="File successfully backed up as C:\bami\Service_2.2_oracle_provider_main\TGKSender2\Backup\My Project\Resources.Designer.vb">
+</Event><Event ErrorLevel="0" Project="TGKSender" Source="My Project\Settings.Designer.vb" Description="File successfully backed up as C:\bami\Service_2.2_oracle_provider_main\TGKSender2\Backup\My Project\Settings.Designer.vb">
+</Event><Event ErrorLevel="0" Project="TGKSender" Source="Sender.vb" Description="File successfully backed up as C:\bami\Service_2.2_oracle_provider_main\TGKSender2\Backup\Sender.vb">
+</Event><Event ErrorLevel="0" Project="TGKSender" Source="app.config" Description="File successfully backed up as C:\bami\Service_2.2_oracle_provider_main\TGKSender2\Backup\app.config">
+</Event><Event ErrorLevel="0" Project="TGKSender" Source="My Project\Application.myapp" Description="File successfully backed up as C:\bami\Service_2.2_oracle_provider_main\TGKSender2\Backup\My Project\Application.myapp">
+</Event><Event ErrorLevel="0" Project="TGKSender" Source="My Project\Settings.settings" Description="File successfully backed up as C:\bami\Service_2.2_oracle_provider_main\TGKSender2\Backup\My Project\Settings.settings">
+</Event><Event ErrorLevel="0" Project="TGKSender" Source="TGK.ico" Description="File successfully backed up as C:\bami\Service_2.2_oracle_provider_main\TGKSender2\Backup\TGK.ico">
+</Event><Event ErrorLevel="0" Project="TGKSender" Source="TGKSender_Config.xml" Description="File successfully backed up as C:\bami\Service_2.2_oracle_provider_main\TGKSender2\Backup\TGKSender_Config.xml">
+</Event><Event ErrorLevel="0" Project="TGKSender" Source="My Project\Resources.resx" Description="File successfully backed up as C:\bami\Service_2.2_oracle_provider_main\TGKSender2\Backup\My Project\Resources.resx">
+</Event><Event ErrorLevel="0" Project="TGKSender" Source="TGKSender.vbproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="TGKSender" Source="TGKSender.vbproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="" Source="TGKSender.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="TGKSender.sln" Description="Converted">
+</Event></UpgradeLog>

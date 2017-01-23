@@ -1,0 +1,21 @@
+C:\BAMI\Projects\TEPLO\TEPLO\DrvMT\obj\Release\ResolveAssemblyReference.cache
+C:\BAMI\Projects\TEPLO\TEPLO\DrvMT\obj\Release\DrvMT.Resources.resources
+C:\BAMI\Projects\TEPLO\TEPLO\DrvMT\obj\Release\DrvMT.vbproj.GenerateResource.Cache
+C:\LATIR\Generated\Generated Dlls\DrvMT.dll
+C:\LATIR\Generated\Generated Dlls\DrvMT.pdb
+C:\LATIR\Generated\Generated Dlls\DrvMT.xml
+C:\BAMI\Projects\TEPLO\TEPLO\DrvMT\obj\Release\DrvMT.dll
+C:\BAMI\Projects\TEPLO\TEPLO\DrvMT\obj\Release\DrvMT.xml
+C:\BAMI\Projects\TEPLO\TEPLO\DrvMT\obj\Release\DrvMT.pdb
+C:\BAMI\Projects\SZT_2009\Service_1.28\DrvMT\obj\Release\ResolveAssemblyReference.cache
+C:\BAMI\Projects\SZT_2009\Service_1.28\DrvMT\obj\Release\DrvMT.Resources.resources
+C:\BAMI\Projects\SZT_2009\Service_1.28\DrvMT\obj\Release\DrvMT.vbproj.GenerateResource.Cache
+C:\BAMI\Projects\SZT_2009\Service_1.28\DrvMT\obj\Release\DrvMT.dll
+C:\BAMI\Projects\SZT_2009\Service_1.28\DrvMT\obj\Release\DrvMT.xml
+C:\BAMI\Projects\SZT_2009\Service_1.28\DrvMT\obj\Release\DrvMT.pdb
+C:\BAMI\Projects\SZT_2010\Service_1.30\DrvMT\obj\Release\ResolveAssemblyReference.cache
+C:\BAMI\Projects\SZT_2010\Service_1.30\DrvMT\obj\Release\DrvMT.Resources.resources
+C:\BAMI\Projects\SZT_2010\Service_1.30\DrvMT\obj\Release\DrvMT.vbproj.GenerateResource.Cache
+C:\BAMI\Projects\SZT_2010\Service_1.30\DrvMT\obj\Release\DrvMT.dll
+C:\BAMI\Projects\SZT_2010\Service_1.30\DrvMT\obj\Release\DrvMT.xml
+C:\BAMI\Projects\SZT_2010\Service_1.30\DrvMT\obj\Release\DrvMT.pdb

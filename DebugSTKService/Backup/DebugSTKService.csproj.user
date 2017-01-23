@@ -1,0 +1,10 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <StartWorkingDirectory>C:\BAMI\Projects\SZT\Service_1.20\DebugSTKService\bin\Debug\</StartWorkingDirectory>
+    <StartAction>Project</StartAction>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <StartWorkingDirectory>C:\BAMI\Projects\SZT\Service_1.18\STKService\bin\Release\</StartWorkingDirectory>
+    <StartAction>Project</StartAction>
+  </PropertyGroup>
+</Project>

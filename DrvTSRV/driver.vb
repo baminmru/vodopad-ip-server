@@ -2085,42 +2085,7 @@ READMORE:
         Return "Итоговый архив прочитан"
     End Function
 
-    'Public Overrides Function WriteTArchToDB() As String
-    '    WriteTArchToDB = "INSERT INTO DATACURR(id_bd,id_ptype,DCALL,DCOUNTER,DATECOUNTER,Q1,Q2,Q3,Q4,Q5,Q1H,M1,M2,M3,M4,M5,M6,v1,v2,v3,v4,v5,v6,TSUM1,TSUM2,worktime,ERRTIME) values ("
-    '    WriteTArchToDB = WriteTArchToDB + DeviceID.ToString() + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.archType.ToString() + ","
-    '    WriteTArchToDB = WriteTArchToDB + "SYSDATE" + ","
-    '    WriteTArchToDB = WriteTArchToDB + OracleDate(tArch.DateArch) + ","
-    '    WriteTArchToDB = WriteTArchToDB + OracleDate(tArch.DateArch) + ","
 
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.Q1, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.Q2, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.Q3, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.Q4, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.Q5, "##############0.000000").Replace(",", ".") + ","
-
-    '    WriteTArchToDB = WriteTArchToDB + Format(0.0, "##############0.000000").Replace(",", ".") + ","
-
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.M1, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.M2, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.M3, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.V4, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.V5, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.V6, "##############0.000000").Replace(",", ".") + ","
-
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.V1, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.V2, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.V3, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.V4, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.V5, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.V6, "##############0.000000").Replace(",", ".") + ","
-
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.WORKTIME1, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.WORKTIME2, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.OKTIME1, "##############0").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.ERRTIME1, "##############0").Replace(",", ".")
-    '    WriteTArchToDB = WriteTArchToDB + ")"
-    'End Function
 
     Private Function ExtLong4(ByVal extStr As String) As Double
         Dim i As Long

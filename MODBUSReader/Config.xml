@@ -1,0 +1,18 @@
+<Config DataSource="ora" 
+Oracle="//localhost:1521/ora"
+UserID="COUNTERS"
+Password="counters" 
+TimeOut="1000"
+TimerInterval="1000"
+RequestInterval="5000"
+ShowHidden ="false"
+LogEnabled ="true"
+SendToTGK ="false"
+AutoOpen="d"
+SetupGrid="true"
+>
+</Config>
+
+
+
+        

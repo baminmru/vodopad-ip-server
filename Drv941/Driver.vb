@@ -1685,112 +1685,7 @@ finalRet:
 
 
 
-    'Public Overrides Function WriteArchToDB() As String
-    '    WriteArchToDB = "INSERT INTO " & DBTableName & "(id_bd,DCALL,DCOUNTER,DATECOUNTER,id_ptype,t1,t2,t4,t5,p1,p2,p3,p4,v1,v2,v3,v4,v5,v6,m1,m2,m3,m4,m5,m6,sp_TB1,sp_TB2,q1,q2,TSUM1,TSUM2,hc_code,hc,hc_1,hc_2,hcraw,hcraw1,hcraw2) values ("
-    '    WriteArchToDB = WriteArchToDB + DeviceID.ToString() + ","
-    '    WriteArchToDB = WriteArchToDB + "SYSDATE" + ","
-    '    WriteArchToDB = WriteArchToDB + OracleDate(Arch.DateArch) + ","
-    '    WriteArchToDB = WriteArchToDB + OracleDate(Arch.DateArch) + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.archType.ToString + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.T1.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.T2.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.T3.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.T4.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.P1.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.P2.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.P3.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.P4.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.V1.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.V2.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.V3.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.v4.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.v5.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.v6.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.M1.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.M2.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.M3.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.M4.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.M5.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.M6.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.SPtv1.ToString + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.SPtv2.ToString + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.Q1.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.Q2.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.WORKTIME1.ToString.Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.WORKTIME2.ToString.Replace(",", ".") + ","
 
-    '    If DeCodeHCNumber(Arch.HCtv1, 1) = "" And DeCodeHCNumber(Arch.HCtv2, 2) = "" Then
-    '        WriteArchToDB = WriteArchToDB + "'-','Нет НС',"
-    '    ElseIf DeCodeHCNumber(Arch.HCtv1, 1) = "" Then
-    '        WriteArchToDB = WriteArchToDB + "'" + DeCodeHCNumber(Arch.HCtv2, 2) + "','" + S180("Счетчик: кан2:" + DeCodeHCText(Arch.HCtv2)) + "',"
-    '    ElseIf DeCodeHCNumber(Arch.HCtv2, 2) = "" Then
-    '        WriteArchToDB = WriteArchToDB + "'" + DeCodeHCNumber(Arch.HCtv1, 1) + "','" + S180("Счетчик: кан1:" + DeCodeHCText(Arch.HCtv1)) + "',"
-    '    Else
-    '        WriteArchToDB = WriteArchToDB + "'" + DeCodeHCNumber(Arch.HCtv1, 1) + DeCodeHCNumber(Arch.HCtv2, 2) + "','" + S180("Счетчик: кан1:" + DeCodeHCText(Arch.HCtv1) + "кан2:" + DeCodeHCText(Arch.HCtv2)) + "',"
-    '    End If
-
-    '    WriteArchToDB = WriteArchToDB + "'" + DeCodeHCText(Arch.HCtv1) + "',"
-    '    WriteArchToDB = WriteArchToDB + "'" + DeCodeHCText(Arch.HCtv2) + "',"
-
-    '    WriteArchToDB = WriteArchToDB + "'" + DeCodeHCRaw(Arch.HC) + "'" + ","
-    '    WriteArchToDB = WriteArchToDB + "'" + DeCodeHCRaw(Arch.HCtv1) + "'" + ","
-    '    WriteArchToDB = WriteArchToDB + "'" + DeCodeHCRaw(Arch.HCtv2) + "'"
-    '    WriteArchToDB = WriteArchToDB + ")"
-
-    'End Function
-
-
-
-    'Public Overrides Function WriteMArchToDB() As String
-    '    WriteMArchToDB = "INSERT INTO " & DBTableName & "(id_bd,DCALL,DCOUNTER,DATECOUNTER,id_ptype,t1,t2,t4,t5,p1,p2,p3,p4,g1,g2,g3,g4,g5,g6,dt12,dt45,sp_TB1,sp_TB2,hc_code,hc,hc_1,hc_2,hcraw,hcraw1,hcraw2) values ("
-    '    WriteMArchToDB = WriteMArchToDB + DeviceID.ToString() + ","
-    '    WriteMArchToDB = WriteMArchToDB + "SYSDATE" + ","
-    '    WriteMArchToDB = WriteMArchToDB + OracleDate(mArch.DateArch) + ","
-    '    WriteMArchToDB = WriteMArchToDB + OracleDate(mArch.DateArch) + ","
-    '    WriteMArchToDB = WriteMArchToDB + mArch.archType.ToString + ","
-    '    WriteMArchToDB = WriteMArchToDB + mArch.t1.ToString.Replace(",", ".") + ","
-    '    WriteMArchToDB = WriteMArchToDB + mArch.t2.ToString.Replace(",", ".") + ","
-    '    WriteMArchToDB = WriteMArchToDB + mArch.t4.ToString.Replace(",", ".") + ","
-    '    WriteMArchToDB = WriteMArchToDB + mArch.t5.ToString.Replace(",", ".") + ","
-    '    WriteMArchToDB = WriteMArchToDB + mArch.p1.ToString.Replace(",", ".") + ","
-    '    WriteMArchToDB = WriteMArchToDB + mArch.p2.ToString.Replace(",", ".") + ","
-    '    WriteMArchToDB = WriteMArchToDB + mArch.p3.ToString.Replace(",", ".") + ","
-    '    WriteMArchToDB = WriteMArchToDB + mArch.p4.ToString.Replace(",", ".") + ","
-    '    WriteMArchToDB = WriteMArchToDB + mArch.G1.ToString.Replace(",", ".") + ","
-    '    WriteMArchToDB = WriteMArchToDB + mArch.G2.ToString.Replace(",", ".") + ","
-    '    WriteMArchToDB = WriteMArchToDB + mArch.G3.ToString.Replace(",", ".") + ","
-    '    WriteMArchToDB = WriteMArchToDB + mArch.G4.ToString.Replace(",", ".") + ","
-    '    WriteMArchToDB = WriteMArchToDB + mArch.G5.ToString.Replace(",", ".") + ","
-    '    WriteMArchToDB = WriteMArchToDB + mArch.G6.ToString.Replace(",", ".") + ","
-
-    '    ' проблема с вычислением dt 
-    '    WriteMArchToDB = WriteMArchToDB + "null, null,"
-    '    'WriteMArchToDB = WriteMArchToDB + mArch.dt12.ToString.Replace(",", ".") + ","
-    '    'WriteMArchToDB = WriteMArchToDB + mArch.dt45.ToString.Replace(",", ".") + ","
-
-
-    '    WriteMArchToDB = WriteMArchToDB + mArch.SPtv1.ToString + ","
-    '    WriteMArchToDB = WriteMArchToDB + mArch.SPtv2.ToString + ","
-    '    'WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCNumber(mArch.HCtv1, 1) + ";" + DeCodeHCNumber(mArch.HCtv2, 2) + "',"
-
-
-    '    If DeCodeHCNumber(mArch.HCtv1, 1) = "" And DeCodeHCNumber(mArch.HCtv2, 2) = "" Then
-    '        WriteMArchToDB = WriteMArchToDB + "'-','Нет НС',"
-    '    ElseIf DeCodeHCNumber(mArch.HCtv1, 1) = "" Then
-    '        WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCNumber(mArch.HCtv2, 2) + "','" + S180("Счетчик: кан2:" + DeCodeHCText(mArch.HCtv2)) + "',"
-    '    ElseIf DeCodeHCNumber(mArch.HCtv2, 2) = "" Then
-    '        WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCNumber(mArch.HCtv1, 1) + "','" + S180("Счетчик: кан1:" + DeCodeHCText(mArch.HCtv1)) + "',"
-    '    Else
-    '        WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCNumber(mArch.HCtv1, 1) + DeCodeHCNumber(mArch.HCtv2, 2) + "','" + S180("Счетчик: кан1:" + DeCodeHCText(mArch.HCtv1) + "кан2:" + DeCodeHCText(mArch.HCtv2)) + "',"
-    '    End If
-
-    '    WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCText(mArch.HCtv1) + "',"
-    '    WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCText(mArch.HCtv2) + "',"
-    '    WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCRaw(mArch.HC) + "'" + ","
-    '    WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCRaw(mArch.HCtv1) + "'" + ","
-    '    WriteMArchToDB = WriteMArchToDB + "'" + DeCodeHCRaw(mArch.HCtv2) + "'"
-    '    WriteMArchToDB = WriteMArchToDB + ")"
-    'End Function
 
 
 
@@ -2046,32 +1941,6 @@ finalRet:
         Return "Тотальный архив прочитан"
     End Function
 
-    'Public Overrides Function WriteTArchToDB() As String
-    '    WriteTArchToDB = "INSERT INTO " & DBTableName & "(id_bd,DCALL,DCOUNTER,DATECOUNTER,id_ptype,Q1,Q2,M1,M2,M3,M4,M5,M6,v1,v2,v3,v4,v5,v6,TSUM1,TSUM2) values ("
-    '    WriteTArchToDB = WriteTArchToDB + DeviceID.ToString() + ","
-    '    WriteTArchToDB = WriteTArchToDB + "SYSDATE" + ","
-    '    WriteTArchToDB = WriteTArchToDB + OracleDate(tArch.DateArch) + ","
-    '    WriteTArchToDB = WriteTArchToDB + OracleDate(tArch.DateArch) + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.archType.ToString + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.Q1.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.Q2.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.M1.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.M2.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.M3.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.M4.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.M5.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.M6.ToString.Replace(",", ".") + ","
-
-    '    WriteTArchToDB = WriteTArchToDB + tArch.V1.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.V2.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.V3.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.V4.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.V5.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.V6.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.WORKTIME1.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.WORKTIME2.ToString.Replace(",", ".")
-    '    WriteTArchToDB = WriteTArchToDB + ")"
-    'End Function
 
 
 

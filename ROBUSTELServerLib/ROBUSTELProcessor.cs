@@ -538,7 +538,7 @@ namespace ROBUSTELServer
                                             if (TvMain.TVD.isTArchToDBWrite)
                                             {
                                                 TvMain.SaveLog(id_bdc, archType_moment, "??", 1, "Итоговый архив " + ":OK");
-                                                TvMain.WriteTArchToDB();
+                                                TvMain.WriteTArchtoDB();
                                                 SequenceErrorCount = 0;
                                             }
                                             tempdate = ddd;

@@ -1,0 +1,112 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{31F1FC49-6DD4-41D9-9975-366FF8FFCA9C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>STKService</RootNamespace>
+    <AssemblyName>STKService</AssemblyName>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LogInfo.cs" />
+    <Compile Include="STKInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="STKInstaller.Designer.cs">
+      <DependentUpon>STKInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="STKService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="STKService.Designer.cs">
+      <DependentUpon>STKService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="STKInstaller.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>STKInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="STKService.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>STKService.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LogInfo.Designer.cs">
+      <DependentUpon>LogInfo.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="LogInfo.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>LogInfo.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Drv942\Drv942.vbproj">
+      <Project>{314AE99B-0044-4C10-AD42-4A0F9006D63B}</Project>
+      <Name>Drv942</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Drv943\Drv943.vbproj">
+      <Project>{C815653B-CE5F-4A86-AC55-123AE1FC0B81}</Project>
+      <Name>Drv943</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvEmul\DrvEmul.vbproj">
+      <Project>{B0A31E54-AD78-4681-81DC-02E23941DE46}</Project>
+      <Name>DrvEmul</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STKTVMain\STKTVMain.vbproj">
+      <Project>{0C7D9D95-1165-4C46-8346-748E4D276CFD}</Project>
+      <Name>STKTVMain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

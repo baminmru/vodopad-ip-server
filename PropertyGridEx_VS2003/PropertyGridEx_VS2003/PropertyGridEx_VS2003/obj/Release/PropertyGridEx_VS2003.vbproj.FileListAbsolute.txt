@@ -1,0 +1,8 @@
+C:\bami\PropertyGridEx_VS2003\PropertyGridEx_VS2003\PropertyGridEx_VS2003\bin\PropertyGridEx.dll
+C:\bami\PropertyGridEx_VS2003\PropertyGridEx_VS2003\PropertyGridEx_VS2003\bin\PropertyGridEx.xml
+C:\bami\PropertyGridEx_VS2003\PropertyGridEx_VS2003\PropertyGridEx_VS2003\obj\Release\ResolveAssemblyReference.cache
+C:\bami\PropertyGridEx_VS2003\PropertyGridEx_VS2003\PropertyGridEx_VS2003\obj\Release\PropertyGridEx.PropertyGridEx.PropertyGridEx.resources
+C:\bami\PropertyGridEx_VS2003\PropertyGridEx_VS2003\PropertyGridEx_VS2003\obj\Release\GenerateResource-ResGen.read.1.tlog
+C:\bami\PropertyGridEx_VS2003\PropertyGridEx_VS2003\PropertyGridEx_VS2003\obj\Release\GenerateResource-ResGen.write.1.tlog
+C:\bami\PropertyGridEx_VS2003\PropertyGridEx_VS2003\PropertyGridEx_VS2003\obj\Release\PropertyGridEx.dll
+C:\bami\PropertyGridEx_VS2003\PropertyGridEx_VS2003\PropertyGridEx_VS2003\obj\Release\PropertyGridEx.xml

@@ -1,0 +1,14 @@
+C:\bami\Service_2.2_oracle_provider\DrvVKT5\bin\Debug\DrvVKT5.dll
+C:\bami\Service_2.2_oracle_provider\DrvVKT5\bin\Debug\DrvVKT5.pdb
+C:\bami\Service_2.2_oracle_provider\DrvVKT5\bin\Debug\DrvVKT5.xml
+C:\bami\Service_2.2_oracle_provider\DrvVKT5\bin\Debug\STKTVMain.dll
+C:\bami\Service_2.2_oracle_provider\DrvVKT5\bin\Debug\Oracle.DataAccess.dll
+C:\bami\Service_2.2_oracle_provider\DrvVKT5\bin\Debug\STKTVMain.pdb
+C:\bami\Service_2.2_oracle_provider\DrvVKT5\bin\Debug\STKTVMain.xml
+C:\bami\Service_2.2_oracle_provider\DrvVKT5\obj\Debug\ResolveAssemblyReference.cache
+C:\bami\Service_2.2_oracle_provider\DrvVKT5\obj\Debug\DrvVKT5.Resources.resources
+C:\bami\Service_2.2_oracle_provider\DrvVKT5\obj\Debug\GenerateResource.read.1.tlog
+C:\bami\Service_2.2_oracle_provider\DrvVKT5\obj\Debug\GenerateResource.write.1.tlog
+C:\bami\Service_2.2_oracle_provider\DrvVKT5\obj\Debug\DrvVKT5.dll
+C:\bami\Service_2.2_oracle_provider\DrvVKT5\obj\Debug\DrvVKT5.xml
+C:\bami\Service_2.2_oracle_provider\DrvVKT5\obj\Debug\DrvVKT5.pdb

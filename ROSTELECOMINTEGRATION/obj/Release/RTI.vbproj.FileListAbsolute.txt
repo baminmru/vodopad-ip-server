@@ -1,0 +1,14 @@
+C:\bami\Service_2.2_oracle_provider\ROSTELECOMINTEGRATION\bin\Release\RTI_Config.xml
+C:\bami\Service_2.2_oracle_provider\ROSTELECOMINTEGRATION\bin\Release\RTI.exe.config
+C:\bami\Service_2.2_oracle_provider\ROSTELECOMINTEGRATION\bin\Release\RTI.exe
+C:\bami\Service_2.2_oracle_provider\ROSTELECOMINTEGRATION\bin\Release\RTI.XmlSerializers.dll
+C:\bami\Service_2.2_oracle_provider\ROSTELECOMINTEGRATION\bin\Release\RTI.pdb
+C:\bami\Service_2.2_oracle_provider\ROSTELECOMINTEGRATION\bin\Release\RTI.xml
+C:\bami\Service_2.2_oracle_provider\ROSTELECOMINTEGRATION\obj\Release\ResolveAssemblyReference.cache
+C:\bami\Service_2.2_oracle_provider\ROSTELECOMINTEGRATION\obj\Release\ROSTELECOMINTEGRATION.Resources.resources
+C:\bami\Service_2.2_oracle_provider\ROSTELECOMINTEGRATION\obj\Release\GenerateResource.read.1.tlog
+C:\bami\Service_2.2_oracle_provider\ROSTELECOMINTEGRATION\obj\Release\GenerateResource.write.1.tlog
+C:\bami\Service_2.2_oracle_provider\ROSTELECOMINTEGRATION\obj\Release\RTI.exe
+C:\bami\Service_2.2_oracle_provider\ROSTELECOMINTEGRATION\obj\Release\RTI.xml
+C:\bami\Service_2.2_oracle_provider\ROSTELECOMINTEGRATION\obj\Release\RTI.pdb
+C:\bami\Service_2.2_oracle_provider\ROSTELECOMINTEGRATION\obj\Release\RTI.XmlSerializers.dll

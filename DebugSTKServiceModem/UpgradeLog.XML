@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="STKService">
+</Property><Property Name="Solution File" Value="C:\BAMI\Projects\SZT\Service_1.23\DebugSTKService\STKService.sln">
+</Property><Property Name="User Options File" Value="C:\BAMI\Projects\SZT\Service_1.23\DebugSTKService\STKService.suo">
+</Property><Property Name="Date" Value="21 августа 2008 г.">
+</Property><Property Name="Time" Value="14:35">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="STKService.sln" Description="File successfully backed up as C:\BAMI\Projects\SZT\Service_1.23\DebugSTKService\Backup\STKService.sln">
+</Event><Event ErrorLevel="0" Project="" Source="STKService.suo" Description="File successfully backed up as C:\BAMI\Projects\SZT\Service_1.23\DebugSTKService\Backup\STKService.suo">
+</Event><Event ErrorLevel="0" Project="DebugSTKService" Source="DebugSTKService.csproj" Description="Project file successfully backed up as C:\BAMI\Projects\SZT\Service_1.23\DebugSTKService\Backup\DebugSTKService.csproj">
+</Event><Event ErrorLevel="0" Project="DebugSTKService" Source="DebugSTKService.csproj.user" Description="Project user file successfully backed up as C:\BAMI\Projects\SZT\Service_1.23\DebugSTKService\Backup\DebugSTKService.csproj.user">
+</Event><Event ErrorLevel="0" Project="DebugSTKService" Source="LogInfo.cs" Description="File successfully backed up as C:\BAMI\Projects\SZT\Service_1.23\DebugSTKService\Backup\LogInfo.cs">
+</Event><Event ErrorLevel="0" Project="DebugSTKService" Source="STKInstaller.cs" Description="File successfully backed up as C:\BAMI\Projects\SZT\Service_1.23\DebugSTKService\Backup\STKInstaller.cs">
+</Event><Event ErrorLevel="0" Project="DebugSTKService" Source="STKInstaller.Designer.cs" Description="File successfully backed up as C:\BAMI\Projects\SZT\Service_1.23\DebugSTKService\Backup\STKInstaller.Designer.cs">
+</Event><Event ErrorLevel="0" Project="DebugSTKService" Source="STKService.cs" Description="File successfully backed up as C:\BAMI\Projects\SZT\Service_1.23\DebugSTKService\Backup\STKService.cs">
+</Event><Event ErrorLevel="0" Project="DebugSTKService" Source="STKService.Designer.cs" Description="File successfully backed up as C:\BAMI\Projects\SZT\Service_1.23\DebugSTKService\Backup\STKService.Designer.cs">
+</Event><Event ErrorLevel="0" Project="DebugSTKService" Source="Program.cs" Description="File successfully backed up as C:\BAMI\Projects\SZT\Service_1.23\DebugSTKService\Backup\Program.cs">
+</Event><Event ErrorLevel="0" Project="DebugSTKService" Source="Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\BAMI\Projects\SZT\Service_1.23\DebugSTKService\Backup\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="DebugSTKService" Source="LogInfo.Designer.cs" Description="File successfully backed up as C:\BAMI\Projects\SZT\Service_1.23\DebugSTKService\Backup\LogInfo.Designer.cs">
+</Event><Event ErrorLevel="0" Project="DebugSTKService" Source="app.config" Description="File successfully backed up as C:\BAMI\Projects\SZT\Service_1.23\DebugSTKService\Backup\app.config">
+</Event><Event ErrorLevel="0" Project="DebugSTKService" Source="LogInfo.settings" Description="File successfully backed up as C:\BAMI\Projects\SZT\Service_1.23\DebugSTKService\Backup\LogInfo.settings">
+</Event><Event ErrorLevel="0" Project="DebugSTKService" Source="STKInstaller.resx" Description="File successfully backed up as C:\BAMI\Projects\SZT\Service_1.23\DebugSTKService\Backup\STKInstaller.resx">
+</Event><Event ErrorLevel="0" Project="DebugSTKService" Source="STKService.resx" Description="File successfully backed up as C:\BAMI\Projects\SZT\Service_1.23\DebugSTKService\Backup\STKService.resx">
+</Event><Event ErrorLevel="0" Project="DebugSTKService" Source="DebugSTKService.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="DebugSTKService" Source="DebugSTKService.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="" Source="STKService.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="STKService.sln" Description="Converted">
+</Event></UpgradeLog>

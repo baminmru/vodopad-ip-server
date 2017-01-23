@@ -67,14 +67,16 @@ namespace STKService
         private int ActiveThreadsCount()
         {
             int Count = 0;
+            ThreadObj tt;
 
-            for (int i = 0; i < Threads.Count; i++)
+            foreach (var pair in Threads)
             {
-                if (Threads[i].Process.HasExited == true || Threads[i].Process.StartTime.AddMinutes(30) <= DateTime.Now)
+                tt = pair.Value;
+                if (tt.Process.HasExited == true || tt.Process.StartTime.AddMinutes(30) <= DateTime.Now)
                 {
                     try
                     {
-                        Threads[id_bd].Process.Kill();
+                        tt.Process.Kill();
                     }
                     catch
                     {
@@ -86,7 +88,9 @@ namespace STKService
                 {
                     Count++;
                 }
+
             }
+
             return Count;
 
 
@@ -107,7 +111,7 @@ namespace STKService
             AnalizerTime = AnalizerTime.AddMinutes(10);
 
             DataRow dr;
-            int ModemCount = 0;
+            int ModemCount =20;
             bool bLogged = false;
             do
             {
@@ -191,6 +195,7 @@ namespace STKService
                                     {
                                         dr = oRS.Rows[i];
                                         id_bd = Convert.ToInt32(dr["id_bd"].ToString());
+                                        InfoReport(id_bd.ToString());
                                         if (!Threads.ContainsKey(id_bd))
                                         {
 
@@ -212,13 +217,15 @@ namespace STKService
                                         }
                                         else
                                         {
-                                            if (Threads[id_bd].Process.HasExited == true || Threads[id_bd].Process.StartTime.AddMinutes(15) <= DateTime.Now)
+                                            if (Threads[id_bd].Process.HasExited == true || Threads[id_bd].Process.StartTime.AddMinutes(1) <= DateTime.Now)
                                             {
                                                 // инициализируем процесс еще раз
                                                 // сначала убиваем процесс
                                                 try
                                                 {
-                                                    Threads[id_bd].Process.Kill();
+                                                    if (Threads[id_bd].Process.HasExited==false)
+                                                        Threads[id_bd].Process.Kill();
+
                                                 }
                                                 catch
                                                 {
@@ -248,7 +255,7 @@ namespace STKService
                                     {
                                         ErrorReport("Thread " + id_bd.ToString() + " error:" + Ex.Message);
                                     }
-                                    Thread.Sleep(8000);  // wait for modem pull locking
+                                    Thread.Sleep(1000);  // wait for modem pull locking
                                 }
                             } // зершение цикла по активным устройствам 
 

@@ -1,5 +1,5 @@
-<Config  DataSource="APER3" 
-Oracle="//192.168.9.36:1521/APER3.astrum.local" 
+<Config  DataSource="ORA" 
+Oracle="//127.0.0.1:1521/ORA" 
 UserID="COUNTERS"
 Password="counters" 
 TimeOut="1000"

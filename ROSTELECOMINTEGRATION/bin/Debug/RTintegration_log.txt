@@ -1,0 +1,363 @@
+Start at 19.04.2013 16:40
+Error
+Data is not valid according to scheme "http://asenm.rt.ru//schemes/Cae020_v1.xsd". Reason: Element '{http://caesber.ru/schemes/Cae020_v1}value': '-' is not a valid value of the atomic type 'xs:float'., Element '{http://caesber.ru/schemes/Cae020_v1}value': '-' is not a valid value of the atomic type 'xs:float'.
+Error
+Data is not valid according to scheme "http://asenm.rt.ru//schemes/Cae020_v1.xsd". Reason: Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period ).
+Error
+Data is not valid according to scheme "http://asenm.rt.ru//schemes/Cae020_v1.xsd". Reason: Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period ).
+Error
+Data is not valid according to scheme "http://asenm.rt.ru//schemes/Cae020_v1.xsd". Reason: Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period ).
+Error
+Data is not valid according to scheme "http://asenm.rt.ru//schemes/Cae020_v1.xsd". Reason: Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period ).
+Error
+Data is not valid according to scheme "http://asenm.rt.ru//schemes/Cae020_v1.xsd". Reason: Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period ).
+Error
+Data is not valid according to scheme "http://asenm.rt.ru//schemes/Cae020_v1.xsd". Reason: Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period ).
+Error
+Data is not valid according to scheme "http://asenm.rt.ru//schemes/Cae020_v1.xsd". Reason: Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period ).
+Error
+Data is not valid according to scheme "http://asenm.rt.ru//schemes/Cae020_v1.xsd". Reason: Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period ).
+Error
+Data is not valid according to scheme "http://asenm.rt.ru//schemes/Cae020_v1.xsd". Reason: Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period ).
+OK
+OK
+OK
+Error
+Data is not valid according to scheme "http://asenm.rt.ru//schemes/Cae020_v1.xsd". Reason: Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period ).
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+Error
+Data is not valid according to scheme "http://asenm.rt.ru//schemes/Cae020_v1.xsd". Reason: Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period )., Element '{http://caesber.ru/schemes/Cae020_v1}measuringchannel': Missing child element(s). Expected is ( {http://caesber.ru/schemes/Cae020_v1}period ).
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+Stop at 19.04.2013 16:42
+Start at 19.04.2013 16:48
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+Stop at 19.04.2013 16:49
+Start at 30.05.2013 14:04
+Start at 30.05.2013 14:16
+Отслаем файл :\\fantom\database\utl\20130410_101.xml
+Размер файла :22957
+OK
+Отслаем файл :\\fantom\database\utl\20130410_108.xml
+Размер файла :23048
+OK
+Отслаем файл :\\fantom\database\utl\20130410_113.xml
+Размер файла :22914
+OK
+Отслаем файл :\\fantom\database\utl\20130410_114.xml
+Размер файла :22856
+OK
+Отслаем файл :\\fantom\database\utl\20130410_115.xml
+Размер файла :22925
+OK
+Отслаем файл :\\fantom\database\utl\20130410_116.xml
+Размер файла :22995
+OK
+Отслаем файл :\\fantom\database\utl\20130410_117.xml
+Размер файла :22811
+OK
+Отслаем файл :\\fantom\database\utl\20130410_118.xml
+Размер файла :22810
+OK
+Отслаем файл :\\fantom\database\utl\20130410_119.xml
+Размер файла :23053
+OK
+Отслаем файл :\\fantom\database\utl\20130410_12.xml
+Размер файла :22960
+OK
+Отслаем файл :\\fantom\database\utl\20130410_13.xml
+Размер файла :23003
+OK
+Отслаем файл :\\fantom\database\utl\20130410_142.xml
+Размер файла :22848
+OK
+Отслаем файл :\\fantom\database\utl\20130410_147.xml
+Размер файла :22965
+OK
+Отслаем файл :\\fantom\database\utl\20130410_148.xml
+Размер файла :23006
+OK
+Отслаем файл :\\fantom\database\utl\20130410_149.xml
+Размер файла :22912
+OK
+Отслаем файл :\\fantom\database\utl\20130410_151.xml
+Размер файла :23192
+OK
+Отслаем файл :\\fantom\database\utl\20130410_16.xml
+Размер файла :23023
+OK
+Отслаем файл :\\fantom\database\utl\20130410_36.xml
+Размер файла :23093
+OK
+Отслаем файл :\\fantom\database\utl\20130410_39.xml
+Размер файла :22909
+OK
+Отслаем файл :\\fantom\database\utl\20130410_43.xml
+Размер файла :23000
+OK
+Отслаем файл :\\fantom\database\utl\20130410_45.xml
+Размер файла :22785
+OK
+Отслаем файл :\\fantom\database\utl\20130410_51.xml
+Размер файла :22846
+OK
+Отслаем файл :\\fantom\database\utl\20130410_54.xml
+Размер файла :22950
+OK
+Отслаем файл :\\fantom\database\utl\20130410_59.xml
+Размер файла :23086
+OK
+Отслаем файл :\\fantom\database\utl\20130410_63.xml
+Размер файла :23086
+OK
+Отслаем файл :\\fantom\database\utl\20130410_64.xml
+Размер файла :23097
+OK
+Отслаем файл :\\fantom\database\utl\20130410_8.xml
+Размер файла :22930
+OK
+Отслаем файл :\\fantom\database\utl\20130410_84.xml
+Размер файла :22871
+OK
+Отслаем файл :\\fantom\database\utl\20130410_87.xml
+Размер файла :23005
+OK
+Отслаем файл :\\fantom\database\utl\20130410_88.xml
+Размер файла :23001
+OK
+Отслаем файл :\\fantom\database\utl\20130410_89.xml
+Размер файла :23054
+OK
+Отслаем файл :\\fantom\database\utl\20130410_9.xml
+Размер файла :22841
+OK
+Отслаем файл :\\fantom\database\utl\20130410_90.xml
+Размер файла :23001
+OK
+Отслаем файл :\\fantom\database\utl\20130410_92.xml
+Размер файла :23000
+OK
+Отслаем файл :\\fantom\database\utl\20130410_97.xml
+Размер файла :22864
+OK
+Отслаем файл :\\fantom\database\utl\20130410_98.xml
+Размер файла :22960
+OK
+Отслаем файл :\\fantom\database\utl\20130410_99.xml
+Размер файла :22957
+OK
+Отслаем файл :\\fantom\database\utl\20130529_101.xml
+Размер файла :22610
+OK
+Отслаем файл :\\fantom\database\utl\20130529_108.xml
+Размер файла :22737
+OK
+Отслаем файл :\\fantom\database\utl\20130529_113.xml
+Размер файла :22595
+OK
+Отслаем файл :\\fantom\database\utl\20130529_114.xml
+Размер файла :22595
+OK
+Отслаем файл :\\fantom\database\utl\20130529_115.xml
+Размер файла :12631
+Error
+Data is not valid according to scheme "http://asenm.rt.ru//schemes/Cae020_v1.xsd". Reason: Premature end of data in tag measuringpoint line 17 in line 163 at column 1, Premature end of data in tag area line 14 in line 163 at column 1, Premature end of data in tag message line 2 in line 163 at column 1
+Отслаем файл :\\fantom\database\utl\20130529_12.xml
+Размер файла :22948
+OK
+Отслаем файл :\\fantom\database\utl\20130529_13.xml
+Размер файла :22891
+OK
+Отслаем файл :\\fantom\database\utl\20130529_16.xml
+Размер файла :22874
+OK
+Отслаем файл :\\fantom\database\utl\20130529_36.xml
+Размер файла :22629
+OK
+Отслаем файл :\\fantom\database\utl\20130529_39.xml
+Размер файла :22466
+OK
+Отслаем файл :\\fantom\database\utl\20130529_43.xml
+Размер файла :22810
+OK
+Отслаем файл :\\fantom\database\utl\20130529_45.xml
+Размер файла :22464
+OK
+Отслаем файл :\\fantom\database\utl\20130529_51.xml
+Размер файла :22514
+OK
+Отслаем файл :\\fantom\database\utl\20130529_54.xml
+Размер файла :22957
+OK
+Отслаем файл :\\fantom\database\utl\20130529_59.xml
+Размер файла :22562
+OK
+Отслаем файл :\\fantom\database\utl\20130529_63.xml
+Размер файла :22901
+OK
+Отслаем файл :\\fantom\database\utl\20130529_64.xml
+Размер файла :23010
+OK
+Отслаем файл :\\fantom\database\utl\20130529_8.xml
+Размер файла :22697
+OK
+Отслаем файл :\\fantom\database\utl\20130529_84.xml
+Размер файла :22571
+OK
+Отслаем файл :\\fantom\database\utl\20130529_87.xml
+Размер файла :22876
+OK
+Отслаем файл :\\fantom\database\utl\20130529_88.xml
+Размер файла :22559
+OK
+Отслаем файл :\\fantom\database\utl\20130529_89.xml
+Размер файла :23062
+OK
+Отслаем файл :\\fantom\database\utl\20130529_9.xml
+Размер файла :22520
+OK
+Отслаем файл :\\fantom\database\utl\20130529_90.xml
+Размер файла :22661
+OK
+Отслаем файл :\\fantom\database\utl\20130529_92.xml
+Размер файла :22570
+OK
+Отслаем файл :\\fantom\database\utl\20130529_97.xml
+Размер файла :22616
+OK
+Отслаем файл :\\fantom\database\utl\20130529_98.xml
+Размер файла :22522
+OK
+Отслаем файл :\\fantom\database\utl\20130529_99.xml
+Размер файла :22679
+OK
+Отслаем файл :\\fantom\database\utl\20130411_101.xml
+Размер файла :22955
+OK
+Отслаем файл :\\fantom\database\utl\20130411_108.xml
+Размер файла :23048
+OK
+Отслаем файл :\\fantom\database\utl\20130411_113.xml
+Размер файла :22916
+OK
+Отслаем файл :\\fantom\database\utl\20130411_114.xml
+Размер файла :22859
+OK
+Отслаем файл :\\fantom\database\utl\20130411_115.xml
+Размер файла :22902
+OK
+Отслаем файл :\\fantom\database\utl\20130411_116.xml
+Размер файла :22992
+OK
+Отслаем файл :\\fantom\database\utl\20130411_117.xml
+Размер файла :22802
+OK
+Отслаем файл :\\fantom\database\utl\20130411_118.xml
+Размер файла :22802
+OK
+Отслаем файл :\\fantom\database\utl\20130411_119.xml
+Размер файла :23045
+OK
+Отслаем файл :\\fantom\database\utl\20130411_12.xml
+Размер файла :22951

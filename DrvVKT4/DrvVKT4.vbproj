@@ -7,8 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{4F74DC3D-F0A9-45C8-9B71-7376EB72E3F5}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>DrvVKT4</RootNamespace>
-    <AssemblyName>DrvVKT4</AssemblyName>
+    <RootNamespace>DrvVKT4_0</RootNamespace>
+    <AssemblyName>DrvVKT4_0</AssemblyName>
     <MyType>Windows</MyType>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -39,7 +39,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>..\STKService\bin\Debug\</OutputPath>
-    <DocumentationFile>DrvVKT4.xml</DocumentationFile>
+    <DocumentationFile>DrvVKT4_0.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -51,7 +51,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>..\STKService\bin\Release\</OutputPath>
-    <DocumentationFile>DrvVKT4.xml</DocumentationFile>
+    <DocumentationFile>DrvVKT4_0.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
@@ -96,7 +96,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -112,11 +111,6 @@
       <Project>{0C7D9D95-1165-4C46-8346-748E4D276CFD}</Project>
       <Name>STKTVMain</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ConfigDrvVKT4.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

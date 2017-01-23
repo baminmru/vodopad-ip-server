@@ -1,0 +1,78 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+NodeEditor
+</name>
+</assembly>
+<members>
+<member name="M:NodeEditor.EditAnalizerConfig.Attach(System.Data.DataRow,System.Boolean)">
+	<summary>
+Инициализация
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:NodeEditor.editTPLT_CONNECT.Attach(System.Data.DataRow,System.Boolean)">
+	<summary>
+Инициализация
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:NodeEditor.editTPLT_CONNECT.Save">
+	<summary>
+Сохранения данных в полях объекта
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:NodeEditor.editTPLT_CONNECT">
+	<summary>
+Контрол редактирования раздела Параметры соединения режим:
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:NodeEditor.pGrid.Attach(System.Data.DataRow,System.Boolean,STKTVMain.TVMain)">
+	<summary>
+Инициализация
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:NodeEditor.pGrid.Save">
+	<summary>
+Сохранения данных в полях объекта
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:NodeEditor.editTPLT_PLANCALL.Attach(System.Data.DataRow,System.Boolean)">
+	<summary>
+Инициализация
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:NodeEditor.editTPLT_PLANCALL.Save">
+	<summary>
+Сохранения данных в полях объекта
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:NodeEditor.editTPLT_PLANCALL">
+	<summary>
+Контрол редактирования раздела План опроса устройств режим:
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:NodeEditor.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:NodeEditor.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:NodeEditor.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+</members>
+</doc>

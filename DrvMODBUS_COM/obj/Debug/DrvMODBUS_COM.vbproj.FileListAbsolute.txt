@@ -1,0 +1,17 @@
+C:\bami\projects\AREAL\VODOPAD\DrvMODBUS_COM\bin\Debug\NModbus4.dll
+C:\bami\projects\AREAL\VODOPAD\DrvMODBUS_COM\bin\Debug\STKTVMain.dll
+C:\bami\projects\AREAL\VODOPAD\DrvMODBUS_COM\bin\Debug\STKTVMain.pdb
+C:\bami\projects\AREAL\VODOPAD\DrvMODBUS_COM\bin\Debug\STKTVMain.xml
+C:\bami\projects\AREAL\VODOPAD\DrvMODBUS_COM\bin\Debug\NModbus4.pdb
+C:\bami\projects\AREAL\VODOPAD\DrvMODBUS_COM\bin\Debug\NModbus4.xml
+C:\bami\projects\AREAL\VODOPAD\DrvMODBUS_COM\obj\Debug\DrvMODBUS.frmSetup.resources
+C:\bami\projects\AREAL\VODOPAD\DrvMODBUS_COM\obj\Debug\DrvMODBUS.Resources.resources
+C:\bami\projects\AREAL\VODOPAD\DrvMODBUS_COM\obj\Debug\DrvMODBUS_COM.vbproj.GenerateResource.Cache
+C:\bami\projects\AREAL\VODOPAD\DrvMODBUS_COM\bin\Debug\DrvMODBUS2.dll
+C:\bami\projects\AREAL\VODOPAD\DrvMODBUS_COM\bin\Debug\DrvMODBUS2.pdb
+C:\bami\projects\AREAL\VODOPAD\DrvMODBUS_COM\bin\Debug\DrvMODBUS2.xml
+C:\bami\projects\AREAL\VODOPAD\DrvMODBUS_COM\obj\Debug\DrvMODBUS2.dll
+C:\bami\projects\AREAL\VODOPAD\DrvMODBUS_COM\obj\Debug\DrvMODBUS2.xml
+C:\bami\projects\AREAL\VODOPAD\DrvMODBUS_COM\obj\Debug\DrvMODBUS2.pdb
+C:\bami\projects\AREAL\VODOPAD\DrvMODBUS_COM\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\bami\projects\AREAL\VODOPAD\DrvMODBUS_COM\obj\Debug\DrvMODBUS_COM.vbprojResolveAssemblyReference.cache

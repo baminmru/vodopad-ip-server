@@ -1,0 +1,17 @@
+C:\bami\projects\AREAL\VODOPAD\DrvAreal\obj\Debug\DrvAreal.vbprojResolveAssemblyReference.cache
+C:\bami\projects\AREAL\VODOPAD\DrvAreal\obj\Debug\DrvAreal.frmSetup.resources
+C:\bami\projects\AREAL\VODOPAD\DrvAreal\obj\Debug\DrvAreal.Resources.resources
+C:\bami\projects\AREAL\VODOPAD\DrvAreal\obj\Debug\DrvAreal.vbproj.GenerateResource.Cache
+C:\bami\projects\AREAL\VODOPAD\DrvAreal\obj\Debug\DrvAreal.xml
+C:\bami\projects\AREAL\VODOPAD\DrvAreal\bin\Debug\DrvOPC.Config.xml
+C:\bami\projects\AREAL\VODOPAD\DrvAreal\bin\Debug\InstallConfig.xml
+C:\bami\projects\AREAL\VODOPAD\DrvAreal\bin\Debug\maptv.xml
+C:\bami\projects\AREAL\VODOPAD\DrvAreal\bin\Debug\DrvAreal.dll
+C:\bami\projects\AREAL\VODOPAD\DrvAreal\bin\Debug\DrvAreal.pdb
+C:\bami\projects\AREAL\VODOPAD\DrvAreal\bin\Debug\DrvAreal.xml
+C:\bami\projects\AREAL\VODOPAD\DrvAreal\bin\Debug\STKTVMain.dll
+C:\bami\projects\AREAL\VODOPAD\DrvAreal\bin\Debug\STKTVMain.pdb
+C:\bami\projects\AREAL\VODOPAD\DrvAreal\bin\Debug\STKTVMain.xml
+C:\bami\projects\AREAL\VODOPAD\DrvAreal\obj\Debug\DrvAreal.dll
+C:\bami\projects\AREAL\VODOPAD\DrvAreal\obj\Debug\DrvAreal.pdb
+C:\bami\projects\AREAL\VODOPAD\DrvAreal\bin\Debug\Oracle.ManagedDataAccess.dll

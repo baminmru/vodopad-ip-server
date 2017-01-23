@@ -1,0 +1,10 @@
+C:\BAMI\Projects\SZT_2009\MT200Test\MT200Test\bin\Release\MT200Test.exe
+C:\BAMI\Projects\SZT_2009\MT200Test\MT200Test\bin\Release\MT200Test.pdb
+C:\BAMI\Projects\SZT_2009\MT200Test\MT200Test\bin\Release\MT200Test.xml
+C:\BAMI\Projects\SZT_2009\MT200Test\MT200Test\obj\Release\ResolveAssemblyReference.cache
+C:\BAMI\Projects\SZT_2009\MT200Test\MT200Test\obj\Release\MT200Test.Form1.resources
+C:\BAMI\Projects\SZT_2009\MT200Test\MT200Test\obj\Release\MT200Test.Resources.resources
+C:\BAMI\Projects\SZT_2009\MT200Test\MT200Test\obj\Release\MT200Test.vbproj.GenerateResource.Cache
+C:\BAMI\Projects\SZT_2009\MT200Test\MT200Test\obj\Release\MT200Test.exe
+C:\BAMI\Projects\SZT_2009\MT200Test\MT200Test\obj\Release\MT200Test.xml
+C:\BAMI\Projects\SZT_2009\MT200Test\MT200Test\obj\Release\MT200Test.pdb

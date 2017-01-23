@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using System.Diagnostics;
-using System.Data.OracleClient ;
+using Oracle.ManagedDataAccess.Client ;
 
 namespace STKService
 {
@@ -836,7 +836,7 @@ ddd = SrvDate;
                                             if (TvMain.TVD.isTArchToDBWrite)
                                             {
                                                 TvMain.SaveLog(id_bdc, archType_moment, "??", 1, "Итоговый архив " + ":OK");
-                                                TvMain.WriteTArchToDB();
+                                                TvMain.WriteTArchtoDB();
                                             }
                                             tempdate = ddd;
                                             nmin = Convert.ToDouble(dr["icallsum"].ToString());

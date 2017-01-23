@@ -1,0 +1,11 @@
+C:\BAMI\Projects\SZT_2010\GPIOClient\obj\Debug\ResolveAssemblyReference.cache
+C:\BAMI\Projects\SZT_2010\GPIOClient\obj\Debug\GPIOTest.vbproj.GenerateResource.Cache
+C:\BAMI\Projects\SZT_2010\GPIOClient\bin\Debug\GPIOClient.exe
+C:\BAMI\Projects\SZT_2010\GPIOClient\bin\Debug\GPIOClient.pdb
+C:\BAMI\Projects\SZT_2010\GPIOClient\bin\Debug\GPIOClient.xml
+C:\BAMI\Projects\SZT_2010\GPIOClient\obj\Debug\GPIOClient.frmControl.resources
+C:\BAMI\Projects\SZT_2010\GPIOClient\obj\Debug\GPIOClient.frmGPIO.resources
+C:\BAMI\Projects\SZT_2010\GPIOClient\obj\Debug\GPIOClient.Resources.resources
+C:\BAMI\Projects\SZT_2010\GPIOClient\obj\Debug\GPIOClient.exe
+C:\BAMI\Projects\SZT_2010\GPIOClient\obj\Debug\GPIOClient.xml
+C:\BAMI\Projects\SZT_2010\GPIOClient\obj\Debug\GPIOClient.pdb

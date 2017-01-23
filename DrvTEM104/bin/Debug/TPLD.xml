@@ -1,0 +1,1494 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+TPLD
+</name>
+</assembly>
+<members>
+<member name="T:TPLD.TPLD.enumHACCPStep">
+	<summary>
+Перечисление Тип шага в ХАССП процессе
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumPCB_FileType">
+	<summary>
+Перечисление Тип файла
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumHaccpIdent">
+	<summary>
+Перечисление Идентификация
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumtypeFace">
+	<summary>
+Перечисление Физическое лицо \ Юрифическое лицо
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumWFStepClass">
+	<summary>
+Перечисление Тип шага процесса
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumMonths">
+	<summary>
+Перечисление Месяцы
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumTypeStyle">
+	<summary>
+Перечисление Вариант трактовки типа поля
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumAggregationType">
+	<summary>
+Перечисление Вариант агрегации по полю
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumVHAlignment">
+	<summary>
+Перечисление Выравнивание
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumtypePackage">
+	<summary>
+Перечисление Тип отправления
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumParity">
+	<summary>
+Перечисление Четность
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumWFProcessState">
+	<summary>
+Перечисление Состояния процесса
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumNumerationRule">
+	<summary>
+Перечисление Правило нумерации
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumMenuActionType">
+	<summary>
+Перечисление Вариант действия при выборе пункта меню
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumColumnSortType">
+	<summary>
+Перечисление Вариант сортиовки данных колонки
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumAdditionType">
+	<summary>
+Перечисление Тип надбавки
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumTypeSempling">
+	<summary>
+Перечисление Тип выборки
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumStructType">
+	<summary>
+Перечисление Тип раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumTargetType">
+	<summary>
+Перечисление Вариант уровня приложения, куда может генерироваться код
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumDeliveryOn">
+	<summary>
+Перечисление 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumtypeOperatorSystem">
+	<summary>
+Перечисление 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumstateNomen">
+	<summary>
+Перечисление 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumPartAddBehaivor">
+	<summary>
+Перечисление Поведение при добавлении строки раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumFolderType">
+	<summary>
+Перечисление Тип папки
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enummsgState">
+	<summary>
+Перечисление Состояние заявки
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumWFShortcutType">
+	<summary>
+Перечисление Варианты ярлыков, которые может размещать процесс
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumReferenceType">
+	<summary>
+Перечисление ReferenceType
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumSex">
+	<summary>
+Перечисление Мужской / Женский
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumMesureFormat">
+	<summary>
+Перечисление Формат индикатора
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumWFFuncParam">
+	<summary>
+Перечисление Вариант расшифровки параметра функции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumYesNo">
+	<summary>
+Перечисление Да / Нет (0 или 1)
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumtypeOrder">
+	<summary>
+Перечисление 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enummsgResult">
+	<summary>
+Перечисление Результат
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumGeneratorStyle">
+	<summary>
+Перечисление GeneratorStyle
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumReportType">
+	<summary>
+Перечисление Вариант отчета
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumHACCPPStep">
+	<summary>
+Перечисление Тип шага в ХАССП процессе
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumtypeDocOrder">
+	<summary>
+Перечисление Тип документов для печати заказчику
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumPCB_LayerP">
+	<summary>
+Перечисление Представление поля
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumDayInWeek">
+	<summary>
+Перечисление День недели
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumPlatType">
+	<summary>
+Перечисление Тип плательщика
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumPartType">
+	<summary>
+Перечисление PartType
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumEmployment">
+	<summary>
+Перечисление Занятость
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumtypeClient">
+	<summary>
+Перечисление Тип заказчика
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumtypeNomen">
+	<summary>
+Перечисление Тип номенкатуры
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumKONTR_TYPE">
+	<summary>
+Перечисление Тип контрагента
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumtypePersonPay">
+	<summary>
+Перечисление 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumJournalLinkType">
+	<summary>
+Перечисление Для связи журналов друг с другом
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumConditionType">
+	<summary>
+Перечисление Варианты условий
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumtypePay">
+	<summary>
+Перечисление Сдельная \ Ставка
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumPCB_TaskType">
+	<summary>
+Перечисление Тип задачи
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumVRTaskType">
+	<summary>
+Перечисление Тип задачи
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumtypeReceiv">
+	<summary>
+Перечисление 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumPCB_CustomerType">
+	<summary>
+Перечисление Статус заказчика
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumOnJournalRowClick">
+	<summary>
+Перечисление действие при открытии строки журнала
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumtypeRowCheque">
+	<summary>
+Перечисление Тип строки чека
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumPCB_clear">
+	<summary>
+Перечисление Тип задачи
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumtypeTariff">
+	<summary>
+Перечисление 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumEducation">
+	<summary>
+Перечисление Образование
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumDCType">
+	<summary>
+Перечисление Остатки/Дебит/Кредит
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumDevelopmentBase">
+	<summary>
+Перечисление Платформа разработки
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumBoolean">
+	<summary>
+Перечисление Да / Нет
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumTriState">
+	<summary>
+Перечисление Да / Нет / Не определено
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumtypeTRF">
+	<summary>
+Перечисление Тип тарифа СС
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumCurrencyType">
+	<summary>
+Перечисление Валюта платежа
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumWFFuncState">
+	<summary>
+Перечисление Состояние функции в бизнес процессе
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumtypeCourier">
+	<summary>
+Перечисление Договор \ ТрудКнижка
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumEmployment_">
+	<summary>
+Перечисление осталось для совместимости
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumKONTR_STATUS">
+	<summary>
+Перечисление Состояние партнера
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumExtentionType">
+	<summary>
+Перечисление Тип расширения
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumReplicationType">
+	<summary>
+Перечисление Вариант репликации докуента
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.enumInfoStoreType">
+	<summary>
+Перечисление Тип каталога
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.Application.MyTypeName">
+	<summary>
+Название типа документа
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.Application.m_TPLD_PARAM">
+	<summary>
+ Внутренняя переменная для раздела Параметры
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.Application.TPLD_PARAM">
+	<summary>
+Свойство для доступа к строкам раздела Параметры
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.Application.m_TPLD_SNAB">
+	<summary>
+ Внутренняя переменная для раздела Снабжающая организация
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.Application.TPLD_SNAB">
+	<summary>
+Свойство для доступа к строкам раздела Снабжающая организация
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.Application.m_TPLD_CONNECTTYPE">
+	<summary>
+ Внутренняя переменная для раздела Тип подключения
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.Application.TPLD_CONNECTTYPE">
+	<summary>
+Свойство для доступа к строкам раздела Тип подключения
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.Application.m_TPLD_PARAMTYPE">
+	<summary>
+ Внутренняя переменная для раздела Тип архива
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.Application.TPLD_PARAMTYPE">
+	<summary>
+Свойство для доступа к строкам раздела Тип архива
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.Application.m_TPLD_GRP">
+	<summary>
+ Внутренняя переменная для раздела Группа
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.Application.TPLD_GRP">
+	<summary>
+Свойство для доступа к строкам раздела Группа
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.Application.m_TPLD_DEVTYPE">
+	<summary>
+ Внутренняя переменная для раздела Тип устройства
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.Application.TPLD_DEVTYPE">
+	<summary>
+Свойство для доступа к строкам раздела Тип устройства
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.Application.CountOfParts">
+	<summary>
+Количество разделов в объекте
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.Application.GetDocCollection_Base(System.Int64)">
+	<summary>
+Получить раздел по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.Application.FindInCollections(System.String,System.String)">
+	<summary>
+Поиск элемента в коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.Application.XMLLoadCollections(System.Xml.XmlNode,System.Int32)">
+	<summary>
+Загрузка данных из XML  файла
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.Application.XMLSaveCollections(System.Xml.XmlElement,System.Xml.XmlDocument)">
+	<summary>
+Сохранение данных в XML  файле
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.Application.BatchUpdate">
+	<summary>
+Сохранение изменений в базе данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.Application">
+	<summary>
+Реализация документа 
+ </summary>
+	<remarks>
+Справочник
+ </remarks>
+</member><member name="F:TPLD.TPLD.TPLD_SNAB.m_CNAME">
+	<summary>
+Локальная переменная для поля Название
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.TPLD_SNAB.m_CADDRESS">
+	<summary>
+Локальная переменная для поля Адрес
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.TPLD_SNAB.m_CFIO">
+	<summary>
+Локальная переменная для поля Контактное лицо
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.TPLD_SNAB.m_CPHONE">
+	<summary>
+Локальная переменная для поля Телефон
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.TPLD_SNAB.m_CREGION">
+	<summary>
+Локальная переменная для поля Регион
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_SNAB.CleanFields">
+	<summary>
+Очистить поля раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_SNAB.Count">
+	<summary>
+Количество полей в строке раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_SNAB.Value(System.Object)">
+	<summary>
+Получить \Задать поле по номеру 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_SNAB.FieldNameByID(System.Int64)">
+	<summary>
+Название поля по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_SNAB.FillDataTable(System.Data.DataTable@)">
+	<summary>
+Заполнить строку таблицы данными из полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_SNAB.FindInside(System.String,System.String)">
+	<summary>
+Найти строку в коллекции по идентификатору
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_SNAB.Pack(LATIR.NamedValues)">
+	<summary>
+Заполнить коллекцю именованных полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_SNAB.Unpack(System.Data.DataRow)">
+	<summary>
+Заполнить поля из именованной коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_SNAB.CNAME">
+	<summary>
+Доступ к полю Название
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_SNAB.CADDRESS">
+	<summary>
+Доступ к полю Адрес
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_SNAB.CFIO">
+	<summary>
+Доступ к полю Контактное лицо
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_SNAB.CPHONE">
+	<summary>
+Доступ к полю Телефон
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_SNAB.CREGION">
+	<summary>
+Доступ к полю Регион
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_SNAB.XMLUnpack(System.Xml.XmlNode,System.Int32)">
+	<summary>
+Заполнить поля данными из XML
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_SNAB.XLMPack(System.Xml.XmlElement,System.Xml.XmlDocument)">
+	<summary>
+Записать данные раздела в XML файл
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_SNAB.BatchUpdate">
+	<summary>
+Записать изменения в базу данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_SNAB.CountOfParts">
+	<summary>
+Количество дочерних разделов
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_SNAB.GetDocCollection_Base(System.Int64)">
+	<summary>
+Доступ к дочернему разделу по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.TPLD_SNAB">
+	<summary>
+Реализация строки раздела Снабжающая организация
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.TPLD_PARAM.m_Name">
+	<summary>
+Локальная переменная для поля Название 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.TPLD_PARAM.m_ParamField">
+	<summary>
+Локальная переменная для поля Поле
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.TPLD_PARAM.m_ShowAs">
+	<summary>
+Локальная переменная для поля Отображать как
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAM.CleanFields">
+	<summary>
+Очистить поля раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_PARAM.Count">
+	<summary>
+Количество полей в строке раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_PARAM.Value(System.Object)">
+	<summary>
+Получить \Задать поле по номеру 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAM.FieldNameByID(System.Int64)">
+	<summary>
+Название поля по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAM.FillDataTable(System.Data.DataTable@)">
+	<summary>
+Заполнить строку таблицы данными из полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAM.FindInside(System.String,System.String)">
+	<summary>
+Найти строку в коллекции по идентификатору
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAM.Pack(LATIR.NamedValues)">
+	<summary>
+Заполнить коллекцю именованных полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAM.Unpack(System.Data.DataRow)">
+	<summary>
+Заполнить поля из именованной коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_PARAM.Name">
+	<summary>
+Доступ к полю Название 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_PARAM.ParamField">
+	<summary>
+Доступ к полю Поле
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_PARAM.ShowAs">
+	<summary>
+Доступ к полю Отображать как
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAM.XMLUnpack(System.Xml.XmlNode,System.Int32)">
+	<summary>
+Заполнить поля данными из XML
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAM.XLMPack(System.Xml.XmlElement,System.Xml.XmlDocument)">
+	<summary>
+Записать данные раздела в XML файл
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAM.BatchUpdate">
+	<summary>
+Записать изменения в базу данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_PARAM.CountOfParts">
+	<summary>
+Количество дочерних разделов
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAM.GetDocCollection_Base(System.Int64)">
+	<summary>
+Доступ к дочернему разделу по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.TPLD_PARAM">
+	<summary>
+Реализация строки раздела Параметры
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAMTYPE_col.ChildPartName">
+	<summary>
+Имя раздела в базе данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAMTYPE_col.CreateDataTable">
+	<summary>
+Вернуть даные текущей коллекции в виде DataTable
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAMTYPE_col.NewItem">
+	<summary>
+Создание нового элемента коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAMTYPE_col.GetItem(System.Object)">
+	<summary>
+Получить элемент коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAMTYPE_col.Item(System.Object)">
+	<summary>
+Получить элемент коллекции, более свежий вариант
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.TPLD_PARAMTYPE_col">
+	<summary>
+Реализация раздела Тип архивав виде коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.TPLD_GRP.m_CGRPNM">
+	<summary>
+Локальная переменная для поля Название группы
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.TPLD_GRP.m_CTXT">
+	<summary>
+Локальная переменная для поля Описание
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_GRP.CleanFields">
+	<summary>
+Очистить поля раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_GRP.Count">
+	<summary>
+Количество полей в строке раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_GRP.Value(System.Object)">
+	<summary>
+Получить \Задать поле по номеру 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_GRP.FieldNameByID(System.Int64)">
+	<summary>
+Название поля по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_GRP.FillDataTable(System.Data.DataTable@)">
+	<summary>
+Заполнить строку таблицы данными из полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_GRP.FindInside(System.String,System.String)">
+	<summary>
+Найти строку в коллекции по идентификатору
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_GRP.Pack(LATIR.NamedValues)">
+	<summary>
+Заполнить коллекцю именованных полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_GRP.Unpack(System.Data.DataRow)">
+	<summary>
+Заполнить поля из именованной коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_GRP.CGRPNM">
+	<summary>
+Доступ к полю Название группы
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_GRP.CTXT">
+	<summary>
+Доступ к полю Описание
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_GRP.XMLUnpack(System.Xml.XmlNode,System.Int32)">
+	<summary>
+Заполнить поля данными из XML
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_GRP.XLMPack(System.Xml.XmlElement,System.Xml.XmlDocument)">
+	<summary>
+Записать данные раздела в XML файл
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_GRP.BatchUpdate">
+	<summary>
+Записать изменения в базу данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_GRP.CountOfParts">
+	<summary>
+Количество дочерних разделов
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_GRP.GetDocCollection_Base(System.Int64)">
+	<summary>
+Доступ к дочернему разделу по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.TPLD_GRP">
+	<summary>
+Реализация строки раздела Группа
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_GRP_col.ChildPartName">
+	<summary>
+Имя раздела в базе данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_GRP_col.CreateDataTable">
+	<summary>
+Вернуть даные текущей коллекции в виде DataTable
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_GRP_col.NewItem">
+	<summary>
+Создание нового элемента коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_GRP_col.GetItem(System.Object)">
+	<summary>
+Получить элемент коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_GRP_col.Item(System.Object)">
+	<summary>
+Получить элемент коллекции, более свежий вариант
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.TPLD_GRP_col">
+	<summary>
+Реализация раздела Группав виде коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.TPLD_DEVTYPE.m_Name">
+	<summary>
+Локальная переменная для поля Название 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.TPLD_DEVTYPE.m_DriverLibName">
+	<summary>
+Локальная переменная для поля Библиотека драйвера
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.TPLD_DEVTYPE.m_Timeout1">
+	<summary>
+Локальная переменная для поля Timeout 1
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.TPLD_DEVTYPE.m_Timeout2">
+	<summary>
+Локальная переменная для поля Timeout 2
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.TPLD_DEVTYPE.m_Timeout3">
+	<summary>
+Локальная переменная для поля Timeout 3
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_DEVTYPE.CleanFields">
+	<summary>
+Очистить поля раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_DEVTYPE.Count">
+	<summary>
+Количество полей в строке раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_DEVTYPE.Value(System.Object)">
+	<summary>
+Получить \Задать поле по номеру 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_DEVTYPE.FieldNameByID(System.Int64)">
+	<summary>
+Название поля по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_DEVTYPE.FillDataTable(System.Data.DataTable@)">
+	<summary>
+Заполнить строку таблицы данными из полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_DEVTYPE.FindInside(System.String,System.String)">
+	<summary>
+Найти строку в коллекции по идентификатору
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_DEVTYPE.Pack(LATIR.NamedValues)">
+	<summary>
+Заполнить коллекцю именованных полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_DEVTYPE.Unpack(System.Data.DataRow)">
+	<summary>
+Заполнить поля из именованной коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_DEVTYPE.Name">
+	<summary>
+Доступ к полю Название 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_DEVTYPE.DriverLibName">
+	<summary>
+Доступ к полю Библиотека драйвера
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_DEVTYPE.Timeout1">
+	<summary>
+Доступ к полю Timeout 1
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_DEVTYPE.Timeout2">
+	<summary>
+Доступ к полю Timeout 2
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_DEVTYPE.Timeout3">
+	<summary>
+Доступ к полю Timeout 3
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_DEVTYPE.XMLUnpack(System.Xml.XmlNode,System.Int32)">
+	<summary>
+Заполнить поля данными из XML
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_DEVTYPE.XLMPack(System.Xml.XmlElement,System.Xml.XmlDocument)">
+	<summary>
+Записать данные раздела в XML файл
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_DEVTYPE.BatchUpdate">
+	<summary>
+Записать изменения в базу данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_DEVTYPE.CountOfParts">
+	<summary>
+Количество дочерних разделов
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_DEVTYPE.GetDocCollection_Base(System.Int64)">
+	<summary>
+Доступ к дочернему разделу по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.TPLD_DEVTYPE">
+	<summary>
+Реализация строки раздела Тип устройства
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAM_col.ChildPartName">
+	<summary>
+Имя раздела в базе данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAM_col.CreateDataTable">
+	<summary>
+Вернуть даные текущей коллекции в виде DataTable
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAM_col.NewItem">
+	<summary>
+Создание нового элемента коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAM_col.GetItem(System.Object)">
+	<summary>
+Получить элемент коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAM_col.Item(System.Object)">
+	<summary>
+Получить элемент коллекции, более свежий вариант
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.TPLD_PARAM_col">
+	<summary>
+Реализация раздела Параметрыв виде коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.TPLD_CONNECTTYPE.m_Name">
+	<summary>
+Локальная переменная для поля Название 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_CONNECTTYPE.CleanFields">
+	<summary>
+Очистить поля раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_CONNECTTYPE.Count">
+	<summary>
+Количество полей в строке раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_CONNECTTYPE.Value(System.Object)">
+	<summary>
+Получить \Задать поле по номеру 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_CONNECTTYPE.FieldNameByID(System.Int64)">
+	<summary>
+Название поля по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_CONNECTTYPE.FillDataTable(System.Data.DataTable@)">
+	<summary>
+Заполнить строку таблицы данными из полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_CONNECTTYPE.FindInside(System.String,System.String)">
+	<summary>
+Найти строку в коллекции по идентификатору
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_CONNECTTYPE.Pack(LATIR.NamedValues)">
+	<summary>
+Заполнить коллекцю именованных полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_CONNECTTYPE.Unpack(System.Data.DataRow)">
+	<summary>
+Заполнить поля из именованной коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_CONNECTTYPE.Name">
+	<summary>
+Доступ к полю Название 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_CONNECTTYPE.XMLUnpack(System.Xml.XmlNode,System.Int32)">
+	<summary>
+Заполнить поля данными из XML
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_CONNECTTYPE.XLMPack(System.Xml.XmlElement,System.Xml.XmlDocument)">
+	<summary>
+Записать данные раздела в XML файл
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_CONNECTTYPE.BatchUpdate">
+	<summary>
+Записать изменения в базу данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_CONNECTTYPE.CountOfParts">
+	<summary>
+Количество дочерних разделов
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_CONNECTTYPE.GetDocCollection_Base(System.Int64)">
+	<summary>
+Доступ к дочернему разделу по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.TPLD_CONNECTTYPE">
+	<summary>
+Реализация строки раздела Тип подключения
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.TPLD_PARAMTYPE.m_name">
+	<summary>
+Локальная переменная для поля Название
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLD.TPLD.TPLD_PARAMTYPE.m_TheCode">
+	<summary>
+Локальная переменная для поля Код 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAMTYPE.CleanFields">
+	<summary>
+Очистить поля раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_PARAMTYPE.Count">
+	<summary>
+Количество полей в строке раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_PARAMTYPE.Value(System.Object)">
+	<summary>
+Получить \Задать поле по номеру 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAMTYPE.FieldNameByID(System.Int64)">
+	<summary>
+Название поля по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAMTYPE.FillDataTable(System.Data.DataTable@)">
+	<summary>
+Заполнить строку таблицы данными из полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAMTYPE.FindInside(System.String,System.String)">
+	<summary>
+Найти строку в коллекции по идентификатору
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAMTYPE.Pack(LATIR.NamedValues)">
+	<summary>
+Заполнить коллекцю именованных полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAMTYPE.Unpack(System.Data.DataRow)">
+	<summary>
+Заполнить поля из именованной коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_PARAMTYPE.name">
+	<summary>
+Доступ к полю Название
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_PARAMTYPE.TheCode">
+	<summary>
+Доступ к полю Код 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAMTYPE.XMLUnpack(System.Xml.XmlNode,System.Int32)">
+	<summary>
+Заполнить поля данными из XML
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAMTYPE.XLMPack(System.Xml.XmlElement,System.Xml.XmlDocument)">
+	<summary>
+Записать данные раздела в XML файл
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAMTYPE.BatchUpdate">
+	<summary>
+Записать изменения в базу данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLD.TPLD.TPLD_PARAMTYPE.CountOfParts">
+	<summary>
+Количество дочерних разделов
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_PARAMTYPE.GetDocCollection_Base(System.Int64)">
+	<summary>
+Доступ к дочернему разделу по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.TPLD_PARAMTYPE">
+	<summary>
+Реализация строки раздела Тип архива
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_SNAB_col.ChildPartName">
+	<summary>
+Имя раздела в базе данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_SNAB_col.CreateDataTable">
+	<summary>
+Вернуть даные текущей коллекции в виде DataTable
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_SNAB_col.NewItem">
+	<summary>
+Создание нового элемента коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_SNAB_col.GetItem(System.Object)">
+	<summary>
+Получить элемент коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_SNAB_col.Item(System.Object)">
+	<summary>
+Получить элемент коллекции, более свежий вариант
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.TPLD_SNAB_col">
+	<summary>
+Реализация раздела Снабжающая организацияв виде коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_CONNECTTYPE_col.ChildPartName">
+	<summary>
+Имя раздела в базе данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_CONNECTTYPE_col.CreateDataTable">
+	<summary>
+Вернуть даные текущей коллекции в виде DataTable
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_CONNECTTYPE_col.NewItem">
+	<summary>
+Создание нового элемента коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_CONNECTTYPE_col.GetItem(System.Object)">
+	<summary>
+Получить элемент коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_CONNECTTYPE_col.Item(System.Object)">
+	<summary>
+Получить элемент коллекции, более свежий вариант
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.TPLD_CONNECTTYPE_col">
+	<summary>
+Реализация раздела Тип подключенияв виде коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_DEVTYPE_col.ChildPartName">
+	<summary>
+Имя раздела в базе данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_DEVTYPE_col.CreateDataTable">
+	<summary>
+Вернуть даные текущей коллекции в виде DataTable
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_DEVTYPE_col.NewItem">
+	<summary>
+Создание нового элемента коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_DEVTYPE_col.GetItem(System.Object)">
+	<summary>
+Получить элемент коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLD.TPLD.TPLD_DEVTYPE_col.Item(System.Object)">
+	<summary>
+Получить элемент коллекции, более свежий вариант
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLD.TPLD.TPLD_DEVTYPE_col">
+	<summary>
+Реализация раздела Тип устройствав виде коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member>
+</members>
+</doc>

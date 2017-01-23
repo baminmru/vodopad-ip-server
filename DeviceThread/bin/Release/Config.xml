@@ -1,0 +1,14 @@
+<Config DataSource="ORA11APE" 
+UserID="COUNTERS"
+Password="counters" 
+TimeOut="1000"
+TimerInterval="1000"
+RequestInterval="55000"
+ShowHidden ="false"
+SendToTGK ="true"
+>
+</Config>
+
+
+
+        

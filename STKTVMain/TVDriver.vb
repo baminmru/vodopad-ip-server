@@ -379,6 +379,15 @@ Public MustInherit Class TVDriver
     End Sub
 
 
+    ' Отработка дополнительных команд для управления устройством
+    ' Очередь комманд должна быт где-то сохранена
+    Public Overridable Function ProcessComands() As Integer
+        ' do nothing by default
+        ' return count of processed commands
+        Return 0
+    End Function
+
+
 
     Public Overridable Sub EraseInputQueue()
         System.Threading.Thread.Sleep(150)
@@ -478,9 +487,7 @@ Public MustInherit Class TVDriver
     Public MustOverride Function IsConnected() As Boolean
     Public MustOverride Function ReadArch(ByVal ArchType As Short, ByVal ArchYear As Short,
      ByVal ArchMonth As Short, ByVal ArchDay As Short, ByVal ArchHour As Short) As String
-    'Public MustOverride Function WriteArchToDB() As String
-    'Public MustOverride Function WriteMArchToDB() As String
-    'Public MustOverride Function WriteTArchToDB() As String
+
     Public MustOverride Function ReadMArch() As String
     Public MustOverride Function ReadTArch() As String
     Public MustOverride Function ReadSystemParameters() As DataTable

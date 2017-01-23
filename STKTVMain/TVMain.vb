@@ -2,7 +2,9 @@
 Imports System.IO
 Imports System.Reflection
 Imports System.Xml
-Imports Oracle.DataAccess.Client
+Imports Oracle.ManagedDataAccess.Client
+
+
 
 Public Class TVMain
 
@@ -502,10 +504,15 @@ Public Class TVMain
         Dim cmd As New OracleCommand()
         cmd.Connection = connection
         'cmd.CommandText = "select * from plancall where cstatus=0"
-        cmd.CommandText = "select plancall.*,npip,nppassword,ipport,transport,sysdate ServerDate from bdevices join plancall on bdevices.id_bd=plancall.id_bd where  ( nplock is null or nplock <sysdate ) and npquery=1 " & _
-        " and (plancall.dlock is null or plancall.dlock + plancall.MINREPEAT/24/60 < sysdate ) and plancall.ncall < plancall.nmaxcall " & _
-        " and ((plancall.chour=1 and nvl(plancall.DNEXTHOUR,sysdate-1)<=sysdate) or (plancall.ccurr=1 and nvl(plancall.dnextcurr,sysdate-1) <=sysdate) or (plancall.c24=1 and nvl(plancall.dnext24 ,sysdate-1)<=sysdate)  or (plancall.csum=1 and nvl(plancall.dnextsum ,sysdate-1)<=sysdate)) " & _
+        cmd.CommandText = "select plancall.*,npip,nppassword,ipport,transport,sysdate ServerDate from bdevices join plancall on bdevices.id_bd=plancall.id_bd where  ( nplock is null or nplock <sysdate ) and npquery=1 " &
+        " and (plancall.dlock is null or plancall.dlock + plancall.MINREPEAT/24/60 < sysdate ) and plancall.ncall < plancall.nmaxcall " &
+        " and ((plancall.chour=1 and nvl(plancall.DNEXTHOUR,sysdate-1)<=sysdate) or (plancall.ccurr=1 and nvl(plancall.dnextcurr,sysdate-1) <=sysdate) or (plancall.c24=1 and nvl(plancall.dnext24 ,sysdate-1)<=sysdate)  or (plancall.csum=1 and nvl(plancall.dnextsum ,sysdate-1)<=sysdate)) " &
         " and bdevices.id_bd=" & DevID.ToString() + " "
+
+
+        'cmd.CommandText = "select plancall.*,npip,nppassword,ipport,transport,sysdate ServerDate from bdevices join plancall on bdevices.id_bd=plancall.id_bd where  ( nplock is null or nplock <sysdate ) and npquery=1 " &
+        '" and bdevices.id_bd=" & DevID.ToString() + " "
+
 
         da.SelectCommand = cmd
         dt = New DataTable
@@ -879,7 +886,7 @@ Public Class TVMain
                         cparity = "Mark"
                     End If
                     ipport = dr("ipport").ToString() & ""
-                    transport = dr("transport") & ""
+                    transport = dr("transport").ToString & ""
                     phone = dr("cphone") & ""
 
                 End If
@@ -1476,7 +1483,7 @@ Try
                 TVD.isMArchToDBWrite = False
             End If
             If (TVD.isTArchToDBWrite = True) Then
-                Return WriteTArchToDB()
+                Return WriteTArchtoDB()
                 TVD.isTArchToDBWrite = False
             End If
             Return retstr
@@ -1633,11 +1640,11 @@ Try
         End Try
     End Function
 
-    Public Function WriteTArchToDB() As String
+    Public Function WriteTArchtoDB() As String
         Dim command As OracleCommand
         command = New OracleCommand
         command.Connection = dbconnect()
-        Command.CommandText = TVD.WriteTArchToDB
+        command.CommandText = TVD.WriteTArchToDB
         Dim ret As String
         ret = command.CommandText & " "
 

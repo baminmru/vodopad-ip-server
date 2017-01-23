@@ -1,0 +1,10 @@
+C:\BAMI\Projects\SZT\!stkservice_1.17\ServiceController\obj\Debug\ServiceController.exe
+C:\BAMI\Projects\SZT\!stkservice_1.17\ServiceController\obj\Debug\ServiceController.xml
+C:\BAMI\Projects\SZT\!stkservice_1.17\ServiceController\obj\Debug\ServiceController.pdb
+C:\BAMI\Projects\SZT\!stkservice_1.17\ServiceController\bin\ServiceController.exe
+C:\BAMI\Projects\SZT\!stkservice_1.17\ServiceController\bin\ServiceController.xml
+C:\BAMI\Projects\SZT\!stkservice_1.17\ServiceController\obj\Release\ResolveAssemblyReference.cache
+C:\BAMI\Projects\SZT\!stkservice_1.17\ServiceController\obj\Release\ServiceController.exe
+C:\BAMI\Projects\SZT\!stkservice_1.17\ServiceController\obj\Release\ServiceController.xml
+C:\BAMI\Projects\SZT\ServiceController\obj\Release\ServiceController.exe
+C:\BAMI\Projects\SZT\ServiceController\obj\Release\ServiceController.xml

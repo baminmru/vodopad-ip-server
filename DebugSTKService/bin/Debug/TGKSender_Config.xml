@@ -1,0 +1,15 @@
+<Config DataSource="ora92APE" 
+UserID="COUNTERS"
+Password="counters" 
+FileDirectory="d:\database\utl\" 
+VPNGUIPATH = "C:\Program Files\Cisco Systems\VPN Client\vpngui.exe"
+VPNGUIARGS = "-c -user Bogdanov.PE -pwd Rena315 TGK-1"
+VPNGUINAME = "vpngui"
+TEST_VPN_IP = "192.168.7.5"
+TEST_VPN_PORT ="80"
+>
+</Config>
+
+
+
+        

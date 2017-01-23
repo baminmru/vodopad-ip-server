@@ -770,74 +770,7 @@ Public Class driver
     End Function
 
 
-    'Public Overrides Function WriteArchToDB() As String
 
-    '    'If Arch.archType <> 4 Then
-    '    '    Arch.DateArch = Arch.DateArch.AddSeconds(1)
-    '    'End If
-
-    '    WriteArchToDB = "INSERT INTO DATACURR(id_bd, id_ptype,DCALL,DCOUNTER,DATECOUNTER,t1,t2,t3,t4,t5,t6,tce1,tce2,tair1,tair2,p1,p2,p3,p4,v1,v2,v3,v4,v5,v6,m1,m2,m3,m4,m5,m6,dm12,V1H,V2H,V5H,V4H,q1h,q2h,sp_TB1,sp_TB2,q1,q2,q4,q5,TSUM1,TSUM2,hc_code,hc,hc_1,hc_2, worktime,oktime,oktime2, errtime,errtime2,hcraw1,hcraw2) values ("
-    '    WriteArchToDB = WriteArchToDB + "'" + DeviceID.ToString() + "',"
-    '    WriteArchToDB = WriteArchToDB + "'" + Arch.archType.ToString() + "',"
-    '    WriteArchToDB = WriteArchToDB + "SYSDATE" + ","
-    '    WriteArchToDB = WriteArchToDB + OracleDate(Arch.DateArch) + ","
-    '    WriteArchToDB = WriteArchToDB + OracleDate(Arch.DateArch) + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.T1, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.T2, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.T3, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.T4, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.T5, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.T6, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.tx1, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.tx2, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.tair1, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.tair2, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.P1, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.P2, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.P3, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.P4, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.V1, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.V2, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.V3, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.v4, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.v5, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.v6, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.M1, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.M2, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.M3, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.M4, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.M5, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.M6, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.M1 - Arch.M2, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.V1H, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.V2H, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.V3H, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.v4H, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.Q1H, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.Q2H, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.SPtv1.ToString + ","
-    '    WriteArchToDB = WriteArchToDB + Arch.SPtv2.ToString + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.Q1, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.Q2, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.Q4, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.Q5, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.WORKTIME1, "##############0.000000").Replace(",", ".") + ","
-    '    WriteArchToDB = WriteArchToDB + Format(Arch.WORKTIME2, "##############0.000000").Replace(",", ".") + ","
-
-
-
-
-    '    WriteArchToDB = WriteArchToDB + "'" + S180(DeCodeHC(Arch.HC)) + "','" + S180(DeCodeHC(Arch.HC)) + "'"
-    '    WriteArchToDB = WriteArchToDB + ",'" + DeCodeHC(Arch.HC) + "','" + DeCodeHC(Arch.HCtv2) + "'"
-    '    WriteArchToDB = WriteArchToDB + "," + Format((Arch.WORKTIME1), "##############0").Replace(",", ".")
-    '    WriteArchToDB = WriteArchToDB + "," + Format((Arch.OKTIME1), "##############0").Replace(",", ".")
-    '    WriteArchToDB = WriteArchToDB + "," + Format((Arch.OKTIME2), "##############0").Replace(",", ".")
-    '    WriteArchToDB = WriteArchToDB + "," + Format(Arch.ERRTIME1, "##############0").Replace(",", ".")
-    '    WriteArchToDB = WriteArchToDB + "," + Format(Arch.ERRTIME2, "##############0").Replace(",", ".")
-    '    WriteArchToDB = WriteArchToDB + "," + "'" + Arch.HC.ToString() + "','" + Arch.HCtv2.ToString() + "'"
-    '    WriteArchToDB = WriteArchToDB + ")"
-    '    Debug.Print(WriteArchToDB)
-    'End Function
 
 
 
@@ -910,7 +843,7 @@ Public Class driver
     Private Function GetFlt(ByVal SI() As Byte, ByVal PosL As Integer, ByVal Chanel As Integer) As Single
 
         Dim l As Single
-        Dim lrev As Single
+        'Dim lrev As Single
         Dim pos As Integer
         pos = PosL + 4 * (Chanel)
         Try
@@ -1342,54 +1275,6 @@ Public Class driver
 
     End Function
 
-    'Public Overrides Function WriteTArchToDB() As String
-    '    WriteTArchToDB = "INSERT INTO DATACURR(id_bd,id_ptype,DCALL,DCOUNTER,DATECOUNTER,Q1H,Q2H,Q4,Q5,M1,M2,M3,M4,M5,M6,v1h,v2h,v3,v4h,v5h,v6,p1,p2,p3,p4,p5,p6,t1,t2,t3,t4,t5,t6,TSUM1,TSUM2,worktime,ERRTIME,oktime,oktime2,errtime2) values ("
-    '    WriteTArchToDB = WriteTArchToDB + DeviceID.ToString() + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.archType.ToString() + ","
-    '    WriteTArchToDB = WriteTArchToDB + "SYSDATE" + ","
-    '    WriteTArchToDB = WriteTArchToDB + OracleDate(tArch.DateArch) + ","
-    '    WriteTArchToDB = WriteTArchToDB + OracleDate(tArch.DateArch) + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.Q1, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.Q2, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.Q3, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.Q4, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.M1, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.M2, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.M3, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.M4, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.M5, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.M6, "##############0.000000").Replace(",", ".") + ","
-
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.V1, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.V2, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.V3, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.V4, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.V5, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.V6, "##############0.000000").Replace(",", ".") + ","
-
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.P1, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.P2, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.P3, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.P4, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.P5, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.P6, "##############0.000000").Replace(",", ".") + ","
-
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.T1, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.T2, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.T3, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.T4, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.T5, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.T6, "##############0.000000").Replace(",", ".") + ","
-
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.WORKTIME1, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.WORKTIME2, "##############0.000000").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.WORKTIME1, "##############0").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.errtime1, "##############0").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.oktime1, "##############0").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.oktime2, "##############0").Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + Format(tArch.errtime2, "##############0").Replace(",", ".")
-    '    WriteTArchToDB = WriteTArchToDB + ")"
-    'End Function
 
 
     Public Overrides Function WriteMArchToDB() As String

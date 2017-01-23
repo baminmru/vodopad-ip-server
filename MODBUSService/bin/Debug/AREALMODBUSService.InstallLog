@@ -1,0 +1,13 @@
+﻿Выполняется установка сборки 'C:\bami\projects\AREAL\VODOPAD\MODBUSService\bin\Debug\AREALMODBUSService.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = C:\bami\projects\AREAL\VODOPAD\MODBUSService\bin\Debug\AREALMODBUSService.InstallLog
+   assemblypath = C:\bami\projects\AREAL\VODOPAD\MODBUSService\bin\Debug\AREALMODBUSService.exe
+Устанавливается служба AREALMODBUSService...
+Служба AREALMODBUSService успешно установлена.
+Создается исходный EventLog AREALMODBUSService в журнале Application...
+Выполняется фиксация сборки 'C:\bami\projects\AREAL\VODOPAD\MODBUSService\bin\Debug\AREALMODBUSService.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = C:\bami\projects\AREAL\VODOPAD\MODBUSService\bin\Debug\AREALMODBUSService.InstallLog
+   assemblypath = C:\bami\projects\AREAL\VODOPAD\MODBUSService\bin\Debug\AREALMODBUSService.exe

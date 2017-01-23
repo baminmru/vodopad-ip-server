@@ -1,7 +1,7 @@
 create sequence MASKSLINE_SEQ
 minvalue 1
 maxvalue 9999999999
-start with 19977
+start with 20010
 increment by 1
 nocache;
 

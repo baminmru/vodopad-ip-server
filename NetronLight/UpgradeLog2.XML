@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="NetronLight">
+</Property><Property Name="Solution File" Value="C:\LATIR2\NetronLight\NetronLight.sln">
+</Property><Property Name="User Options File" Value="C:\LATIR2\NetronLight\NetronLight.suo">
+</Property><Property Name="Date" Value="26 мая 2009 г.">
+</Property><Property Name="Time" Value="13:41">
+</Property><Property Name="Log Number" Value="2">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="NetronLight.sln" Description="File successfully backed up as C:\LATIR2\NetronLight\Backup\NetronLight.sln">
+</Event><Event ErrorLevel="0" Project="" Source="NetronLight.suo" Description="File successfully backed up as C:\LATIR2\NetronLight\Backup\NetronLight.suo">
+</Event><Event ErrorLevel="0" Project="NetronLight" Source="NetronLight.csproj" Description="Project file successfully backed up as C:\LATIR2\NetronLight\Backup\NetronLight.csproj">
+</Event><Event ErrorLevel="0" Project="NetronLight" Source="NetronLight.csproj.user" Description="Project user file successfully backed up as C:\LATIR2\NetronLight\Backup\NetronLight.csproj.user">
+</Event><Event ErrorLevel="0" Project="NetronLight" Source="AssemblyInfo.cs" Description="File successfully backed up as C:\LATIR2\NetronLight\Backup\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="NetronLight" Source="Collections\ConnectionCollection.cs" Description="File successfully backed up as C:\LATIR2\NetronLight\Backup\Collections\ConnectionCollection.cs">
+</Event><Event ErrorLevel="0" Project="NetronLight" Source="Collections\ConnectorCollection.cs" Description="File successfully backed up as C:\LATIR2\NetronLight\Backup\Collections\ConnectorCollection.cs">
+</Event><Event ErrorLevel="0" Project="NetronLight" Source="Collections\ShapeCollection.cs" Description="File successfully backed up as C:\LATIR2\NetronLight\Backup\Collections\ShapeCollection.cs">
+</Event><Event ErrorLevel="0" Project="NetronLight" Source="Connection.cs" Description="File successfully backed up as C:\LATIR2\NetronLight\Backup\Connection.cs">
+</Event><Event ErrorLevel="0" Project="NetronLight" Source="Connector.cs" Description="File successfully backed up as C:\LATIR2\NetronLight\Backup\Connector.cs">
+</Event><Event ErrorLevel="0" Project="NetronLight" Source="Entity.cs" Description="File successfully backed up as C:\LATIR2\NetronLight\Backup\Entity.cs">
+</Event><Event ErrorLevel="0" Project="NetronLight" Source="Enums\Enums.cs" Description="File successfully backed up as C:\LATIR2\NetronLight\Backup\Enums\Enums.cs">
+</Event><Event ErrorLevel="0" Project="NetronLight" Source="ShapeBase.cs" Description="File successfully backed up as C:\LATIR2\NetronLight\Backup\ShapeBase.cs">
+</Event><Event ErrorLevel="0" Project="NetronLight" Source="Shapes\OvalShape.cs" Description="File successfully backed up as C:\LATIR2\NetronLight\Backup\Shapes\OvalShape.cs">
+</Event><Event ErrorLevel="0" Project="NetronLight" Source="Shapes\SimpleRectangle.cs" Description="File successfully backed up as C:\LATIR2\NetronLight\Backup\Shapes\SimpleRectangle.cs">
+</Event><Event ErrorLevel="0" Project="NetronLight" Source="Shapes\TextLabel.cs" Description="File successfully backed up as C:\LATIR2\NetronLight\Backup\Shapes\TextLabel.cs">
+</Event><Event ErrorLevel="0" Project="NetronLight" Source="UI\GraphControl.cs" Description="File successfully backed up as C:\LATIR2\NetronLight\Backup\UI\GraphControl.cs">
+</Event><Event ErrorLevel="0" Project="NetronLight" Source="UI\GraphControl.resx" Description="File successfully backed up as C:\LATIR2\NetronLight\Backup\UI\GraphControl.resx">
+</Event><Event ErrorLevel="0" Project="NetronLight" Source="NetronLight.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="NetronLight" Source="NetronLight.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="NetronLight.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="NetronLight.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="NetronLight" Source="NetronLight.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

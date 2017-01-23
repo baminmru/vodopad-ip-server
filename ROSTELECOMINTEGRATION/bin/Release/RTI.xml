@@ -1,0 +1,132 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+RTI
+</name>
+</assembly>
+<members>
+<member name="P:ROSTELECOMINTEGRATION.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:ROSTELECOMINTEGRATION.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:ROSTELECOMINTEGRATION.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:ROSTELECOMINTEGRATION.WebReference.Integration.#ctor">
+	<remarks/>
+</member><member name="E:ROSTELECOMINTEGRATION.WebReference.Integration.getCompleted">
+	<remarks/>
+</member><member name="E:ROSTELECOMINTEGRATION.WebReference.Integration.postCompleted">
+	<remarks/>
+</member><member name="E:ROSTELECOMINTEGRATION.WebReference.Integration.putCompleted">
+	<remarks/>
+</member><member name="E:ROSTELECOMINTEGRATION.WebReference.Integration.deleteCompleted">
+	<remarks/>
+</member><member name="M:ROSTELECOMINTEGRATION.WebReference.Integration.get(ROSTELECOMINTEGRATION.WebReference.RequestType)">
+	<remarks/>
+</member><member name="M:ROSTELECOMINTEGRATION.WebReference.Integration.getAsync(ROSTELECOMINTEGRATION.WebReference.RequestType)">
+	<remarks/>
+</member><member name="M:ROSTELECOMINTEGRATION.WebReference.Integration.getAsync(ROSTELECOMINTEGRATION.WebReference.RequestType,System.Object)">
+	<remarks/>
+</member><member name="M:ROSTELECOMINTEGRATION.WebReference.Integration.post(ROSTELECOMINTEGRATION.WebReference.RequestType)">
+	<remarks/>
+</member><member name="M:ROSTELECOMINTEGRATION.WebReference.Integration.postAsync(ROSTELECOMINTEGRATION.WebReference.RequestType)">
+	<remarks/>
+</member><member name="M:ROSTELECOMINTEGRATION.WebReference.Integration.postAsync(ROSTELECOMINTEGRATION.WebReference.RequestType,System.Object)">
+	<remarks/>
+</member><member name="M:ROSTELECOMINTEGRATION.WebReference.Integration.put(ROSTELECOMINTEGRATION.WebReference.RequestType)">
+	<remarks/>
+</member><member name="M:ROSTELECOMINTEGRATION.WebReference.Integration.putAsync(ROSTELECOMINTEGRATION.WebReference.RequestType)">
+	<remarks/>
+</member><member name="M:ROSTELECOMINTEGRATION.WebReference.Integration.putAsync(ROSTELECOMINTEGRATION.WebReference.RequestType,System.Object)">
+	<remarks/>
+</member><member name="M:ROSTELECOMINTEGRATION.WebReference.Integration.delete(ROSTELECOMINTEGRATION.WebReference.RequestType)">
+	<remarks/>
+</member><member name="M:ROSTELECOMINTEGRATION.WebReference.Integration.deleteAsync(ROSTELECOMINTEGRATION.WebReference.RequestType)">
+	<remarks/>
+</member><member name="M:ROSTELECOMINTEGRATION.WebReference.Integration.deleteAsync(ROSTELECOMINTEGRATION.WebReference.RequestType,System.Object)">
+	<remarks/>
+</member><member name="M:ROSTELECOMINTEGRATION.WebReference.Integration.CancelAsync(System.Object)">
+	<remarks/>
+</member><member name="T:ROSTELECOMINTEGRATION.WebReference.Integration">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.RequestType.Header">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.RequestType.Data">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.RequestType.Parameters">
+	<remarks/>
+</member><member name="T:ROSTELECOMINTEGRATION.WebReference.RequestType">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.HeaderType.Version">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.HeaderType.Operation">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.HeaderType.RequestId">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.HeaderType.SendDate">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.HeaderType.Sender">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.HeaderType.Signature">
+	<remarks/>
+</member><member name="T:ROSTELECOMINTEGRATION.WebReference.HeaderType">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.ResponseType.Header">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.ResponseType.Code">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.ResponseType.Description">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.ResponseType.Data">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.ResponseType.Parameters">
+	<remarks/>
+</member><member name="T:ROSTELECOMINTEGRATION.WebReference.ResponseType">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.ParametersType.Parameter">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.ParametersType.CustomParameters">
+	<remarks/>
+</member><member name="T:ROSTELECOMINTEGRATION.WebReference.ParametersType">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.ParameterType.Name">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.ParameterType.Value">
+	<remarks/>
+</member><member name="T:ROSTELECOMINTEGRATION.WebReference.ParameterType">
+	<remarks/>
+</member><member name="T:ROSTELECOMINTEGRATION.WebReference.getCompletedEventHandler">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.getCompletedEventArgs.Result">
+	<remarks/>
+</member><member name="T:ROSTELECOMINTEGRATION.WebReference.getCompletedEventArgs">
+	<remarks/>
+</member><member name="T:ROSTELECOMINTEGRATION.WebReference.postCompletedEventHandler">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.postCompletedEventArgs.Result">
+	<remarks/>
+</member><member name="T:ROSTELECOMINTEGRATION.WebReference.postCompletedEventArgs">
+	<remarks/>
+</member><member name="T:ROSTELECOMINTEGRATION.WebReference.putCompletedEventHandler">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.putCompletedEventArgs.Result">
+	<remarks/>
+</member><member name="T:ROSTELECOMINTEGRATION.WebReference.putCompletedEventArgs">
+	<remarks/>
+</member><member name="T:ROSTELECOMINTEGRATION.WebReference.deleteCompletedEventHandler">
+	<remarks/>
+</member><member name="P:ROSTELECOMINTEGRATION.WebReference.deleteCompletedEventArgs.Result">
+	<remarks/>
+</member><member name="T:ROSTELECOMINTEGRATION.WebReference.deleteCompletedEventArgs">
+	<remarks/>
+</member>
+</members>
+</doc>

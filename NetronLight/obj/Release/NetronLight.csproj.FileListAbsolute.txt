@@ -1,0 +1,14 @@
+C:\LATIR2\Generated\Generated Dlls\NetronLight.dll
+C:\LATIR2\NetronLight\obj\Release\ResolveAssemblyReference.cache
+C:\LATIR2\NetronLight\obj\Release\NetronLight.GraphControl.resources
+C:\LATIR2\NetronLight\obj\Release\NetronLight.dll
+C:\LATIR2\NetronLight\obj\Release\ResGen.read.1.tlog
+C:\LATIR2\NetronLight\obj\Release\ResGen.write.1.tlog
+C:\bami\Service_2.2_oracle_provider\Generated\Generated Dlls\NetronLight.dll
+C:\bami\Service_2.2_oracle_provider\NetronLight\obj\Release\ResolveAssemblyReference.cache
+C:\bami\Service_2.2_oracle_provider\NetronLight\obj\Release\NetronLight.GraphControl.resources
+C:\bami\Service_2.2_oracle_provider\NetronLight\obj\Release\GenerateResource-ResGen.read.1.tlog
+C:\bami\Service_2.2_oracle_provider\NetronLight\obj\Release\ResGen.read.1.tlog
+C:\bami\Service_2.2_oracle_provider\NetronLight\obj\Release\GenerateResource-ResGen.write.1.tlog
+C:\bami\Service_2.2_oracle_provider\NetronLight\obj\Release\ResGen.write.1.tlog
+C:\bami\Service_2.2_oracle_provider\NetronLight\obj\Release\NetronLight.dll

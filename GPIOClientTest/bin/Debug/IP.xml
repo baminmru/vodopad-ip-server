@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<IPList>
+  <ip Name="Test" Address="192.168.9.59"></ip>
+  <ip Name="192.168.9.60" Address="192.168.9.60"></ip>
+  <ip Name="192.168.9.61" Address="192.168.9.61"></ip>
+  <ip Name="10.0.1.254" Address="10.0.1.254"></ip>
+</IPList>

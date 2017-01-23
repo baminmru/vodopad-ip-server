@@ -804,21 +804,6 @@ finalRet:
         Return "Тотальный архив прочитан"
     End Function
 
-    'Public Overrides Function WriteTArchToDB() As String
-    '    WriteTArchToDB = "INSERT INTO " & DBTableName & "(id_bd,DCALL,DCOUNTER,DATECOUNTER,id_ptype,v1,v2,v3,v4,Q1,Q2) values ("
-    '    WriteTArchToDB = WriteTArchToDB + DeviceID.ToString() + ","
-    '    WriteTArchToDB = WriteTArchToDB + "SYSDATE" + ","
-    '    WriteTArchToDB = WriteTArchToDB + OracleDate(tArch.DateArch) + ","
-    '    WriteTArchToDB = WriteTArchToDB + OracleDate(tArch.DateArch) + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.archType.ToString + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.V1.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.V2.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.V3.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.V4.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.Q1.ToString.Replace(",", ".") + ","
-    '    WriteTArchToDB = WriteTArchToDB + tArch.Q2.ToString.Replace(",", ".")
-    '    WriteTArchToDB = WriteTArchToDB + ")"
-    'End Function
 
 
 

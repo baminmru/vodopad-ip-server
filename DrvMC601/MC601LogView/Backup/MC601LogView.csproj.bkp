@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <!--Project was exported from assembly: C:\Program Files (x86)\Kamstrup\MC601LogView\MC601LogView.exe-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4B6415FD-3AA2-40F2-9119-E42801FC957B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>MC601LogView</AssemblyName>
+    <RootNamespace>MC601LogView</RootNamespace>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Infragistics2.Win.UltraWinGrid.v8.1">
+      <HintPath>lib\Infragistics2.Win.UltraWinGrid.v8.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinGrid.ExcelExport.v8.1">
+      <HintPath>lib\Infragistics2.Win.UltraWinGrid.ExcelExport.v8.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinPrintPreviewDialog.v8.1">
+      <HintPath>lib\Infragistics2.Win.UltraWinPrintPreviewDialog.v8.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinChart.v8.1">
+      <HintPath>lib\Infragistics2.Win.UltraWinChart.v8.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.Misc.v8.1">
+      <HintPath>lib\Infragistics2.Win.Misc.v8.1.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="Infragistics2.Win.v8.1">
+      <HintPath>lib\Infragistics2.Win.v8.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Excel.v8.1">
+      <HintPath>lib\Infragistics2.Excel.v8.1.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="HourLogDataSet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LiveLogDataSet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FrmMC601LogView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="YearLogDataSet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FrmContact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UCRegisterCheckBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ERegisterType.cs" />
+    <Compile Include="MonthLogDataSet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormLoadingData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CbxItem.cs" />
+    <Compile Include="ClsUtils.cs" />
+    <Compile Include="FrmMC601RegisterViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="eKMPLoggerType.cs" />
+    <Compile Include="FrmKMPLogger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmYearLogger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmKMPLoggerShowLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmQuickFigure.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DayLogDataSet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FrmMC601LogInfoViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLiveLogger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="clsCalculatedRegisters.cs" />
+    <Compile Include="clsCalculatedRegister.cs" />
+    <Compile Include="eKMPUnit.cs" />
+    <Compile Include="clsKMPUnits.cs" />
+    <Compile Include="FrmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KMPLogDataSet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="eHourLogType.cs" />
+    <Compile Include="FrmHourLogSelecter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMonthLogger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDayLogger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.cs" />
+    <Compile Include="Properties\Settings.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AboutBox1.resx" />
+    <EmbeddedResource Include="exe.licenses" />
+    <EmbeddedResource Include="FormLoadingData.resx" />
+    <EmbeddedResource Include="FrmContact.resx" />
+    <EmbeddedResource Include="FrmDayLogger.resx" />
+    <EmbeddedResource Include="FrmGraph.resx" />
+    <EmbeddedResource Include="FrmHourLogSelecter.resx" />
+    <EmbeddedResource Include="FrmKMPLogger.resx" />
+    <EmbeddedResource Include="FrmKMPLoggerShowLog.resx" />
+    <EmbeddedResource Include="FrmLiveLogger.resx" />
+    <EmbeddedResource Include="FrmMC601LogInfoViewer.resx" />
+    <EmbeddedResource Include="FrmMC601LogView.resx" />
+    <EmbeddedResource Include="FrmMC601RegisterViewer.resx" />
+    <EmbeddedResource Include="FrmMonthLogger.resx" />
+    <EmbeddedResource Include="FrmQuickFigure.resx" />
+    <EmbeddedResource Include="FrmSettings.resx" />
+    <EmbeddedResource Include="FrmYearLogger.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="UCRegisterCheckBox.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\mc601Communication\mc601Communication.csproj">
+      <Project>{506714a2-fabf-4781-bfa7-0f9861e5ef7a}</Project>
+      <Name>mc601Communication</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

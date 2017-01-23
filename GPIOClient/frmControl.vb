@@ -2,7 +2,7 @@
 Imports System.IO
 Imports STKTVMain
 Imports System.Data
-Imports Oracle.DataAccess.Client
+Imports Oracle.ManagedDataAccess.Client
 
 
 Public Class frmControl

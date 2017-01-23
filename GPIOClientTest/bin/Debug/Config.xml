@@ -1,0 +1,12 @@
+<Config DataSource="ora11ape" 
+UserID="counters"
+Password="counters" 
+TimeOut="1000"
+TimerInterval="1000"
+ShowHidden="true"
+        >
+</Config>
+
+
+
+        

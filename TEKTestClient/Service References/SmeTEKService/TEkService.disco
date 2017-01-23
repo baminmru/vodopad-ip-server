@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://SME2:8082/TEkService.asmx?wsdl" docRef="http://SME2:8082/TEkService.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://SME2:8082/TEkService.asmx" xmlns:q1="http://microsoft.com/webservices/" binding="q1:TEkServiceSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://SME2:8082/TEkService.asmx" xmlns:q2="http://microsoft.com/webservices/" binding="q2:TEkServiceSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

@@ -1,0 +1,66 @@
+C:\LATIR2\Generated\Generated Dlls\NetronLight.dll
+C:\LATIR2\Generated\Generated Dlls\NetronLight.pdb
+C:\LATIR2\NetronLight\obj\Debug\ResolveAssemblyReference.cache
+C:\LATIR2\NetronLight\obj\Debug\NetronLight.GraphControl.resources
+C:\LATIR2\NetronLight\obj\Debug\ResGen.read.1.tlog
+C:\LATIR2\NetronLight\obj\Debug\ResGen.write.1.tlog
+C:\LATIR2\NetronLight\obj\Debug\NetronLight.dll
+C:\LATIR2\NetronLight\obj\Debug\NetronLight.pdb
+C:\bami\Projects\Szt_2012\Service_2.2\Generated\Generated Dlls\NetronLight.dll
+C:\bami\Projects\Szt_2012\Service_2.2\Generated\Generated Dlls\NetronLight.pdb
+C:\bami\Projects\Szt_2012\Service_2.2\NetronLight\obj\Debug\ResolveAssemblyReference.cache
+C:\bami\Projects\Szt_2012\Service_2.2\NetronLight\obj\Debug\NetronLight.GraphControl.resources
+C:\bami\Projects\Szt_2012\Service_2.2\NetronLight\obj\Debug\ResGen.read.1.tlog
+C:\bami\Projects\Szt_2012\Service_2.2\NetronLight\obj\Debug\ResGen.write.1.tlog
+C:\bami\Projects\Szt_2012\Service_2.2\NetronLight\obj\Debug\NetronLight.dll
+C:\bami\Projects\Szt_2012\Service_2.2\NetronLight\obj\Debug\NetronLight.pdb
+C:\bami\Service_2.2\Generated\Generated Dlls\NetronLight.dll
+C:\bami\Service_2.2\Generated\Generated Dlls\NetronLight.pdb
+C:\bami\Service_2.2\NetronLight\obj\Debug\ResolveAssemblyReference.cache
+C:\bami\Service_2.2\NetronLight\obj\Debug\NetronLight.GraphControl.resources
+C:\bami\Service_2.2\NetronLight\obj\Debug\GenerateResource-ResGen.read.1.tlog
+C:\bami\Service_2.2\NetronLight\obj\Debug\GenerateResource-ResGen.write.1.tlog
+C:\bami\Service_2.2\NetronLight\obj\Debug\NetronLight.dll
+C:\bami\Service_2.2\NetronLight\obj\Debug\NetronLight.pdb
+C:\bami\Service_2.2_oracle_provider\Generated\Generated Dlls\NetronLight.dll
+C:\bami\Service_2.2_oracle_provider\Generated\Generated Dlls\NetronLight.pdb
+C:\bami\Service_2.2_oracle_provider\NetronLight\obj\Debug\ResolveAssemblyReference.cache
+C:\bami\Service_2.2_oracle_provider\NetronLight\obj\Debug\NetronLight.GraphControl.resources
+C:\bami\Service_2.2_oracle_provider\NetronLight\obj\Debug\NetronLight.dll
+C:\bami\Service_2.2_oracle_provider\NetronLight\obj\Debug\NetronLight.pdb
+C:\bami\Service_2.2_oracle_provider\NetronLight\obj\Debug\GenerateResource.read.1.tlog
+C:\bami\Service_2.2_oracle_provider\NetronLight\obj\Debug\GenerateResource.write.1.tlog
+C:\bami\VodopadIP_2015\Service_2.2_oracle_provider\Generated\Generated Dlls\NetronLight.dll
+C:\bami\VodopadIP_2015\Service_2.2_oracle_provider\Generated\Generated Dlls\NetronLight.pdb
+C:\bami\VodopadIP_2015\Service_2.2_oracle_provider\NetronLight\obj\Debug\ResolveAssemblyReference.cache
+C:\bami\VodopadIP_2015\Service_2.2_oracle_provider\NetronLight\obj\Debug\NetronLight.GraphControl.resources
+C:\bami\VodopadIP_2015\Service_2.2_oracle_provider\NetronLight\obj\Debug\GenerateResource.read.1.tlog
+C:\bami\VodopadIP_2015\Service_2.2_oracle_provider\NetronLight\obj\Debug\GenerateResource.write.1.tlog
+C:\bami\VodopadIP_2015\Service_2.2_oracle_provider\NetronLight\obj\Debug\NetronLight.dll
+C:\bami\VodopadIP_2015\Service_2.2_oracle_provider\NetronLight\obj\Debug\NetronLight.pdb
+C:\bami\projects\szt\Service_2.2_oracle_provider_main\Generated\Generated Dlls\NetronLight.dll
+C:\bami\projects\szt\Service_2.2_oracle_provider_main\Generated\Generated Dlls\NetronLight.pdb
+C:\bami\projects\szt\Service_2.2_oracle_provider_main\NetronLight\obj\Debug\NetronLight.GraphControl.resources
+C:\bami\projects\szt\Service_2.2_oracle_provider_main\NetronLight\obj\Debug\NetronLight.csproj.GenerateResource.Cache
+C:\bami\projects\szt\Service_2.2_oracle_provider_main\NetronLight\obj\Debug\NetronLight.dll
+C:\bami\projects\szt\Service_2.2_oracle_provider_main\NetronLight\obj\Debug\NetronLight.pdb
+C:\bami\projects\szt\Service_2.2_oracle_provider_main\NetronLight\obj\Debug\NetronLight.csprojResolveAssemblyReference.cache
+C:\bami\Service_2.2_oracle_provider_main\Generated\Generated Dlls\NetronLight.dll
+C:\bami\Service_2.2_oracle_provider_main\Generated\Generated Dlls\NetronLight.pdb
+C:\bami\Service_2.2_oracle_provider_main\NetronLight\obj\Debug\NetronLight.GraphControl.resources
+C:\bami\Service_2.2_oracle_provider_main\NetronLight\obj\Debug\NetronLight.csproj.GenerateResource.Cache
+C:\bami\Service_2.2_oracle_provider_main\NetronLight\obj\Debug\NetronLight.dll
+C:\bami\Service_2.2_oracle_provider_main\NetronLight\obj\Debug\NetronLight.pdb
+C:\bami\VODOPAD\Generated\Generated Dlls\NetronLight.dll
+C:\bami\VODOPAD\Generated\Generated Dlls\NetronLight.pdb
+C:\bami\VODOPAD\NetronLight\obj\Debug\NetronLight.GraphControl.resources
+C:\bami\VODOPAD\NetronLight\obj\Debug\NetronLight.csproj.GenerateResource.Cache
+C:\bami\VODOPAD\NetronLight\obj\Debug\NetronLight.dll
+C:\bami\VODOPAD\NetronLight\obj\Debug\NetronLight.pdb
+C:\bami\projects\AREAL\VODOPAD\Generated\Generated Dlls\NetronLight.dll
+C:\bami\projects\AREAL\VODOPAD\Generated\Generated Dlls\NetronLight.pdb
+C:\bami\projects\AREAL\VODOPAD\NetronLight\obj\Debug\NetronLight.GraphControl.resources
+C:\bami\projects\AREAL\VODOPAD\NetronLight\obj\Debug\NetronLight.csproj.GenerateResource.Cache
+C:\bami\projects\AREAL\VODOPAD\NetronLight\obj\Debug\NetronLight.dll
+C:\bami\projects\AREAL\VODOPAD\NetronLight\obj\Debug\NetronLight.pdb
+C:\bami\projects\AREAL\VODOPAD\NetronLight\obj\Debug\NetronLight.csprojResolveAssemblyReference.cache

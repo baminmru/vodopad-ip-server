@@ -1,0 +1,39 @@
+C:\LATIR\Generated\Generated Dlls\ConfigDrvTEM104.xml
+C:\LATIR\Generated\Generated Dlls\DrvTEM104.dll
+C:\LATIR\Generated\Generated Dlls\DrvTEM104.pdb
+C:\LATIR\Generated\Generated Dlls\DrvTEM104.xml
+C:\BAMI\Projects\SZT_2010\Service_1.30\DrvTEM104\obj\Release\ResolveAssemblyReference.cache
+C:\BAMI\Projects\SZT_2010\Service_1.30\DrvTEM104\obj\Release\DrvTEM104.Resources.resources
+C:\BAMI\Projects\SZT_2010\Service_1.30\DrvTEM104\obj\Release\DrvTEM104.vbproj.GenerateResource.Cache
+C:\BAMI\Projects\SZT_2010\Service_1.30\DrvTEM104\obj\Release\DrvTEM104.dll
+C:\BAMI\Projects\SZT_2010\Service_1.30\DrvTEM104\obj\Release\DrvTEM104.xml
+C:\BAMI\Projects\SZT_2010\Service_1.30\DrvTEM104\obj\Release\DrvTEM104.pdb
+C:\BAMI\Projects\SZT_2010\Service_1.32\DrvTEM104\obj\Release\ResolveAssemblyReference.cache
+C:\BAMI\Projects\SZT_2010\Service_1.32\DrvTEM104\obj\Release\DrvTEM104.Resources.resources
+C:\BAMI\Projects\SZT_2010\Service_1.32\DrvTEM104\obj\Release\DrvTEM104.vbproj.GenerateResource.Cache
+C:\BAMI\Projects\SZT_2010\Service_1.32\DrvTEM104\obj\Release\DrvTEM104.dll
+C:\BAMI\Projects\SZT_2010\Service_1.32\DrvTEM104\obj\Release\DrvTEM104.xml
+C:\BAMI\Projects\SZT_2010\Service_1.32\DrvTEM104\obj\Release\DrvTEM104.pdb
+C:\BAMI\Projects\SZT_2010\Service_1.34\DrvTEM104\obj\Release\ResolveAssemblyReference.cache
+C:\BAMI\Projects\SZT_2010\Service_1.34\DrvTEM104\obj\Release\DrvTEM104.Resources.resources
+C:\BAMI\Projects\SZT_2010\Service_1.34\DrvTEM104\obj\Release\GenerateResource-ResGen.read.1.tlog
+C:\BAMI\Projects\SZT_2010\Service_1.34\DrvTEM104\obj\Release\GenerateResource-ResGen.write.1.tlog
+C:\BAMI\Projects\SZT_2010\Service_1.34\DrvTEM104\obj\Release\DrvTEM104.dll
+C:\BAMI\Projects\SZT_2010\Service_1.34\DrvTEM104\obj\Release\DrvTEM104.xml
+C:\BAMI\Projects\SZT_2010\Service_1.34\DrvTEM104\obj\Release\DrvTEM104.pdb
+C:\bami\Projects\Szt_2012\Service_2.0\DrvTEM104\obj\Release\ResolveAssemblyReference.cache
+C:\bami\Projects\Szt_2012\Service_2.0\DrvTEM104\obj\Release\DrvTEM104.Resources.resources
+C:\bami\Projects\Szt_2012\Service_2.0\DrvTEM104\obj\Release\ResGen.read.1.tlog
+C:\bami\Projects\Szt_2012\Service_2.0\DrvTEM104\obj\Release\ResGen.write.1.tlog
+C:\bami\Projects\Szt_2012\Service_2.0\DrvTEM104\obj\Release\DrvTEM104.dll
+C:\bami\Projects\Szt_2012\Service_2.0\DrvTEM104\obj\Release\DrvTEM104.xml
+C:\bami\Projects\Szt_2012\Service_2.0\DrvTEM104\obj\Release\DrvTEM104.pdb
+C:\bami\Service_2.2_oracle_provider\DrvTEM104\obj\Release\ResolveAssemblyReference.cache
+C:\bami\Service_2.2_oracle_provider\DrvTEM104\obj\Release\DrvTEM104.Resources.resources
+C:\bami\Service_2.2_oracle_provider\DrvTEM104\obj\Release\GenerateResource.read.1.tlog
+C:\bami\Service_2.2_oracle_provider\DrvTEM104\obj\Release\ResGen.read.1.tlog
+C:\bami\Service_2.2_oracle_provider\DrvTEM104\obj\Release\GenerateResource.write.1.tlog
+C:\bami\Service_2.2_oracle_provider\DrvTEM104\obj\Release\ResGen.write.1.tlog
+C:\bami\Service_2.2_oracle_provider\DrvTEM104\obj\Release\DrvTEM104.dll
+C:\bami\Service_2.2_oracle_provider\DrvTEM104\obj\Release\DrvTEM104.xml
+C:\bami\Service_2.2_oracle_provider\DrvTEM104\obj\Release\DrvTEM104.pdb

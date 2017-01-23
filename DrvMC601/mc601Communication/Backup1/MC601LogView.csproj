@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\Program Files (x86)\Kamstrup\MC601LogView\MC601LogView.exe-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4B6415FD-3AA2-40F2-9119-E42801FC957B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>MC601LogView</AssemblyName>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <RootNamespace>MC601LogView</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Infragistics2.Win.UltraWinGrid.v8.1">
+      <HintPath>lib\Infragistics2.Win.UltraWinGrid.v8.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinGrid.ExcelExport.v8.1">
+      <HintPath>lib\Infragistics2.Win.UltraWinGrid.ExcelExport.v8.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinPrintPreviewDialog.v8.1">
+      <HintPath>lib\Infragistics2.Win.UltraWinPrintPreviewDialog.v8.1.dll</HintPath>
+    </Reference>
+    <Reference Include="mc601Communication">
+      <HintPath>lib\mc601Communication.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinChart.v8.1">
+      <HintPath>lib\Infragistics2.Win.UltraWinChart.v8.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.Misc.v8.1">
+      <HintPath>lib\Infragistics2.Win.Misc.v8.1.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="Infragistics2.Win.v8.1">
+      <HintPath>lib\Infragistics2.Win.v8.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Excel.v8.1">
+      <HintPath>lib\Infragistics2.Excel.v8.1.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="HourLogDataSet.cs" />
+    <Compile Include="LiveLogDataSet.cs" />
+    <Compile Include="FrmMC601LogView.cs" />
+    <Compile Include="YearLogDataSet.cs" />
+    <Compile Include="FrmContact.cs" />
+    <Compile Include="AboutBox1.cs" />
+    <Compile Include="UCRegisterCheckBox.cs" />
+    <Compile Include="ERegisterType.cs" />
+    <Compile Include="MonthLogDataSet.cs" />
+    <Compile Include="FormLoadingData.cs" />
+    <Compile Include="CbxItem.cs" />
+    <Compile Include="ClsUtils.cs" />
+    <Compile Include="FrmMC601RegisterViewer.cs" />
+    <Compile Include="eKMPLoggerType.cs" />
+    <Compile Include="FrmKMPLogger.cs" />
+    <Compile Include="FrmYearLogger.cs" />
+    <Compile Include="FrmKMPLoggerShowLog.cs" />
+    <Compile Include="FrmQuickFigure.cs" />
+    <Compile Include="FrmGraph.cs" />
+    <Compile Include="DayLogDataSet.cs" />
+    <Compile Include="FrmMC601LogInfoViewer.cs" />
+    <Compile Include="FrmLiveLogger.cs" />
+    <Compile Include="clsCalculatedRegisters.cs" />
+    <Compile Include="clsCalculatedRegister.cs" />
+    <Compile Include="eKMPUnit.cs" />
+    <Compile Include="clsKMPUnits.cs" />
+    <Compile Include="FrmSettings.cs" />
+    <Compile Include="KMPLogDataSet.cs" />
+    <Compile Include="eHourLogType.cs" />
+    <Compile Include="FrmHourLogSelecter.cs" />
+    <Compile Include="FrmMonthLogger.cs" />
+    <Compile Include="FrmDayLogger.cs" />
+    <Compile Include="Properties\Resources.cs" />
+    <Compile Include="Properties\Settings.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AboutBox1.resx" />
+    <EmbeddedResource Include="exe.licenses" />
+    <EmbeddedResource Include="FormLoadingData.resx" />
+    <EmbeddedResource Include="FrmContact.resx" />
+    <EmbeddedResource Include="FrmDayLogger.resx" />
+    <EmbeddedResource Include="FrmGraph.resx" />
+    <EmbeddedResource Include="FrmHourLogSelecter.resx" />
+    <EmbeddedResource Include="FrmKMPLogger.resx" />
+    <EmbeddedResource Include="FrmKMPLoggerShowLog.resx" />
+    <EmbeddedResource Include="FrmLiveLogger.resx" />
+    <EmbeddedResource Include="FrmMC601LogInfoViewer.resx" />
+    <EmbeddedResource Include="FrmMC601LogView.resx" />
+    <EmbeddedResource Include="FrmMC601RegisterViewer.resx" />
+    <EmbeddedResource Include="FrmMonthLogger.resx" />
+    <EmbeddedResource Include="FrmQuickFigure.resx" />
+    <EmbeddedResource Include="FrmSettings.resx" />
+    <EmbeddedResource Include="FrmYearLogger.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="UCRegisterCheckBox.resx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

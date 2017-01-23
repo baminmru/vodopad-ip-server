@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0602CFFC-526C-47BE-9D77-8CD5C3255D79}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CurrentLoader</RootNamespace>
+    <AssemblyName>CurrentLoader</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Oracle.ManagedDataAccess">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.12.1.24160719\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DeviceProcessor.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Drv941\Drv941.vbproj">
+      <Project>{ea163b07-ef46-418c-97ea-70db84c263a3}</Project>
+      <Name>Drv941</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Drv942\Drv942.vbproj">
+      <Project>{314ae99b-0044-4c10-ad42-4a0f9006d63b}</Project>
+      <Name>Drv942</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Drv943.1\Drv943_1.vbproj">
+      <Project>{cf6c50c4-e95d-4537-a6c4-c8431d07d2c7}</Project>
+      <Name>Drv943_1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Drv943\Drv943.vbproj">
+      <Project>{c815653b-ce5f-4a86-ac55-123ae1fc0b81}</Project>
+      <Name>Drv943</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvAreal\DrvAreal.vbproj">
+      <Project>{c02aedbf-2df5-441d-a168-8c7b645c2ccc}</Project>
+      <Name>DrvAreal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvDAN300\DrvDAN300.vbproj">
+      <Project>{6e1e0e80-2d2f-4ffd-9701-a02eca496b55}</Project>
+      <Name>DrvDAN300</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvDAN310\DrvDAN310.vbproj">
+      <Project>{fe518836-5b08-43a3-bd3c-5b477774c3fe}</Project>
+      <Name>DrvDAN310</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvMagika\DrvMAGIKA.vbproj">
+      <Project>{99770d1d-27a8-4606-acc2-cd3e83b4bdee}</Project>
+      <Name>DrvMAGIKA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvMC601\DrvMC601.vbproj">
+      <Project>{e3f69481-2d81-4b0f-aae3-e36955c78e79}</Project>
+      <Name>DrvMC601</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvMODBUS\DrvMODBUS.vbproj">
+      <Project>{ea5ba547-dd40-408d-b94a-ab18f5a7dcf1}</Project>
+      <Name>DrvMODBUS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvMODBUS_COM\DrvMODBUS_COM.vbproj">
+      <Project>{e7bcc752-b5f2-4a24-89e4-5b8b71a0a010}</Project>
+      <Name>DrvMODBUS_COM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvMT\DrvMT.vbproj">
+      <Project>{715a122f-4389-4f4c-8ffb-8347f5637fc7}</Project>
+      <Name>DrvMT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvOPC\DrvOPC.vbproj">
+      <Project>{abdb8044-3555-45d0-907b-62f865c8559d}</Project>
+      <Name>DrvOPC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvTEM104\DrvTEM104.vbproj">
+      <Project>{0ca60ab7-4f6f-43d3-b9f4-c39e7def79e9}</Project>
+      <Name>DrvTEM104</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvTSRV02\DrvTSRV02.vbproj">
+      <Project>{21dfa229-5abc-4931-bd83-4b3108446765}</Project>
+      <Name>DrvTSRV02</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvTSRV\DrvTSRV.vbproj">
+      <Project>{299245d2-5f4b-4e7a-a08d-05930b831287}</Project>
+      <Name>DrvTSRV</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvVKT4M\DrvVKT4M.vbproj">
+      <Project>{645aa064-535d-4d72-b790-61895fcaed43}</Project>
+      <Name>DrvVKT4M</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvVKT4\DrvVKT4.vbproj">
+      <Project>{4f74dc3d-f0a9-45c8-9b71-7376eb72e3f5}</Project>
+      <Name>DrvVKT4</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvVKT5\DrvVKT5.vbproj">
+      <Project>{8be1a73b-7b87-4a21-9980-e179560df3a1}</Project>
+      <Name>DrvVKT5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvVKT7\DrvVKT7.vbproj">
+      <Project>{4db1c271-f23f-409a-b1f7-cc29331708ac}</Project>
+      <Name>DrvVKT7</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STKTVMain\STKTVMain.vbproj">
+      <Project>{0c7d9d95-1165-4c46-8346-748e4d276cfd}</Project>
+      <Name>STKTVMain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F48074EC-C988-450D-9095-0FC02E37ED03}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>VIPAdmin.My.MyApplication</StartupObject>
+    <RootNamespace>VIPAdmin</RootNamespace>
+    <AssemblyName>VIPAdmin</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\bami\Service_2.2\publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>2012.12.10.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>VIPAdmin.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>VIPAdmin.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>VIPAdmin.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>2CC8398DF7CF16D4A092E412EADA5A070AAF2AF4</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>VIPAdmin_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SpreadsheetGear">
+      <HintPath>..\lib\SpreadsheetGear.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="frmDanCFG.Designer.vb">
+      <DependentUpon>frmDanCFG.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanCFG.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanSchema.Designer.vb">
+      <DependentUpon>frmDanSchema.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanSchema.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanSchemaEdit.Designer.vb">
+      <DependentUpon>frmDanSchemaEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanSchemaEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanSchemaParam.Designer.vb">
+      <DependentUpon>frmDanSchemaParam.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanSchemaParam.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEDIZM.Designer.vb">
+      <DependentUpon>frmEDIZM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmEDIZM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEDIZMEdit.Designer.vb">
+      <DependentUpon>frmEDIZMEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmEDIZMEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGroupsEdit.Designer.vb">
+      <DependentUpon>frmGroupsEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmGroupsEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmIP.Designer.vb">
+      <DependentUpon>frmIP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmIP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmIPEdit.Designer.vb">
+      <DependentUpon>frmIPEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmIPEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDevTypeEdit.Designer.vb">
+      <DependentUpon>frmDevTypeEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDevTypeEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMasks.Designer.vb">
+      <DependentUpon>frmMasks.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMasks.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMasksEdit.Designer.vb">
+      <DependentUpon>frmMasksEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMasksEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPanelSetup.designer.vb">
+      <DependentUpon>frmPanelSetup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPanelSetup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmParams.Designer.vb">
+      <DependentUpon>frmParams.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmParams.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmParmsEdit.Designer.vb">
+      <DependentUpon>frmParmsEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmParmsEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPipeType.Designer.vb">
+      <DependentUpon>frmPipeType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPipeType.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPipeTypeEdit.Designer.vb">
+      <DependentUpon>frmPipeTypeEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPipeTypeEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSchema.Designer.vb">
+      <DependentUpon>frmSchema.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSchema.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSchemaEdit.Designer.vb">
+      <DependentUpon>frmSchemaEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSchemaEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSchemaParam.Designer.vb">
+      <DependentUpon>frmSchemaParam.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSchemaParam.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSchemaPipe.Designer.vb">
+      <DependentUpon>frmSchemaPipe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSchemaPipe.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsers.Designer.vb">
+      <DependentUpon>frmUsers.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsers.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsersEdit.Designer.vb">
+      <DependentUpon>frmUsersEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsersEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWhoGiveEdit.Designer.vb">
+      <DependentUpon>frmWhoGiveEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmWhoGiveEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWhoGiveTopEdit.Designer.vb">
+      <DependentUpon>frmWhoGiveTopEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmWhoGiveTopEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMDIMain.Designer.vb">
+      <DependentUpon>frmMDIMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMDIMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNodes.Designer.vb">
+      <DependentUpon>frmNodes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmNodes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDevType.Designer.vb">
+      <DependentUpon>frmDevType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDevType.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGroups.Designer.vb">
+      <DependentUpon>frmGroups.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmGroups.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWhoGive.Designer.vb">
+      <DependentUpon>frmWhoGive.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmWhoGive.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWhoGiveTop.Designer.vb">
+      <DependentUpon>frmWhoGiveTop.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmWhoGiveTop.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Module1.vb" />
+    <Compile Include="Module2.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="SplashScreen1.Designer.vb">
+      <DependentUpon>SplashScreen1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SplashScreen1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmDanCFG.resx">
+      <DependentUpon>frmDanCFG.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanSchema.resx">
+      <DependentUpon>frmDanSchema.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanSchemaEdit.resx">
+      <DependentUpon>frmDanSchemaEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanSchemaParam.resx">
+      <DependentUpon>frmDanSchemaParam.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEDIZM.resx">
+      <DependentUpon>frmEDIZM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEDIZMEdit.resx">
+      <DependentUpon>frmEDIZMEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGroupsEdit.resx">
+      <DependentUpon>frmGroupsEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmIP.resx">
+      <DependentUpon>frmIP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmIPEdit.resx">
+      <DependentUpon>frmIPEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDevTypeEdit.resx">
+      <DependentUpon>frmDevTypeEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMasks.resx">
+      <DependentUpon>frmMasks.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMasksEdit.resx">
+      <DependentUpon>frmMasksEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPanelSetup.resx">
+      <DependentUpon>frmPanelSetup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmParams.resx">
+      <DependentUpon>frmParams.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPipeType.resx">
+      <DependentUpon>frmPipeType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPipeTypeEdit.resx">
+      <DependentUpon>frmPipeTypeEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSchema.resx">
+      <DependentUpon>frmSchema.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSchemaEdit.resx">
+      <DependentUpon>frmSchemaEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSchemaParam.resx">
+      <DependentUpon>frmSchemaParam.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSchemaPipe.resx">
+      <DependentUpon>frmSchemaPipe.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsers.resx">
+      <DependentUpon>frmUsers.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsersEdit.resx">
+      <DependentUpon>frmUsersEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWhoGiveEdit.resx">
+      <DependentUpon>frmWhoGiveEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWhoGiveTopEdit.resx">
+      <DependentUpon>frmWhoGiveTopEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMDIMain.resx">
+      <DependentUpon>frmMDIMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNodes.resx">
+      <DependentUpon>frmNodes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDevType.resx">
+      <DependentUpon>frmDevType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGroups.resx">
+      <DependentUpon>frmGroups.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWhoGive.resx">
+      <DependentUpon>frmWhoGive.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWhoGiveTop.resx">
+      <DependentUpon>frmWhoGiveTop.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplashScreen1.resx">
+      <DependentUpon>SplashScreen1.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="VIPAdmin_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NetronLight\NetronLight.csproj">
+      <Project>{6E58DFD7-5154-4AA3-96DF-E562DE00393B}</Project>
+      <Name>NetronLight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NodeEditor\NodeEditor.vbproj">
+      <Project>{1FE064C5-075E-4987-AA41-067A20D52B70}</Project>
+      <Name>NodeEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STKTVMain\STKTVMain.vbproj">
+      <Project>{0C7D9D95-1165-4C46-8346-748E4D276CFD}</Project>
+      <Name>STKTVMain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="edit.jpg" />
+    <Content Include="VIPAdmin.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="YearStamp.MonthStamp.DayStamp.Increment" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

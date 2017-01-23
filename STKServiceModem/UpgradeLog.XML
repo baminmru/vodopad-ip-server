@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="STKService">
+</Property><Property Name="Solution File" Value="C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\STKService.sln">
+</Property><Property Name="User Options File" Value="C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\STKService.suo">
+</Property><Property Name="Date" Value="14 апреля 2009 г.">
+</Property><Property Name="Time" Value="8:05">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="STKService.sln" Description="File successfully backed up as C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\Backup\STKService.sln">
+</Event><Event ErrorLevel="0" Project="" Source="STKService.suo" Description="File successfully backed up as C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\Backup\STKService.suo">
+</Event><Event ErrorLevel="2" Project="STKService" Source="STKService\STKService.csproj" Description="Unable to open project file to perform upgrade.  ">
+</Event><Event ErrorLevel="1" Project="Drv942" Source="..\..\..\Documents and Settings\Serega\Мои документы\Visual Studio 2005\Projects\STKService\Drv942\Drv942.vbproj" Description="Warning: The project file is being backed up to a relative path that differs from the original solution relative path.  The difference in folder hierarchy may create problems in opening or building the backed up solution and project.">
+</Event><Event ErrorLevel="2" Project="Drv942" Source="..\..\..\Documents and Settings\Serega\Мои документы\Visual Studio 2005\Projects\STKService\Drv942\Drv942.vbproj" Description="Unable to open project file to perform upgrade.  ">
+</Event><Event ErrorLevel="1" Project="Drv943" Source="..\..\..\Documents and Settings\Serega\Мои документы\Visual Studio 2005\Projects\STKService\Drv943\Drv943.vbproj" Description="Warning: The project file is being backed up to a relative path that differs from the original solution relative path.  The difference in folder hierarchy may create problems in opening or building the backed up solution and project.">
+</Event><Event ErrorLevel="2" Project="Drv943" Source="..\..\..\Documents and Settings\Serega\Мои документы\Visual Studio 2005\Projects\STKService\Drv943\Drv943.vbproj" Description="Unable to open project file to perform upgrade.  ">
+</Event><Event ErrorLevel="1" Project="STKTVMain" Source="..\..\..\Documents and Settings\Serega\Мои документы\Visual Studio 2005\Projects\STKService\STKTVMain\STKTVMain.vbproj" Description="Warning: The project file is being backed up to a relative path that differs from the original solution relative path.  The difference in folder hierarchy may create problems in opening or building the backed up solution and project.">
+</Event><Event ErrorLevel="2" Project="STKTVMain" Source="..\..\..\Documents and Settings\Serega\Мои документы\Visual Studio 2005\Projects\STKService\STKTVMain\STKTVMain.vbproj" Description="Unable to open project file to perform upgrade.  ">
+</Event><Event ErrorLevel="0" Project="" Source="STKService.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="STKService.sln" Description="Converted">
+</Event></UpgradeLog>

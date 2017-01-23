@@ -8,7 +8,7 @@ Public Module modMain
 
     Public Sub Main()
         Try
-            mobServiceController = New System.ServiceProcess.ServiceController("STKServiceModem")
+            mobServiceController = New System.ServiceProcess.ServiceController("AREALMODBUSService")
             mobNotifyIcon = New NotifyIcon()
             mobNotifyIcon.Visible = False
             mobContextMenu = New ContextMenu()

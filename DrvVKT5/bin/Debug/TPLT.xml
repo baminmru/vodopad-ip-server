@@ -1,0 +1,2850 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+TPLT
+</name>
+</assembly>
+<members>
+<member name="M:TPLT.TPLT.TPLT_PLANCALL_col.ChildPartName">
+	<summary>
+Имя раздела в базе данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_PLANCALL_col.CreateDataTable">
+	<summary>
+Вернуть даные текущей коллекции в виде DataTable
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_PLANCALL_col.NewItem">
+	<summary>
+Создание нового элемента коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_PLANCALL_col.GetItem(System.Object)">
+	<summary>
+Получить элемент коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_PLANCALL_col.Item(System.Object)">
+	<summary>
+Получить элемент коллекции, более свежий вариант
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.TPLT_PLANCALL_col">
+	<summary>
+Реализация раздела План опроса устройствв виде коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_BDEVICES_col.ChildPartName">
+	<summary>
+Имя раздела в базе данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_BDEVICES_col.CreateDataTable">
+	<summary>
+Вернуть даные текущей коллекции в виде DataTable
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_BDEVICES_col.NewItem">
+	<summary>
+Создание нового элемента коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_BDEVICES_col.GetItem(System.Object)">
+	<summary>
+Получить элемент коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_BDEVICES_col.Item(System.Object)">
+	<summary>
+Получить элемент коллекции, более свежий вариант
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.TPLT_BDEVICES_col">
+	<summary>
+Реализация раздела Описаниев виде коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONNECT_col.ChildPartName">
+	<summary>
+Имя раздела в базе данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONNECT_col.CreateDataTable">
+	<summary>
+Вернуть даные текущей коллекции в виде DataTable
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONNECT_col.NewItem">
+	<summary>
+Создание нового элемента коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONNECT_col.GetItem(System.Object)">
+	<summary>
+Получить элемент коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONNECT_col.Item(System.Object)">
+	<summary>
+Получить элемент коллекции, более свежий вариант
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.TPLT_CONNECT_col">
+	<summary>
+Реализация раздела Параметры соединенияв виде коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_VALUEBOUNDS.m_PNAME">
+	<summary>
+Локальная переменная для поля Параметр
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_VALUEBOUNDS.m_PTYPE">
+	<summary>
+Локальная переменная для поля Тип архива
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_VALUEBOUNDS.m_PMIN">
+	<summary>
+Локальная переменная для поля Минимальное значение
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_VALUEBOUNDS.m_PMAX">
+	<summary>
+Локальная переменная для поля Максимальное значение
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_VALUEBOUNDS.m_ISMIN">
+	<summary>
+Локальная переменная для поля Проверять на минимум
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_VALUEBOUNDS.m_ISMAX">
+	<summary>
+Локальная переменная для поля Проверять на максимум
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_VALUEBOUNDS.CleanFields">
+	<summary>
+Очистить поля раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_VALUEBOUNDS.Count">
+	<summary>
+Количество полей в строке раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_VALUEBOUNDS.Value(System.Object)">
+	<summary>
+Получить \Задать поле по номеру 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_VALUEBOUNDS.FieldNameByID(System.Int64)">
+	<summary>
+Название поля по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_VALUEBOUNDS.FillDataTable(System.Data.DataTable@)">
+	<summary>
+Заполнить строку таблицы данными из полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_VALUEBOUNDS.FindInside(System.String,System.String)">
+	<summary>
+Найти строку в коллекции по идентификатору
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_VALUEBOUNDS.Pack(LATIR.NamedValues)">
+	<summary>
+Заполнить коллекцю именованных полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_VALUEBOUNDS.Unpack(System.Data.DataRow)">
+	<summary>
+Заполнить поля из именованной коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_VALUEBOUNDS.PNAME">
+	<summary>
+Доступ к полю Параметр
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_VALUEBOUNDS.PTYPE">
+	<summary>
+Доступ к полю Тип архива
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_VALUEBOUNDS.PMIN">
+	<summary>
+Доступ к полю Минимальное значение
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_VALUEBOUNDS.PMAX">
+	<summary>
+Доступ к полю Максимальное значение
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_VALUEBOUNDS.ISMIN">
+	<summary>
+Доступ к полю Проверять на минимум
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_VALUEBOUNDS.ISMAX">
+	<summary>
+Доступ к полю Проверять на максимум
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_VALUEBOUNDS.XMLUnpack(System.Xml.XmlNode,System.Int32)">
+	<summary>
+Заполнить поля данными из XML
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_VALUEBOUNDS.XLMPack(System.Xml.XmlElement,System.Xml.XmlDocument)">
+	<summary>
+Записать данные раздела в XML файл
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_VALUEBOUNDS.BatchUpdate">
+	<summary>
+Записать изменения в базу данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_VALUEBOUNDS.CountOfParts">
+	<summary>
+Количество дочерних разделов
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_VALUEBOUNDS.GetDocCollection_Base(System.Int64)">
+	<summary>
+Доступ к дочернему разделу по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.TPLT_VALUEBOUNDS">
+	<summary>
+Реализация строки раздела Граничные значения проверяемых параметров
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumHACCPStep">
+	<summary>
+Перечисление Тип шага в ХАССП процессе
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumPCB_FileType">
+	<summary>
+Перечисление Тип файла
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumHaccpIdent">
+	<summary>
+Перечисление Идентификация
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumtypeFace">
+	<summary>
+Перечисление Физическое лицо \ Юрифическое лицо
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumWFStepClass">
+	<summary>
+Перечисление Тип шага процесса
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumMonths">
+	<summary>
+Перечисление Месяцы
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumTypeStyle">
+	<summary>
+Перечисление Вариант трактовки типа поля
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumAggregationType">
+	<summary>
+Перечисление Вариант агрегации по полю
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumVHAlignment">
+	<summary>
+Перечисление Выравнивание
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumtypePackage">
+	<summary>
+Перечисление Тип отправления
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumParity">
+	<summary>
+Перечисление Четность
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumWFProcessState">
+	<summary>
+Перечисление Состояния процесса
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumNumerationRule">
+	<summary>
+Перечисление Правило нумерации
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumMenuActionType">
+	<summary>
+Перечисление Вариант действия при выборе пункта меню
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumColumnSortType">
+	<summary>
+Перечисление Вариант сортиовки данных колонки
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumAdditionType">
+	<summary>
+Перечисление Тип надбавки
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumTypeSempling">
+	<summary>
+Перечисление Тип выборки
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumStructType">
+	<summary>
+Перечисление Тип раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumTargetType">
+	<summary>
+Перечисление Вариант уровня приложения, куда может генерироваться код
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumDeliveryOn">
+	<summary>
+Перечисление 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumtypeOperatorSystem">
+	<summary>
+Перечисление 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumstateNomen">
+	<summary>
+Перечисление 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumPartAddBehaivor">
+	<summary>
+Перечисление Поведение при добавлении строки раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumFolderType">
+	<summary>
+Перечисление Тип папки
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enummsgState">
+	<summary>
+Перечисление Состояние заявки
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumWFShortcutType">
+	<summary>
+Перечисление Варианты ярлыков, которые может размещать процесс
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumReferenceType">
+	<summary>
+Перечисление ReferenceType
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumSex">
+	<summary>
+Перечисление Мужской / Женский
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumMesureFormat">
+	<summary>
+Перечисление Формат индикатора
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumWFFuncParam">
+	<summary>
+Перечисление Вариант расшифровки параметра функции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumYesNo">
+	<summary>
+Перечисление Да / Нет (0 или 1)
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumtypeOrder">
+	<summary>
+Перечисление 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enummsgResult">
+	<summary>
+Перечисление Результат
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumGeneratorStyle">
+	<summary>
+Перечисление GeneratorStyle
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumReportType">
+	<summary>
+Перечисление Вариант отчета
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumHACCPPStep">
+	<summary>
+Перечисление Тип шага в ХАССП процессе
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumtypeDocOrder">
+	<summary>
+Перечисление Тип документов для печати заказчику
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumPCB_LayerP">
+	<summary>
+Перечисление Представление поля
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumDayInWeek">
+	<summary>
+Перечисление День недели
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumPlatType">
+	<summary>
+Перечисление Тип плательщика
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumPartType">
+	<summary>
+Перечисление PartType
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumEmployment">
+	<summary>
+Перечисление Занятость
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumtypeClient">
+	<summary>
+Перечисление Тип заказчика
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumtypeNomen">
+	<summary>
+Перечисление Тип номенкатуры
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumKONTR_TYPE">
+	<summary>
+Перечисление Тип контрагента
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumtypePersonPay">
+	<summary>
+Перечисление 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumJournalLinkType">
+	<summary>
+Перечисление Для связи журналов друг с другом
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumConditionType">
+	<summary>
+Перечисление Варианты условий
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumtypePay">
+	<summary>
+Перечисление Сдельная \ Ставка
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumPCB_TaskType">
+	<summary>
+Перечисление Тип задачи
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumVRTaskType">
+	<summary>
+Перечисление Тип задачи
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumtypeReceiv">
+	<summary>
+Перечисление 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumPCB_CustomerType">
+	<summary>
+Перечисление Статус заказчика
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumOnJournalRowClick">
+	<summary>
+Перечисление действие при открытии строки журнала
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumtypeRowCheque">
+	<summary>
+Перечисление Тип строки чека
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumPCB_clear">
+	<summary>
+Перечисление Тип задачи
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumtypeTariff">
+	<summary>
+Перечисление 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumEducation">
+	<summary>
+Перечисление Образование
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumDCType">
+	<summary>
+Перечисление Остатки/Дебит/Кредит
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumDevelopmentBase">
+	<summary>
+Перечисление Платформа разработки
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumBoolean">
+	<summary>
+Перечисление Да / Нет
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumTriState">
+	<summary>
+Перечисление Да / Нет / Не определено
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumtypeTRF">
+	<summary>
+Перечисление Тип тарифа СС
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumCurrencyType">
+	<summary>
+Перечисление Валюта платежа
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumWFFuncState">
+	<summary>
+Перечисление Состояние функции в бизнес процессе
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumtypeCourier">
+	<summary>
+Перечисление Договор \ ТрудКнижка
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumEmployment_">
+	<summary>
+Перечисление осталось для совместимости
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumKONTR_STATUS">
+	<summary>
+Перечисление Состояние партнера
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumExtentionType">
+	<summary>
+Перечисление Тип расширения
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumReplicationType">
+	<summary>
+Перечисление Вариант репликации докуента
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.enumInfoStoreType">
+	<summary>
+Перечисление Тип каталога
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.Application.MyTypeName">
+	<summary>
+Название типа документа
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.Application.m_TPLT_VALUEBOUNDS">
+	<summary>
+ Внутренняя переменная для раздела Граничные значения проверяемых параметров
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.Application.TPLT_VALUEBOUNDS">
+	<summary>
+Свойство для доступа к строкам раздела Граничные значения проверяемых параметров
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.Application.m_TPLT_PLANCALL">
+	<summary>
+ Внутренняя переменная для раздела План опроса устройств
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.Application.TPLT_PLANCALL">
+	<summary>
+Свойство для доступа к строкам раздела План опроса устройств
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.Application.m_TPLT_CONTRACT">
+	<summary>
+ Внутренняя переменная для раздела Договорные установки
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.Application.TPLT_CONTRACT">
+	<summary>
+Свойство для доступа к строкам раздела Договорные установки
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.Application.m_TPLT_CONNECT">
+	<summary>
+ Внутренняя переменная для раздела Параметры соединения
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.Application.TPLT_CONNECT">
+	<summary>
+Свойство для доступа к строкам раздела Параметры соединения
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.Application.m_TPLT_BDEVICES">
+	<summary>
+ Внутренняя переменная для раздела Описание
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.Application.TPLT_BDEVICES">
+	<summary>
+Свойство для доступа к строкам раздела Описание
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.Application.CountOfParts">
+	<summary>
+Количество разделов в объекте
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.Application.GetDocCollection_Base(System.Int64)">
+	<summary>
+Получить раздел по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.Application.FindInCollections(System.String,System.String)">
+	<summary>
+Поиск элемента в коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.Application.XMLLoadCollections(System.Xml.XmlNode,System.Int32)">
+	<summary>
+Загрузка данных из XML  файла
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.Application.XMLSaveCollections(System.Xml.XmlElement,System.Xml.XmlDocument)">
+	<summary>
+Сохранение данных в XML  файле
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.Application.BatchUpdate">
+	<summary>
+Сохранение изменений в базе данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.Application">
+	<summary>
+Реализация документа Опрашиваемое устройство
+ </summary>
+	<remarks>
+Тепловычислитель
+ </remarks>
+</member><member name="M:TPLT.TPLT.TPLT_VALUEBOUNDS_col.ChildPartName">
+	<summary>
+Имя раздела в базе данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_VALUEBOUNDS_col.CreateDataTable">
+	<summary>
+Вернуть даные текущей коллекции в виде DataTable
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_VALUEBOUNDS_col.NewItem">
+	<summary>
+Создание нового элемента коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_VALUEBOUNDS_col.GetItem(System.Object)">
+	<summary>
+Получить элемент коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_VALUEBOUNDS_col.Item(System.Object)">
+	<summary>
+Получить элемент коллекции, более свежий вариант
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.TPLT_VALUEBOUNDS_col">
+	<summary>
+Реализация раздела Граничные значения проверяемых параметровв виде коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_ConnectType">
+	<summary>
+Локальная переменная для поля Тип подключения
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_CPHONE">
+	<summary>
+Локальная переменная для поля Телефон
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_CSPEED">
+	<summary>
+Локальная переменная для поля Скорость бод
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_CDATABIT">
+	<summary>
+Локальная переменная для поля Биты данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_CPARITY">
+	<summary>
+Локальная переменная для поля Четность
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_CSTOPBITS">
+	<summary>
+Локальная переменная для поля Стоповые биты
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_CPREFPHONE">
+	<summary>
+Локальная переменная для поля Префикс местной АТС
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_CONNECTLIMIT">
+	<summary>
+Локальная переменная для поля Лимит времени на установку связи
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_PARAMLIMIT">
+	<summary>
+Локальная переменная для поля Лимит времени на опрос 1 параметра
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_ComPortNum">
+	<summary>
+Локальная переменная для поля Com Port
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_CTOWNCODE">
+	<summary>
+Локальная переменная для поля Код города
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_CDTR">
+	<summary>
+Локальная переменная для поля Сигнал DTR
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_CDSR">
+	<summary>
+Локальная переменная для поля Сигнал  DSR
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_FlowControl">
+	<summary>
+Локальная переменная для поля FlowControl
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_IPAddr">
+	<summary>
+Локальная переменная для поля IP адрес
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_PortNum">
+	<summary>
+Локальная переменная для поля TCP Порт
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_UserName">
+	<summary>
+Локальная переменная для поля Пользователь
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_Password">
+	<summary>
+Локальная переменная для поля Пароль
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONNECT.m_ATCommand">
+	<summary>
+Локальная переменная для поля AT команда
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONNECT.CleanFields">
+	<summary>
+Очистить поля раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.Count">
+	<summary>
+Количество полей в строке раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.Value(System.Object)">
+	<summary>
+Получить \Задать поле по номеру 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONNECT.FieldNameByID(System.Int64)">
+	<summary>
+Название поля по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONNECT.FillDataTable(System.Data.DataTable@)">
+	<summary>
+Заполнить строку таблицы данными из полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONNECT.FindInside(System.String,System.String)">
+	<summary>
+Найти строку в коллекции по идентификатору
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONNECT.Pack(LATIR.NamedValues)">
+	<summary>
+Заполнить коллекцю именованных полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONNECT.Unpack(System.Data.DataRow)">
+	<summary>
+Заполнить поля из именованной коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.ConnectType">
+	<summary>
+Доступ к полю Тип подключения
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.CPHONE">
+	<summary>
+Доступ к полю Телефон
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.CSPEED">
+	<summary>
+Доступ к полю Скорость бод
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.CDATABIT">
+	<summary>
+Доступ к полю Биты данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.CPARITY">
+	<summary>
+Доступ к полю Четность
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.CSTOPBITS">
+	<summary>
+Доступ к полю Стоповые биты
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.CPREFPHONE">
+	<summary>
+Доступ к полю Префикс местной АТС
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.CONNECTLIMIT">
+	<summary>
+Доступ к полю Лимит времени на установку связи
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.PARAMLIMIT">
+	<summary>
+Доступ к полю Лимит времени на опрос 1 параметра
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.ComPortNum">
+	<summary>
+Доступ к полю Com Port
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.CTOWNCODE">
+	<summary>
+Доступ к полю Код города
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.CDTR">
+	<summary>
+Доступ к полю Сигнал DTR
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.CDSR">
+	<summary>
+Доступ к полю Сигнал  DSR
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.FlowControl">
+	<summary>
+Доступ к полю FlowControl
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.IPAddr">
+	<summary>
+Доступ к полю IP адрес
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.PortNum">
+	<summary>
+Доступ к полю TCP Порт
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.UserName">
+	<summary>
+Доступ к полю Пользователь
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.Password">
+	<summary>
+Доступ к полю Пароль
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.ATCommand">
+	<summary>
+Доступ к полю AT команда
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONNECT.XMLUnpack(System.Xml.XmlNode,System.Int32)">
+	<summary>
+Заполнить поля данными из XML
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONNECT.XLMPack(System.Xml.XmlElement,System.Xml.XmlDocument)">
+	<summary>
+Записать данные раздела в XML файл
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONNECT.BatchUpdate">
+	<summary>
+Записать изменения в базу данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONNECT.CountOfParts">
+	<summary>
+Количество дочерних разделов
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONNECT.GetDocCollection_Base(System.Int64)">
+	<summary>
+Доступ к дочернему разделу по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.TPLT_CONNECT">
+	<summary>
+Реализация строки раздела Параметры соединения
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_BDEVICES.m_Name">
+	<summary>
+Локальная переменная для поля Название
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_BDEVICES.m_ThePhone">
+	<summary>
+Локальная переменная для поля Телефон
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_BDEVICES.m_Addr">
+	<summary>
+Локальная переменная для поля Адрес
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_BDEVICES.m_DEVType">
+	<summary>
+Локальная переменная для поля Устройство
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_BDEVICES.m_Shab">
+	<summary>
+Локальная переменная для поля Снабжающая организация
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_BDEVICES.m_DevGrp">
+	<summary>
+Локальная переменная для поля Группа
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_BDEVICES.m_THESCHEMA">
+	<summary>
+Локальная переменная для поля Схема подключения
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_BDEVICES.m_NPLOCK">
+	<summary>
+Локальная переменная для поля Время до которого устройство считается заблокированным
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_BDEVICES.m_CONNECTED">
+	<summary>
+Локальная переменная для поля Подключен
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_BDEVICES.CleanFields">
+	<summary>
+Очистить поля раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_BDEVICES.Count">
+	<summary>
+Количество полей в строке раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_BDEVICES.Value(System.Object)">
+	<summary>
+Получить \Задать поле по номеру 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_BDEVICES.FieldNameByID(System.Int64)">
+	<summary>
+Название поля по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_BDEVICES.FillDataTable(System.Data.DataTable@)">
+	<summary>
+Заполнить строку таблицы данными из полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_BDEVICES.FindInside(System.String,System.String)">
+	<summary>
+Найти строку в коллекции по идентификатору
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_BDEVICES.Pack(LATIR.NamedValues)">
+	<summary>
+Заполнить коллекцю именованных полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_BDEVICES.Unpack(System.Data.DataRow)">
+	<summary>
+Заполнить поля из именованной коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_BDEVICES.Name">
+	<summary>
+Доступ к полю Название
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_BDEVICES.ThePhone">
+	<summary>
+Доступ к полю Телефон
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_BDEVICES.Addr">
+	<summary>
+Доступ к полю Адрес
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_BDEVICES.DEVType">
+	<summary>
+Доступ к полю Устройство
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_BDEVICES.Shab">
+	<summary>
+Доступ к полю Снабжающая организация
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_BDEVICES.DevGrp">
+	<summary>
+Доступ к полю Группа
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_BDEVICES.THESCHEMA">
+	<summary>
+Доступ к полю Схема подключения
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_BDEVICES.NPLOCK">
+	<summary>
+Доступ к полю Время до которого устройство считается заблокированным
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_BDEVICES.CONNECTED">
+	<summary>
+Доступ к полю Подключен
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_BDEVICES.XMLUnpack(System.Xml.XmlNode,System.Int32)">
+	<summary>
+Заполнить поля данными из XML
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_BDEVICES.XLMPack(System.Xml.XmlElement,System.Xml.XmlDocument)">
+	<summary>
+Записать данные раздела в XML файл
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_BDEVICES.BatchUpdate">
+	<summary>
+Записать изменения в базу данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_BDEVICES.CountOfParts">
+	<summary>
+Количество дочерних разделов
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_BDEVICES.GetDocCollection_Base(System.Int64)">
+	<summary>
+Доступ к дочернему разделу по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.TPLT_BDEVICES">
+	<summary>
+Реализация строки раздела Описание
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONTRACT_col.ChildPartName">
+	<summary>
+Имя раздела в базе данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONTRACT_col.CreateDataTable">
+	<summary>
+Вернуть даные текущей коллекции в виде DataTable
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONTRACT_col.NewItem">
+	<summary>
+Создание нового элемента коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONTRACT_col.GetItem(System.Object)">
+	<summary>
+Получить элемент коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONTRACT_col.Item(System.Object)">
+	<summary>
+Получить элемент коллекции, более свежий вариант
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.TPLT_CONTRACT_col">
+	<summary>
+Реализация раздела Договорные установкив виде коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD12">
+	<summary>
+Локальная переменная для поля № прибора
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD13">
+	<summary>
+Локальная переменная для поля №ключа
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD14">
+	<summary>
+Локальная переменная для поля D20ОБ
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD15">
+	<summary>
+Локальная переменная для поля D20ПР
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD16">
+	<summary>
+Локальная переменная для поля DyГВС
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD17">
+	<summary>
+Локальная переменная для поля DyОБР
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD18">
+	<summary>
+Локальная переменная для поля DyПР
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD19">
+	<summary>
+Локальная переменная для поля dРпрОБ
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD20">
+	<summary>
+Локальная переменная для поля dРпрПР
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD21">
+	<summary>
+Локальная переменная для поля G(гвс)ПР
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD22">
+	<summary>
+Локальная переменная для поля Gгвс
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD23">
+	<summary>
+Локальная переменная для поля Gоб(гвс min)
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD24">
+	<summary>
+Локальная переменная для поля Gов
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD25">
+	<summary>
+Локальная переменная для поля Gпр(гвс min)
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD26">
+	<summary>
+Локальная переменная для поля Gпр_minОБ
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD27">
+	<summary>
+Локальная переменная для поля Gпр_minПР
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD28">
+	<summary>
+Локальная переменная для поля GпрОБ
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD29">
+	<summary>
+Локальная переменная для поля GпрПР
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD30">
+	<summary>
+Локальная переменная для поля Gут
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD31">
+	<summary>
+Локальная переменная для поля д20ОБ
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD32">
+	<summary>
+Локальная переменная для поля д20ПР
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD33">
+	<summary>
+Локальная переменная для поля Договор
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD34">
+	<summary>
+Локальная переменная для поля Договор G2
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD35">
+	<summary>
+Локальная переменная для поля Договор G1
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD36">
+	<summary>
+Локальная переменная для поля Источник
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD37">
+	<summary>
+Локальная переменная для поля Магистраль
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD40">
+	<summary>
+Локальная переменная для поля Расходомер
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD41">
+	<summary>
+Локальная переменная для поля Расходомер ГВС
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD42">
+	<summary>
+Локальная переменная для поля Робр
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD43">
+	<summary>
+Локальная переменная для поля Рпр
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD45">
+	<summary>
+Локальная переменная для поля Способ отбора
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD46">
+	<summary>
+Локальная переменная для поля Т_график
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD47">
+	<summary>
+Локальная переменная для поля Теп_камера
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD48">
+	<summary>
+Локальная переменная для поля Тип расходомера
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD49">
+	<summary>
+Локальная переменная для поля тип термометра
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD50">
+	<summary>
+Локальная переменная для поля Формула
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD51">
+	<summary>
+Локальная переменная для поля Наименование счетчика
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD52">
+	<summary>
+Локальная переменная для поля Схема
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD53">
+	<summary>
+Локальная переменная для поля Qот
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD54">
+	<summary>
+Локальная переменная для поля Qв
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD55">
+	<summary>
+Локальная переменная для поля Qгвс
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD56">
+	<summary>
+Локальная переменная для поля Qну
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD57">
+	<summary>
+Локальная переменная для поля Gот
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD58">
+	<summary>
+Локальная переменная для поля Gв
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD59">
+	<summary>
+Локальная переменная для поля Gну
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD60">
+	<summary>
+Локальная переменная для поля Часов_архив
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD61">
+	<summary>
+Локальная переменная для поля Сут_архив
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD62">
+	<summary>
+Локальная переменная для поля Термопреобр ГВС
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD63">
+	<summary>
+Локальная переменная для поля Т1
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD64">
+	<summary>
+Локальная переменная для поля Т2
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD65">
+	<summary>
+Локальная переменная для поля Т3
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD66">
+	<summary>
+Локальная переменная для поля Т4
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD67">
+	<summary>
+Локальная переменная для поля Gтех
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD68">
+	<summary>
+Локальная переменная для поля Gтех_гвс
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD69">
+	<summary>
+Локальная переменная для поля Gгвс_м
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD70">
+	<summary>
+Локальная переменная для поля Qтех
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD71">
+	<summary>
+Локальная переменная для поля Qвент
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD72">
+	<summary>
+Локальная переменная для поля Тхв
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD73">
+	<summary>
+Локальная переменная для поля Расходомер ГВСц
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD81">
+	<summary>
+Локальная переменная для поля Формула2
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD82">
+	<summary>
+Локальная переменная для поля Термопреобр
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD83">
+	<summary>
+Локальная переменная для поля Gвент
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD84">
+	<summary>
+Локальная переменная для поля Код УУТЭ
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD85">
+	<summary>
+Локальная переменная для поля Сист_теплопотребления
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD86">
+	<summary>
+Локальная переменная для поля Qтех_гвс
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD87">
+	<summary>
+Локальная переменная для поля Qтех_гвс ср
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD88">
+	<summary>
+Локальная переменная для поля Qгвс ср
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD89">
+	<summary>
+Локальная переменная для поля Дата поверки
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD90">
+	<summary>
+Локальная переменная для поля Фамилия
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD92">
+	<summary>
+Локальная переменная для поля Узел учета
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD93">
+	<summary>
+Локальная переменная для поля Стр.адрес
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD94">
+	<summary>
+Локальная переменная для поля G(гвс)ОБР
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD95">
+	<summary>
+Локальная переменная для поля DyГВСц
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD96">
+	<summary>
+Локальная переменная для поля Цена_имп_M1
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD97">
+	<summary>
+Локальная переменная для поля Цена_имп_M2
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD98">
+	<summary>
+Локальная переменная для поля Цена_имп_M1гв
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD99">
+	<summary>
+Локальная переменная для поля Цена_имп_M2гв
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD100">
+	<summary>
+Локальная переменная для поля Доп_погр_изм_M1%
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD101">
+	<summary>
+Локальная переменная для поля Доп_погр_изм_M2%
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD102">
+	<summary>
+Локальная переменная для поля Доп_погр_изм_M1гв%
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD103">
+	<summary>
+Локальная переменная для поля Доп_погр_изм_M2гв%
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_CONTRACT.m_FLD104">
+	<summary>
+Локальная переменная для поля Расходомер M2
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONTRACT.CleanFields">
+	<summary>
+Очистить поля раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.Count">
+	<summary>
+Количество полей в строке раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.Value(System.Object)">
+	<summary>
+Получить \Задать поле по номеру 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONTRACT.FieldNameByID(System.Int64)">
+	<summary>
+Название поля по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONTRACT.FillDataTable(System.Data.DataTable@)">
+	<summary>
+Заполнить строку таблицы данными из полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONTRACT.FindInside(System.String,System.String)">
+	<summary>
+Найти строку в коллекции по идентификатору
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONTRACT.Pack(LATIR.NamedValues)">
+	<summary>
+Заполнить коллекцю именованных полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONTRACT.Unpack(System.Data.DataRow)">
+	<summary>
+Заполнить поля из именованной коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD12">
+	<summary>
+Доступ к полю № прибора
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD13">
+	<summary>
+Доступ к полю №ключа
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD14">
+	<summary>
+Доступ к полю D20ОБ
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD15">
+	<summary>
+Доступ к полю D20ПР
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD16">
+	<summary>
+Доступ к полю DyГВС
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD17">
+	<summary>
+Доступ к полю DyОБР
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD18">
+	<summary>
+Доступ к полю DyПР
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD19">
+	<summary>
+Доступ к полю dРпрОБ
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD20">
+	<summary>
+Доступ к полю dРпрПР
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD21">
+	<summary>
+Доступ к полю G(гвс)ПР
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD22">
+	<summary>
+Доступ к полю Gгвс
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD23">
+	<summary>
+Доступ к полю Gоб(гвс min)
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD24">
+	<summary>
+Доступ к полю Gов
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD25">
+	<summary>
+Доступ к полю Gпр(гвс min)
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD26">
+	<summary>
+Доступ к полю Gпр_minОБ
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD27">
+	<summary>
+Доступ к полю Gпр_minПР
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD28">
+	<summary>
+Доступ к полю GпрОБ
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD29">
+	<summary>
+Доступ к полю GпрПР
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD30">
+	<summary>
+Доступ к полю Gут
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD31">
+	<summary>
+Доступ к полю д20ОБ
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD32">
+	<summary>
+Доступ к полю д20ПР
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD33">
+	<summary>
+Доступ к полю Договор
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD34">
+	<summary>
+Доступ к полю Договор G2
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD35">
+	<summary>
+Доступ к полю Договор G1
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD36">
+	<summary>
+Доступ к полю Источник
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD37">
+	<summary>
+Доступ к полю Магистраль
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD40">
+	<summary>
+Доступ к полю Расходомер
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD41">
+	<summary>
+Доступ к полю Расходомер ГВС
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD42">
+	<summary>
+Доступ к полю Робр
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD43">
+	<summary>
+Доступ к полю Рпр
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD45">
+	<summary>
+Доступ к полю Способ отбора
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD46">
+	<summary>
+Доступ к полю Т_график
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD47">
+	<summary>
+Доступ к полю Теп_камера
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD48">
+	<summary>
+Доступ к полю Тип расходомера
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD49">
+	<summary>
+Доступ к полю тип термометра
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD50">
+	<summary>
+Доступ к полю Формула
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD51">
+	<summary>
+Доступ к полю Наименование счетчика
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD52">
+	<summary>
+Доступ к полю Схема
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD53">
+	<summary>
+Доступ к полю Qот
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD54">
+	<summary>
+Доступ к полю Qв
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD55">
+	<summary>
+Доступ к полю Qгвс
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD56">
+	<summary>
+Доступ к полю Qну
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD57">
+	<summary>
+Доступ к полю Gот
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD58">
+	<summary>
+Доступ к полю Gв
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD59">
+	<summary>
+Доступ к полю Gну
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD60">
+	<summary>
+Доступ к полю Часов_архив
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD61">
+	<summary>
+Доступ к полю Сут_архив
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD62">
+	<summary>
+Доступ к полю Термопреобр ГВС
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD63">
+	<summary>
+Доступ к полю Т1
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD64">
+	<summary>
+Доступ к полю Т2
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD65">
+	<summary>
+Доступ к полю Т3
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD66">
+	<summary>
+Доступ к полю Т4
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD67">
+	<summary>
+Доступ к полю Gтех
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD68">
+	<summary>
+Доступ к полю Gтех_гвс
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD69">
+	<summary>
+Доступ к полю Gгвс_м
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD70">
+	<summary>
+Доступ к полю Qтех
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD71">
+	<summary>
+Доступ к полю Qвент
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD72">
+	<summary>
+Доступ к полю Тхв
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD73">
+	<summary>
+Доступ к полю Расходомер ГВСц
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD81">
+	<summary>
+Доступ к полю Формула2
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD82">
+	<summary>
+Доступ к полю Термопреобр
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD83">
+	<summary>
+Доступ к полю Gвент
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD84">
+	<summary>
+Доступ к полю Код УУТЭ
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD85">
+	<summary>
+Доступ к полю Сист_теплопотребления
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD86">
+	<summary>
+Доступ к полю Qтех_гвс
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD87">
+	<summary>
+Доступ к полю Qтех_гвс ср
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD88">
+	<summary>
+Доступ к полю Qгвс ср
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD89">
+	<summary>
+Доступ к полю Дата поверки
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD90">
+	<summary>
+Доступ к полю Фамилия
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD92">
+	<summary>
+Доступ к полю Узел учета
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD93">
+	<summary>
+Доступ к полю Стр.адрес
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD94">
+	<summary>
+Доступ к полю G(гвс)ОБР
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD95">
+	<summary>
+Доступ к полю DyГВСц
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD96">
+	<summary>
+Доступ к полю Цена_имп_M1
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD97">
+	<summary>
+Доступ к полю Цена_имп_M2
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD98">
+	<summary>
+Доступ к полю Цена_имп_M1гв
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD99">
+	<summary>
+Доступ к полю Цена_имп_M2гв
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD100">
+	<summary>
+Доступ к полю Доп_погр_изм_M1%
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD101">
+	<summary>
+Доступ к полю Доп_погр_изм_M2%
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD102">
+	<summary>
+Доступ к полю Доп_погр_изм_M1гв%
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD103">
+	<summary>
+Доступ к полю Доп_погр_изм_M2гв%
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.FLD104">
+	<summary>
+Доступ к полю Расходомер M2
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONTRACT.XMLUnpack(System.Xml.XmlNode,System.Int32)">
+	<summary>
+Заполнить поля данными из XML
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONTRACT.XLMPack(System.Xml.XmlElement,System.Xml.XmlDocument)">
+	<summary>
+Записать данные раздела в XML файл
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONTRACT.BatchUpdate">
+	<summary>
+Записать изменения в базу данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_CONTRACT.CountOfParts">
+	<summary>
+Количество дочерних разделов
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_CONTRACT.GetDocCollection_Base(System.Int64)">
+	<summary>
+Доступ к дочернему разделу по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.TPLT_CONTRACT">
+	<summary>
+Реализация строки раздела Договорные установки
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_CSTATUS">
+	<summary>
+Локальная переменная для поля Заблокирован опрос
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_ICALL">
+	<summary>
+Локальная переменная для поля Интервал опроса (минут) часовых
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_NUMCALL">
+	<summary>
+Локальная переменная для поля Сколько раз опросить (0 - циклический опрос)
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_CCURR">
+	<summary>
+Локальная переменная для поля Опрашивать текущие
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_CHOUR">
+	<summary>
+Локальная переменная для поля Опрашивать часовые
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_C24">
+	<summary>
+Локальная переменная для поля Опрашивать суточные
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_CSUM">
+	<summary>
+Локальная переменная для поля Опрашивать итоговые
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_NUMHOUR">
+	<summary>
+Локальная переменная для поля За сколько часов опрашивать часовые
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_NUM24">
+	<summary>
+Локальная переменная для поля За сколько суток опрашивать суточные
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_NMAXCALL">
+	<summary>
+Локальная переменная для поля Max число попыток дозвона
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_MINREPEAT">
+	<summary>
+Локальная переменная для поля При неудачом дозвоне повторить через (минут)
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_DLOCK">
+	<summary>
+Локальная переменная для поля Когда заблокирован
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_ICALL24">
+	<summary>
+Локальная переменная для поля Интервал опроса (часов) суточных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_ICALLCURR">
+	<summary>
+Локальная переменная для поля Интервал опроса (минут) мгновенных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_ICALLSUM">
+	<summary>
+Локальная переменная для поля Интервал опроса (минут) тотальных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_CHNRONLY">
+	<summary>
+Локальная переменная для поля Только непрочитанные суточные
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_C24NRONLY">
+	<summary>
+Локальная переменная для поля Только непрочитанные часовые
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_DNEXTHOUR">
+	<summary>
+Локальная переменная для поля Дата следующего опроса часовых
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_DNEXT24">
+	<summary>
+Локальная переменная для поля Дата следующего опроса суточных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_DNEXTCURR">
+	<summary>
+Локальная переменная для поля Дата следующего опроса мгновенных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_DNEXTSUM">
+	<summary>
+Локальная переменная для поля Дата следующего опроса тотальных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_DLASTCALL">
+	<summary>
+Локальная переменная для поля Дата последнего опроса счетчика
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_DLASTDAY">
+	<summary>
+Локальная переменная для поля Дата последнего опроса суточных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_DLASTHOUR">
+	<summary>
+Локальная переменная для поля Дата последнего опроса часовых
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_MUSTREPEATDAY">
+	<summary>
+Локальная переменная для поля Требование повтора съема суточных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="F:TPLT.TPLT.TPLT_PLANCALL.m_MUSTREPEATHOUR">
+	<summary>
+Локальная переменная для поля Требование повтора съема часовых
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_PLANCALL.CleanFields">
+	<summary>
+Очистить поля раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.Count">
+	<summary>
+Количество полей в строке раздела
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.Value(System.Object)">
+	<summary>
+Получить \Задать поле по номеру 
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_PLANCALL.FieldNameByID(System.Int64)">
+	<summary>
+Название поля по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_PLANCALL.FillDataTable(System.Data.DataTable@)">
+	<summary>
+Заполнить строку таблицы данными из полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_PLANCALL.FindInside(System.String,System.String)">
+	<summary>
+Найти строку в коллекции по идентификатору
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_PLANCALL.Pack(LATIR.NamedValues)">
+	<summary>
+Заполнить коллекцю именованных полей
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_PLANCALL.Unpack(System.Data.DataRow)">
+	<summary>
+Заполнить поля из именованной коллекции
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.CSTATUS">
+	<summary>
+Доступ к полю Заблокирован опрос
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.ICALL">
+	<summary>
+Доступ к полю Интервал опроса (минут) часовых
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.NUMCALL">
+	<summary>
+Доступ к полю Сколько раз опросить (0 - циклический опрос)
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.CCURR">
+	<summary>
+Доступ к полю Опрашивать текущие
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.CHOUR">
+	<summary>
+Доступ к полю Опрашивать часовые
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.C24">
+	<summary>
+Доступ к полю Опрашивать суточные
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.CSUM">
+	<summary>
+Доступ к полю Опрашивать итоговые
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.NUMHOUR">
+	<summary>
+Доступ к полю За сколько часов опрашивать часовые
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.NUM24">
+	<summary>
+Доступ к полю За сколько суток опрашивать суточные
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.NMAXCALL">
+	<summary>
+Доступ к полю Max число попыток дозвона
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.MINREPEAT">
+	<summary>
+Доступ к полю При неудачом дозвоне повторить через (минут)
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.DLOCK">
+	<summary>
+Доступ к полю Когда заблокирован
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.ICALL24">
+	<summary>
+Доступ к полю Интервал опроса (часов) суточных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.ICALLCURR">
+	<summary>
+Доступ к полю Интервал опроса (минут) мгновенных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.ICALLSUM">
+	<summary>
+Доступ к полю Интервал опроса (минут) тотальных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.CHNRONLY">
+	<summary>
+Доступ к полю Только непрочитанные суточные
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.C24NRONLY">
+	<summary>
+Доступ к полю Только непрочитанные часовые
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.DNEXTHOUR">
+	<summary>
+Доступ к полю Дата следующего опроса часовых
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.DNEXT24">
+	<summary>
+Доступ к полю Дата следующего опроса суточных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.DNEXTCURR">
+	<summary>
+Доступ к полю Дата следующего опроса мгновенных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.DNEXTSUM">
+	<summary>
+Доступ к полю Дата следующего опроса тотальных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.DLASTCALL">
+	<summary>
+Доступ к полю Дата последнего опроса счетчика
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.DLASTDAY">
+	<summary>
+Доступ к полю Дата последнего опроса суточных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.DLASTHOUR">
+	<summary>
+Доступ к полю Дата последнего опроса часовых
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.MUSTREPEATDAY">
+	<summary>
+Доступ к полю Требование повтора съема суточных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.MUSTREPEATHOUR">
+	<summary>
+Доступ к полю Требование повтора съема часовых
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_PLANCALL.XMLUnpack(System.Xml.XmlNode,System.Int32)">
+	<summary>
+Заполнить поля данными из XML
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_PLANCALL.XLMPack(System.Xml.XmlElement,System.Xml.XmlDocument)">
+	<summary>
+Записать данные раздела в XML файл
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_PLANCALL.BatchUpdate">
+	<summary>
+Записать изменения в базу данных
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="P:TPLT.TPLT.TPLT_PLANCALL.CountOfParts">
+	<summary>
+Количество дочерних разделов
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="M:TPLT.TPLT.TPLT_PLANCALL.GetDocCollection_Base(System.Int64)">
+	<summary>
+Доступ к дочернему разделу по номеру
+ </summary>
+	<remarks>
+	</remarks>
+</member><member name="T:TPLT.TPLT.TPLT_PLANCALL">
+	<summary>
+Реализация строки раздела План опроса устройств
+ </summary>
+	<remarks>
+	</remarks>
+</member>
+</members>
+</doc>

@@ -1,0 +1,17 @@
+C:\bami\VODOPAD\DrvVKT4M\obj\Debug\DrvVKT4M.vbproj.GenerateResource.Cache
+C:\bami\VODOPAD\STKService\bin\Debug\DrvVKT4.dll
+C:\bami\VODOPAD\STKService\bin\Debug\DrvVKT4.pdb
+C:\bami\VODOPAD\STKService\bin\Debug\DrvVKT4.xml
+C:\bami\VODOPAD\DrvVKT4M\obj\Debug\DrvVKT4.Resources.resources
+C:\bami\VODOPAD\DrvVKT4M\obj\Debug\DrvVKT4.dll
+C:\bami\VODOPAD\DrvVKT4M\obj\Debug\DrvVKT4.xml
+C:\bami\VODOPAD\DrvVKT4M\obj\Debug\DrvVKT4.pdb
+C:\bami\VODOPAD\DrvVKT4M\obj\Debug\DrvVKT4M.vbprojResolveAssemblyReference.cache
+C:\bami\projects\AREAL\VODOPAD\STKService\bin\Debug\DrvVKT4.dll
+C:\bami\projects\AREAL\VODOPAD\STKService\bin\Debug\DrvVKT4.pdb
+C:\bami\projects\AREAL\VODOPAD\STKService\bin\Debug\DrvVKT4.xml
+C:\bami\projects\AREAL\VODOPAD\DrvVKT4M\obj\Debug\DrvVKT4.Resources.resources
+C:\bami\projects\AREAL\VODOPAD\DrvVKT4M\obj\Debug\DrvVKT4M.vbproj.GenerateResource.Cache
+C:\bami\projects\AREAL\VODOPAD\DrvVKT4M\obj\Debug\DrvVKT4.dll
+C:\bami\projects\AREAL\VODOPAD\DrvVKT4M\obj\Debug\DrvVKT4.xml
+C:\bami\projects\AREAL\VODOPAD\DrvVKT4M\obj\Debug\DrvVKT4.pdb

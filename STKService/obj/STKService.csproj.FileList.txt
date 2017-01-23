@@ -1,0 +1,12 @@
+bin\Debug\STKService.exe.config
+bin\Debug\STKService.exe
+bin\Debug\STKService.pdb
+bin\Debug\STKTVMain.dll
+bin\Debug\STKTVMain.pdb
+bin\Debug\STKTVMain.xml
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\STKService.STKInstaller.resources
+obj\Debug\STKService.STKService.resources
+obj\Debug\STKService.csproj.GenerateResource.Cache
+obj\Debug\STKService.exe
+obj\Debug\STKService.pdb

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<modbus_map>
+    <device
+    />
+    <current
+      T1="H1"
+      T2="H2"
+      T3="H3"
+      M1="H100"
+      M2="H101"
+      M3="H102"
+      V1="I100.1"
+      V2="I100.2"
+      V3="I100.3"
+    />
+
+    <hourly
+      />
+
+      <dayly
+      />
+
+      <totals
+          T1="H1"
+		  T2="H2"
+		  T3="H3"
+		  M1="H100"
+		  M2="H101"
+		  M3="H102"
+		  V1="I100.1"
+		  V2="I100.2"
+		  V3="I100.3"
+      />
+      
+</modbus_map>

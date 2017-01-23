@@ -1,0 +1,60 @@
+﻿Installing assembly 'C:\BAMI\Projects\SZT\!stkservice_1.17\!STKSERVICE_1.16\STKService\bin\Release\STKService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\BAMI\Projects\SZT\!stkservice_1.17\!STKSERVICE_1.16\STKService\bin\Release\STKService.exe
+   logfile = C:\BAMI\Projects\SZT\!stkservice_1.17\!STKSERVICE_1.16\STKService\bin\Release\STKService.InstallLog
+Installing service STKService...
+Service STKService has been successfully installed.
+Creating EventLog source STKService in log Application...
+Committing assembly 'C:\BAMI\Projects\SZT\!stkservice_1.17\!STKSERVICE_1.16\STKService\bin\Release\STKService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\BAMI\Projects\SZT\!stkservice_1.17\!STKSERVICE_1.16\STKService\bin\Release\STKService.exe
+   logfile = C:\BAMI\Projects\SZT\!stkservice_1.17\!STKSERVICE_1.16\STKService\bin\Release\STKService.InstallLog
+Installing assembly 'C:\BAMI\Projects\SZT\!stkservice_1.17\!STKSERVICE_1.16\STKService\bin\Release\STKService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\BAMI\Projects\SZT\!stkservice_1.17\!STKSERVICE_1.16\STKService\bin\Release\STKService.exe
+   logfile = C:\BAMI\Projects\SZT\!stkservice_1.17\!STKSERVICE_1.16\STKService\bin\Release\STKService.InstallLog
+Installing service STKService...
+Service STKService has been successfully installed.
+Creating EventLog source STKService in log Application...
+Committing assembly 'C:\BAMI\Projects\SZT\!stkservice_1.17\!STKSERVICE_1.16\STKService\bin\Release\STKService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\BAMI\Projects\SZT\!stkservice_1.17\!STKSERVICE_1.16\STKService\bin\Release\STKService.exe
+   logfile = C:\BAMI\Projects\SZT\!stkservice_1.17\!STKSERVICE_1.16\STKService\bin\Release\STKService.InstallLog
+Installing assembly 'C:\BAMI\Projects\SZT\Service_1.18\STKService\bin\Release\STKService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\BAMI\Projects\SZT\Service_1.18\STKService\bin\Release\STKService.exe
+   logfile = C:\BAMI\Projects\SZT\Service_1.18\STKService\bin\Release\STKService.InstallLog
+Installing service STKService...
+Service STKService has been successfully installed.
+Creating EventLog source STKService in log Application...
+Committing assembly 'C:\BAMI\Projects\SZT\Service_1.18\STKService\bin\Release\STKService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\BAMI\Projects\SZT\Service_1.18\STKService\bin\Release\STKService.exe
+   logfile = C:\BAMI\Projects\SZT\Service_1.18\STKService\bin\Release\STKService.InstallLog
+Uninstalling assembly 'C:\BAMI\Projects\SZT\Service_1.18\STKService\bin\Release\STKService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\BAMI\Projects\SZT\Service_1.18\STKService\bin\Release\STKService.exe
+   logfile = C:\BAMI\Projects\SZT\Service_1.18\STKService\bin\Release\STKService.InstallLog
+Removing EventLog source STKService.
+Service STKService is being removed from the system...
+Service STKService was successfully removed from the system.
+Installing assembly 'C:\BAMI\Projects\SZT\Service_1.18\STKService\bin\Release\STKService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\BAMI\Projects\SZT\Service_1.18\STKService\bin\Release\STKService.exe
+   logfile = C:\BAMI\Projects\SZT\Service_1.18\STKService\bin\Release\STKService.InstallLog
+Installing service STKService...
+Service STKService has been successfully installed.
+Creating EventLog source STKService in log Application...
+Committing assembly 'C:\BAMI\Projects\SZT\Service_1.18\STKService\bin\Release\STKService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\BAMI\Projects\SZT\Service_1.18\STKService\bin\Release\STKService.exe
+   logfile = C:\BAMI\Projects\SZT\Service_1.18\STKService\bin\Release\STKService.InstallLog

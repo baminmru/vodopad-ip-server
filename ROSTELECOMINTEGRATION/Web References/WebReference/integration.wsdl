@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://87.226.159.184/web-service/index/run/name/integration/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://87.226.159.184/web-service/index/run/name/integration/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://87.226.159.184/web-service/index/run/name/integration/">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+      <xsd:complexType name="HeaderType">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Version" type="xsd:string" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="Operation" type="xsd:string" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="RequestId" type="xsd:string" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="SendDate" type="xsd:dateTime" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="Sender" type="xsd:string" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="Signature" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ParameterType">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Name" type="xsd:string" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="Value" type="xsd:anyType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ParametersType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Parameter" type="tns:ParameterType" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="CustomParameters" type="xsd:base64Binary" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RequestType">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Header" type="tns:HeaderType" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Data" type="xsd:base64Binary" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:ParametersType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ResponseType">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Header" type="tns:HeaderType" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="Code" type="xsd:string" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="Description" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Data" type="xsd:base64Binary" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:ParametersType" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getRequest">
+    <wsdl:part name="request" type="tns:RequestType" />
+  </wsdl:message>
+  <wsdl:message name="getResponse">
+    <wsdl:part name="return" type="tns:ResponseType" />
+  </wsdl:message>
+  <wsdl:message name="postRequest">
+    <wsdl:part name="request" type="tns:RequestType" />
+  </wsdl:message>
+  <wsdl:message name="postResponse">
+    <wsdl:part name="return" type="tns:ResponseType" />
+  </wsdl:message>
+  <wsdl:message name="putRequest">
+    <wsdl:part name="request" type="tns:RequestType" />
+  </wsdl:message>
+  <wsdl:message name="putResponse">
+    <wsdl:part name="return" type="tns:ResponseType" />
+  </wsdl:message>
+  <wsdl:message name="deleteRequest">
+    <wsdl:part name="request" type="tns:RequestType" />
+  </wsdl:message>
+  <wsdl:message name="deleteResponse">
+    <wsdl:part name="return" type="tns:ResponseType" />
+  </wsdl:message>
+  <wsdl:portType name="IntegrationPortType">
+    <wsdl:operation name="get">
+      <documentation>ÐÐ¾Ð»ÑÑÐµÐ½Ð¸Ðµ Ð´Ð°Ð½Ð½ÑÑ</documentation>
+      <wsdl:input message="tns:getRequest" />
+      <wsdl:output message="tns:getResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="post">
+      <documentation>ÐÐ°Ð¼ÐµÐ½Ð° Ð´Ð°Ð½Ð½ÑÑ</documentation>
+      <wsdl:input message="tns:postRequest" />
+      <wsdl:output message="tns:postResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="put">
+      <documentation>ÐÐ¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð´Ð°Ð½Ð½ÑÑ</documentation>
+      <wsdl:input message="tns:putRequest" />
+      <wsdl:output message="tns:putResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <documentation>Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð´Ð°Ð½Ð½ÑÑ</documentation>
+      <wsdl:input message="tns:deleteRequest" />
+      <wsdl:output message="tns:deleteResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IntegrationBinding" type="tns:IntegrationPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="get">
+      <soap:operation soapAction="http://87.226.159.184/web-service/index/run/name/integration/#get" style="rpc" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://87.226.159.184/web-service/index/run/name/integration/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://87.226.159.184/web-service/index/run/name/integration/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="post">
+      <soap:operation soapAction="http://87.226.159.184/web-service/index/run/name/integration/#post" style="rpc" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://87.226.159.184/web-service/index/run/name/integration/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://87.226.159.184/web-service/index/run/name/integration/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="put">
+      <soap:operation soapAction="http://87.226.159.184/web-service/index/run/name/integration/#put" style="rpc" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://87.226.159.184/web-service/index/run/name/integration/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://87.226.159.184/web-service/index/run/name/integration/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="http://87.226.159.184/web-service/index/run/name/integration/#delete" style="rpc" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://87.226.159.184/web-service/index/run/name/integration/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://87.226.159.184/web-service/index/run/name/integration/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Integration">
+    <wsdl:port name="IntegrationPort" binding="tns:IntegrationBinding">
+      <soap:address location="http://87.226.159.184/web-service/index/run/name/Integration/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

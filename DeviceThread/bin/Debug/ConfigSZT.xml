@@ -1,0 +1,22 @@
+<Config DataSource="ora92apo" 
+UserID="COUNTERS"
+Password="counters" 
+ServerIP = "0.0.0.0" 
+PortID = "1"
+TimeOut="1000"
+TimerInterval="1000"
+NPPassword=""
+BaudRate="2400"
+DataBits="8"
+StopBits="1"
+Parity="NONE"
+FlowControl="NONE"
+DTR="On"
+RTS="On"
+Driver="Drv942"
+RequestInterval="55000">
+</Config>
+
+
+
+        

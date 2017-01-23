@@ -1,0 +1,10 @@
+C:\bami\projects\AREAL\VODOPAD\ServiceControllerModem\bin\PausedM.ico
+C:\bami\projects\AREAL\VODOPAD\ServiceControllerModem\bin\RunningM.ico
+C:\bami\projects\AREAL\VODOPAD\ServiceControllerModem\bin\StoppedM.ico
+C:\bami\projects\AREAL\VODOPAD\ServiceControllerModem\bin\AREAMODBUSController.exe.config
+C:\bami\projects\AREAL\VODOPAD\ServiceControllerModem\bin\AREAMODBUSController.exe
+C:\bami\projects\AREAL\VODOPAD\ServiceControllerModem\bin\AREAMODBUSController.pdb
+C:\bami\projects\AREAL\VODOPAD\ServiceControllerModem\bin\AREAMODBUSController.xml
+C:\bami\projects\AREAL\VODOPAD\ServiceControllerModem\obj\Debug\AREAMODBUSController.exe
+C:\bami\projects\AREAL\VODOPAD\ServiceControllerModem\obj\Debug\AREAMODBUSController.xml
+C:\bami\projects\AREAL\VODOPAD\ServiceControllerModem\obj\Debug\AREAMODBUSController.pdb

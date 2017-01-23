@@ -1,0 +1,4 @@
+C:\bami\projects\szt\Vodopad_IP\drvMultical\mc601Communication\bin\Debug\mc601Communication.dll
+C:\bami\projects\szt\Vodopad_IP\drvMultical\mc601Communication\bin\Debug\mc601Communication.pdb
+C:\bami\projects\szt\Vodopad_IP\drvMultical\mc601Communication\obj\Debug\mc601Communication.dll
+C:\bami\projects\szt\Vodopad_IP\drvMultical\mc601Communication\obj\Debug\mc601Communication.pdb

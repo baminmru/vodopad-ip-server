@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PropertyGridEx_VS2003", "PropertyGridEx_VS2003\PropertyGridEx_VS2003.vbproj", "{81162C83-DBC1-452C-A36E-221A1897E6E9}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{81162C83-DBC1-452C-A36E-221A1897E6E9}.Debug.ActiveCfg = Debug|.NET
+		{81162C83-DBC1-452C-A36E-221A1897E6E9}.Debug.Build.0 = Debug|.NET
+		{81162C83-DBC1-452C-A36E-221A1897E6E9}.Release.ActiveCfg = Release|.NET
+		{81162C83-DBC1-452C-A36E-221A1897E6E9}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

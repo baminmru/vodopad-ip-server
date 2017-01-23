@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="GPIOClient">
+</Property><Property Name="Solution File" Value="C:\bami\Service_2.2\GPIOClient\GPIOClient.sln">
+</Property><Property Name="User Options File" Value="C:\bami\Service_2.2\GPIOClient\GPIOClient.suo">
+</Property><Property Name="Date" Value="26 сентября 2012 г.">
+</Property><Property Name="Time" Value="17:39">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="GPIOClient.sln" Description="File successfully backed up as C:\bami\Service_2.2\GPIOClient\Backup\GPIOClient.sln">
+</Event><Event ErrorLevel="0" Project="" Source="GPIOClient.suo" Description="File successfully backed up as C:\bami\Service_2.2\GPIOClient\Backup\GPIOClient.suo">
+</Event><Event ErrorLevel="0" Project="GPIOClient" Source="GPIOClient.vbproj" Description="Project file successfully backed up as C:\bami\Service_2.2\GPIOClient\Backup\GPIOClient.vbproj">
+</Event><Event ErrorLevel="0" Project="GPIOClient" Source="GPIOClient.vbproj.user" Description="Project user file successfully backed up as C:\bami\Service_2.2\GPIOClient\Backup\GPIOClient.vbproj.user">
+</Event><Event ErrorLevel="0" Project="GPIOClient" Source="frmControl.Designer.vb" Description="File successfully backed up as C:\bami\Service_2.2\GPIOClient\Backup\frmControl.Designer.vb">
+</Event><Event ErrorLevel="0" Project="GPIOClient" Source="frmControl.vb" Description="File successfully backed up as C:\bami\Service_2.2\GPIOClient\Backup\frmControl.vb">
+</Event><Event ErrorLevel="0" Project="GPIOClient" Source="My Project\AssemblyInfo.vb" Description="File successfully backed up as C:\bami\Service_2.2\GPIOClient\Backup\My Project\AssemblyInfo.vb">
+</Event><Event ErrorLevel="0" Project="GPIOClient" Source="My Project\Application.Designer.vb" Description="File successfully backed up as C:\bami\Service_2.2\GPIOClient\Backup\My Project\Application.Designer.vb">
+</Event><Event ErrorLevel="0" Project="GPIOClient" Source="My Project\Resources.Designer.vb" Description="File successfully backed up as C:\bami\Service_2.2\GPIOClient\Backup\My Project\Resources.Designer.vb">
+</Event><Event ErrorLevel="0" Project="GPIOClient" Source="My Project\Settings.Designer.vb" Description="File successfully backed up as C:\bami\Service_2.2\GPIOClient\Backup\My Project\Settings.Designer.vb">
+</Event><Event ErrorLevel="0" Project="GPIOClient" Source="app.config" Description="File successfully backed up as C:\bami\Service_2.2\GPIOClient\Backup\app.config">
+</Event><Event ErrorLevel="0" Project="GPIOClient" Source="My Project\Application.myapp" Description="File successfully backed up as C:\bami\Service_2.2\GPIOClient\Backup\My Project\Application.myapp">
+</Event><Event ErrorLevel="0" Project="GPIOClient" Source="My Project\Settings.settings" Description="File successfully backed up as C:\bami\Service_2.2\GPIOClient\Backup\My Project\Settings.settings">
+</Event><Event ErrorLevel="0" Project="GPIOClient" Source="Config.xml" Description="File successfully backed up as C:\bami\Service_2.2\GPIOClient\Backup\Config.xml">
+</Event><Event ErrorLevel="0" Project="GPIOClient" Source="GPIO.ico" Description="File successfully backed up as C:\bami\Service_2.2\GPIOClient\Backup\GPIO.ico">
+</Event><Event ErrorLevel="0" Project="GPIOClient" Source="frmControl.resx" Description="File successfully backed up as C:\bami\Service_2.2\GPIOClient\Backup\frmControl.resx">
+</Event><Event ErrorLevel="0" Project="GPIOClient" Source="My Project\Resources.resx" Description="File successfully backed up as C:\bami\Service_2.2\GPIOClient\Backup\My Project\Resources.resx">
+</Event><Event ErrorLevel="0" Project="GPIOClient" Source="GPIOClient.vbproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="GPIOClient" Source="GPIOClient.vbproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="" Source="GPIOClient.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="GPIOClient.sln" Description="Converted">
+</Event></UpgradeLog>

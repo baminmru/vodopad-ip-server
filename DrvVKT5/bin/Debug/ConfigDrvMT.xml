@@ -1,0 +1,12 @@
+<Config 
+TimeOut="9000"
+TimerInterval="2000"
+FlowControl="NONE"
+DTR="Off"
+RTS="On"
+SleepInterval="200">
+</Config>
+
+
+
+        

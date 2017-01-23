@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://microsoft.com/webservices/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://microsoft.com/webservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/webservices/">
+      <s:element name="MeasurementsGet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Qry" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MeasurementsGetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MeasurementsGetResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NSGet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Qry" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NSGetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NSGetResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="MeasurementsGetSoapIn">
+    <wsdl:part name="parameters" element="tns:MeasurementsGet" />
+  </wsdl:message>
+  <wsdl:message name="MeasurementsGetSoapOut">
+    <wsdl:part name="parameters" element="tns:MeasurementsGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="NSGetSoapIn">
+    <wsdl:part name="parameters" element="tns:NSGet" />
+  </wsdl:message>
+  <wsdl:message name="NSGetSoapOut">
+    <wsdl:part name="parameters" element="tns:NSGetResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TEkServiceSoap">
+    <wsdl:operation name="MeasurementsGet">
+      <wsdl:input message="tns:MeasurementsGetSoapIn" />
+      <wsdl:output message="tns:MeasurementsGetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NSGet">
+      <wsdl:input message="tns:NSGetSoapIn" />
+      <wsdl:output message="tns:NSGetSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TEkServiceSoap" type="tns:TEkServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MeasurementsGet">
+      <soap:operation soapAction="http://microsoft.com/webservices/MeasurementsGet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NSGet">
+      <soap:operation soapAction="http://microsoft.com/webservices/NSGet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TEkServiceSoap12" type="tns:TEkServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MeasurementsGet">
+      <soap12:operation soapAction="http://microsoft.com/webservices/MeasurementsGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NSGet">
+      <soap12:operation soapAction="http://microsoft.com/webservices/NSGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TEkService">
+    <wsdl:port name="TEkServiceSoap" binding="tns:TEkServiceSoap">
+      <soap:address location="http://SME2:8082/TEkService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TEkServiceSoap12" binding="tns:TEkServiceSoap12">
+      <soap12:address location="http://SME2:8082/TEkService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

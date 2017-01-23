@@ -1,0 +1,21 @@
+<Config 
+ServerIP = "0.0.0.0" 
+PortID = "1"
+TimeOut="3000"
+TimerInterval="800"
+NPPassword=""
+BaudRate="2400"
+DataBits="8"
+StopBits="1"
+Parity="NONE"
+FlowControl="NONE"
+DTR="On"
+RTS="On"
+Driver="DrvEmul"
+DeviceID = "12"
+SleepInterval="400">
+</Config>
+
+
+
+        

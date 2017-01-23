@@ -1,0 +1,15 @@
+C:\LATIR\Generated\Generated Dlls\Config.xml
+C:\LATIR\Generated\Generated Dlls\ReportXL.exe.config
+C:\LATIR\Generated\Generated Dlls\ReportXL.exe
+C:\LATIR\Generated\Generated Dlls\ReportXL.pdb
+C:\LATIR\Generated\Generated Dlls\ReportXL.xml
+C:\bami\Service_2.2_oracle_provider\ReportXLGen\obj\Release\ResolveAssemblyReference.cache
+C:\bami\Service_2.2_oracle_provider\ReportXLGen\obj\Release\ReportXL.frmMain.resources
+C:\bami\Service_2.2_oracle_provider\ReportXLGen\obj\Release\ReportXL.Resources.resources
+C:\bami\Service_2.2_oracle_provider\ReportXLGen\obj\Release\ReportXL.SplashScreen1.resources
+C:\bami\Service_2.2_oracle_provider\ReportXLGen\obj\Release\GenerateResource.read.1.tlog
+C:\bami\Service_2.2_oracle_provider\ReportXLGen\obj\Release\GenerateResource.write.1.tlog
+C:\bami\Service_2.2_oracle_provider\ReportXLGen\obj\Release\ReportXL.exe.licenses
+C:\bami\Service_2.2_oracle_provider\ReportXLGen\obj\Release\ReportXL.exe
+C:\bami\Service_2.2_oracle_provider\ReportXLGen\obj\Release\ReportXL.xml
+C:\bami\Service_2.2_oracle_provider\ReportXLGen\obj\Release\ReportXL.pdb

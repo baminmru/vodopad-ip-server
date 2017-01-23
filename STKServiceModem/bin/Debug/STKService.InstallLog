@@ -1,0 +1,60 @@
+﻿Installing assembly 'C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\bin\Debug\STKService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\bin\Debug\STKService.exe
+   logfile = C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\bin\Debug\STKService.InstallLog
+Installing service STKService...
+Creating EventLog source STKService in log Application...
+Rolling back assembly 'C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\bin\Debug\STKService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\bin\Debug\STKService.exe
+   logfile = C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\bin\Debug\STKService.InstallLog
+Restoring event log to previous state for source STKService.
+Uninstalling assembly 'C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\bin\Debug\STKService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\bin\Debug\STKService.exe
+   logfile = C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\bin\Debug\STKService.InstallLog
+Removing EventLog source STKService.
+Service STKService is being removed from the system...
+Service STKService was successfully removed from the system.
+Installing assembly 'C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\bin\Debug\STKService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\bin\Debug\STKService.exe
+   logfile = C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\bin\Debug\STKService.InstallLog
+Installing service STKService...
+Service STKService has been successfully installed.
+Creating EventLog source STKService in log Application...
+Committing assembly 'C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\bin\Debug\STKService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\bin\Debug\STKService.exe
+   logfile = C:\BAMI\Projects\SZT_2009\Service_1.27\STKService\bin\Debug\STKService.InstallLog
+Выполняется установка сборки 'C:\BAMI\Projects\SZT_2009\Service_1.28\STKService\bin\Debug\STKService.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   assemblypath = C:\BAMI\Projects\SZT_2009\Service_1.28\STKService\bin\Debug\STKService.exe
+   logfile = C:\BAMI\Projects\SZT_2009\Service_1.28\STKService\bin\Debug\STKService.InstallLog
+Устанавливается служба STKService...
+Служба STKService успешно установлена.
+Создается исходный EventLog STKService в журнале Application...
+Выполняется фиксация сборки 'C:\BAMI\Projects\SZT_2009\Service_1.28\STKService\bin\Debug\STKService.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   assemblypath = C:\BAMI\Projects\SZT_2009\Service_1.28\STKService\bin\Debug\STKService.exe
+   logfile = C:\BAMI\Projects\SZT_2009\Service_1.28\STKService\bin\Debug\STKService.InstallLog
+Выполняется установка сборки 'C:\BAMI\Projects\SZT_2009\Service_1.28\STKService\bin\Debug\STKService.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   assemblypath = C:\BAMI\Projects\SZT_2009\Service_1.28\STKService\bin\Debug\STKService.exe
+   logfile = C:\BAMI\Projects\SZT_2009\Service_1.28\STKService\bin\Debug\STKService.InstallLog
+Устанавливается служба STKService...
+Создается исходный EventLog STKService в журнале Application...
+Выполняется откат для сборки 'C:\BAMI\Projects\SZT_2009\Service_1.28\STKService\bin\Debug\STKService.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   assemblypath = C:\BAMI\Projects\SZT_2009\Service_1.28\STKService\bin\Debug\STKService.exe
+   logfile = C:\BAMI\Projects\SZT_2009\Service_1.28\STKService\bin\Debug\STKService.InstallLog
+Восстанавливается исходное состояние журнала событий для источника STKService.

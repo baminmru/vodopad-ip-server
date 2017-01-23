@@ -1,0 +1,12 @@
+<Config DataSource="cen16xe"
+Oracle="//192.168.9.145:1521/xe"
+UserID="COUNTERS"
+Password="counters"
+TimeOut="1000"
+TimerInterval="1000"
+RequestInterval="55000"
+ShowHidden ="false"
+SendToTGK ="true"
+AutoOpen="d"
+>
+</Config>
