@@ -1,4 +1,3 @@
-C:\bami\projects\AREAL\VODOPAD\DrvAreal\obj\Debug\DrvAreal.vbprojResolveAssemblyReference.cache
 C:\bami\projects\AREAL\VODOPAD\DrvAreal\obj\Debug\DrvAreal.frmSetup.resources
 C:\bami\projects\AREAL\VODOPAD\DrvAreal\obj\Debug\DrvAreal.Resources.resources
 C:\bami\projects\AREAL\VODOPAD\DrvAreal\obj\Debug\DrvAreal.vbproj.GenerateResource.Cache
@@ -15,3 +14,4 @@ C:\bami\projects\AREAL\VODOPAD\DrvAreal\bin\Debug\STKTVMain.xml
 C:\bami\projects\AREAL\VODOPAD\DrvAreal\obj\Debug\DrvAreal.dll
 C:\bami\projects\AREAL\VODOPAD\DrvAreal\obj\Debug\DrvAreal.pdb
 C:\bami\projects\AREAL\VODOPAD\DrvAreal\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\bami\projects\AREAL\VODOPAD\DrvAreal\obj\Debug\DrvAreal.vbprojResolveAssemblyReference.cache

@@ -2,7 +2,9 @@
 Imports System.IO
 Imports System.Threading
 Imports System.Net
+Imports System.Net.Sockets
 Imports System.ComponentModel
+Imports System.Xml
 
 
 
@@ -21,10 +23,13 @@ Public Class Driver
         f.ShowDialog()
     End Sub
 
+    Private MyTV As STKTVMain.TVMain
+
     Public Overrides Sub SetupDriverFromDB(ByRef TvMain As Object)
-        'Dim sData As String = ""
-        'TvMain.GetStringFromField(sData, "DRIVERSETUP", "SETUPXML", "ID_BD", DeviceID.ToString())
-        'sXML = sData
+        Dim sData As String = ""
+        TvMain.GetStringFromField(sData, "DRIVERSETUP", "SETUPXML", "ID_BD", DeviceID.ToString())
+        sXML = sData
+        MyTV = TvMain
     End Sub
 
     Private Function GetDeviceDate() As Date
@@ -102,27 +107,57 @@ Public Class Driver
 
 
     Private Function TryConnect() As Boolean
-        Dim request As WebRequest
-        Dim response As WebResponse
+        Dim request As HttpWebRequest
+        Dim response As HttpWebResponse
         Dim dataStream As Stream
         Dim reader As StreamReader
         Dim responseFromServer As String
         Dim i As Integer
+
+
+
+        'Dim tc As Sockets.TcpClient = New Sockets.TcpClient()
+        ''Подключаемся, используя имя хоста и порт
+        'tc.Connect(MyBase.ServerIp, MyBase.IPPort)
+        ''Получаем экземпляр NetworkStream для отправки данных
+        'Dim ns As NetworkStream = tc.GetStream()
+
+
+
         Try
-            request = WebRequest.Create("http://" & MyBase.ServerIp & "/readx?ireg=0")
-            ' If required by the server, set the credentials.
-            request.Credentials = CredentialCache.DefaultCredentials
-            ' Get the response.
-            response = request.GetResponse()
+            Dim q As String
 
-            dataStream = response.GetResponseStream()
-            ' Open the stream using a StreamReader for easy access.
-            reader = New StreamReader(dataStream)
-            ' Read the content.
-            responseFromServer = reader.ReadToEnd()
+            q = "http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/"
+            Dim webClient As New System.Net.WebClient
+            Dim result As String = webClient.DownloadString(q)
 
-            reader.Close()
-            response.Close()
+
+            'request = HttpWebRequest.Create(q)
+            'request.Timeout = 250
+
+            'request.Method = "GET"
+            ''request.PreAuthenticate = False
+            ''request.Accept="*/*"
+            'request.UserAgent = "Mozilla/5.0 (Windows NT 8.1; WOW64; rv:40.0)"
+            'request.AllowAutoRedirect = True
+            '' If required by the server, set the credentials.
+            'request.UseDefaultCredentials = True
+            ''request.Credentials = CredentialCache.DefaultCredentials
+            '' Get the response.
+            'response = request.GetResponse()
+
+            'dataStream = response.GetResponseStream()
+            '' Open the stream using a StreamReader for easy access.
+            'reader = New StreamReader(dataStream)
+            '' Read the content.
+            'responseFromServer = reader.ReadToEnd()
+
+            'reader.Close()
+            'reader.Dispose()
+            'dataStream.Dispose()
+            'response.Close()
+            '' response.Dispose()
+            Console.WriteLine("connected!!!")
 
             Return True
 
@@ -160,7 +195,7 @@ Public Class Driver
         End If
 
 
-        cleararchive(Arch)
+        clearArchive(Arch)
 
         Dim d As Date
 
@@ -168,13 +203,12 @@ Public Class Driver
 
         dt = New DataTable
 
+
+
+
         If dt.Rows.Count > 0 Then
             ok = True
 
-            'Else
-            '    GoTo arch_final
-
-            'End If
 
             Arch.archType = ArchType
             Arch.DateArch = rdate
@@ -424,9 +458,679 @@ arch_final:
     End Function
 
 
+
+
+    Private Function ReadItem(dt As DataTable, name As String, xval As String) As Boolean
+        Dim addr() As String
+        Dim vnum As String
+        Dim v1 As String
+        Dim va As UShort
+        Dim ba As Integer
+        Dim SlaveId As Byte = 0
+        If NPPassword <> "" Then
+            Try
+                SlaveId = Byte.Parse(NPPassword)
+            Catch ex As Exception
+
+            End Try
+        End If
+        'Connect()
+        'If IsConnected() = False Then
+        '    Return False
+        'End If
+
+        v1 = xval.Substring(0, 1)
+        vnum = xval.Substring(1).ToUpper
+        If vnum.IndexOf(".") >= 0 Then
+            addr = vnum.Split(".")
+            va = UShort.Parse(addr(0))
+            ba = addr(1)
+        Else
+            va = UShort.Parse(vnum)
+            ba = -1
+        End If
+
+
+        If v1 = "H" Or v1 = "I" Or v1 = "C" Or v1 = "D" Then
+
+
+            Dim dr As DataRow
+            dr = dt.NewRow
+            dr("name") = name
+            Dim vv As UShort
+
+
+            'Dim request As HttpWebRequest
+            'Dim response As HttpWebResponse
+            'Dim dataStream As Stream
+            'Dim reader As StreamReader
+            Dim responseFromServer As String
+
+            Try
+                Select Case v1
+                    Case "H"
+
+                        Try
+                            'request = HttpWebRequest.Create("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/readx?hreg=" + va.ToString())
+                            'request.Timeout = 250
+                            '' If required by the server, set the credentials.
+                            'request.Credentials = CredentialCache.DefaultCredentials
+                            '' Get the response.
+                            'response = request.GetResponse()
+
+                            'dataStream = response.GetResponseStream()
+                            '' Open the stream using a StreamReader for easy access.
+                            'reader = New StreamReader(dataStream)
+                            '' Read the content.
+                            'responseFromServer = reader.ReadToEnd()
+
+                            'reader.Close()
+                            'reader.Dispose()
+                            'dataStream.Dispose()
+                            'response.Close()
+                            '' response.Dispose()
+
+
+                            Dim q As String = "http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/readx?hreg=" + va.ToString()
+                            Dim webClient As New System.Net.WebClient
+                            responseFromServer = webClient.DownloadString(q)
+                            webClient.Dispose()
+                            Console.WriteLine(q + "->" + responseFromServer)
+
+
+
+                            Try
+                                vv = UShort.Parse(responseFromServer)
+                            Catch ex As Exception
+                                vv = 0
+                            End Try
+
+                        Catch ex As Exception
+
+                        End Try
+
+
+
+
+                        If ba = -1 Then
+                            dr("value") = vv
+                        Else
+                            If (vv And (1 << ba)) = (1 << ba) Then
+                                dr("value") = 1
+                            Else
+                                dr("value") = 0
+                            End If
+
+                        End If
+
+
+                    Case "I"
+                        Try
+
+
+                            Dim q As String = "http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/readx?ireg=" + va.ToString()
+                            Dim webClient As New System.Net.WebClient
+                            responseFromServer = webClient.DownloadString(q)
+                            webClient.Dispose()
+                            Console.WriteLine(q + "->" + responseFromServer)
+
+                            'request = HttpWebRequest.Create("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/readx?ireg=" + va.ToString())
+                            'request.Timeout = 250
+                            '' If required by the server, set the credentials.
+                            'request.Credentials = CredentialCache.DefaultCredentials
+                            '' Get the response.
+                            'response = request.GetResponse()
+
+                            'dataStream = response.GetResponseStream()
+                            '' Open the stream using a StreamReader for easy access.
+                            'reader = New StreamReader(dataStream)
+                            '' Read the content.
+                            'responseFromServer = reader.ReadToEnd()
+
+                            'reader.Close()
+                            'reader.Dispose()
+                            'dataStream.Dispose()
+                            'response.Close()
+                            '' response.Dispose()
+
+
+                            Try
+                                vv = UShort.Parse(responseFromServer)
+                            Catch ex As Exception
+                                vv = 0
+                            End Try
+
+                        Catch ex As Exception
+
+                        End Try
+
+
+
+
+                        If ba = -1 Then
+                            dr("value") = vv
+                        Else
+                            If (vv And (1 << ba)) = (1 << ba) Then
+                                dr("value") = 1
+                            Else
+                                dr("value") = 0
+                            End If
+
+                        End If
+
+                    Case "C"
+
+
+                        Try
+
+                            Dim q As String = "http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/readx?coil=" + va.ToString()
+                            Dim webClient As New System.Net.WebClient
+                            responseFromServer = webClient.DownloadString(q)
+                            webClient.Dispose()
+                            Console.WriteLine(q + "->" + responseFromServer)
+                            'request = HttpWebRequest.Create("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/readx?coil=" + va.ToString())
+                            'request.Timeout = 250
+                            '' If required by the server, set the credentials.
+                            'request.Credentials = CredentialCache.DefaultCredentials
+                            '' Get the response.
+                            'response = request.GetResponse()
+
+                            'dataStream = response.GetResponseStream()
+                            '' Open the stream using a StreamReader for easy access.
+                            'reader = New StreamReader(dataStream)
+                            '' Read the content.
+                            'responseFromServer = reader.ReadToEnd()
+
+                            'reader.Close()
+                            'reader.Dispose()
+                            'dataStream.Dispose()
+                            'response.Close()
+                            '' response.Dispose()
+
+
+                            Try
+                                If responseFromServer.ToLower() = "true" Then
+                                    vv = 1
+                                Else
+                                    vv = 0
+                                End If
+                            Catch ex As Exception
+                                vv = 0
+                            End Try
+
+                        Catch ex As Exception
+                            vv = 0
+                        End Try
+
+
+
+
+
+                        If vv Then
+                            dr("value") = 1
+                        Else
+                            dr("value") = 0
+                        End If
+
+
+
+                    Case "D"
+                        Try
+
+                            Dim q As String = "http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/readx?input=" + va.ToString()
+                            Dim webClient As New System.Net.WebClient
+                            responseFromServer = webClient.DownloadString(q)
+                            webClient.Dispose()
+                            Console.WriteLine(q + "->" + responseFromServer)
+
+                            'request = HttpWebRequest.Create("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/readx?input=" + va.ToString())
+                            'request.Timeout = 250
+                            '' If required by the server, set the credentials.
+                            'request.Credentials = CredentialCache.DefaultCredentials
+                            '' Get the response.
+                            'response = request.GetResponse()
+
+                            'dataStream = response.GetResponseStream()
+                            '' Open the stream using a StreamReader for easy access.
+                            'reader = New StreamReader(dataStream)
+                            '' Read the content.
+                            'responseFromServer = reader.ReadToEnd()
+
+                            'reader.Close()
+                            'reader.Dispose()
+                            'dataStream.Dispose()
+                            'response.Close()
+                            ''response.Dispose()
+
+
+                            Try
+                                If responseFromServer.ToLower() = "true" Then
+                                    vv = 1
+                                Else
+                                    vv = 0
+                                End If
+                                'vv = Boolean.Parse(responseFromServer)
+                            Catch ex As Exception
+                                vv = 0
+                            End Try
+
+                        Catch ex As Exception
+                            vv = 0
+                        End Try
+
+
+                        If vv Then
+                            dr("value") = 1
+                        Else
+                            dr("value") = 0
+                        End If
+
+                End Select
+                dt.Rows.Add(dr)
+                Return True
+
+            Catch ex As Exception
+                Return False
+            End Try
+
+        Else
+            Return False
+        End If
+
+
+
+
+
+    End Function
+
+
+
+
+    Public Overrides Function ProcessComands() As Integer
+        Dim dtcmd As DataTable
+        Dim i As Integer
+        Dim cnt As Integer
+        Dim vRegType As String
+        Dim vAddr As UShort
+        Dim vBit As Integer
+        Dim vValue As UShort
+        Dim vMask As UShort
+        Dim xval As String
+        Dim QRegs As Integer
+        Dim SlaveId As Byte = 0
+        Dim OK As Boolean
+
+        Dim request As HttpWebRequest
+        Dim response As HttpWebResponse
+        Dim dataStream As Stream
+        Dim reader As StreamReader
+        Dim responseFromServer As String
+
+
+        If NPPassword <> "" Then
+            Try
+                SlaveId = Byte.Parse(NPPassword)
+            Catch ex As Exception
+                Return 0
+            End Try
+        End If
+        'Connect()
+        'If IsConnected() = False Then
+        '    Return 0
+        'End If
+
+
+        dtcmd = MyTV.QuerySelect("select ROWID,RCW.* from RCW where id_BD=" + DeviceID.ToString() + " and DONE=0 order by CREATEDATE")
+
+        If dtcmd.Rows.Count > 0 Then
+            cnt = 0
+            For i = 0 To dtcmd.Rows.Count - 1
+                OK = True
+
+                QRegs = Integer.Parse(dtcmd.Rows(i)("QREGS").ToString())
+
+                '''''''''''''''''''  reg1 
+                If QRegs > 0 Then
+                    xval = dtcmd.Rows(i)("REG1").ToString()
+
+                    vRegType = xval.Substring(0, 1).ToUpper()
+                    If vRegType = "H" Or vRegType = "I" Or vRegType = "C" Or vRegType = "D" Then
+                        vAddr = xval.Substring(1).ToUpper
+                    Else
+                        vRegType = "C"
+                        vAddr = xval.ToString()
+                    End If
+
+                    ' формируем новое значение регистра
+                    vBit = Integer.Parse(dtcmd.Rows(i)("BIT1").ToString())
+                    vValue = UShort.Parse(dtcmd.Rows(i)("VALUE1").ToString())
+
+
+                    If vRegType = "H" Or vRegType = "I" Or vRegType = "C" Or vRegType = "D" Then
+
+                        Try
+                            Select Case vRegType
+                                Case "H", "I"
+                                    If vBit = -1 Then
+
+                                        Try
+
+                                            Dim q As String = "http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/set?hreg=" + vAddr.ToString() + "&value=" + vValue.ToString()
+                                            Dim webClient As New System.Net.WebClient
+                                            responseFromServer = webClient.DownloadString(q)
+                                            webClient.Dispose()
+                                            Console.WriteLine(q + "->" + responseFromServer)
+
+                                            'request = HttpWebRequest.Create("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/set?hreg=" + vAddr.ToString() + "&value=" + vValue.ToString())
+                                            'request.Timeout = 1000
+                                            '' If required by the server, set the credentials.
+                                            'request.Credentials = CredentialCache.DefaultCredentials
+                                            '' Get the response.
+                                            'response = request.GetResponse()
+
+                                            'dataStream = response.GetResponseStream()
+                                            '' Open the stream using a StreamReader for easy access.
+                                            'reader = New StreamReader(dataStream)
+                                            '' Read the content.
+                                            'responseFromServer = reader.ReadToEnd()
+
+                                            'reader.Close()
+                                            'response.Close()
+
+                                        Catch ex As Exception
+
+                                        End Try
+                                    Else
+                                        If vBit >= 0 And vBit <= 15 Then
+                                            If vValue > 0 Then
+                                                vMask = 1 << vBit
+
+                                            Else
+                                                vMask = 1 << vBit
+                                                vMask = Not vMask
+
+                                            End If
+
+                                            Dim q As String = "http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/set?hreg=" + vAddr.ToString() + "&value=" + vMask.ToString()
+                                            Dim webClient As New System.Net.WebClient
+                                            responseFromServer = webClient.DownloadString(q)
+                                            webClient.Dispose()
+                                            Console.WriteLine(q + "->" + responseFromServer)
+
+                                            'request = HttpWebRequest.Create("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/set?hreg=" + vAddr.ToString() + "&value=" + vMask.ToString())
+                                            'request.Timeout = 1000
+                                            '' If required by the server, set the credentials.
+                                            'request.Credentials = CredentialCache.DefaultCredentials
+                                            '' Get the response.
+                                            'response = request.GetResponse()
+
+                                            'dataStream = response.GetResponseStream()
+                                            '' Open the stream using a StreamReader for easy access.
+                                            'reader = New StreamReader(dataStream)
+                                            '' Read the content.
+                                            'responseFromServer = reader.ReadToEnd()
+
+                                            'reader.Close()
+                                            'response.Close()
+
+
+                                        End If
+                                    End If
+
+
+
+
+                                Case "C", "D"
+                                    If vBit >= 0 And vBit <= 15 Then
+                                        vAddr = (vAddr << 4) Or (vBit And &HF)
+                                        Dim q As String
+                                        If vValue > 0 Then
+                                            q = ("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/set?coil=" + vAddr.ToString() + "&value=1")
+                                        Else
+                                            q = ("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/set?coil=" + vAddr.ToString() + "&value=0")
+                                        End If
+
+
+                                        Dim webClient As New System.Net.WebClient
+                                        responseFromServer = webClient.DownloadString(q)
+                                        webClient.Dispose()
+                                        Console.WriteLine(q + "->" + responseFromServer)
+                                        'request.Timeout = 1000
+                                        '' If required by the server, set the credentials.
+                                        'request.Credentials = CredentialCache.DefaultCredentials
+                                        '' Get the response.
+                                        'response = request.GetResponse()
+
+                                        'dataStream = response.GetResponseStream()
+                                        '' Open the stream using a StreamReader for easy access.
+                                        'reader = New StreamReader(dataStream)
+                                        '' Read the content.
+                                        'responseFromServer = reader.ReadToEnd()
+
+                                        'reader.Close()
+                                        'response.Close()
+                                    Else
+
+                                        Dim q As String
+                                        If vValue > 0 Then
+                                            q = ("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/set?coil=" + vAddr.ToString() + "&value=1")
+                                        Else
+                                            q = ("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/set?coil=" + vAddr.ToString() + "&value=0")
+                                        End If
+                                        Dim webClient As New System.Net.WebClient
+                                        responseFromServer = webClient.DownloadString(q)
+                                        webClient.Dispose()
+                                        Console.WriteLine(q + "->" + responseFromServer)
+                                    End If
+
+
+                            End Select
+
+
+                        Catch ex As Exception
+                            OK = False
+                        End Try
+
+                    Else
+                        OK = False
+                    End If
+
+                End If
+
+                System.Threading.Thread.Sleep(50)
+
+                ''''''''''''''''''' REG2
+                If QRegs > 1 Then
+                    xval = dtcmd.Rows(i)("REG2").ToString()
+
+                    vRegType = xval.Substring(0, 1).ToUpper()
+                    If vRegType = "H" Or vRegType = "I" Or vRegType = "C" Or vRegType = "D" Then
+                        vAddr = xval.Substring(1).ToUpper
+                    Else
+                        vRegType = "C"
+                        vAddr = xval.ToString()
+                    End If
+
+                    ' формируем новое значение регистра
+                    vBit = Integer.Parse(dtcmd.Rows(i)("BIT2").ToString())
+                    vValue = UShort.Parse(dtcmd.Rows(i)("VALUE2").ToString())
+
+
+                    If vRegType = "H" Or vRegType = "I" Or vRegType = "C" Or vRegType = "D" Then
+
+                        Try
+                            Select Case vRegType
+                                Case "H", "I"
+                                    If vBit = -1 Then
+
+                                        Try
+                                            Dim q As String
+                                            q = ("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/set?hreg=" + vAddr.ToString() + "&value=" + vValue.ToString())
+                                            Dim webClient As New System.Net.WebClient
+                                            responseFromServer = webClient.DownloadString(q)
+                                            webClient.Dispose()
+                                            Console.WriteLine(q + "->" + responseFromServer)
+                                            'request = HttpWebRequest.Create("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/set?hreg=" + vAddr.ToString() + "&value=" + vValue.ToString())
+                                            '' If required by the server, set the credentials.
+                                            'request.Credentials = CredentialCache.DefaultCredentials
+                                            '' Get the response.
+                                            'response = request.GetResponse()
+
+                                            'dataStream = response.GetResponseStream()
+                                            '' Open the stream using a StreamReader for easy access.
+                                            'reader = New StreamReader(dataStream)
+                                            '' Read the content.
+                                            'responseFromServer = reader.ReadToEnd()
+
+                                            'reader.Close()
+                                            'response.Close()
+
+                                        Catch ex As Exception
+
+                                        End Try
+                                    Else
+                                        If vBit >= 0 And vBit <= 15 Then
+                                            If vValue > 0 Then
+                                                vMask = 1 << vBit
+
+                                            Else
+                                                vMask = 1 << vBit
+                                                vMask = Not vMask
+
+                                            End If
+
+
+                                            Dim q As String
+                                            q = "http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/set?hreg=" + vAddr.ToString() + "&value=" + vMask.ToString()
+                                            Dim webClient As New System.Net.WebClient
+                                            responseFromServer = webClient.DownloadString(q)
+                                            webClient.Dispose()
+                                            Console.WriteLine(q + "->" + responseFromServer)
+
+                                            'request = HttpWebRequest.Create("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/set?hreg=" + vAddr.ToString() + "&value=" + vMask.ToString())
+                                            '' If required by the server, set the credentials.
+                                            'request.Credentials = CredentialCache.DefaultCredentials
+                                            '' Get the response.
+                                            'response = request.GetResponse()
+
+                                            'dataStream = response.GetResponseStream()
+                                            '' Open the stream using a StreamReader for easy access.
+                                            'reader = New StreamReader(dataStream)
+                                            '' Read the content.
+                                            'responseFromServer = reader.ReadToEnd()
+
+                                            'reader.Close()
+                                            'response.Close()
+
+
+                                        End If
+                                    End If
+
+
+
+
+                                Case "C", "D"
+                                    If vBit >= 0 And vBit <= 15 Then
+                                        vAddr = (vAddr << 4) Or (vBit And &HF)
+
+                                        Dim q As String
+                                        If vValue > 0 Then
+                                            q = ("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/set?coil=" + vAddr.ToString() + "&value=1")
+                                        Else
+                                            q = ("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/set?coil=" + vAddr.ToString() + "&value=0")
+                                        End If
+
+                                        Dim webClient As New System.Net.WebClient
+                                        responseFromServer = webClient.DownloadString(q)
+                                        webClient.Dispose()
+                                        Console.WriteLine(q + "->" + responseFromServer)
+
+                                        '' If required by the server, set the credentials.
+                                        'request.Credentials = CredentialCache.DefaultCredentials
+                                        '' Get the response.
+                                        'response = request.GetResponse()
+
+                                        'dataStream = response.GetResponseStream()
+                                        '' Open the stream using a StreamReader for easy access.
+                                        'reader = New StreamReader(dataStream)
+                                        '' Read the content.
+                                        'responseFromServer = reader.ReadToEnd()
+
+                                        'reader.Close()
+                                        'response.Close()
+                                    Else
+                                        'If vValue > 0 Then
+                                        '    ("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/set?coil=" + vAddr.ToString() + "&value=1")
+                                        'Else
+                                        '    request = HttpWebRequest.Create("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/set?coil=" + vAddr.ToString() + "&value=0")
+                                        'End If
+
+                                        Dim q As String
+                                        If vValue > 0 Then
+                                            q = ("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/set?coil=" + vAddr.ToString() + "&value=1")
+                                        Else
+                                            q = ("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/set?coil=" + vAddr.ToString() + "&value=0")
+                                        End If
+
+                                        Dim webClient As New System.Net.WebClient
+                                        responseFromServer = webClient.DownloadString(q)
+                                        webClient.Dispose()
+                                        Console.WriteLine(q + "->" + responseFromServer)
+
+                                        '' If required by the server, set the credentials.
+                                        'request.Credentials = CredentialCache.DefaultCredentials
+                                        '' Get the response.
+                                        'response = request.GetResponse()
+
+                                        'dataStream = response.GetResponseStream()
+                                        '' Open the stream using a StreamReader for easy access.
+                                        'reader = New StreamReader(dataStream)
+                                        '' Read the content.
+                                        'responseFromServer = reader.ReadToEnd()
+
+                                        'reader.Close()
+                                        'response.Close()
+                                    End If
+
+
+                            End Select
+
+
+                        Catch ex As Exception
+                            OK = False
+                        End Try
+
+                    Else
+                        OK = False
+                    End If
+
+                End If
+
+
+
+
+                If OK Then cnt = cnt + 1
+
+                MyTV.QueryExec("UPDATE RCW SET DONE=1,RCWDATE=SYSDATE WHERE RCW.ROWID='" + dtcmd.Rows(i)("ROWID") + "'")
+
+
+                System.Threading.Thread.Sleep(50)
+
+
+
+            Next
+            Return cnt
+
+        End If
+
+        Return 0
+    End Function
+
+
+
     Private Sub Areal2DT(ByRef dt As DataTable)
-        Dim request As WebRequest
-        Dim response As WebResponse
+        Dim request As HttpWebRequest
+        Dim response As HttpWebResponse
         Dim dataStream As Stream
         Dim reader As StreamReader
         Dim responseFromServer As String
@@ -440,7 +1144,7 @@ arch_final:
 
 #Region "read"
         Try
-            request = WebRequest.Create("http://" & MyBase.ServerIp & "/readx?ireg=0")
+            request = HttpWebRequest.Create("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/readx?ireg=0")
             ' If required by the server, set the credentials.
             request.Credentials = CredentialCache.DefaultCredentials
             ' Get the response.
@@ -468,7 +1172,7 @@ arch_final:
 
 
         Try
-            request = WebRequest.Create("http://" & MyBase.ServerIp & "/readx?ireg=1")
+            request = HttpWebRequest.Create("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/readx?ireg=1")
             ' If required by the server, set the credentials.
             request.Credentials = CredentialCache.DefaultCredentials
             ' Get the response.
@@ -495,7 +1199,7 @@ arch_final:
         End Try
 
         Try
-            request = WebRequest.Create("http://" & MyBase.ServerIp & "/readx?ireg=2")
+            request = HttpWebRequest.Create("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/readx?ireg=2")
             ' If required by the server, set the credentials.
             request.Credentials = CredentialCache.DefaultCredentials
             ' Get the response.
@@ -523,7 +1227,7 @@ arch_final:
 
 
         Try
-            request = WebRequest.Create("http://" & MyBase.ServerIp & "/readx?ireg=3")
+            request = HttpWebRequest.Create("http://" & MyBase.ServerIp & ":" & MyBase.IPPort.ToString() & "/readx?ireg=3")
             ' If required by the server, set the credentials.
             request.Credentials = CredentialCache.DefaultCredentials
             ' Get the response.
@@ -760,7 +1464,40 @@ arch_final:
 
 
 
-        Areal2DT(dt)
+
+
+        Dim Xml As XmlDocument = New XmlDocument()
+        Xml.LoadXml(sXML)
+        Dim root As XmlElement
+        Dim node As XmlElement
+        Dim xlst As XmlNodeList
+        Dim xattr As XmlAttribute
+
+
+        root = CType(Xml.LastChild, XmlElement)
+        xlst = root.GetElementsByTagName("device")
+        If (xlst.Count > 0) Then
+            node = CType(xlst.Item(0), XmlElement)       ' device
+            For Each xattr In node.Attributes
+                ok = ReadItem(dt, xattr.Name, xattr.Value)
+            Next
+        End If
+
+
+
+        xlst = root.GetElementsByTagName("current")
+        If (xlst.Count > 0) Then
+
+            node = CType(xlst.Item(0), XmlElement)      ' // device
+            For Each xattr In node.Attributes
+                ok = ReadItem(dt, xattr.Name, xattr.Value)
+            Next
+
+        End If
+
+
+
+        'Areal2DT(dt)
 
 
 
@@ -896,31 +1633,31 @@ march_final:
             Dim i As Integer
             For i = 0 To dt.Rows.Count - 1
                 Select Case dt.Rows(i)("Name").ToString().ToUpper
-                    'Case "M1"
-                    '    tArch.M1 = Str2Dbl(dt.Rows(i)("Value").ToString())
-                    'Case "M2"
-                    '    tArch.M2 = Str2Dbl(dt.Rows(i)("Value").ToString())
-                    'Case "M3"
-                    '    tArch.M3 = Str2Dbl(dt.Rows(i)("Value").ToString())
-                    'Case "M4"
-                    '    tArch.M4 = Str2Dbl(dt.Rows(i)("Value").ToString())
-                    'Case "M5"
-                    '    tArch.M5 = Str2Dbl(dt.Rows(i)("Value").ToString())
-                    'Case "M6"
-                    '    tArch.M6 = Str2Dbl(dt.Rows(i)("Value").ToString())
+                    Case "M1"
+                        tArch.M1 = Str2Dbl(dt.Rows(i)("Value").ToString())
+                    Case "M2"
+                        tArch.M2 = Str2Dbl(dt.Rows(i)("Value").ToString())
+                    Case "M3"
+                        tArch.M3 = Str2Dbl(dt.Rows(i)("Value").ToString())
+                    Case "M4"
+                        tArch.M4 = Str2Dbl(dt.Rows(i)("Value").ToString())
+                    Case "M5"
+                        tArch.M5 = Str2Dbl(dt.Rows(i)("Value").ToString())
+                    Case "M6"
+                        tArch.M6 = Str2Dbl(dt.Rows(i)("Value").ToString())
 
-                    'Case "V1"
-                    '    tArch.V1 = Str2Dbl(dt.Rows(i)("Value").ToString())
-                    'Case "V2"
-                    '    tArch.V2 = Str2Dbl(dt.Rows(i)("Value").ToString())
-                    'Case "V3"
-                    '    tArch.V3 = Str2Dbl(dt.Rows(i)("Value").ToString())
-                    'Case "V4"
-                    '    tArch.V4 = Str2Dbl(dt.Rows(i)("Value").ToString())
-                    'Case "V5"
-                    '    tArch.V5 = Str2Dbl(dt.Rows(i)("Value").ToString())
-                    'Case "V6"
-                    '    tArch.V6 = Str2Dbl(dt.Rows(i)("Value").ToString())
+                    Case "V1"
+                        tArch.V1 = Str2Dbl(dt.Rows(i)("Value").ToString())
+                    Case "V2"
+                        tArch.V2 = Str2Dbl(dt.Rows(i)("Value").ToString())
+                    Case "V3"
+                        tArch.V3 = Str2Dbl(dt.Rows(i)("Value").ToString())
+                    Case "V4"
+                        tArch.V4 = Str2Dbl(dt.Rows(i)("Value").ToString())
+                    Case "V5"
+                        tArch.V5 = Str2Dbl(dt.Rows(i)("Value").ToString())
+                    Case "V6"
+                        tArch.V6 = Str2Dbl(dt.Rows(i)("Value").ToString())
 
                     Case "P1"
                         tArch.P1 = Str2Dbl(dt.Rows(i)("Value").ToString())
@@ -949,18 +1686,18 @@ march_final:
                     Case "T6"
                         tArch.T6 = Str2Dbl(dt.Rows(i)("Value").ToString())
 
-                    'Case "Q1"
-                    '    tArch.Q1 = Str2Dbl(dt.Rows(i)("Value").ToString())
-                    'Case "Q2"
-                    '    tArch.Q2 = Str2Dbl(dt.Rows(i)("Value").ToString())
-                    'Case "Q3"
-                    '    tArch.Q3 = Str2Dbl(dt.Rows(i)("Value").ToString())
-                    'Case "Q4"
-                    '    tArch.Q4 = Str2Dbl(dt.Rows(i)("Value").ToString())
-                    'Case "Q5"
-                    '    tArch.Q5 = Str2Dbl(dt.Rows(i)("Value").ToString())
-                    'Case "Q6"
-                    '    tArch.Q6 = Str2Dbl(dt.Rows(i)("Value").ToString())
+                    Case "Q1"
+                        tArch.Q1 = Str2Dbl(dt.Rows(i)("Value").ToString())
+                    Case "Q2"
+                        tArch.Q2 = Str2Dbl(dt.Rows(i)("Value").ToString())
+                    Case "Q3"
+                        tArch.Q3 = Str2Dbl(dt.Rows(i)("Value").ToString())
+                    Case "Q4"
+                        tArch.Q4 = Str2Dbl(dt.Rows(i)("Value").ToString())
+                    Case "Q5"
+                        tArch.Q5 = Str2Dbl(dt.Rows(i)("Value").ToString())
+                    Case "Q6"
+                        tArch.Q6 = Str2Dbl(dt.Rows(i)("Value").ToString())
 
 
 

@@ -8,18 +8,18 @@ STKTVMain
 <members>
 <member name="T:STKTVMain.My.Resources.Resources">
 <summary>
-  Класс ресурса со строгой типизацией для поиска локализованных строк и т.д.
+  A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
 </member>
 <member name="P:STKTVMain.My.Resources.Resources.ResourceManager">
 <summary>
-  Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
+  Returns the cached ResourceManager instance used by this class.
 </summary>
 </member>
 <member name="P:STKTVMain.My.Resources.Resources.Culture">
 <summary>
-  Перезаписывает свойство CurrentUICulture текущего потока для всех
-  обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
 </summary>
 </member>
 </members>

@@ -17,6 +17,7 @@ Public Class Driver
     Private client As TcpClient
     Private slaveId As Byte = 1
     Private sXML As String
+
     Private MyTV As STKTVMain.TVMain
 
     Public Overrides Sub DoSpecificSetup(ByRef TvMain As Object)
@@ -39,14 +40,13 @@ Public Class Driver
         Dim dtcmd As DataTable
         Dim i As Integer
         Dim cnt As Integer
-        Dim v1 As String
-        Dim registers() As UShort
-        Dim va As UShort
-        Dim vRead As UShort
-        Dim vWrite As UShort
+        Dim vRegType As String
+        Dim vAddr As UShort
+        Dim vBit As Integer
+        Dim vValue As UShort
         Dim vMask As UShort
-        Dim vNewValue As UShort
         Dim xval As String
+        Dim QRegs As Integer
         Dim SlaveId As Byte = 0
         Dim OK As Boolean
         If NPPassword <> "" Then
@@ -68,129 +68,82 @@ Public Class Driver
             cnt = 0
             For i = 0 To dtcmd.Rows.Count - 1
                 OK = True
-                xval = dtcmd.Rows(i)("READREG").ToString()
 
-                v1 = xval.Substring(0, 1)
-                If v1 = "H" Or v1 = "I" Or v1 = "C" Or v1 = "D" Then
-                    va = xval.Substring(1).ToUpper
-                Else
-                    v1 = "I"
-                    va = xval.ToString()
-                End If
+                QRegs = Integer.Parse(dtcmd.Rows(i)("QREGS").ToString())
 
+                '''''''''''''''''''  reg1 
+                If QRegs > 0 Then
+                    xval = dtcmd.Rows(i)("REG1").ToString()
 
-                If v1 = "H" Or v1 = "I" Or v1 = "C" Or v1 = "D" Then
+                    vRegType = xval.Substring(0, 1).ToUpper()
+                    If vRegType = "H" Or vRegType = "I" Or vRegType = "C" Or vRegType = "D" Then
+                        vAddr = xval.Substring(1).ToUpper
+                    Else
+                        vRegType = "C"
+                        vAddr = xval.ToString()
+                    End If
 
-                    Try
-                        Select Case v1
-                            Case "H"
-                                Try
-                                    registers = master.ReadHoldingRegisters(SlaveId, va, 1)
-                                    If Not registers Is Nothing Then
-
-                                        vRead = registers(0)
-
-
-                                    End If
-                                Catch ex As Exception
-                                    OK = False
-                                End Try
-
-
-
-                            Case "I"
-                                Try
-                                    registers = master.ReadInputRegisters(SlaveId, va, 1)
-                                    If Not registers Is Nothing Then
-                                        vRead = registers(0)
-                                    End If
-                                Catch ex As Exception
-                                    OK = False
-                                End Try
-
-                        End Select
-
-                    Catch ex As Exception
-                        OK = False
-                    End Try
-
-                Else
-                    OK = False
-                End If
-
-
-                If OK Then
                     ' формируем новое значение регистра
-                    vMask = UShort.Parse(dtcmd.Rows(i)("BITMASK").ToString())
-                    vNewValue = UShort.Parse(dtcmd.Rows(i)("BITVALUE").ToString())
-
-                    If vNewValue > 0 Then
-                        'vWrite = vRead Or vMask
-                        vWrite = vMask
-                    Else
-                        vWrite = vRead Or (Not vMask)
-                    End If
+                    vBit = Integer.Parse(dtcmd.Rows(i)("BIT1").ToString())
+                    vValue = UShort.Parse(dtcmd.Rows(i)("VALUE1").ToString())
 
 
-
-                    ' записываем регистр
-                    xval = dtcmd.Rows(i)("WRITEREG").ToString()
-
-                    v1 = xval.Substring(0, 1)
-                    If v1 = "H" Or v1 = "I" Or v1 = "C" Or v1 = "D" Then
-                        va = xval.Substring(1).ToUpper
-                    Else
-                        v1 = "I"
-                        va = xval.ToString()
-                    End If
-
-
-                    If v1 = "H" Or v1 = "I" Or v1 = "C" Or v1 = "D" Then
+                    If vRegType = "H" Or vRegType = "I" Or vRegType = "C" Or vRegType = "D" Then
 
                         Try
-                            Select Case v1
-                                Case "H"
-                                    Try
-                                        master.WriteSingleRegister(SlaveId, va, vWrite)
-                                    Catch ex As Exception
-                                        OK = False
-                                    End Try
+                            Select Case vRegType
+                                Case "H", "I"
+                                    If vBit = -1 Then
 
-                                Case "I"
-                                    Try
-                                        master.WriteSingleRegister(SlaveId, va, vWrite)
-                                    Catch ex As Exception
-                                        OK = False
-                                    End Try
+                                        Try
+                                            master.WriteSingleRegister(SlaveId, vAddr, vValue)
+                                        Catch ex As Exception
+                                            OK = False
+                                        End Try
+                                    Else
+                                        If vBit >= 0 And vBit <= 15 Then
+                                            Try
+                                                If vValue > 0 Then
+                                                    vMask = 1 << vBit
+                                                    master.WriteSingleRegister(SlaveId, vAddr, vMask)
+                                                Else
+                                                    vMask = 1 << vBit
+                                                    vMask = Not vMask
+                                                    master.WriteSingleRegister(SlaveId, vAddr, vMask)
+                                                End If
+                                            Catch ex As Exception
+                                                OK = False
+                                            End Try
 
 
-                                Case "C"
-
-
-                                    Try
-                                        If vMask > 0 Then
-                                            master.WriteSingleCoil(SlaveId, va, 1)
-                                        Else
-                                            master.WriteSingleCoil(SlaveId, va, 0)
                                         End If
-
-                                    Catch ex As Exception
-                                        OK = False
-                                    End Try
+                                    End If
 
 
 
-                                Case "D"
-                                    Try
-                                        If vMask > 0 Then
-                                            master.WriteSingleCoil(SlaveId, va, 1)
+
+                                Case "C", "D"
+                                    If vBit >= 0 And vBit <= 15 Then
+                                        vAddr = (vAddr << 4) Or (vBit And &HF)
+
+                                        Try
+                                            If vValue > 0 Then
+                                                master.WriteSingleCoil(SlaveId, vAddr, 1)
+                                            Else
+                                                master.WriteSingleCoil(SlaveId, vAddr, 0)
+                                            End If
+
+                                        Catch ex As Exception
+                                            OK = False
+                                        End Try
+                                    Else
+                                        If vValue > 0 Then
+                                            master.WriteSingleCoil(SlaveId, vAddr, 1)
                                         Else
-                                            master.WriteSingleCoil(SlaveId, va, 0)
+                                            master.WriteSingleCoil(SlaveId, vAddr, 0)
                                         End If
+                                    End If
 
-                                    Catch ex As Exception
-                                        OK = False
-                                    End Try
 
                             End Select
 
@@ -202,7 +155,95 @@ Public Class Driver
                     Else
                         OK = False
                     End If
+
                 End If
+
+                System.Threading.Thread.Sleep(50)
+
+                ''''''''''''''''''' REG2
+                If QRegs > 1 Then
+                    xval = dtcmd.Rows(i)("REG2").ToString()
+
+                    vRegType = xval.Substring(0, 1).ToUpper()
+                    If vRegType = "H" Or vRegType = "I" Or vRegType = "C" Or vRegType = "D" Then
+                        vAddr = xval.Substring(1).ToUpper
+                    Else
+                        vRegType = "C"
+                        vAddr = xval.ToString()
+                    End If
+
+                    ' формируем новое значение регистра
+                    vBit = Integer.Parse(dtcmd.Rows(i)("BIT2").ToString())
+                    vValue = UShort.Parse(dtcmd.Rows(i)("VALUE2").ToString())
+
+
+                    If vRegType = "H" Or vRegType = "I" Or vRegType = "C" Or vRegType = "D" Then
+
+                        Try
+                            Select Case vRegType
+                                Case "H", "I"
+                                    If vBit = -1 Then
+
+                                        Try
+                                            master.WriteSingleRegister(SlaveId, vAddr, vValue)
+                                        Catch ex As Exception
+                                            OK = False
+                                        End Try
+                                    Else
+                                        If vBit >= 0 And vBit <= 15 Then
+                                            Try
+                                                If vValue > 0 Then
+                                                    vMask = 1 << vBit
+                                                    master.WriteSingleRegister(SlaveId, vAddr, vMask)
+                                                Else
+                                                    vMask = 1 << vBit
+                                                    vMask = Not vMask
+                                                    master.WriteSingleRegister(SlaveId, vAddr, vMask)
+                                                End If
+                                            Catch ex As Exception
+                                                OK = False
+                                            End Try
+
+
+                                        End If
+                                    End If
+
+
+
+
+                                Case "C", "D"
+                                    If vBit >= 0 And vBit <= 15 Then
+                                        vAddr = (vAddr << 4) Or (vBit And &HF)
+
+                                        Try
+                                            If vValue > 0 Then
+                                                master.WriteSingleCoil(SlaveId, vAddr, 1)
+                                            Else
+                                                master.WriteSingleCoil(SlaveId, vAddr, 0)
+                                            End If
+
+                                        Catch ex As Exception
+                                            OK = False
+                                        End Try
+                                    Else
+                                        OK = False
+                                    End If
+
+
+                            End Select
+
+
+                        Catch ex As Exception
+                            OK = False
+                        End Try
+
+                    Else
+                        OK = False
+                    End If
+
+                End If
+
+
 
 
                 If OK Then cnt = cnt + 1
@@ -215,13 +256,11 @@ Public Class Driver
 
 
             Next
-            Return dtcmd.Rows.Count
+            Return cnt
 
         End If
 
-
-
-        Return MyBase.ProcessComands()
+        Return 0
     End Function
 
 
@@ -302,14 +341,14 @@ Public Class Driver
         If client Is Nothing Then
             Try
                 client = New TcpClient()
-                client.ReceiveTimeout = 250
-                client.SendTimeout = 250
+                client.ReceiveTimeout = 2500
+                client.SendTimeout = 2500
                 client.Connect(ServerIp, IPPort)
                 master = ModbusIpMaster.CreateIp(client)
-                master.Transport.ReadTimeout = 100
+                master.Transport.ReadTimeout = 2500
                 master.Transport.Retries = 3
-                master.Transport.WaitToRetryMilliseconds = 30
-                master.Transport.WriteTimeout = 100
+                master.Transport.WaitToRetryMilliseconds = 500
+                master.Transport.WriteTimeout = 2500
                 master.Transport.SlaveBusyUsesRetryCount = 3
 
 
@@ -385,7 +424,7 @@ Public Class Driver
 
 
         If ArchType = archType_day Then
-            xlst = root.GetElementsByTagName("day")
+            xlst = root.GetElementsByTagName("dayly")
             If (xlst.Count > 0) Then
 
                 node = CType(xlst.Item(0), XmlElement)      ' // device
@@ -396,7 +435,7 @@ Public Class Driver
             End If
         Else
 
-            xlst = root.GetElementsByTagName("hour")
+            xlst = root.GetElementsByTagName("hourly")
             If (xlst.Count > 0) Then
 
                 node = CType(xlst.Item(0), XmlElement)      ' // device
@@ -1325,155 +1364,6 @@ tarch_final:
         client = Nothing
         master = Nothing
     End Sub
-
-
-#Region "Alternative modbus"
-
-    Private Shared ReadTimeout As Integer = 250
-    Private Shared ConnectTimeout As Integer = 50
-
-    Private Shared Function CreateReadHeader(id As UShort, unit_addr As Byte, startAddress As UShort, length As UShort, func As Byte) As Byte()
-        Dim data As Byte() = New Byte(12) {}
-        Dim _id As Byte() = BitConverter.GetBytes(CType(id, Short))
-        data(0) = _id(1)
-        data(1) = _id(0)
-        data(5) = 6
-        data(6) = unit_addr
-        data(7) = func
-        Dim adr As Byte() = BitConverter.GetBytes(IPAddress.HostToNetworkOrder(CType(startAddress, Short)))
-        data(8) = adr(0)
-        data(9) = adr(1)
-        Dim len As Byte() = BitConverter.GetBytes(IPAddress.HostToNetworkOrder(CType(length, Short)))
-        data(10) = len(0)
-        data(11) = len(1)
-        Return data
-    End Function
-    Private Shared Function MODBUSConnect(endPoint As IPEndPoint, ConnectTimeOut As Integer) As Socket
-        Dim tcpSynCl As Socket = Nothing
-        Try
-            tcpSynCl = New Socket(endPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp)
-            tcpSynCl.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.NoDelay, True)
-            tcpSynCl.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, ReadTimeout)
-            tcpSynCl.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.SendTimeout, ReadTimeout)
-            tcpSynCl.Blocking = False
-            tcpSynCl.LingerState.Enabled = True
-            tcpSynCl.LingerState.LingerTime = 0
-            tcpSynCl.NoDelay = True
-            Dim ar As IAsyncResult = tcpSynCl.BeginConnect(endPoint, Nothing, Nothing)
-            If ar.AsyncWaitHandle.WaitOne(ConnectTimeOut) Then
-                tcpSynCl.EndConnect(ar)
-                ar.AsyncWaitHandle.Close()
-                Return tcpSynCl
-            End If
-            ar.AsyncWaitHandle.Close()
-            tcpSynCl.Close(0)
-            tcpSynCl.Dispose()
-            Return Nothing
-        Catch ex As Exception
-            Debug.Print(ex.Message)
-            If tcpSynCl Is Nothing Then
-                tcpSynCl.Dispose()
-            End If
-            Return Nothing
-        End Try
-    End Function
-    Public Shared Function GetAllDataSync(ep As IPEndPoint, mbAddr As Byte, startAddress As UShort, length As UShort, func As Byte) As Byte()
-        Dim socket As Socket = MODBUSConnect(ep, ConnectTimeout)
-        If socket IsNot Nothing Then
-            Dim headerBytes As Byte() = CreateReadHeader(0, mbAddr, startAddress, length, func)
-            socket.Send(headerBytes, SocketFlags.None)
-            Dim mult As Integer
-            If func = 4 Or func = 3 Then
-                mult = 2
-            Else
-                mult = 1
-            End If
-            Dim readBytes As Byte() = New Byte(15 + mult * (length)) {}
-            Dim serr As SocketError = SocketError.Success
-            Dim ar As IAsyncResult = socket.BeginReceive(readBytes, 0, 15 + mult * (length), SocketFlags.None, serr, Nothing,
-                Nothing)
-            If ar.AsyncWaitHandle.WaitOne(ReadTimeout) Then
-                socket.EndReceive(ar)
-            End If
-            ar.AsyncWaitHandle.Close()
-            socket.Close(0)
-            socket.Dispose()
-            Return readBytes
-        End If
-        Return Nothing
-    End Function
-
-
-    Private Function GetH(ep As IPEndPoint, mbAddr As Byte, startAddress As UShort, length As UShort) As Byte()
-        Dim data As Byte() = Nothing
-        data = GetAllDataSync(ep, mbAddr, startAddress, length, 3)
-        If data IsNot Nothing Then
-            Dim unit As Byte = data(6)
-            Dim [function] As Byte = data(7)
-            Dim sz As Byte = data(8)
-            If sz > 0 Then
-                Dim data2 As Byte() = New Byte(sz - 1) {}
-                Array.Copy(data, 9, data2, 0, sz)
-                Return data2
-
-            End If
-        End If
-        Return Nothing
-    End Function
-
-    Private Function GetI(ep As IPEndPoint, mbAddr As Byte, startAddress As UShort, length As UShort) As Byte()
-        Dim data As Byte() = Nothing
-        data = GetAllDataSync(ep, mbAddr, startAddress, length, 4)
-        If data IsNot Nothing Then
-            Dim unit As Byte = data(6)
-            Dim [function] As Byte = data(7)
-            Dim sz As Byte = data(8)
-            If sz > 0 Then
-                Dim data2 As Byte() = New Byte(sz - 1) {}
-                Array.Copy(data, 9, data2, 0, sz)
-                Return data2
-
-            End If
-        End If
-        Return Nothing
-    End Function
-
-
-    Private Function GetC(ep As IPEndPoint, mbAddr As Byte, startAddress As UShort, length As UShort) As Byte()
-        Dim data As Byte() = Nothing
-        data = GetAllDataSync(ep, mbAddr, startAddress, length, 1)
-        If data IsNot Nothing Then
-            Dim unit As Byte = data(6)
-            Dim [function] As Byte = data(7)
-            Dim sz As Byte = data(8)
-            If sz > 0 Then
-                Dim data2 As Byte() = New Byte(sz - 1) {}
-                Array.Copy(data, 9, data2, 0, sz)
-                Return data2
-
-            End If
-        End If
-        Return Nothing
-    End Function
-
-
-    Private Function GetD(ep As IPEndPoint, mbAddr As Byte, startAddress As UShort, length As UShort) As Byte()
-        Dim data As Byte() = Nothing
-        data = GetAllDataSync(ep, mbAddr, startAddress, length, 2)
-        If data IsNot Nothing Then
-            Dim unit As Byte = data(6)
-            Dim [function] As Byte = data(7)
-            Dim sz As Byte = data(8)
-            If sz > 0 Then
-                Dim data2 As Byte() = New Byte(sz - 1) {}
-                Array.Copy(data, 9, data2, 0, sz)
-                Return data2
-
-            End If
-        End If
-        Return Nothing
-    End Function
-#End Region
 
 
 End Class
