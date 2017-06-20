@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using System.Diagnostics;
-using Oracle.ManagedDataAccess.Client ;
+using System.Data.OracleClient ;
 
 namespace STKService
 {

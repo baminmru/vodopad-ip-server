@@ -517,7 +517,7 @@ tryagain1:
             bArr(5) = ArchDay Mod 32
             bArr(6) = ArchHour Mod 24
             Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, ArchHour, 0, 0)
-            Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+            Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
         End If
 
         If (ArchType = archType_day) Then
@@ -528,7 +528,7 @@ tryagain1:
             bArr(5) = ArchDay Mod 32
             bArr(6) = &H0
             Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, 0, 0, 0)
-            Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+            Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
         End If
 
         bArr(0) = &H10
@@ -609,7 +609,7 @@ tryagain1:
             bArr(5) = ArchDay Mod 32
             bArr(6) = ArchHour Mod 24
             Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, ArchHour, 0, 0)
-            Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+            Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
             WillCountToRead = 37
         End If
 
@@ -621,7 +621,7 @@ tryagain1:
             bArr(5) = ArchDay Mod 32
             bArr(6) = &H0
             Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, 0, 0, 0)
-            Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+            Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
             WillCountToRead = 69
         End If
 
@@ -1860,13 +1860,13 @@ finalRet:
 
             InpStrB = ReadRAMSync(&HC3, 8 * 4)
             If InpStrB <> "" Then
-                tArch.V1 = tArch.V1 + FloatExt(Mid(InpStrB, 1, 4))
-                tArch.V2 = tArch.V2 + FloatExt(Mid(InpStrB, 1 + 4 * 1, 4))
-                tArch.V3 = tArch.V3 + FloatExt(Mid(InpStrB, 1 + 4 * 2, 4))
-                tArch.M1 = tArch.M1 + FloatExt(Mid(InpStrB, 1 + 4 * 3, 4))
-                tArch.M2 = tArch.M2 + FloatExt(Mid(InpStrB, 1 + 4 * 4, 4))
-                tArch.M3 = tArch.M3 + FloatExt(Mid(InpStrB, 1 + 4 * 5, 4))
-                tArch.Q1 = tArch.Q1 + FloatExt(Mid(InpStrB, 1 + 4 * 6, 4))
+                tArch.V1 = FloatExt(Mid(InpStrB, 1, 4))
+                tArch.V2 = FloatExt(Mid(InpStrB, 1 + 4 * 1, 4))
+                tArch.V3 = FloatExt(Mid(InpStrB, 1 + 4 * 2, 4))
+                tArch.M1 = FloatExt(Mid(InpStrB, 1 + 4 * 3, 4))
+                tArch.M2 = FloatExt(Mid(InpStrB, 1 + 4 * 4, 4))
+                tArch.M3 = FloatExt(Mid(InpStrB, 1 + 4 * 5, 4))
+                tArch.Q1 = FloatExt(Mid(InpStrB, 1 + 4 * 6, 4))
                 tArch.WORKTIME1 = tArch.WORKTIME1 + FloatExt(Mid(InpStrB, 1 + 4 * 7, 4))
             End If
 

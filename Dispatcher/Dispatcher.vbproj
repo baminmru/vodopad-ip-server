@@ -1,0 +1,697 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <MyType>WindowsForms</MyType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D8762113-9310-48BF-BDB8-A76F04BB546D}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyName>STKDispatcher</AssemblyName>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Dispatcher.My.MyApplication</StartupObject>
+    <AssemblyMajorVersion>1</AssemblyMajorVersion>
+    <AssemblyMinorVersion>0</AssemblyMinorVersion>
+    <AssemblyRevisionNumber>0</AssemblyRevisionNumber>
+    <GenerateRevisionNumber>False</GenerateRevisionNumber>
+    <AssemblyCompanyName>MOXA</AssemblyCompanyName>
+    <StartWithIE>False</StartWithIE>
+    <RootNamespace>Dispatcher</RootNamespace>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>.\bin\</OutputPath>
+    <DocumentationFile>STKDispatcher.xml</DocumentationFile>
+    <DebugSymbols>True</DebugSymbols>
+    <DefineDebug>True</DefineDebug>
+    <DefineTrace>True</DefineTrace>
+    <DefineConstants>Win32=True</DefineConstants>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>.\bin\</OutputPath>
+    <DocumentationFile>STKDispatcher.xml</DocumentationFile>
+    <DebugSymbols>False</DebugSymbols>
+    <DefineDebug>False</DefineDebug>
+    <DefineTrace>True</DefineTrace>
+    <DefineConstants>Win32=True</DefineConstants>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>none</DebugType>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Dispatcher.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Infragistics2.Documents.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Documents.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Excel.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Excel.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Shared.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Shared.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.AppStylistSupport.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.AppStylistSupport.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.Misc.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.Misc.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.SupportDialogs.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.SupportDialogs.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraChart.v9.1.Design, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraChart.v9.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraGauge.v9.1.Design, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraGauge.v9.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinCalcManager.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinCalcManager.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinCalcManager.v9.1.FormulaBuilder, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinCalcManager.v9.1.FormulaBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinChart.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinChart.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinDataSource.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinDataSource.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinDock.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinDock.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinEditors.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinEditors.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinExplorerBar.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinExplorerBar.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinGauge.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinGauge.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinGrid.DocumentExport.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinGrid.DocumentExport.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinGrid.ExcelExport.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinGrid.ExcelExport.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinGrid.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinGrid.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinInkProvider.Ink17.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinInkProvider.Ink17.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinInkProvider.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinInkProvider.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinListBar.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinListBar.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinListView.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinListView.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinMaskedEdit.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinMaskedEdit.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinPrintPreviewDialog.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinPrintPreviewDialog.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinSchedule.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinSchedule.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinSpellChecker.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinSpellChecker.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinStatusBar.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinStatusBar.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinTabbedMdi.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinTabbedMdi.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinTabControl.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinTabControl.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinToolbars.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinToolbars.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinTree.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.UltraWinTree.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.v9.1.Design, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics2.Win.v9.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics3.Excel.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics3.Excel.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics3.Win.UltraWinGrid.ExcelExport.v9.1, Version=9.1.20091.2094, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Infragistics\NetAdvantage for .NET 2009.1\Windows Forms\Bin\Infragistics3.Win.UltraWinGrid.ExcelExport.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic.Compatibility">
+      <Name>Microsoft.VisualBasic.Compatibility</Name>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=4.112.4.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\ora.net\odp.net\bin\4\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="SpreadsheetGear, Version=5.0.3.106, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\SpreadsheetGear.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.XML">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="Microsoft.VisualBasic.Compatibility" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="AssemblyInfo.vb" />
+    <Compile Include="ClientForm.Designer.vb">
+      <DependentUpon>ClientForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ClientForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAlert.Designer.vb">
+      <DependentUpon>frmAlert.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAlert.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInfo.Designer.vb">
+      <DependentUpon>frmInfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmInfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectParam2Bounds.Designer.vb">
+      <DependentUpon>frmSelectParam2Bounds.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelectParam2Bounds.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBounds.Designer.vb">
+      <DependentUpon>frmBounds.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmBounds.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectParam2Mask.Designer.vb">
+      <DependentUpon>frmSelectParam2Mask.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelectParam2Mask.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGraph.Designer.vb">
+      <DependentUpon>frmGraph.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmGraph.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNC.Designer.vb">
+      <DependentUpon>frmNC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmNC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPanelSetup.designer.vb">
+      <DependentUpon>frmPanelSetup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPanelSetup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSchema.Designer.vb">
+      <DependentUpon>frmSchema.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSchema.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectParam.Designer.vb">
+      <DependentUpon>frmSelectParam.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelectParam.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSetupGrid.Designer.vb">
+      <DependentUpon>frmSetupGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSetupGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSetupGroup.Designer.vb">
+      <DependentUpon>frmSetupGroup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSetupGroup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSetupModem.designer.vb">
+      <DependentUpon>frmSetupModem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSetupModem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="MyGlobals.vb" />
+    <Compile Include="NCScanner.vb" />
+    <Compile Include="SplashScreen1.Designer.vb">
+      <DependentUpon>SplashScreen1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SplashScreen1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="STKPublic.vb" />
+    <Compile Include="Utils.vb" />
+    <EmbeddedResource Include="ClientForm.resx">
+      <DependentUpon>ClientForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAlert.resx">
+      <DependentUpon>frmAlert.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInfo.resx">
+      <DependentUpon>frmInfo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectParam2Bounds.resx">
+      <DependentUpon>frmSelectParam2Bounds.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBounds.resx">
+      <DependentUpon>frmBounds.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectParam2Mask.resx">
+      <DependentUpon>frmSelectParam2Mask.vb</DependentUpon>
+      <SubType>
+      </SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resX">
+      <DependentUpon>Form1.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGraph.resx">
+      <DependentUpon>frmGraph.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNC.resx">
+      <DependentUpon>frmNC.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPanelSetup.resx">
+      <DependentUpon>frmPanelSetup.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSchema.resx">
+      <DependentUpon>frmSchema.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectParam.resx">
+      <DependentUpon>frmSelectParam.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSetupGrid.resx">
+      <DependentUpon>frmSetupGrid.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSetupGroup.resx">
+      <DependentUpon>frmSetupGroup.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSetupModem.resx">
+      <DependentUpon>frmSetupModem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplashScreen1.resx">
+      <DependentUpon>SplashScreen1.vb</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Build\UpdateVersion.targets" />
+    <None Include="Build\VersionInfo.targets" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="My Project\app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PropertyGridEx_VS2003\PropertyGridEx_VS2003\PropertyGridEx_VS2003\PropertyGridEx_VS2003.vbproj">
+      <Project>{81162C83-DBC1-452C-A36E-221A1897E6E9}</Project>
+      <Name>PropertyGridEx_VS2003</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASSVCallBack\ASSVCallBack.vbproj">
+      <Project>{E7EBFC24-D5B5-4775-8422-FCCBA03E16F9}</Project>
+      <Name>ASSVCallBack</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASSVDebugService\ASSVDebugService.csproj">
+      <Project>{9794d511-45c9-4254-bc36-fa456ce60e71}</Project>
+      <Name>ASSVDebugService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASSVServer\ASSVServerLib.csproj">
+      <Project>{75C36BC9-DE34-4D10-9940-1D006AC502F7}</Project>
+      <Name>ASSVServerLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASSVService\ASSVService.csproj">
+      <Project>{A2F35277-80B7-4BB6-840F-F082DA5CE0B7}</Project>
+      <Name>ASSVService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Danfoss310Client\Danfoss310Client\Danfoss310Client.vbproj">
+      <Project>{C8EA85D6-F54F-44F5-A7A6-05DFE3AC8B23}</Project>
+      <Name>Danfoss310Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DebugSTKServiceModem\DebugSTKServiceModem.csproj">
+      <Project>{D211F14A-2491-47B6-AAEA-EC991B67C1EC}</Project>
+      <Name>DebugSTKServiceModem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DebugSTKService\DebugSTKService.csproj">
+      <Project>{31F1FC49-6DD4-41D9-9975-366FF8FFCA9C}</Project>
+      <Name>DebugSTKService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DeviceThread\DeviceThread.csproj">
+      <Project>{06291B86-FBC9-417B-8EAE-357777BBBFA3}</Project>
+      <Name>DeviceThread</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Drv941.20\Drv941_20.vbproj">
+      <Project>{8d570af3-2b30-4686-b039-9da0c90e62e5}</Project>
+      <Name>Drv941_20</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Drv941\Drv941.vbproj">
+      <Project>{EA163B07-EF46-418C-97EA-70DB84C263A3}</Project>
+      <Name>Drv941</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Drv942\Drv942.vbproj">
+      <Project>{314AE99B-0044-4C10-AD42-4A0F9006D63B}</Project>
+      <Name>Drv942</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Drv943.1\Drv943_1.vbproj">
+      <Project>{CF6C50C4-E95D-4537-A6C4-C8431D07D2C7}</Project>
+      <Name>Drv943_1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Drv943\Drv943.vbproj">
+      <Project>{C815653B-CE5F-4A86-AC55-123AE1FC0B81}</Project>
+      <Name>Drv943</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Drv944\Drv944.vbproj">
+      <Project>{6db801d7-19c3-4546-b268-1bc08f79ac85}</Project>
+      <Name>Drv944</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvDAN300\DrvDAN300.vbproj">
+      <Project>{6e1e0e80-2d2f-4ffd-9701-a02eca496b55}</Project>
+      <Name>DrvDAN300</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvDAN310\DrvDAN310.vbproj">
+      <Project>{FE518836-5B08-43A3-BD3C-5B477774C3FE}</Project>
+      <Name>DrvDAN310</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvMagika\DrvMAGIKA.vbproj">
+      <Project>{99770D1D-27A8-4606-ACC2-CD3E83B4BDEE}</Project>
+      <Name>DrvMAGIKA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvMC601\DrvMC601.vbproj">
+      <Project>{E3F69481-2D81-4B0F-AAE3-E36955C78E79}</Project>
+      <Name>DrvMC601</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvMT\DrvMT.vbproj">
+      <Project>{715A122F-4389-4F4C-8FFB-8347F5637FC7}</Project>
+      <Name>DrvMT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvOPC\DrvOPC.vbproj">
+      <Project>{abdb8044-3555-45d0-907b-62f865c8559d}</Project>
+      <Name>DrvOPC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvTEM104\DrvTEM104.vbproj">
+      <Project>{0CA60AB7-4F6F-43D3-B9F4-C39E7DEF79E9}</Project>
+      <Name>DrvTEM104</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvTSRV02\DrvTSRV02.vbproj">
+      <Project>{21DFA229-5ABC-4931-BD83-4B3108446765}</Project>
+      <Name>DrvTSRV02</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvTSRV\DrvTSRV.vbproj">
+      <Project>{299245D2-5F4B-4E7A-A08D-05930B831287}</Project>
+      <Name>DrvTSRV</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvVKT4M\DrvVKT4M.vbproj">
+      <Project>{645aa064-535d-4d72-b790-61895fcaed43}</Project>
+      <Name>DrvVKT4M</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvVKT4\DrvVKT4.vbproj">
+      <Project>{4F74DC3D-F0A9-45C8-9B71-7376EB72E3F5}</Project>
+      <Name>DrvVKT4</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvVKT5\DrvVKT5.vbproj">
+      <Project>{8be1a73b-7b87-4a21-9980-e179560df3a1}</Project>
+      <Name>DrvVKT5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvVKT7\DrvVKT7.vbproj">
+      <Project>{4DB1C271-F23F-409A-B1F7-CC29331708AC}</Project>
+      <Name>DrvVKT7</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GlobalMonitorVB\GlobalMonitorVB.vbproj">
+      <Project>{194718A3-9BCB-4958-990C-819891269465}</Project>
+      <Name>GlobalMonitorVB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GPIOClient\GPIOClient.vbproj">
+      <Project>{343E857F-77FC-4051-AE5B-82861744CC25}</Project>
+      <Name>GPIOClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogMonitor\LogMonitor.vbproj">
+      <Project>{C2569B7B-8862-4331-9560-102AEE4FFC1E}</Project>
+      <Name>LogMonitor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetronLight\NetronLight.csproj">
+      <Project>{6E58DFD7-5154-4AA3-96DF-E562DE00393B}</Project>
+      <Name>NetronLight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NodeEditor\NodeEditor.vbproj">
+      <Project>{1FE064C5-075E-4987-AA41-067A20D52B70}</Project>
+      <Name>NodeEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Report2\Report2.vbproj">
+      <Project>{BCEFC4BE-38D2-436B-B5DA-BBFBA3D3A08F}</Project>
+      <Name>Report2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReportXLGen\ReportXL.vbproj">
+      <Project>{DB7758BC-2EDE-4DF1-A69F-997AEEC16F60}</Project>
+      <Name>ReportXL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ROBUSTELDebugService\ROBUSTELDebugService.csproj">
+      <Project>{d4dfbbfc-21b7-4249-9286-8b7420109e50}</Project>
+      <Name>ROBUSTELDebugService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ROBUSTELServerLib\ROBUSTELServer.csproj">
+      <Project>{19d7ac2e-7984-4962-acfb-a8d373559907}</Project>
+      <Name>ROBUSTELServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ROBUSTELService\ROBUSTELService.csproj">
+      <Project>{3ffcf0b9-f271-48fa-ae0c-94d226570fd4}</Project>
+      <Name>ROBUSTELService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ROSTELECOMINTEGRATION\RTI.vbproj">
+      <Project>{0EC85366-E560-4E98-A082-0DC596C48CC7}</Project>
+      <Name>RTI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STKServiceModem\STKServiceModem.csproj">
+      <Project>{6132BDC5-102C-43E1-8960-64DBD4B3657A}</Project>
+      <Name>STKServiceModem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STKService\STKService.csproj">
+      <Project>{78F9CEBD-C5FE-4A93-93F5-FDF9423E0634}</Project>
+      <Name>STKService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STKTVMain\STKTVMain.vbproj">
+      <Project>{0C7D9D95-1165-4C46-8346-748E4D276CFD}</Project>
+      <Name>STKTVMain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TGKSender2\TGKSender.vbproj">
+      <Project>{AB4D2C53-EE8B-4CAF-98EE-7D671854B281}</Project>
+      <Name>TGKSender</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VIPAdmin\VIPAdmin.vbproj">
+      <Project>{F48074EC-C988-450D-9095-0FC02E37ED03}</Project>
+      <Name>VIPAdmin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VIPAnalizer\VIPAnalizer.vbproj">
+      <Project>{C4BB7840-95AC-4FAC-91BA-0E58E0EA9EAB}</Project>
+      <Name>VIPAnalizer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Dispatcher.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="YearStamp.MonthStamp.DayStamp.Increment" BuildVersion_UseGlobalSettings="True" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="Build\UpdateVersion.targets" />
+</Project>

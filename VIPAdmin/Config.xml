@@ -1,5 +1,5 @@
-<Config DataSource="ora"
-Oracle="//localhost:1521/ora"
+<Config DataSource="APER3"
+Oracle="APER3"
 UserID="COUNTERS"
 Password="counters"
 TimeOut="1000"

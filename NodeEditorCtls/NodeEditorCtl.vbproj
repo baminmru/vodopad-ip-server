@@ -195,8 +195,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\szt\PropertyGridEx_VS2003\PropertyGridEx_VS2003\PropertyGridEx_VS2003\PropertyGridEx_VS2003.vbproj">
-      <Project>{81162c83-dbc1-452c-a36e-221a1897e6e9}</Project>
+    <ProjectReference Include="..\..\PropertyGridEx_VS2003\PropertyGridEx_VS2003\PropertyGridEx_VS2003\PropertyGridEx_VS2003.vbproj">
+      <Project>{81162C83-DBC1-452C-A36E-221A1897E6E9}</Project>
       <Name>PropertyGridEx_VS2003</Name>
     </ProjectReference>
     <ProjectReference Include="..\STKTVMain\STKTVMain.vbproj">

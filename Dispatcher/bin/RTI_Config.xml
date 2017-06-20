@@ -1,0 +1,11 @@
+<Config DataSource="oRA11fan" 
+UserID="COUNTERS"
+Password="counters" 
+FileDirectory="\\fantom\database\utl" 
+Oracle="//192.168.9.46:1521/ora11fan"
+>
+</Config>
+
+
+
+        

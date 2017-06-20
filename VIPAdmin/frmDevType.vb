@@ -4,6 +4,7 @@
     Private txtName As String
     Private txtDesc As String
     Private txtDLLNAME As String
+    Private txtAddMS As String
     Private txtVerifycols As String
     Private txtClass As String
 
@@ -54,6 +55,11 @@
                         .Visible = True
                         .MinimumWidth = 150
 
+                    Case "addms"
+                        .HeaderText = "Коррекция даты архивов (милисекунд)"
+                        .Visible = True
+                        .MinimumWidth = 150
+
                 End Select
             End With
         Next
@@ -85,6 +91,7 @@
         f.txtDesc.Text = txtDesc
         f.txtVerifyCOLS.Text = txtVerifycols
         f.txtDLLNAME.Text = txtDLLNAME
+        f.txtAddMS.Text = txtAddMS
         If txtClass <> "" Then
             f.idClass = Integer.Parse(txtClass)
         Else
@@ -113,6 +120,7 @@
         txtName = view("cdevname")
         txtDesc = view("cdevdesc")
         txtDLLNAME = "" & view("dllname")
+        txtAddMS = "" & view("addms")
         txtVerifycols = "" & view("verifycols")
         txtClass = "" & view("id_class")
 
@@ -126,6 +134,7 @@
         f.txtName.Text = txtName
         f.txtDesc.Text = txtDesc
         f.txtDLLNAME.Text = txtDLLNAME
+        f.txtAddMS.Text = txtAddMS
         f.txtVerifyCOLS.Text = txtVerifycols
         If txtClass <> "" Then
             f.idClass = Integer.Parse(txtClass)
@@ -146,6 +155,7 @@
         f.txtName.Text = ""
         f.txtDesc.Text = ""
         f.txtVerifyCOLS.Text = ""
+        f.txtAddMS.Text = "0"
         f.ShowDialog()
         refreshGrid()
     

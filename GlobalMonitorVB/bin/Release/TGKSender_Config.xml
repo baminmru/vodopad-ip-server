@@ -1,0 +1,10 @@
+<Config DataSource="oRA11ape" 
+UserID="COUNTERS"
+Password="counters" 
+FileDirectory="\\aper2\database\utl\" 
+>
+</Config>
+
+
+
+        

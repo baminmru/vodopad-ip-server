@@ -1,0 +1,2 @@
+2017.03.07 12:38:29 LowLevelStop NPORT INIT: Была сделана попытка загрузить программу, имеющую неверный формат. (Исключение из HRESULT: 0x8007000B)
+2017.03.07 12:38:30 LowLevelStop NPORT connecting error

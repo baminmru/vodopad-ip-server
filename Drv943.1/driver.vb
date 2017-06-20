@@ -323,6 +323,10 @@ Public Class driver
                 d = d.AddTicks(TimeSerial(block.data(3), block.data(2), block.data(1)).Ticks)
             End If
 
+            If msg.cmd = cmdM4.cmd_ERROR Then
+                Debug.Print("Error at GetDeviceDate")
+            End If
+
         End If
 
         Return d
@@ -344,145 +348,7 @@ Public Class driver
 
 
 
-    'Private Structure MArchive
-    '    Public DateArch As DateTime
-    '    Public HC As Long
-    '    Public MsgHC As String
 
-    '    Public HCtv1 As Long
-    '    Public MsgHC_1 As String
-
-    '    Public HCtv2 As Long
-    '    Public MsgHC_2 As String
-
-    '    Public G1 As Single
-    '    Public G2 As Single
-    '    Public G3 As Single
-    '    Public G4 As Single
-    '    Public G5 As Single
-    '    Public G6 As Single
-
-    '    Public t1 As Single
-    '    Public t2 As Single
-    '    Public t3 As Single
-    '    Public t4 As Single
-    '    Public t5 As Single
-    '    Public t6 As Single
-
-    '    Public p1 As Single
-    '    Public p2 As Single
-    '    Public p3 As Single
-    '    Public p4 As Single
-
-    '    Public dt12 As Single
-    '    Public dt45 As Single
-
-    '    Public tx1 As Single
-    '    Public tx2 As Single
-
-    '    Public tair1 As Single
-    '    Public tair2 As Single
-
-    '    Public SP As Long
-    '    Public SPtv1 As Long
-    '    Public SPtv2 As Long
-
-
-    '    Public archType As Short
-    'End Structure
-
-    'Private Structure Archive
-    '    Public DateArch As DateTime
-
-    '    Public HC As Long
-    '    Public MsgHC As String
-
-    '    Public HCtv1 As Long
-    '    Public MsgHC_1 As String
-
-    '    Public HCtv2 As Long
-    '    Public MsgHC_2 As String
-
-    '    Public Tw1 As Single
-    '    Public Tw2 As Single
-
-    '    Public P1 As Single
-    '    Public T1 As Single
-    '    Public M2 As Single
-    '    Public V1 As Single
-
-    '    Public P2 As Single
-    '    Public T2 As Single
-    '    Public M3 As Single
-    '    Public V2 As Single
-
-    '    Public V3 As Single
-    '    Public M1 As Single
-
-    '    Public Q1 As Single
-    '    Public Q2 As Single
-    '    Public Q3 As Single
-    '    Public Q4 As Single
-
-    '    Public QG1 As Single
-    '    Public QG2 As Single
-
-    '    Public SP As Long
-    '    Public SPtv1 As Long
-    '    Public SPtv2 As Long
-
-    '    Public tx1 As Long
-    '    Public tx2 As Long
-    '    Public tair1 As Long
-    '    Public tair2 As Long
-
-    '    Public T3 As Single
-    '    Public T4 As Single
-    '    Public T5 As Single
-    '    Public T6 As Single
-    '    Public P3 As Single
-    '    Public P4 As Single
-    '    Public v4 As Single
-    '    Public v5 As Single
-    '    Public v6 As Single
-    '    Public M4 As Single
-    '    Public M5 As Single
-    '    Public M6 As Single
-
-    '    Public archType As Short
-    'End Structure
-
-    'Private Structure TArchive
-    '    Public DateArch As DateTime
-
-
-    '    Public V1 As Double
-    '    Public V2 As Double
-    '    Public V3 As Double
-    '    Public V4 As Double
-    '    Public V5 As Double
-    '    Public V6 As Double
-
-    '    Public M1 As Double
-    '    Public M2 As Double
-    '    Public M3 As Double
-    '    Public M4 As Double
-    '    Public M5 As Double
-    '    Public M6 As Double
-    '    Public Q1 As Double
-    '    Public Q2 As Double
-
-    '    Public TW1 As Double
-    '    Public TW2 As Double
-    '    Public TE1 As Double
-    '    Public TE2 As Double
-    '    Public TSUM1 As Double
-    '    Public TSUM2 As Double
-    '    Public Q3 As Double
-    '    Public Q4 As Double
-
-    '    Public archType As Short
-    'End Structure
 
 
     Dim IsTArchToRead As Boolean = False
@@ -537,7 +403,7 @@ Public Class driver
     'Public inputbuffer(69) As Byte
 
     Public Overrides Function CounterName() As String
-        Return "SPT943"
+        Return "SPT943.1"
     End Function
 
     Private m_serverip As String
@@ -776,7 +642,7 @@ Public Class driver
             block.data(6) = 0
             block.data(7) = 0
             Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, ArchHour, 0, 0)
-            Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+            Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
 
             Arch.archType = archType_hour
 
@@ -789,7 +655,7 @@ Public Class driver
 
         If (ArchType = archType_day) Then
             Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, 0, 0, 0)
-            Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+
             block.data(0) = ArchYear - 2000
             block.data(1) = ArchMonth Mod 13
             block.data(2) = ArchDay Mod 32
@@ -798,7 +664,7 @@ Public Class driver
             block.data(5) = 0
             block.data(6) = 0
             block.data(7) = 0
-
+            Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
             Arch.archType = archType_day
 
             If Arch.DateArch > d Then
@@ -886,8 +752,12 @@ tv1_get:
                             block = Seq(16)
                             If block.teg = TegM4.teg_IEEFloat Then Arch.Q2 = BToSingle(block.data, 0)
 
-                            block = Seq(24)
+                            block = Seq(17)
                             If block.teg = TegM4.teg_IEEFloat Then Arch.WORKTIME1 = BToSingle(block.data, 0)
+                            block = Seq(23)
+                            If block.teg = TegM4.teg_IEEFloat Then Arch.ERRTIME1 = BToSingle(block.data, 0)
+                            block = Seq(24)
+                            If block.teg = TegM4.teg_IEEFloat Then Arch.OKTIME1 = BToSingle(block.data, 0)
                             block = Seq(25)
                             If block.teg = TegM4.teg_FLAGS Then Arch.HCtv1 = block.data(1) * 256 + block.data(0)
                             Arch.MsgHC_1 = DeCodeHC(Arch.HCtv1)
@@ -938,7 +808,7 @@ tv2_arch:
             block.data(6) = 0
             block.data(7) = 0
             Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, ArchHour, 0, 0)
-            Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+            Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
             Arch.archType = archType_hour
         End If
 
@@ -952,7 +822,7 @@ tv2_arch:
             block.data(6) = 0
             block.data(7) = 0
             Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, 0, 0, 0)
-            Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+            Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
             Arch.archType = archType_day
         End If
 
@@ -1035,8 +905,12 @@ tv2_get:
                             block = Seq(16)
                             If block.teg = TegM4.teg_IEEFloat Then Arch.Q4 = BToSingle(block.data, 0)
 
-                            block = Seq(24)
+                            block = Seq(17)
                             If block.teg = TegM4.teg_IEEFloat Then Arch.WORKTIME2 = BToSingle(block.data, 0)
+                            block = Seq(23)
+                            If block.teg = TegM4.teg_IEEFloat Then Arch.ERRTIME2 = BToSingle(block.data, 0)
+                            block = Seq(24)
+                            If block.teg = TegM4.teg_IEEFloat Then Arch.OKTIME2 = BToSingle(block.data, 0)
                             block = Seq(25)
                             If block.teg = TegM4.teg_FLAGS Then Arch.HCtv2 = block.data(1) * 256 + block.data(0)
                             Arch.MsgHC_2 = DeCodeHC(Arch.HCtv2)
@@ -1758,6 +1632,228 @@ march_final:
 
 
 
+    '    Public Overrides Function ReadTArch() As String
+    '        Dim d As Date
+    '        d = GetDeviceDate()
+
+    '        Dim mID As Byte
+    '        Dim barr() As Byte
+    '        Dim inbuf(1024) As Byte
+    '        Dim msg As messageM4
+    '        Dim block As blockM4
+    '        Dim i As Integer
+    '        Dim ok As Boolean = False
+    '        Dim sz As Integer
+    '        Dim trycnt As Integer
+
+    '        clearTarchive(tArch)
+    '        tArch.archType = 2
+    '        tArch.DateArch = d
+
+
+    '        msg = New messageM4(cmdM4.cmd_PARAM, 0)
+    '        For i = 2048 To 2055
+    '            block = New blockM4(TegM4.teg_PNUM, 3)
+    '            block.data(0) = 1  ' chanel=1
+    '            block.data(1) = i Mod 256
+    '            block.data(2) = i \ 256
+    '            msg.Tegs.Add(block)
+    '        Next
+    '        block = New blockM4(TegM4.teg_PNUM, 3)
+    '        block.data(0) = 1  ' chanel=1
+    '        block.data(1) = 2062 Mod 256
+    '        block.data(2) = 2062 \ 256
+    '        msg.Tegs.Add(block)
+
+    '        block = New blockM4(TegM4.teg_PNUM, 3)
+    '        block.data(0) = 1  ' chanel=1
+    '        block.data(1) = 2063 Mod 256
+    '        block.data(2) = 2063 \ 256
+    '        msg.Tegs.Add(block)
+
+    '        block = New blockM4(TegM4.teg_PNUM, 3)
+    '        block.data(0) = 1  ' chanel=1
+    '        block.data(1) = 2056 Mod 256
+    '        block.data(2) = 2056 \ 256
+    '        msg.Tegs.Add(block)
+
+
+    '        trycnt = 5
+
+    'tv1_tagain:
+
+    '        trycnt -= 1
+    '        mID = NextID()
+
+    '        barr = msg.BuildMessage(mID)
+
+    '        EraseInputQueue()
+
+    '        write(barr, barr.Length)
+    '        WaitForData()
+
+
+
+    '        i = MyRead(inbuf, 0, 7, 1000)
+
+    '        If i = 7 Then
+    '            If CheckHeader(inbuf) Then
+    '                sz = inbuf(5) + inbuf(6) * 256
+    '                i = MyRead(inbuf, 7, sz + 2, 3000)
+    '            Else
+    '                i = 0
+    '                EraseInputQueue()
+    '            End If
+    '        End If
+
+    '        If i > 0 Then
+    '            If CheckCRC16(inbuf, 1, i + 7 - 3) Then
+    '                msg = ParseM4Message(inbuf)
+    '                If msg.cmd = cmdM4.cmd_PARAM Then ' msg.ID = mID And
+    '                    block = msg.Tegs(0)
+    '                    If block.teg = TegM4.teg_MIXED Then tArch.V1 = BToSingle(block.data, 4) + GetLng(block.data, 0)
+    '                    block = msg.Tegs(1)
+    '                    If block.teg = TegM4.teg_MIXED Then tArch.V2 = BToSingle(block.data, 4) + GetLng(block.data, 0)
+    '                    block = msg.Tegs(2)
+    '                    If block.teg = TegM4.teg_MIXED Then tArch.V3 = BToSingle(block.data, 4) + GetLng(block.data, 0)
+
+    '                    block = msg.Tegs(3)
+    '                    If block.teg = TegM4.teg_MIXED Then tArch.M1 = BToSingle(block.data, 4) + GetLng(block.data, 0)
+    '                    block = msg.Tegs(4)
+    '                    If block.teg = TegM4.teg_MIXED Then tArch.M2 = BToSingle(block.data, 4) + GetLng(block.data, 0)
+
+    '                    block = msg.Tegs(5)
+    '                    If block.teg = TegM4.teg_MIXED Then tArch.M3 = BToSingle(block.data, 4) + GetLng(block.data, 0)
+    '                    block = msg.Tegs(6)
+    '                    If block.teg = TegM4.teg_MIXED Then tArch.Q1 = BToSingle(block.data, 4) + GetLng(block.data, 0)
+    '                    block = msg.Tegs(7)
+    '                    If block.teg = TegM4.teg_MIXED Then tArch.Q2 = BToSingle(block.data, 4) + GetLng(block.data, 0)
+
+
+    '                    block = msg.Tegs(8)
+    '                    If block.teg = TegM4.teg_IEEFloat Then tArch.ERRTIME1 = BToSingle(block.data, 0)
+    '                    block = msg.Tegs(9)
+    '                    If block.teg = TegM4.teg_IEEFloat Then tArch.WORKTIME1 = BToSingle(block.data, 0)
+    '                    block = msg.Tegs(10)
+    '                    If block.teg = TegM4.teg_IEEFloat Then tArch.WORKTIME1 = BToSingle(block.data, 0)
+
+    '                    ok = True
+    '                    GoTo tv2_tarch
+    '                End If
+    '            End If
+    '        End If
+    '        If trycnt > 0 Then
+    '            GoTo tv1_tagain
+    '        End If
+
+
+
+    'tv2_tarch:
+    '        msg = New messageM4(cmdM4.cmd_PARAM, 0)
+    '        For i = 2048 To 2055
+    '            block = New blockM4(TegM4.teg_PNUM, 3)
+    '            block.data(0) = 2  ' chanel=1
+    '            block.data(1) = i Mod 256
+    '            block.data(2) = i \ 256
+    '            msg.Tegs.Add(block)
+    '        Next
+    '        block = New blockM4(TegM4.teg_PNUM, 3)
+    '        block.data(0) = 2  ' chanel=1
+    '        block.data(1) = 2062 Mod 256
+    '        block.data(2) = 2062 \ 256
+    '        msg.Tegs.Add(block)
+
+    '        block = New blockM4(TegM4.teg_PNUM, 3)
+    '        block.data(0) = 2  ' chanel=1
+    '        block.data(1) = 2063 Mod 256
+    '        block.data(2) = 2063 \ 256
+    '        msg.Tegs.Add(block)
+
+    '        block = New blockM4(TegM4.teg_PNUM, 3)
+    '        block.data(0) = 2  ' chanel=1
+    '        block.data(1) = 2056 Mod 256
+    '        block.data(2) = 2056 \ 256
+    '        msg.Tegs.Add(block)
+
+    '        trycnt = 5
+
+    'tv2_again:
+    '        trycnt -= 1
+    '        mID = NextID()
+
+    '        barr = msg.BuildMessage(mID)
+
+    '        EraseInputQueue()
+    '        write(barr, barr.Length)
+
+
+    '        WaitForData()
+
+
+    '        i = MyRead(inbuf, 0, 7, 1000)
+
+    '        If i = 7 Then
+    '            If CheckHeader(inbuf) Then
+    '                sz = inbuf(5) + inbuf(6) * 256
+    '                i = MyRead(inbuf, 7, sz + 2, 3000)
+    '            Else
+    '                i = 0
+    '                EraseInputQueue()
+    '            End If
+    '        End If
+    '        If i > 0 Then
+    '            If CheckCRC16(inbuf, 1, i + 7 - 3) Then
+    '                If msg.cmd = cmdM4.cmd_PARAM Then
+    '                    block = msg.Tegs(0)
+    '                    If block.teg = TegM4.teg_MIXED Then tArch.V4 = BToSingle(block.data, 4) + GetLng(block.data, 0)
+    '                    block = msg.Tegs(1)
+    '                    If block.teg = TegM4.teg_MIXED Then tArch.V5 = BToSingle(block.data, 4) + GetLng(block.data, 0)
+    '                    block = msg.Tegs(2)
+    '                    If block.teg = TegM4.teg_MIXED Then tArch.V6 = BToSingle(block.data, 4) + GetLng(block.data, 0)
+
+    '                    block = msg.Tegs(3)
+    '                    If block.teg = TegM4.teg_MIXED Then tArch.M4 = BToSingle(block.data, 4) + GetLng(block.data, 0)
+    '                    block = msg.Tegs(4)
+    '                    If block.teg = TegM4.teg_MIXED Then tArch.M5 = BToSingle(block.data, 4) + GetLng(block.data, 0)
+
+    '                    block = msg.Tegs(5)
+    '                    If block.teg = TegM4.teg_MIXED Then tArch.M6 = BToSingle(block.data, 4) + GetLng(block.data, 0)
+    '                    block = msg.Tegs(6)
+    '                    If block.teg = TegM4.teg_MIXED Then tArch.Q3 = BToSingle(block.data, 4) + GetLng(block.data, 0)
+    '                    block = msg.Tegs(7)
+    '                    If block.teg = TegM4.teg_MIXED Then tArch.Q4 = BToSingle(block.data, 4) + GetLng(block.data, 0)
+
+
+    '                    block = msg.Tegs(8)
+    '                    If block.teg = TegM4.teg_IEEFloat Then tArch.ERRTIME2 = BToSingle(block.data, 0)
+    '                    block = msg.Tegs(9)
+    '                    If block.teg = TegM4.teg_IEEFloat Then tArch.WORKTIME2 = BToSingle(block.data, 0)
+    '                    block = msg.Tegs(10)
+    '                    If block.teg = TegM4.teg_IEEFloat Then tArch.WORKTIME2 = BToSingle(block.data, 0)
+
+    '                    ok = True
+    '                    GoTo tarch_final
+    '                End If
+
+    '            End If
+    '        End If
+    '        If trycnt > 0 Then
+    '            GoTo tv2_again
+    '        End If
+
+    'tarch_final:
+
+    '        EraseInputQueue()
+    '        If ok = False Then
+
+    '            isTArchToDBWrite = False
+    '            Return "Ошибка чтения итогового архива "
+    '        End If
+
+    '        isTArchToDBWrite = True
+    '        Return "Итоговый архив прочитан"
+
+    '    End Function
     Public Overrides Function ReadTArch() As String
         Dim d As Date
         d = GetDeviceDate()
@@ -1772,13 +1868,13 @@ march_final:
         Dim sz As Integer
         Dim trycnt As Integer
 
-        clearTarchive(tArch)
+        clearTArchive(tArch)
         tArch.archType = 2
         tArch.DateArch = d
 
 
         msg = New messageM4(cmdM4.cmd_PARAM, 0)
-        For i = 2048 To 2055
+        For i = 2048 To 2056
             block = New blockM4(TegM4.teg_PNUM, 3)
             block.data(0) = 1  ' chanel=1
             block.data(1) = i Mod 256
@@ -1797,11 +1893,7 @@ march_final:
         block.data(2) = 2063 \ 256
         msg.Tegs.Add(block)
 
-        block = New blockM4(TegM4.teg_PNUM, 3)
-        block.data(0) = 1  ' chanel=1
-        block.data(1) = 2056 Mod 256
-        block.data(2) = 2056 \ 256
-        msg.Tegs.Add(block)
+
 
 
         trycnt = 5
@@ -1857,11 +1949,11 @@ tv1_tagain:
 
 
                     block = msg.Tegs(8)
-                    If block.teg = TegM4.teg_IEEFloat Then tArch.ERRTIME1 = BToSingle(block.data, 0)
+                    If block.teg = TegM4.teg_IEEFloat Then tArch.WORKTIME1 = BToSingle(block.data, 0)
                     block = msg.Tegs(9)
-                    If block.teg = TegM4.teg_IEEFloat Then tArch.WORKTIME1 = BToSingle(block.data, 0)
+                    If block.teg = TegM4.teg_IEEFloat Then tArch.ERRTIME1 = BToSingle(block.data, 0)
                     block = msg.Tegs(10)
-                    If block.teg = TegM4.teg_IEEFloat Then tArch.WORKTIME1 = BToSingle(block.data, 0)
+                    If block.teg = TegM4.teg_IEEFloat Then tArch.OKTIME1 = BToSingle(block.data, 0)
 
                     ok = True
                     GoTo tv2_tarch
@@ -1876,7 +1968,7 @@ tv1_tagain:
 
 tv2_tarch:
         msg = New messageM4(cmdM4.cmd_PARAM, 0)
-        For i = 2048 To 2055
+        For i = 2048 To 2056
             block = New blockM4(TegM4.teg_PNUM, 3)
             block.data(0) = 2  ' chanel=1
             block.data(1) = i Mod 256
@@ -1895,11 +1987,7 @@ tv2_tarch:
         block.data(2) = 2063 \ 256
         msg.Tegs.Add(block)
 
-        block = New blockM4(TegM4.teg_PNUM, 3)
-        block.data(0) = 2  ' chanel=1
-        block.data(1) = 2056 Mod 256
-        block.data(2) = 2056 \ 256
-        msg.Tegs.Add(block)
+
 
         trycnt = 5
 
@@ -1929,6 +2017,7 @@ tv2_again:
         End If
         If i > 0 Then
             If CheckCRC16(inbuf, 1, i + 7 - 3) Then
+                msg = ParseM4Message(inbuf)
                 If msg.cmd = cmdM4.cmd_PARAM Then
                     block = msg.Tegs(0)
                     If block.teg = TegM4.teg_MIXED Then tArch.V4 = BToSingle(block.data, 4) + GetLng(block.data, 0)
@@ -1951,11 +2040,11 @@ tv2_again:
 
 
                     block = msg.Tegs(8)
-                    If block.teg = TegM4.teg_IEEFloat Then tArch.ERRTIME2 = BToSingle(block.data, 0)
+                    If block.teg = TegM4.teg_IEEFloat Then tArch.WORKTIME2 = BToSingle(block.data, 0)
                     block = msg.Tegs(9)
-                    If block.teg = TegM4.teg_IEEFloat Then tArch.WORKTIME2 = BToSingle(block.data, 0)
+                    If block.teg = TegM4.teg_IEEFloat Then tArch.ERRTIME2 = BToSingle(block.data, 0)
                     block = msg.Tegs(10)
-                    If block.teg = TegM4.teg_IEEFloat Then tArch.WORKTIME2 = BToSingle(block.data, 0)
+                    If block.teg = TegM4.teg_IEEFloat Then tArch.OKTIME2 = BToSingle(block.data, 0)
 
                     ok = True
                     GoTo tarch_final
@@ -1980,7 +2069,6 @@ tarch_final:
         Return "Итоговый архив прочитан"
 
     End Function
-
 
     Private Function ExtLong4(ByVal extStr As String) As Double
         Dim i As Long

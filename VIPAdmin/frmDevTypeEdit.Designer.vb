@@ -34,6 +34,8 @@ Partial Class frmDevTypeEdit
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmbClass = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.txtAddMS = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'txtName
@@ -54,7 +56,7 @@ Partial Class frmDevTypeEdit
         '
         'cmdSave
         '
-        Me.cmdSave.Location = New System.Drawing.Point(265, 229)
+        Me.cmdSave.Location = New System.Drawing.Point(265, 283)
         Me.cmdSave.Name = "cmdSave"
         Me.cmdSave.Size = New System.Drawing.Size(107, 30)
         Me.cmdSave.TabIndex = 21
@@ -79,7 +81,7 @@ Partial Class frmDevTypeEdit
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(396, 229)
+        Me.Button1.Location = New System.Drawing.Point(396, 283)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(111, 29)
         Me.Button1.TabIndex = 28
@@ -122,7 +124,7 @@ Partial Class frmDevTypeEdit
         '
         Me.cmbClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbClass.FormattingEnabled = True
-        Me.cmbClass.Location = New System.Drawing.Point(9, 190)
+        Me.cmbClass.Location = New System.Drawing.Point(9, 244)
         Me.cmbClass.Name = "cmbClass"
         Me.cmbClass.Size = New System.Drawing.Size(497, 21)
         Me.cmbClass.TabIndex = 34
@@ -130,17 +132,35 @@ Partial Class frmDevTypeEdit
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(10, 174)
+        Me.Label5.Location = New System.Drawing.Point(10, 228)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(86, 13)
         Me.Label5.TabIndex = 33
         Me.Label5.Text = "Тип устройства"
         '
+        'txtAddMS
+        '
+        Me.txtAddMS.Location = New System.Drawing.Point(8, 196)
+        Me.txtAddMS.Name = "txtAddMS"
+        Me.txtAddMS.Size = New System.Drawing.Size(498, 20)
+        Me.txtAddMS.TabIndex = 36
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(9, 180)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(198, 13)
+        Me.Label6.TabIndex = 35
+        Me.Label6.Text = "Коррекция даты архива (милисекунд)"
+        '
         'frmDevTypeEdit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(531, 271)
+        Me.ClientSize = New System.Drawing.Size(531, 324)
+        Me.Controls.Add(Me.txtAddMS)
+        Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.cmbClass)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.txtVerifyCOLS)
@@ -172,4 +192,6 @@ Partial Class frmDevTypeEdit
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents cmbClass As System.Windows.Forms.ComboBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents txtAddMS As TextBox
+    Friend WithEvents Label6 As Label
 End Class

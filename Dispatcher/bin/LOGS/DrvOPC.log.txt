@@ -1,0 +1,14 @@
+
+PID:3988 ************************* Logging started at 12/01/2016 15:52:24 *************************
+3988 - 15:52:24.929 Token #0 created. CreatedAt = 12:52:24.929 . Lifetime = 3600000
+3988 - 15:52:24.937 SECURE CHANNEL CREATED [TcpClientChannel UA-TCP 1.03.340.0] [ID=133200] Connected To: opc.tcp://10.0.3.214:4841/ [None/None/Binary]
+3988 - 15:52:24.939 Token #1 activated. CreatedAt = 12:52:24.929 . Lifetime = 3600000
+3988 - 15:52:24.963 TCPCLIENTCHANNEL SOCKET CLOSED: 0000CA18, ChannelId=133200
+3988 - 15:52:24.972 Token #0 created. CreatedAt = 12:52:24.972 . Lifetime = 3600000
+3988 - 15:52:24.978 SECURE CHANNEL CREATED [TcpClientChannel UA-TCP 1.03.340.0] [ID=133201] Connected To: opc.tcp://10.0.3.214:4841/ [None/None/Binary]
+3988 - 15:52:24.981 Token #1 activated. CreatedAt = 12:52:24.972 . Lifetime = 3600000
+3988 - 15:52:25.640 Revised session timeout value: 60000. 
+3988 - 15:52:25.642 Max response message size value: 4194304. Max request message size: 0 
+3988 - 15:52:25.646 Server signature is null or empty.
+3988 - 15:52:25.668 Empty results were received for the ActivateSession call.
+3988 - 15:52:26.548 TCPCLIENTCHANNEL SOCKET CLOSED: 0000CA1C, ChannelId=133201

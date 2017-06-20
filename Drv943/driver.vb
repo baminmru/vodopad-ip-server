@@ -267,7 +267,7 @@ tryagain1a:
                 bArr(5) = ArchDay Mod 32
                 bArr(6) = ArchHour Mod 24
                 Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, ArchHour, 0, 0)
-                Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+                Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
             End If
 
             If (ArchType = archType_day) Then
@@ -277,7 +277,7 @@ tryagain1a:
                 bArr(5) = ArchDay Mod 32
                 bArr(6) = &H0
                 Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, 0, 0, 0)
-                Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+                Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
             End If
 
 
@@ -370,7 +370,7 @@ tryagain2a:
                 bArr(5) = ArchDay Mod 32
                 bArr(6) = ArchHour Mod 24
                 Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, ArchHour, 0, 0)
-                Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+                Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
             End If
 
             If (ArchType = archType_day) Then
@@ -380,7 +380,7 @@ tryagain2a:
                 bArr(5) = ArchDay Mod 32
                 bArr(6) = &H0
                 Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, 0, 0, 0)
-                Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+                Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
             End If
 
 
@@ -550,7 +550,12 @@ finalRet:
                     mArch.tair2 = FloatExt(Mid(str, Adr + 4 * 11, 4))
                 End If
                 If (tv = 3) Then
-                    mArch.DateArch = New DateTime(buf(3) + 2000, buf(4), buf(5), buf(6), buf(7), buf(8))
+                    Try
+                        mArch.DateArch = New DateTime(buf(3) + 2000, buf(4), buf(5), buf(6), buf(7), buf(8))
+                    Catch ex As Exception
+                        mArch.DateArch = Now
+                    End Try
+
                     m_isMArchToDBWrite = True
                     m_readRAMByteCount = 0
                 End If
@@ -1607,7 +1612,7 @@ finalRet:
             tArch.M3 = ExtLong4(Mid(InpStrB, 1 + 8 * 5, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 5 + 4, 4))
             tArch.Q1 = ExtLong4(Mid(InpStrB, 1 + 8 * 6, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 6 + 4, 4))
             tArch.WORKTIME1 = ExtLong4(Mid(InpStrB, 1 + 8 * 7, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 7 + 4, 4))
-            tArch.Q2 = ExtLong4(Mid(InpStrB, 1 + 8 * 8, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 8 + 4, 4))
+            tArch.Q4 = ExtLong4(Mid(InpStrB, 1 + 8 * 8, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 8 + 4, 4))
 
             InpStrB = ReadRAMSync(&H520, 8 * 4)
             If InpStrB.Length <> 0 Then
@@ -1619,7 +1624,7 @@ finalRet:
                 tArch.M3 = tArch.M3 + FloatExt(Mid(InpStrB, 1 + 4 * 5, 4))
                 tArch.Q1 = tArch.Q1 + FloatExt(Mid(InpStrB, 1 + 4 * 6, 4))
                 tArch.WORKTIME1 = tArch.WORKTIME1 + FloatExt(Mid(InpStrB, 1 + 4 * 7, 4))
-                tArch.Q2 = tArch.Q2 + FloatExt(Mid(InpStrB, 1 + 4 * 8, 4))
+                tArch.Q4 = tArch.Q4 + FloatExt(Mid(InpStrB, 1 + 4 * 8, 4))
             Else
                 Return "Ошибка чтения тотального архива "
             End If
@@ -1638,9 +1643,9 @@ finalRet:
             tArch.M4 = ExtLong4(Mid(InpStrB, 1 + 8 * 3, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 3 + 4, 4))
             tArch.M5 = ExtLong4(Mid(InpStrB, 1 + 8 * 4, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 4 + 4, 4))
             tArch.M6 = ExtLong4(Mid(InpStrB, 1 + 8 * 5, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 5 + 4, 4))
-            tArch.Q3 = ExtLong4(Mid(InpStrB, 1 + 8 * 6, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 6 + 4, 4))
+            tArch.Q2 = ExtLong4(Mid(InpStrB, 1 + 8 * 6, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 6 + 4, 4))
             tArch.WORKTIME2 = ExtLong4(Mid(InpStrB, 1 + 8 * 7, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 7 + 4, 4))
-            tArch.Q4 = ExtLong4(Mid(InpStrB, 1 + 8 * 8, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 8 + 4, 4))
+            tArch.Q5 = ExtLong4(Mid(InpStrB, 1 + 8 * 8, 4)) + FloatExt(Mid(InpStrB, 1 + 8 * 8 + 4, 4))
 
             InpStrB = ReadRAMSync(&H568, 8 * 4)
             If InpStrB.Length <> 0 Then
@@ -1650,9 +1655,9 @@ finalRet:
                 tArch.M4 = tArch.M4 + FloatExt(Mid(InpStrB, 1 + 4 * 3, 4))
                 tArch.M5 = tArch.M5 + FloatExt(Mid(InpStrB, 1 + 4 * 4, 4))
                 tArch.M6 = tArch.M6 + FloatExt(Mid(InpStrB, 1 + 4 * 5, 4))
-                tArch.Q3 = tArch.Q3 + FloatExt(Mid(InpStrB, 1 + 4 * 6, 4))
+                tArch.Q2 = tArch.Q2 + FloatExt(Mid(InpStrB, 1 + 4 * 6, 4))
                 tArch.WORKTIME2 = tArch.WORKTIME2 + FloatExt(Mid(InpStrB, 1 + 4 * 7, 4))
-                tArch.Q4 = tArch.Q4 + FloatExt(Mid(InpStrB, 1 + 4 * 8, 4))
+                tArch.Q5 = tArch.Q5 + FloatExt(Mid(InpStrB, 1 + 4 * 8, 4))
             Else
                 Return "Ошибка чтения тотального архива "
             End If
@@ -1699,6 +1704,7 @@ finalRet:
     End Function
 
 
+    Public rCHAS As Integer = 0
     Public Overrides Function ReadSystemParameters() As System.Data.DataTable
   
         TryConnect()
@@ -1740,6 +1746,13 @@ finalRet:
             dr("Название") = "Расчетный час"
             dr("Значение") = Mid(InpStrG, 10 + 16 * 4, 8)
             dt.Rows.Add(dr)
+
+            Try
+                rCHAS = Integer.Parse(Mid(InpStrG, 10 + 16 * 4, 8))
+            Catch ex As Exception
+                rCHAS = 0
+            End Try
+
 
             dr = dt.NewRow
             dr("Название") = "Вкл/выкл автоматического перехода на зимнее/летнее время"
@@ -2167,32 +2180,12 @@ finalRet:
         Return dt
     End Function
 
-    Private Function TableForArch(ByVal ArchType As Short) As String
-        Dim tName As String = ""
-        If ArchType = 1 Then
-            tName = "TPLC_M"
-        End If
-
-        If ArchType = 3 Then
-            tName = "TPLC_H"
-        End If
-        If ArchType = 4 Then
-            tName = "TPLC_D"
-        End If
-        If ArchType = 2 Then
-            tName = "TPLC_T"
-        End If
-        Return tName
-    End Function
-
-
-
-
     Public Overrides Sub Connect()
         Dim i As Integer
 
         For i = 0 To 5
             If TryConnect() Then
+                'ReadSystemParameters()
                 Return ' True
             End If
         Next

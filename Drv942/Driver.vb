@@ -541,7 +541,7 @@ tryagain1a:
             bArr(5) = ArchDay Mod 32
             bArr(6) = ArchHour Mod 24
             Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, ArchHour, 0, 0)
-            Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+            Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
         End If
 
         If (ArchType = archType_day) Then
@@ -551,7 +551,7 @@ tryagain1a:
             bArr(5) = ArchDay Mod 32
             bArr(6) = &H0
             Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, 0, 0, 0)
-            Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+            Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
         End If
 
 
@@ -645,7 +645,7 @@ tryagain2a:
             bArr(5) = ArchDay Mod 32
             bArr(6) = ArchHour Mod 24
             Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, ArchHour, 0, 0)
-            Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+            'Arch.DateArch = Arch.DateArch.AddSeconds(-1)
         End If
 
         If (ArchType = archType_day) Then
@@ -655,7 +655,7 @@ tryagain2a:
             bArr(5) = ArchDay Mod 32
             bArr(6) = &H0
             Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, 0, 0, 0)
-            Arch.DateArch = Arch.DateArch.AddSeconds(-1)
+            'Arch.DateArch = Arch.DateArch.AddSeconds(-1)
         End If
 
 
@@ -942,8 +942,8 @@ finalRet:
                     Arch.SPtv2 = Asc(Mid(hourstr, Adr + 3, 1))
                     Arch.P3 = FloatExt(Mid(hourstr, Adr + 4, 4))
                     Arch.P4 = FloatExt(Mid(hourstr, Adr + 4 * 2, 4))
-                    Arch.T3 = FloatExt(Mid(hourstr, Adr + 4 * 3, 4))
-                    Arch.T4 = FloatExt(Mid(hourstr, Adr + 4 * 4, 4))
+                    Arch.T4 = FloatExt(Mid(hourstr, Adr + 4 * 3, 4))
+                    Arch.T5 = FloatExt(Mid(hourstr, Adr + 4 * 4, 4))
                     Arch.v4 = FloatExt(Mid(hourstr, Adr + 4 * 5, 4))
                     Arch.v5 = FloatExt(Mid(hourstr, Adr + 4 * 6, 4))
                     Arch.v6 = FloatExt(Mid(hourstr, Adr + 4 * 7, 4))
@@ -1005,8 +1005,8 @@ finalRet:
                     Arch.SPtv2 = Asc(Mid(hourstr, Adr + 3, 1))
                     Arch.P3 = FloatExt(Mid(hourstr, Adr + 4, 4))
                     Arch.P4 = FloatExt(Mid(hourstr, Adr + 4 * 2, 4))
-                    Arch.T3 = FloatExt(Mid(hourstr, Adr + 4 * 3, 4))
-                    Arch.T4 = FloatExt(Mid(hourstr, Adr + 4 * 4, 4))
+                    Arch.T4 = FloatExt(Mid(hourstr, Adr + 4 * 3, 4))
+                    Arch.T5 = FloatExt(Mid(hourstr, Adr + 4 * 4, 4))
                     Arch.v4 = FloatExt(Mid(hourstr, Adr + 4 * 5, 4))
                     Arch.v5 = FloatExt(Mid(hourstr, Adr + 4 * 6, 4))
                     Arch.v6 = FloatExt(Mid(hourstr, Adr + 4 * 7, 4))
