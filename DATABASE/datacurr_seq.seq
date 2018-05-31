@@ -1,7 +1,7 @@
 create sequence DATACURR_SEQ
 minvalue 1
 maxvalue 999999999999999999999999
-start with 16465501
+start with 17402681
 increment by 1
 cache 20;
 

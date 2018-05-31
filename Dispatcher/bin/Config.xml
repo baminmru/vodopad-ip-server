@@ -1,6 +1,5 @@
-<Config DataSource="APER3" 
-Oracle1="APER3"
-Oracle="//192.168.9.36:1521/APER3.astrum.local"
+<Config DataSource="FANTOM" 
+Oracle="//192.168.9.46:1521/ORA11FAN"
 
 UserID="COUNTERS"
 Password="counters" 

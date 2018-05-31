@@ -347,28 +347,18 @@ Public Class Form1
 
     'End Sub
 
-    Sub ReadParameters()
+    Async Sub ReadParameters()
         slaveId = Integer.Parse(GetSetting("Danfoss310Client", "setup", "DevID", "1"))
         Dim dr As DataRow
         Dim registers() As UShort
         Dim startAddress As UShort
-        master.Transport.ReadTimeout = 500
-        master.Transport.Retries = 3
-        master.Transport.WaitToRetryMilliseconds = 500
-        master.Transport.WriteTimeout = 500
-
-
-
-
-        Dim iii As Integer
         For Each dr In dt.Rows
             Try
                 startAddress = UShort.Parse(dr("Номер параметра").ToString())
                 lblStatus.Text = "чтение " + dr("Группа") + "\" + dr("Название")
 
                 'registers = master.ReadHoldingRegisters(slaveId, startAddress - 1, 1)
-                registers = master.ReadInputRegisters(slaveId, 200 + iii, 1) 'startAddress - 1, 1)
-                iii += 1
+                registers = Await master.ReadHoldingRegistersAsync(slaveId, startAddress - 1, 1)
 
                 dr("Значение") = registers(0).ToString()
                 dr("Новое значение") = dr("Значение")

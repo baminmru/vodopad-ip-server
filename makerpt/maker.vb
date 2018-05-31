@@ -1,6 +1,7 @@
 ﻿Imports SpreadsheetGear
 Imports System.Diagnostics.Process
 Imports System.IO
+Imports System.Xml
 
 Public Class maker
 
@@ -203,16 +204,53 @@ Public Class maker
     Private WithEvents outws As IWorksheet
 
 
-
+    Private m_ConfigPath As String = ""
+    Private Function GetConfigPath() As String
+        If m_ConfigPath = "" Then
+            m_ConfigPath = System.IO.Path.GetDirectoryName(Me.GetType().Assembly.Location()) + "\Config.xml"
+        End If
+        Return m_ConfigPath
+    End Function
 
     Public Sub GO(ByVal reportID As String)
 
         tvMain = New STKTVMain.TVMain()
         If (tvMain.Init() = False) Then Exit Sub
 
-        txtPath_text = GetSetting("VIP", "REPORTGENXL", "WEBPATH", "C:\bami\web\rpt")
-        txtWWWPath_text = GetSetting("VIP", "REPORTGENXL", "WWWPATH", "/rpt")
-        txtTPath_text = GetSetting("VIP", "REPORTGENXL", "MASKPATH", "C:\bin\VODOPAD-IP\Masks\Luda")
+
+        Dim xml As XmlDocument
+        xml = New XmlDocument
+        xml.Load(GetConfigPath())
+        Dim node As XmlElement
+        node = xml.FirstChild()
+
+
+        Try
+            txtPath_text = (node.Attributes.GetNamedItem("WEBPATH").Value)
+        Catch ex As Exception
+            txtPath_text = "C:\bami\web\rpt"
+        End Try
+
+
+        Try
+            txtWWWPath_text = (node.Attributes.GetNamedItem("WWWPATH").Value)
+        Catch ex As Exception
+            txtWWWPath_text = "/rpt"
+        End Try
+
+
+        Try
+            txtTPath_text = (node.Attributes.GetNamedItem("MASKPATH").Value)
+        Catch ex As Exception
+            txtTPath_text = "C:\bin\VODOPAD-IP\Masks\Luda"
+        End Try
+
+
+        txtPath_text = GetSetting("VIP", "REPORTGENXL", "WEBPATH", txtPath_text)
+        txtWWWPath_text = GetSetting("VIP", "REPORTGENXL", "WWWPATH", txtWWWPath_text)
+        txtTPath_text = GetSetting("VIP", "REPORTGENXL", "MASKPATH", txtTPath_text)
+
+
         Dim dt As DataTable
         dt = tvMain.QuerySelect("select WEBREPORT.*, nvl(WEBTEMPLATE.NAME,'') TFILE from WEBREPORT left join WEBTEMPLATE on WEBREPORT.TEMPLATEID=WEBTEMPLATE.WEBTEMPLATEID  where WEBREPORTid=" + reportID)
 

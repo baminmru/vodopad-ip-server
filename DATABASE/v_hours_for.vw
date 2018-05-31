@@ -5,6 +5,7 @@ select distinct /* bb.id_bu, */ da.dcounter as "Дата", bb.cshort as "Узел",
        trunc(da.t2,2) as "T2",
        trunc(da.t3,2) as "T3",
        trunc(da.t4,2) as "T4",
+       trunc(da.t5,2) as "T5",
        bb.cfio1 as "Ответственный"
 from bbuildings bb, bdevices bd, datacurr da
        where bd.id_bd IN (
@@ -19,7 +20,7 @@ from bbuildings bb, bdevices bd, datacurr da
 --       AND da.dcounter<=to_date('20.06.2015 07:59:59','DD.MM.YYYY HH24:MI:SS')
        AND da.dcounter>=to_date(to_char(sysdate,'DD.MM.YYYY')||' 07:00:00','DD.MM.YYYY HH24:MI:SS')
        AND da.dcounter<=to_date(to_char(sysdate,'DD.MM.YYYY')||' 07:59:59','DD.MM.YYYY HH24:MI:SS')
-       GROUP by bb.cshort, bb.id_bu,da.t1,da.t2,da.t3,da.t4, da.dcounter, bb.cfio1,bb.caddress
+       GROUP by bb.cshort, bb.id_bu,da.t1,da.t2,da.t3,da.t4,da.t5,da.dcounter, bb.cfio1,bb.caddress
        ORDER BY "Узел"
 ;
 

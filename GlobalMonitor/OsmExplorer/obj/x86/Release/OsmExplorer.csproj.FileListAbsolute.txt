@@ -1,0 +1,16 @@
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\OsmExplorer\bin\Release\OsmExplorer.dll.config
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\OsmExplorer\bin\Release\.xml
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\OsmExplorer\bin\Release\OsmExplorer.dll
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\OsmExplorer\bin\Release\OsmExplorer.pdb
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\OsmExplorer\bin\Release\SharpMap.dll
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\OsmExplorer\bin\Release\ProjNet.dll
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\OsmExplorer\bin\Release\Newtonsoft.Json.dll
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\OsmExplorer\bin\Release\BruTile.dll
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\OsmExplorer\bin\Release\SharpMap.pdb
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\OsmExplorer\bin\Release\SharpMap.xml
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\OsmExplorer\obj\x86\Release\ResolveAssemblyReference.cache
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\OsmExplorer\obj\x86\Release\OsmExplorer.Components.MapExplorer.resources
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\OsmExplorer\obj\x86\Release\GenerateResource.read.1.tlog
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\OsmExplorer\obj\x86\Release\GenerateResource.write.1.tlog
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\OsmExplorer\obj\x86\Release\OsmExplorer.dll
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\OsmExplorer\obj\x86\Release\OsmExplorer.pdb

@@ -95,13 +95,25 @@
       <Project>{314AE99B-0044-4C10-AD42-4A0F9006D63B}</Project>
       <Name>Drv942</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Drv943.1\Drv943_1.vbproj">
+      <Project>{cf6c50c4-e95d-4537-a6c4-c8431d07d2c7}</Project>
+      <Name>Drv943_1</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Drv943\Drv943.vbproj">
       <Project>{C815653B-CE5F-4A86-AC55-123AE1FC0B81}</Project>
       <Name>Drv943</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Drv944\Drv944.vbproj">
+      <Project>{6db801d7-19c3-4546-b268-1bc08f79ac85}</Project>
+      <Name>Drv944</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DrvDAN300\DrvDAN300.vbproj">
       <Project>{6E1E0E80-2D2F-4FFD-9701-A02ECA496B55}</Project>
       <Name>DrvDAN300</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvDAN310\DrvDAN310.vbproj">
+      <Project>{fe518836-5b08-43a3-bd3c-5b477774c3fe}</Project>
+      <Name>DrvDAN310</Name>
     </ProjectReference>
     <ProjectReference Include="..\DrvMagika\DrvMAGIKA.vbproj">
       <Project>{99770D1D-27A8-4606-ACC2-CD3E83B4BDEE}</Project>
@@ -115,6 +127,14 @@
       <Project>{715A122F-4389-4F4C-8FFB-8347F5637FC7}</Project>
       <Name>DrvMT</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DrvOPC\DrvOPC.vbproj">
+      <Project>{abdb8044-3555-45d0-907b-62f865c8559d}</Project>
+      <Name>DrvOPC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvTEM104.1\DrvTEM104.1.vbproj">
+      <Project>{0fda8114-a55d-4e31-9726-354b54190ddc}</Project>
+      <Name>DrvTEM104.1</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DrvTEM104\DrvTEM104.vbproj">
       <Project>{0CA60AB7-4F6F-43D3-B9F4-C39E7DEF79E9}</Project>
       <Name>DrvTEM104</Name>
@@ -126,6 +146,10 @@
     <ProjectReference Include="..\DrvTSRV\DrvTSRV.vbproj">
       <Project>{299245D2-5F4B-4E7A-A08D-05930B831287}</Project>
       <Name>DrvTSRV</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvVKT4M\DrvVKT4M.vbproj">
+      <Project>{645aa064-535d-4d72-b790-61895fcaed43}</Project>
+      <Name>DrvVKT4M</Name>
     </ProjectReference>
     <ProjectReference Include="..\DrvVKT4\DrvVKT4.vbproj">
       <Project>{4F74DC3D-F0A9-45C8-9B71-7376EB72E3F5}</Project>
@@ -174,7 +198,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="YearStamp.MonthStamp.DayStamp.Increment" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="YearStamp.MonthStamp.DayStamp.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,8 +4,7 @@
 // MVID: C22A753E-EAD1-4FBB-8540-FB46F840C010
 // Assembly location: C:\Program Files (x86)\Kamstrup\MC601LogView\MC601LogView.exe
 
-using Infragistics.Win;
-using Infragistics.Win.UltraWinGrid;
+
 using Kamstrup.Heat.mc601Communication;
 using System;
 using System.Collections;
@@ -91,8 +90,8 @@ namespace MC601LogView
     private UCRegisterCheckBox rcbFLOW2;
     private UCRegisterCheckBox rcbEFFECT1;
     private UCRegisterCheckBox rcbLogQOS;
-    private UltraCombo cbxFrom;
-    private UltraCombo cbxTo;
+    private ComboBox cbxFrom;
+    private ComboBox cbxTo;
     private GroupBox groupBox1;
     private Button btnShowLogDetails;
     private UCRegisterCheckBox rcbHR;
@@ -222,12 +221,8 @@ namespace MC601LogView
             }
             this.cbxFrom.DataSource =  (KMPLogDataSet.DatetimeRecordDataTable) this.m_KLDS.DatetimeRecord.Copy();
             this.cbxTo.DataSource =  (KMPLogDataSet.DatetimeRecordDataTable) this.m_KLDS.DatetimeRecord.Copy();
-            this.cbxFrom.DisplayLayout.Bands[0].Columns["Timestamp"].Format = "yyyy-MM-dd HH:mm";
-            this.cbxFrom.DisplayLayout.Bands[0].Columns["Record_Id"].Hidden = true;
             this.cbxFrom.DisplayMember = "Timestamp";
             this.cbxFrom.ValueMember = "Record_Id";
-            this.cbxTo.DisplayLayout.Bands[0].Columns["Timestamp"].Format = "yyyy-MM-dd HH:mm";
-            this.cbxTo.DisplayLayout.Bands[0].Columns["Record_Id"].Hidden = true;
             this.cbxTo.DisplayMember = "Timestamp";
             this.cbxTo.ValueMember = "Record_Id";
             this.EnableRead();
@@ -334,11 +329,11 @@ namespace MC601LogView
       mc601RegisterViewer.Show();
       if (dataTable.Rows.Count <= 0)
         return;
-      FrmGraph frmGraph = new FrmGraph(this.m_KLDS.CustomerNo.GetCustomerNo());
-      frmGraph.MdiParent = this.MdiParent;
-      frmGraph.ShowTime = true;
-      frmGraph.SetData(dataTable);
-      frmGraph.Show();
+      //FrmGraph frmGraph = new FrmGraph(this.m_KLDS.CustomerNo.GetCustomerNo());
+      //frmGraph.MdiParent = this.MdiParent;
+      //frmGraph.ShowTime = true;
+      //frmGraph.SetData(dataTable);
+      //frmGraph.Show();
     }
 
     private static void CalculateCalculatedRowForRCB(DataRow dr, UCRegisterCheckBox rcb, KMPLogDataSet.RegistersRow row)
@@ -436,8 +431,8 @@ namespace MC601LogView
       else
       {
         this.Cursor = Cursors.WaitCursor;
-        ushort num2 = (ushort) this.cbxFrom.Value;
-        ushort num3 = (ushort) this.cbxTo.Value;
+        ushort num2 = (ushort) this.cbxFrom.SelectedValue;
+        ushort num3 = (ushort) this.cbxTo.SelectedValue;
         if ((int) num2 < (int) num3)
           this.ReadData(num2, num3);
         else
@@ -841,11 +836,11 @@ namespace MC601LogView
       mc601RegisterViewer.Show();
       if (dataTable.Rows.Count <= 0)
         return;
-      FrmGraph frmGraph = new FrmGraph(this.m_KLDS.CustomerNo.GetCustomerNo());
-      frmGraph.MdiParent = this.MdiParent;
-      frmGraph.ShowTime = true;
-      frmGraph.SetData(dataTable);
-      frmGraph.Show();
+      //FrmGraph frmGraph = new FrmGraph(this.m_KLDS.CustomerNo.GetCustomerNo());
+      //frmGraph.MdiParent = this.MdiParent;
+      //frmGraph.ShowTime = true;
+      //frmGraph.SetData(dataTable);
+      //frmGraph.Show();
     }
 
     private void Reg1XReg2(UCRegisterCheckBox Reg1, Decimal calcValue, string CalcRule)
@@ -870,11 +865,11 @@ namespace MC601LogView
       mc601RegisterViewer.Show();
       if (dataTable.Rows.Count <= 0)
         return;
-      FrmGraph frmGraph = new FrmGraph(this.m_KLDS.CustomerNo.GetCustomerNo());
-      frmGraph.MdiParent = this.MdiParent;
-      frmGraph.ShowTime = true;
-      frmGraph.SetData(dataTable);
-      frmGraph.Show();
+      //FrmGraph frmGraph = new FrmGraph(this.m_KLDS.CustomerNo.GetCustomerNo());
+      //frmGraph.MdiParent = this.MdiParent;
+      //frmGraph.ShowTime = true;
+      //frmGraph.SetData(dataTable);
+      //frmGraph.Show();
     }
 
     private void btnAddToRegs_Click(object sender, EventArgs e)
@@ -1097,30 +1092,7 @@ namespace MC601LogView
 
     private void InitializeComponent()
     {
-      Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance9 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance10 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance13 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance16 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance17 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance18 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance19 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance20 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance21 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance22 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance23 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance24 = new Infragistics.Win.Appearance();
+     
       ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof (FrmKMPLogger));
       this.grpUsed = new GroupBox();
       this.grpCalculatedRegisters = new GroupBox();
@@ -1136,8 +1108,8 @@ namespace MC601LogView
       this.grpGraphs = new GroupBox();
       this.btnSelectedRegisters = new Button();
       this.grpReadLog = new GroupBox();
-      this.cbxTo = new UltraCombo();
-      this.cbxFrom = new UltraCombo();
+      this.cbxTo = new ComboBox();
+      this.cbxFrom = new ComboBox();
       this.lblTo = new Label();
       this.lblFrom = new Label();
       this.btnClear = new Button();
@@ -1328,126 +1300,13 @@ namespace MC601LogView
       this.grpReadLog.TabIndex = 27;
       this.grpReadLog.TabStop = false;
       this.grpReadLog.Text = "Interval Log";
-      this.cbxTo.CharacterCasing = CharacterCasing.Normal;
-      appearance1.BackColor = SystemColors.Window;
-      appearance1.BorderColor = SystemColors.InactiveCaption;
-      this.cbxTo.DisplayLayout.Appearance = (AppearanceBase) appearance1;
-      this.cbxTo.DisplayLayout.BorderStyle = UIElementBorderStyle.Solid;
-      this.cbxTo.DisplayLayout.CaptionVisible = DefaultableBoolean.False;
-      appearance2.BackColor = SystemColors.ActiveBorder;
-      appearance2.BackColor2 = SystemColors.ControlDark;
-      appearance2.BackGradientStyle = GradientStyle.Vertical;
-      appearance2.BorderColor = SystemColors.Window;
-      this.cbxTo.DisplayLayout.GroupByBox.Appearance = (AppearanceBase) appearance2;
-      appearance3.ForeColor = SystemColors.GrayText;
-      this.cbxTo.DisplayLayout.GroupByBox.BandLabelAppearance = (AppearanceBase) appearance3;
-      this.cbxTo.DisplayLayout.GroupByBox.BorderStyle = UIElementBorderStyle.Solid;
-      appearance4.BackColor = SystemColors.ControlLightLight;
-      appearance4.BackColor2 = SystemColors.Control;
-      appearance4.BackGradientStyle = GradientStyle.Horizontal;
-      appearance4.ForeColor = SystemColors.GrayText;
-      this.cbxTo.DisplayLayout.GroupByBox.PromptAppearance = (AppearanceBase) appearance4;
-      this.cbxTo.DisplayLayout.MaxColScrollRegions = 1;
-      this.cbxTo.DisplayLayout.MaxRowScrollRegions = 1;
-      appearance5.BackColor = SystemColors.Window;
-      appearance5.ForeColor = SystemColors.ControlText;
-      this.cbxTo.DisplayLayout.Override.ActiveCellAppearance = (AppearanceBase) appearance5;
-      appearance6.BackColor = SystemColors.Highlight;
-      appearance6.ForeColor = SystemColors.HighlightText;
-      this.cbxTo.DisplayLayout.Override.ActiveRowAppearance = (AppearanceBase) appearance6;
-      this.cbxTo.DisplayLayout.Override.BorderStyleCell = UIElementBorderStyle.Dotted;
-      this.cbxTo.DisplayLayout.Override.BorderStyleRow = UIElementBorderStyle.Dotted;
-      appearance7.BackColor = SystemColors.Window;
-      this.cbxTo.DisplayLayout.Override.CardAreaAppearance = (AppearanceBase) appearance7;
-      appearance8.BorderColor = Color.Silver;
-      appearance8.TextTrimming = TextTrimming.EllipsisCharacter;
-      this.cbxTo.DisplayLayout.Override.CellAppearance = (AppearanceBase) appearance8;
-      this.cbxTo.DisplayLayout.Override.CellClickAction = CellClickAction.EditAndSelectText;
-      this.cbxTo.DisplayLayout.Override.CellPadding = 0;
-      this.cbxTo.DisplayLayout.Override.DefaultColWidth = 110;
-      appearance9.BackColor = SystemColors.Control;
-      appearance9.BackColor2 = SystemColors.ControlDark;
-      appearance9.BackGradientAlignment = GradientAlignment.Element;
-      appearance9.BackGradientStyle = GradientStyle.Horizontal;
-      appearance9.BorderColor = SystemColors.Window;
-      this.cbxTo.DisplayLayout.Override.GroupByRowAppearance = (AppearanceBase) appearance9;
-      appearance10.TextHAlignAsString = "Left";
-      this.cbxTo.DisplayLayout.Override.HeaderAppearance = (AppearanceBase) appearance10;
-      this.cbxTo.DisplayLayout.Override.HeaderClickAction = HeaderClickAction.SortMulti;
-      this.cbxTo.DisplayLayout.Override.HeaderStyle = HeaderStyle.WindowsXPCommand;
-      appearance11.BackColor = SystemColors.Window;
-      appearance11.BorderColor = Color.Silver;
-      this.cbxTo.DisplayLayout.Override.RowAppearance = (AppearanceBase) appearance11;
-      this.cbxTo.DisplayLayout.Override.RowSelectors = DefaultableBoolean.False;
-      appearance12.BackColor = SystemColors.ControlLight;
-      this.cbxTo.DisplayLayout.Override.TemplateAddRowAppearance = (AppearanceBase) appearance12;
-      this.cbxTo.DisplayLayout.ScrollBounds = ScrollBounds.ScrollToFill;
-      this.cbxTo.DisplayLayout.ScrollStyle = ScrollStyle.Immediate;
-      this.cbxTo.DisplayLayout.ViewStyleBand = ViewStyleBand.OutlookGroupBy;
-      this.cbxTo.DisplayStyle = EmbeddableElementDisplayStyle.Default;
-      this.cbxTo.DropDownStyle = UltraComboStyle.DropDownList;
+   
       this.cbxTo.Location = new Point(44, 46);
       this.cbxTo.Name = "cbxTo";
       this.cbxTo.Size = new Size(136, 22);
       this.cbxTo.TabIndex = 21;
-      this.cbxFrom.CharacterCasing = CharacterCasing.Normal;
-      appearance13.BackColor = SystemColors.Window;
-      appearance13.BorderColor = SystemColors.InactiveCaption;
-      this.cbxFrom.DisplayLayout.Appearance = (AppearanceBase) appearance13;
-      this.cbxFrom.DisplayLayout.BorderStyle = UIElementBorderStyle.Solid;
-      this.cbxFrom.DisplayLayout.CaptionVisible = DefaultableBoolean.False;
-      appearance14.BackColor = SystemColors.ActiveBorder;
-      appearance14.BackColor2 = SystemColors.ControlDark;
-      appearance14.BackGradientStyle = GradientStyle.Vertical;
-      appearance14.BorderColor = SystemColors.Window;
-      this.cbxFrom.DisplayLayout.GroupByBox.Appearance = (AppearanceBase) appearance14;
-      appearance15.ForeColor = SystemColors.GrayText;
-      this.cbxFrom.DisplayLayout.GroupByBox.BandLabelAppearance = (AppearanceBase) appearance15;
-      this.cbxFrom.DisplayLayout.GroupByBox.BorderStyle = UIElementBorderStyle.Solid;
-      appearance16.BackColor = SystemColors.ControlLightLight;
-      appearance16.BackColor2 = SystemColors.Control;
-      appearance16.BackGradientStyle = GradientStyle.Horizontal;
-      appearance16.ForeColor = SystemColors.GrayText;
-      this.cbxFrom.DisplayLayout.GroupByBox.PromptAppearance = (AppearanceBase) appearance16;
-      this.cbxFrom.DisplayLayout.MaxColScrollRegions = 1;
-      this.cbxFrom.DisplayLayout.MaxRowScrollRegions = 1;
-      appearance17.BackColor = SystemColors.Window;
-      appearance17.ForeColor = SystemColors.ControlText;
-      this.cbxFrom.DisplayLayout.Override.ActiveCellAppearance = (AppearanceBase) appearance17;
-      appearance18.BackColor = SystemColors.Highlight;
-      appearance18.ForeColor = SystemColors.HighlightText;
-      this.cbxFrom.DisplayLayout.Override.ActiveRowAppearance = (AppearanceBase) appearance18;
-      this.cbxFrom.DisplayLayout.Override.BorderStyleCell = UIElementBorderStyle.Dotted;
-      this.cbxFrom.DisplayLayout.Override.BorderStyleRow = UIElementBorderStyle.Dotted;
-      appearance19.BackColor = SystemColors.Window;
-      this.cbxFrom.DisplayLayout.Override.CardAreaAppearance = (AppearanceBase) appearance19;
-      appearance20.BorderColor = Color.Silver;
-      appearance20.TextTrimming = TextTrimming.EllipsisCharacter;
-      this.cbxFrom.DisplayLayout.Override.CellAppearance = (AppearanceBase) appearance20;
-      this.cbxFrom.DisplayLayout.Override.CellClickAction = CellClickAction.EditAndSelectText;
-      this.cbxFrom.DisplayLayout.Override.CellPadding = 0;
-      this.cbxFrom.DisplayLayout.Override.DefaultColWidth = 110;
-      appearance21.BackColor = SystemColors.Control;
-      appearance21.BackColor2 = SystemColors.ControlDark;
-      appearance21.BackGradientAlignment = GradientAlignment.Element;
-      appearance21.BackGradientStyle = GradientStyle.Horizontal;
-      appearance21.BorderColor = SystemColors.Window;
-      this.cbxFrom.DisplayLayout.Override.GroupByRowAppearance = (AppearanceBase) appearance21;
-      appearance22.TextHAlignAsString = "Left";
-      this.cbxFrom.DisplayLayout.Override.HeaderAppearance = (AppearanceBase) appearance22;
-      this.cbxFrom.DisplayLayout.Override.HeaderClickAction = HeaderClickAction.SortMulti;
-      this.cbxFrom.DisplayLayout.Override.HeaderStyle = HeaderStyle.WindowsXPCommand;
-      appearance23.BackColor = SystemColors.Window;
-      appearance23.BorderColor = Color.Silver;
-      this.cbxFrom.DisplayLayout.Override.RowAppearance = (AppearanceBase) appearance23;
-      this.cbxFrom.DisplayLayout.Override.RowSelectors = DefaultableBoolean.False;
-      appearance24.BackColor = SystemColors.ControlLight;
-      this.cbxFrom.DisplayLayout.Override.TemplateAddRowAppearance = (AppearanceBase) appearance24;
-      this.cbxFrom.DisplayLayout.ScrollBounds = ScrollBounds.ScrollToFill;
-      this.cbxFrom.DisplayLayout.ScrollStyle = ScrollStyle.Immediate;
-      this.cbxFrom.DisplayLayout.ViewStyleBand = ViewStyleBand.OutlookGroupBy;
-      this.cbxFrom.DisplayStyle = EmbeddableElementDisplayStyle.Default;
-      this.cbxFrom.DropDownStyle = UltraComboStyle.DropDownList;
+      
+      this.cbxFrom.DropDownStyle = ComboBoxStyle.DropDownList;
       this.cbxFrom.Location = new Point(44, 18);
       this.cbxFrom.Name = "cbxFrom";
       this.cbxFrom.Size = new Size(136, 22);

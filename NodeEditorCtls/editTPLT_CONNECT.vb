@@ -85,13 +85,6 @@ Public Class editTPLT_CONNECT
     Friend WithEvents txtCPREFPHONE As System.Windows.Forms.TextBox
 
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
-        Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance2 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance3 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance4 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance7 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance6 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance5 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Me.lblCSPEED = New System.Windows.Forms.Label()
         Me.txtCSPEED = New System.Windows.Forms.TextBox()
         Me.lblCDATABIT = New System.Windows.Forms.Label()
@@ -116,13 +109,10 @@ Public Class editTPLT_CONNECT
         Me.txtCode = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtCALLERID = New System.Windows.Forms.TextBox()
-
         Me.SuspendLayout()
         '
         'lblCSPEED
         '
-
-
         Me.lblCSPEED.ForeColor = System.Drawing.Color.Blue
         Me.lblCSPEED.Location = New System.Drawing.Point(14, 12)
         Me.lblCSPEED.Name = "lblCSPEED"
@@ -134,12 +124,11 @@ Public Class editTPLT_CONNECT
         '
         Me.txtCSPEED.Location = New System.Drawing.Point(14, 34)
         Me.txtCSPEED.Name = "txtCSPEED"
-        Me.txtCSPEED.Size = New System.Drawing.Size(200, 21)
+        Me.txtCSPEED.Size = New System.Drawing.Size(200, 20)
         Me.txtCSPEED.TabIndex = 7
         '
         'lblCDATABIT
         '
-
         Me.lblCDATABIT.ForeColor = System.Drawing.Color.Blue
         Me.lblCDATABIT.Location = New System.Drawing.Point(14, 59)
         Me.lblCDATABIT.Name = "lblCDATABIT"
@@ -151,12 +140,11 @@ Public Class editTPLT_CONNECT
         '
         Me.txtCDATABIT.Location = New System.Drawing.Point(14, 81)
         Me.txtCDATABIT.Name = "txtCDATABIT"
-        Me.txtCDATABIT.Size = New System.Drawing.Size(200, 21)
+        Me.txtCDATABIT.Size = New System.Drawing.Size(200, 20)
         Me.txtCDATABIT.TabIndex = 9
         '
         'lblCPARITY
         '
-
         Me.lblCPARITY.ForeColor = System.Drawing.Color.Blue
         Me.lblCPARITY.Location = New System.Drawing.Point(14, 106)
         Me.lblCPARITY.Name = "lblCPARITY"
@@ -166,7 +154,6 @@ Public Class editTPLT_CONNECT
         '
         'lblCSTOPBITS
         '
-
         Me.lblCSTOPBITS.ForeColor = System.Drawing.Color.Blue
         Me.lblCSTOPBITS.Location = New System.Drawing.Point(14, 153)
         Me.lblCSTOPBITS.Name = "lblCSTOPBITS"
@@ -179,12 +166,11 @@ Public Class editTPLT_CONNECT
         Me.txtCSTOPBITS.Location = New System.Drawing.Point(14, 175)
         Me.txtCSTOPBITS.MaxLength = 15
         Me.txtCSTOPBITS.Name = "txtCSTOPBITS"
-        Me.txtCSTOPBITS.Size = New System.Drawing.Size(200, 21)
+        Me.txtCSTOPBITS.Size = New System.Drawing.Size(200, 20)
         Me.txtCSTOPBITS.TabIndex = 13
         '
         'lblCTOWNCODE
         '
-
         Me.lblCTOWNCODE.ForeColor = System.Drawing.Color.Blue
         Me.lblCTOWNCODE.Location = New System.Drawing.Point(14, 208)
         Me.lblCTOWNCODE.Name = "lblCTOWNCODE"
@@ -196,12 +182,11 @@ Public Class editTPLT_CONNECT
         '
         Me.txtCTOWNCODE.Location = New System.Drawing.Point(14, 230)
         Me.txtCTOWNCODE.Name = "txtCTOWNCODE"
-        Me.txtCTOWNCODE.Size = New System.Drawing.Size(200, 21)
+        Me.txtCTOWNCODE.Size = New System.Drawing.Size(200, 20)
         Me.txtCTOWNCODE.TabIndex = 33
         '
         'lblCPHONE
         '
-
         Me.lblCPHONE.ForeColor = System.Drawing.Color.Blue
         Me.lblCPHONE.Location = New System.Drawing.Point(14, 255)
         Me.lblCPHONE.Name = "lblCPHONE"
@@ -213,12 +198,11 @@ Public Class editTPLT_CONNECT
         '
         Me.txtCPHONE.Location = New System.Drawing.Point(14, 277)
         Me.txtCPHONE.Name = "txtCPHONE"
-        Me.txtCPHONE.Size = New System.Drawing.Size(200, 21)
+        Me.txtCPHONE.Size = New System.Drawing.Size(200, 20)
         Me.txtCPHONE.TabIndex = 35
         '
         'lblCPREFPHONE
         '
-
         Me.lblCPREFPHONE.ForeColor = System.Drawing.Color.Blue
         Me.lblCPREFPHONE.Location = New System.Drawing.Point(14, 302)
         Me.lblCPREFPHONE.Name = "lblCPREFPHONE"
@@ -230,7 +214,7 @@ Public Class editTPLT_CONNECT
         '
         Me.txtCPREFPHONE.Location = New System.Drawing.Point(14, 324)
         Me.txtCPREFPHONE.Name = "txtCPREFPHONE"
-        Me.txtCPREFPHONE.Size = New System.Drawing.Size(200, 21)
+        Me.txtCPREFPHONE.Size = New System.Drawing.Size(200, 20)
         Me.txtCPREFPHONE.TabIndex = 37
         '
         'txtCPARITY
@@ -244,7 +228,7 @@ Public Class editTPLT_CONNECT
         '
         Me.cmbTransport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbTransport.FormattingEnabled = True
-        Me.cmbTransport.Items.AddRange(New Object() {"MODEM", "COM", "NPORT", "VSX", "GSM Modem", "АССВ", "ROBUSTEL", "DUMMY"})
+        Me.cmbTransport.Items.AddRange(New Object() {"MODEM", "COM", "NPORT", "VSX", "GSM Modem", "АССВ", "ROBUSTEL", "DUMMY", "SER2NET"})
         Me.cmbTransport.Location = New System.Drawing.Point(234, 35)
         Me.cmbTransport.Name = "cmbTransport"
         Me.cmbTransport.Size = New System.Drawing.Size(168, 21)
@@ -352,7 +336,6 @@ Public Class editTPLT_CONNECT
         Me.Controls.Add(Me.txtCPREFPHONE)
         Me.Name = "editTPLT_CONNECT"
         Me.Size = New System.Drawing.Size(526, 367)
-
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -488,6 +471,10 @@ Public Class editTPLT_CONNECT
             cmbTransport.Text = "DUMMY"
         End If
 
+        If Item("transport") = 10 Then
+            cmbTransport.Text = "SER2NET"
+        End If
+
         txtPort.Text = "" & Item("ipport").ToString
         mOnInit = False
         RaiseEvent Refreshed()
@@ -553,6 +540,11 @@ Public Class editTPLT_CONNECT
             If cmbTransport.Text = "DUMMY" Then
 
                 Item("transport") = 9
+            End If
+
+            If cmbTransport.Text = "SER2NET" Then
+
+                Item("transport") = 10
             End If
 
             Try

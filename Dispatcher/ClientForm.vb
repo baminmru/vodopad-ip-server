@@ -499,10 +499,13 @@ read_again:
             ProgressBar1.Step = 1
             'Dim transaction As OracleTransaction
             AppendInfo("Чтение часовых архивов")
+            Dim errCnt As Integer
             Application.DoEvents()
+            errCnt = 0
             For i = 0 To razn.Hours + razn.Days * 24
 
                 If StopReading Then GoTo Stopping
+                If errCnt > 3 Then GoTo Stopping
                 tempdate = DateTimePickerAfter.Value
                 tempdate = tempdate.AddHours(i)
 
@@ -527,12 +530,14 @@ read_again:
                             AppendInfo(str)
                             TvMain.SaveLog(tag, archType_hour, "??", 1, "Чтение архива за " & tempdate.ToString & " " & str)
                             Application.DoEvents()
+                            errCnt += 1
                             Continue For
                         Else
                             TvMain.SaveLog(tag, archType_hour, "??", 1, "Чтение архива за " & tempdate.ToString)
                         End If
 
                         If TvMain.TVD.isArchToDBWrite Then
+                            errCnt = 0
                             Dim rewrite As Boolean = False
                             Dim writeit As Boolean = False
                             Dim d1 As DateTime
@@ -605,7 +610,11 @@ read_again:
             ProgressBar1.Step = 1
             AppendInfo("Чтение суточных архивов")
             Application.DoEvents()
+            Dim ERRcNT As Integer
+            ERRcNT = 0
             For i = 0 To razn.Days
+
+                If ERRcNT Then GoTo Stopping
                 If StopReading Then GoTo Stopping
                 timesp = DateTime.Now - queryStartTime
 
@@ -623,7 +632,7 @@ read_again:
                         TvMain.ClearDuration()
                         str = TvMain.readarch(archType_day, tempdate.Year, tempdate.Month, tempdate.Day, 0)
                         If str.Substring(0, 6) = "Ошибка" Then
-
+                            ERRcNT += 1
                             TvMain.UnLockDevice(tag)
                             AppendInfo(str)
                             TvMain.SaveLog(tag, archType_day, "??", 1, "Чтение архива за " & tempdate.ToString & " " & str)
@@ -632,7 +641,9 @@ read_again:
                         Else
                             TvMain.SaveLog(tag, archType_day, "??", 1, "Чтение архива за " & tempdate.ToString)
                         End If
+
                         If TvMain.TVD.isArchToDBWrite Then
+                            ERRcNT = 0
                             Dim rewrite As Boolean = False
                             Dim writeit As Boolean = False
                             Dim d1 As DateTime

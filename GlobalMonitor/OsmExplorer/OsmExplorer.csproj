@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4A5936C2-19B3-488C-8AA2-D0283A88F703}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OsmExplorer</RootNamespace>
+    <AssemblyName>OsmExplorer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\.xml</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\.xml</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>70947AC6FA83BF44BA08330FC4E7DF1BA7E1727C</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>RyanOsmMapping_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\OsmSharp_v2.0.4340\Output\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Volante, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\kjk-volante-5c70e8c\csharp\bin\Debug\Volante.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collections\TieBreakingMode.cs" />
+    <Compile Include="Data\Internal\DataInterpreter.cs" />
+    <Compile Include="Data\Internal\HeadingCollection.cs" />
+    <Compile Include="Data\Internal\PersistentLatLon.cs" />
+    <Compile Include="Data\Internal\PersistentLength.cs" />
+    <Compile Include="Data\Internal\PersistentRoadCategory.cs" />
+    <Compile Include="Data\Internal\PersistentSpeed.cs" />
+    <Compile Include="Data\Internal\PersistentTravelDirection.cs" />
+    <Compile Include="Data\Internal\OsmXmlReader.cs" />
+    <Compile Include="Data\Internal\PersistentWayId.cs" />
+    <Compile Include="Data\Internal\Primitives\Node.cs" />
+    <Compile Include="Data\Internal\Primitives\PrimitiveDataRoot.cs" />
+    <Compile Include="Data\Internal\Primitives\Way.cs" />
+    <Compile Include="Data\OsmXmlImporter.cs" />
+    <Compile Include="Data\XmlImportProgress.cs" />
+    <Compile Include="Exceptions\NotEnoughRouteStopsException.cs" />
+    <Compile Include="Components\MapExplorer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\MapExplorer.designer.cs">
+      <DependentUpon>MapExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rendering\TileSystem.cs" />
+    <Compile Include="Rendering\IRenderable.cs" />
+    <Compile Include="Components\MouseMoveEventArgs.cs" />
+    <Compile Include="Components\MouseMoveEventHandler.cs" />
+    <Compile Include="Rendering\RenderCollection.cs" />
+    <Compile Include="Rendering\TileType.cs" />
+    <Compile Include="Components\ViewChangedEventArgs.cs" />
+    <Compile Include="Components\ViewChangedEventHandler.cs" />
+    <Compile Include="Routing\Direction.cs" />
+    <Compile Include="Routing\DrivingDirections.cs" />
+    <Compile Include="Spatial\IDimensions.cs" />
+    <Compile Include="Data\Internal\PersistentAccessRestrictions.cs" />
+    <Compile Include="Routing\Internal\CategoryHueristic.cs" />
+    <Compile Include="Routing\Internal\P2PRouterDirections.cs" />
+    <Compile Include="Routing\Internal\P2PRouterResult.cs" />
+    <Compile Include="Routing\Internal\Point2PointRouterParallel.cs" />
+    <Compile Include="Routing\Internal\Point2PointRouter.cs" />
+    <Compile Include="Data\Internal\RestrictionType.cs" />
+    <Compile Include="Routing\Internal\RouterArgs.cs" />
+    <Compile Include="Data\Internal\PersistentTrafficControl.cs" />
+    <Compile Include="Routing\Internal\RouterBase.cs" />
+    <Compile Include="Routing\Internal\SearchDirection.cs" />
+    <Compile Include="Routing\MovementType.cs" />
+    <Compile Include="Routing\RouteResultMatrix.cs" />
+    <Compile Include="Routing\RouteStop.cs" />
+    <Compile Include="Spatial\BoundingBox.cs" />
+    <Compile Include="Collections\PriorityHeap.cs" />
+    <Compile Include="Data\Internal\DatabaseRoot.cs" />
+    <Compile Include="Data\DataRepository.cs" />
+    <Compile Include="Data\QueryMode.cs" />
+    <Compile Include="Data\RoadCategory.cs" />
+    <Compile Include="Data\SpatialQuery.cs" />
+    <Compile Include="Spatial\ProjectionType.cs" />
+    <Compile Include="Spatial\RoadDimensions.cs" />
+    <Compile Include="Spatial\TravelDirection.cs" />
+    <Compile Include="Routing\SpeedProfile.cs" />
+    <Compile Include="Units\Length.cs" />
+    <Compile Include="Units\LengthUnits.cs" />
+    <Compile Include="Exceptions\DatabaseException.cs" />
+    <Compile Include="Exceptions\DatabaseLoadErrorException.cs" />
+    <Compile Include="Exceptions\DataRepositoryNotOpenException.cs" />
+    <Compile Include="Exceptions\InvalidRouteStopException.cs" />
+    <Compile Include="Exceptions\RoadLinksNotFoundException.cs" />
+    <Compile Include="Exceptions\RouteNotFoundErrorMsg.cs" />
+    <Compile Include="Exceptions\RouteNotFoundException.cs" />
+    <Compile Include="Exceptions\RouteStopTooFarAwayException.cs" />
+    <Compile Include="Exceptions\RoutingDataNotFoundException.cs" />
+    <Compile Include="Exceptions\RoutingException.cs" />
+    <Compile Include="Functions\MathFunctions.cs" />
+    <Compile Include="Spatial\LatLon.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Spatial\RoadLink.cs" />
+    <Compile Include="Routing\Internal\CellId.cs" />
+    <Compile Include="Routing\Internal\Route.cs" />
+    <Compile Include="Routing\Internal\RouteLink.cs" />
+    <Compile Include="Routing\Internal\RoutingNetwork.cs" />
+    <Compile Include="Routing\RoadFlags.cs" />
+    <Compile Include="Routing\RouteResult.cs" />
+    <Compile Include="Routing\RoutingEngine.cs" />
+    <Compile Include="Routing\RoutingStrategy.cs" />
+    <Compile Include="Routing\VehicleType.cs" />
+    <Compile Include="Routing\VehicleDimensions.cs" />
+    <Compile Include="Units\Speed.cs" />
+    <Compile Include="Units\SpeedUnits.cs" />
+    <Compile Include="Units\Weight.cs" />
+    <Compile Include="Units\WeightUnits.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Sql.Server.Express.10.0">
+      <Visible>False</Visible>
+      <ProductName>SQL Server 2008 Express</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\MapExplorer.resx">
+      <DependentUpon>MapExplorer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SharpMap\SharpMap.VS2010.csproj">
+      <Project>{C83777FC-AABB-47D9-911F-D76255D4D541}</Project>
+      <Name>SharpMap.VS2010</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_BuildVersioningStyle="YearStamp.MonthStamp.DayStamp.Increment" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -52,6 +52,7 @@ Partial Class frmMain
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.txtFilter = New System.Windows.Forms.TextBox()
         Me.utm = New Infragistics.Win.UltraWinTabbedMdi.UltraTabbedMdiManager(Me.components)
         Me.ImgNodeType = New System.Windows.Forms.ImageList(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
@@ -75,7 +76,6 @@ Partial Class frmMain
         Me.chkShoHidden = New System.Windows.Forms.CheckBox()
         Me.tree = New Infragistics.Win.UltraWinTree.UltraTree()
         Me.ButtonConfig = New System.Windows.Forms.Button()
-        Me.txtFilter = New System.Windows.Forms.TextBox()
         Me.MenuStrip.SuspendLayout()
         CType(Me.utm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.udm, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -239,6 +239,15 @@ Partial Class frmMain
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
         Me.AboutToolStripMenuItem.Text = "&About ..."
+        '
+        'txtFilter
+        '
+        Me.txtFilter.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.txtFilter.Location = New System.Drawing.Point(6, 418)
+        Me.txtFilter.Name = "txtFilter"
+        Me.txtFilter.Size = New System.Drawing.Size(184, 20)
+        Me.txtFilter.TabIndex = 39
+        Me.ToolTip.SetToolTip(Me.txtFilter, "Фильтр")
         '
         'utm
         '
@@ -487,15 +496,6 @@ Partial Class frmMain
         Me.ButtonConfig.TabIndex = 27
         Me.ButtonConfig.Text = "Настройка"
         Me.ButtonConfig.UseVisualStyleBackColor = True
-        '
-        'txtFilter
-        '
-        Me.txtFilter.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.txtFilter.Location = New System.Drawing.Point(6, 418)
-        Me.txtFilter.Name = "txtFilter"
-        Me.txtFilter.Size = New System.Drawing.Size(184, 20)
-        Me.txtFilter.TabIndex = 39
-        Me.ToolTip.SetToolTip(Me.txtFilter, "Фильтр")
         '
         'frmMain
         '

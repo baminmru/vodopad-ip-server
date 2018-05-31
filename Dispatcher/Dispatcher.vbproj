@@ -453,7 +453,6 @@
     <None Include="app.config" />
     <None Include="Build\UpdateVersion.targets" />
     <None Include="Build\VersionInfo.targets" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="My Project\app.manifest">
       <SubType>Designer</SubType>
     </None>
@@ -577,6 +576,10 @@
       <Project>{abdb8044-3555-45d0-907b-62f865c8559d}</Project>
       <Name>DrvOPC</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DrvTEM104.1\DrvTEM104.1.vbproj">
+      <Project>{0fda8114-a55d-4e31-9726-354b54190ddc}</Project>
+      <Name>DrvTEM104.1</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DrvTEM104\DrvTEM104.vbproj">
       <Project>{0CA60AB7-4F6F-43D3-B9F4-C39E7DEF79E9}</Project>
       <Name>DrvTEM104</Name>
@@ -594,7 +597,7 @@
       <Name>DrvVKT4M</Name>
     </ProjectReference>
     <ProjectReference Include="..\DrvVKT4\DrvVKT4.vbproj">
-      <Project>{4F74DC3D-F0A9-45C8-9B71-7376EB72E3F5}</Project>
+      <Project>{4f74dc3d-f0a9-45c8-9b71-7376eb72e3f5}</Project>
       <Name>DrvVKT4</Name>
     </ProjectReference>
     <ProjectReference Include="..\DrvVKT5\DrvVKT5.vbproj">

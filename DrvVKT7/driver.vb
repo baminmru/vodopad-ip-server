@@ -1973,12 +1973,12 @@ filldata:
                                 If IsHC Then
                                     Arch.MsgHC += "P2:" + CurHC + " "
                                 End If
-                                If IsError Then
-                                        AErr += "P2;"
-                                    End If
+                                        If IsError Then
+                                            AErr += "P2;"
+                                        End If
 
-                            Case VKT7ElemType.P2_1Type
-                                Arch.P3 = GetValue(sout, IsError)
+                                    Case VKT7ElemType.P1_2Type
+                                        Arch.P3 = GetValue(sout, IsError)
                                 If IsHC Then
                                     Arch.MsgHC += "P3:" + CurHC + " "
                                 End If
@@ -2021,9 +2021,9 @@ filldata:
 
                             End Select
                         Catch ex As Exception
-                            IsError = True
-                            Return "Ошибка " + ex.Message
-                        End Try
+                                IsError = True
+                                Return "Ошибка " + ex.Message
+                            End Try
 
                         pRes += (2 + pSz) ' size + pSz + Q+NC
                     Next

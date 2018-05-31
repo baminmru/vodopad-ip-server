@@ -6,183 +6,6 @@ Imports STKTVMain
 Imports System.IO
 Imports System.Threading
 
-'Public Structure MArchive
-'    Public DateArch As DateTime
-'    Public HC As Int32
-'    Public MsgHC As String
-
-'    Public HCtv1 As Long
-'    Public MsgHC_1 As String
-
-'    Public HCtv2 As Long
-'    Public MsgHC_2 As String
-
-'    Public G1 As Single
-'    Public G2 As Single
-'    Public G3 As Single
-'    Public G4 As Single
-'    Public G5 As Single
-'    Public G6 As Single
-
-'    Public t1 As Single
-'    Public t2 As Single
-'    Public t3 As Single
-'    Public t4 As Single
-'    Public t5 As Single
-'    Public t6 As Single
-
-'    Public p1 As Single
-'    Public p2 As Single
-'    Public p3 As Single
-'    Public p4 As Single
-'    Public p5 As Single
-'    Public p6 As Single
-
-'    Public m1 As Single
-'    Public m2 As Single
-'    Public m3 As Single
-'    Public m4 As Single
-'    Public m5 As Single
-'    Public m6 As Single
-
-'    Public v1 As Single
-'    Public v2 As Single
-'    Public v3 As Single
-'    Public v4 As Single
-'    Public v5 As Single
-'    Public v6 As Single
-
-'    Public dt12 As Single
-'    Public dt45 As Single
-
-'    Public tx1 As Single
-'    Public tx2 As Single
-
-'    Public tair1 As Single
-'    Public tair2 As Single
-
-'    Public SP As Long
-'    Public SPtv1 As Long
-'    Public SPtv2 As Long
-
-'    Public dQ1 As Single
-'    Public dQ2 As Single
-
-
-'    Public archType As Short
-'End Structure
-
-'Public Structure Archive
-'    Public DateArch As DateTime
-
-'    Public oktime As Long
-'    Public Errtime As Long
-'    Public ErrtimeH As Long
-'    Public HC As Long
-'    Public MsgHC As String
-
-'    Public HCtv1 As Long
-'    Public MsgHC_1 As String
-
-'    Public HCtv2 As Long
-'    Public MsgHC_2 As String
-
-'    Public Tw1 As Single
-'    Public Tw2 As Single
-
-'    Public P1 As Single
-'    Public T1 As Single
-'    Public M2 As Single
-'    Public V1 As Single
-
-'    Public P2 As Single
-'    Public T2 As Single
-'    Public M3 As Single
-'    Public V2 As Single
-
-'    Public V3 As Single
-'    Public M1 As Single
-
-'    Public Q1 As Single
-'    Public Q2 As Single
-'    Public Q3 As Single
-'    Public Q4 As Single
-'    Public Q5 As Single
-'    Public Q6 As Single
-
-
-'    Public QG1 As Single
-'    Public QG2 As Single
-
-'    Public SP As Long
-'    Public SPtv1 As Long
-'    Public SPtv2 As Long
-
-'    Public tx1 As Long
-'    Public tx2 As Long
-'    Public tair1 As Long
-'    Public tair2 As Long
-
-'    Public T3 As Single
-'    Public T4 As Single
-'    Public T5 As Single
-'    Public T6 As Single
-
-'    Public P3 As Single
-'    Public P4 As Single
-'    Public P5 As Single
-'    Public P6 As Single
-
-'    Public v4 As Single
-'    Public v5 As Single
-'    Public v6 As Single
-'    Public M4 As Single
-'    Public M5 As Single
-'    Public M6 As Single
-'    Public V1h As Double
-'    Public V2h As Double
-'    Public V3h As Double
-'    Public V4h As Double
-'    Public Q1H As Double
-'    Public Q2H As Double
-
-'    Public archType As Short
-'End Structure
-
-'Public Structure TArchive
-'    Public DateArch As DateTime
-
-
-'    Public V1 As Double
-'    Public V2 As Double
-'    Public V3 As Double
-'    Public V4 As Double
-'    Public V5 As Double
-'    Public V6 As Double
-
-'    Public M1 As Double
-'    Public M2 As Double
-'    Public M3 As Double
-'    Public M4 As Double
-'    Public M5 As Double
-'    Public M6 As Double
-'    Public Q1 As Double
-'    Public Q2 As Double
-
-'    Public TW1 As Double
-'    Public TW2 As Double
-'    Public Q3 As Double
-'    Public Q4 As Double
-'    Public Q5 As Double
-'    Public Q6 As Double
-
-'    Public HC As Int32
-'    Public Errtime As Long
-'    Public oktime As Long
-
-'    Public archType As Short
-'End Structure
-
 
 
 Public Structure HArch
@@ -366,6 +189,7 @@ Public Class driver
     ' ************************
     Private Function MC601_СчитатьТип()
         ' В случае неудачи возвращает 0
+        Debug.Print("MC601_СчитатьТип: ")
         MC601Command(0) = &H3F
         MC601Command(1) = &H1
         If MC601RunCommand(MC601Command, 2) <> 0 Then Return 0
@@ -373,6 +197,7 @@ Public Class driver
     End Function
 
     Private Function MC601_СчитатьНомер() As Long
+        Debug.Print("MC601_СчитатьНомер: ")
         ' В случае неудачи возвращает 0. Номер, в принципе, может быть буквенно-цифровым
         MC601Command(0) = &H3F
         MC601Command(1) = &H2
@@ -380,12 +205,12 @@ Public Class driver
         Return Bytes2L(MC601Resp, 4, 2)
     End Function
 
-    Private Function MC601_СчитатьТекущий(Регистр As Integer) As Double
+    Private Function MC601_СчитатьТекущий(TheRegister As Integer) As Double
 
         MC601Command(0) = &H3F
         MC601Command(1) = &H10
         MC601Command(2) = &H1
-        I2Bytes(Регистр, MC601Command, 3)
+        I2Bytes(TheRegister, MC601Command, 3)
         If MC601RunCommand(MC601Command, 5) <> 0 Then Return 0
         If MC601Rsvd <= 7 Then Return 0 ' Пустой ответ
         '   MC601Resp(4)                           ' Единица измерения
@@ -397,7 +222,49 @@ Public Class driver
     ' *** ЧТЕНИЕ ДАННЫХ ***
     ' *********************
 
-    Private Function MC601_DayEmpty(Регистр As Integer,
+
+    Private HourModule As Integer = -1
+
+    Public Function MC601_ПроверитьЧасовойМодуль() As Integer
+        Dim НомерВМ As Double
+        HourModule = 1
+        MC601_ПроверитьЧасовойМодуль = 1
+
+
+        НомерВМ = MC601_СчитатьТекущий(157) ' Считываем номер верхнего модуля
+
+        HourModule = 0
+        MC601Command(1) = &H63
+        I2Bytes(186, MC601Command, 2)
+        MC601Command(4) = &HFF
+        MC601Command(5) = &HFF
+        MC601Command(6) = &HFF
+        MC601Command(7) = &HFF
+
+        If НомерВМ <> 0 Then        ' При наличии верхнего модуля начинаем с него
+            MC601Command(0) = &H7F
+            If MC601RunCommand(MC601Command, 8) = 0 Then
+                HourModule = 1
+                Exit Function
+            End If
+            MC601Command(0) = &H3F
+            If MC601RunCommand(MC601Command, 8) = 0 Then
+                HourModule = 2
+            End If
+        Else                       ' А при отсутствии -- с базового
+            MC601Command(0) = &H3F
+            If MC601RunCommand(MC601Command, 8) = 0 Then
+                HourModule = 2
+                Exit Function
+            End If
+            MC601Command(0) = &H7F
+            If MC601RunCommand(MC601Command, 8) = 0 Then
+                HourModule = 1
+            End If
+        End If
+    End Function
+
+    Private Function MC601_DayEmpty(TheRegister As Integer,
                     ЧитатьОт As Integer, НеМенее As Integer, ByRef Считано As Integer) As Double()
         Dim a(64) As Double
         Dim i As Integer
@@ -408,15 +275,15 @@ Public Class driver
         MC601_DayEmpty = a
     End Function
 
-    Private Function MC601_HourEmpty(Регистр As Integer, Дата As Date) As Object
-        ' Читает из регистр из часового архива за указанную дату. Возвращает массив из 24 показаний.
+    Private Function MC601_HourEmpty(TheRegister As Integer, TheDate As Date) As Object
+        ' Читает из TheRegister из часового архива за указанную дату. Возвращает массив из 24 показаний.
         Dim a(24)
         Dim i As Integer
 
         For i = 1 To 24
-            If Регистр = 1003 Then
-                a(i) = Дата
-            ElseIf Регистр = 1002 Then
+            If TheRegister = 1003 Then
+                a(i) = TheDate
+            ElseIf TheRegister = 1002 Then
                 a(i) = 25 - i
             Else
                 a(i) = 0
@@ -426,7 +293,7 @@ Public Class driver
     End Function
 
 
-    Private Function MC601_СчитатьЧасовой(ByVal Регистр As Integer, ByVal Дата As Date) As Double()
+    Private Function MC601_СчитатьЧасовой(ByVal TheRegister As Integer, ByVal TheDate As Date) As Double()
         Dim a(24) As Double
         Dim j As Integer, k As Integer
         Dim l As Integer
@@ -437,8 +304,8 @@ Public Class driver
             a(j) = 0
         Next j
 
-        If (Регистр = 1003) Or (Регистр = 1002) Then
-            MC601_СчитатьЧасовой = a ' MC601_HourEmpty(Регистр, Дата)
+        If (TheRegister = 1003) Or (TheRegister = 1002) Then
+            MC601_СчитатьЧасовой = a ' MC601_HourEmpty(TheRegister, TheDate)
             Exit Function
         End If
 
@@ -446,13 +313,20 @@ Public Class driver
             a(j) = 0
         Next j
 
-        Дата = Дата.AddDays(1)
-        MC601Command(0) = &H7F
+        'TheDate = TheDate.AddDays(1)
+
+        If HourModule = 1 Then
+            MC601Command(0) = &H7F      ' Верхний модуль (KM601)
+        ElseIf HourModule = 2 Then
+            MC601Command(0) = &H3F      ' Основной модуль (KM602)
+        Else
+            Exit Function
+        End If
         MC601Command(1) = &H63
-        I2Bytes(Регистр, MC601Command, 2)
-        MC601Command(4) = Year(Дата) - 2000
-        MC601Command(5) = Month(Дата)
-        MC601Command(6) = Day(Дата)
+        I2Bytes(TheRegister, MC601Command, 2)
+        MC601Command(4) = Year(TheDate) - 2000
+        MC601Command(5) = Month(TheDate)
+        MC601Command(6) = Day(TheDate)
         MC601Command(7) = 0
         iErr = MC601RunCommand(MC601Command, 8)
         If iErr <> 0 Then Return Nothing
@@ -474,20 +348,22 @@ Public Class driver
     End Function
 
 
-    Private Function MC601_СчитатьСуточный(Регистр As Integer, ЧитатьОт As Integer, НеМенее As Integer, ByRef n As Integer) As Double()
+    Private Function MC601_СчитатьСуточный(TheRegister As Integer, ЧитатьОт As DateTime, НеМенее As Integer, ByRef n As Integer) As Double()
         Dim a(64) As Double
         Dim f As Double
-        Dim i As Integer, j As Integer
+        Dim i As Integer, j As Integer, ii As Integer
         Dim k As Integer, l As Integer
         Dim iPos As Integer, iErr As Integer
 
 
         MC601Command(0) = &H3F
         MC601Command(1) = &H66
-        I2Bytes(Регистр, MC601Command, 2)
-        i = ЧитатьОт                      ' Рамка считывания
+        I2Bytes(TheRegister, MC601Command, 2)
+        i = Math.Abs(DateDiff(DateInterval.Day, ЧитатьОт, Date.Today))
+        ' Рамка считывания
         n = 0
         Do While n < НеМенее
+
             I2Bytes(i, MC601Command, 4)
             ' Послать запрос и принять данные
             iErr = MC601RunCommand(MC601Command, 6)
@@ -509,7 +385,7 @@ Public Class driver
         Return a
     End Function
 
-    '    Private Function MC601_СчитатьМесячный(Регистр As Integer, ЧитатьОт As Integer, НеМенее As Integer, ByRef n As Integer) As Double()
+    '    Private Function MC601_СчитатьМесячный(TheRegister As Integer, ЧитатьОт As Integer, НеМенее As Integer, ByRef n As Integer) As Double()
     '        Dim a(64) As Double
     '        Dim f As Double
     '        Dim i As Integer, j As Integer
@@ -518,7 +394,7 @@ Public Class driver
 
     '        MC601Command(0) = &H3F
     '        MC601Command(1) = &H65
-    '        I2Bytes(Регистр, MC601Command, 2)
+    '        I2Bytes(TheRegister, MC601Command, 2)
     '        i = ЧитатьОт                      ' Рамка считывания
     '        n = 0
     '        Do While n < НеМенее
@@ -556,9 +432,9 @@ Public Class driver
         ' Посылаем и ждём ответа
         WaitForData()
         Dim lcnt As Integer
-        lcnt = 1000
+        lcnt = 100
         While lcnt > 0                      ' Ждём завершения приёма
-            Dim buffer(10) As Byte
+            Dim buffer(1) As Byte
             While MyTransport.BytesToRead > 0
                 If MyTransport.Read(buffer, 0, 1) > 0 Then
                     MC601ОбработатьБайт(buffer(0))
@@ -574,6 +450,11 @@ Public Class driver
         ' Завершаем получение
 
         If ReceiverState = 0 Then
+            If MC601Rsvd = 0 Then
+                ReceiverState = RS_BadData
+                MC601ПрерватьПриём()
+                Return ReceiverState
+            End If
             MC601ПроверитьCRC()       ' Проверям и удаляем CRC
             If ОшибкаПротокола <> 0 Then
                 ReceiverState = RS_BadData
@@ -931,7 +812,7 @@ Public Class driver
     End Sub
 
     ' *********************************
-    ' **** ДЕКОДИРОВАНИЕ РЕГИСТРОВ ****
+    ' **** ДЕКОДИРОВАНИЕ TheRegisterОВ ****
     ' *********************************
     Function Bytes2Float(b() As Byte, ByVal iPos As Integer) As Double
         ' Разбор вещественных в формате протокола Kamstrup.
@@ -1002,6 +883,7 @@ Public Class driver
             k = k Or b(i + iPos)
             i = i + 1
         Loop
+        Debug.Print("=" + k.ToString)
         Bytes2I = k
     End Function
 
@@ -1010,6 +892,15 @@ Public Class driver
         ' Преобразует одинарное целое в массив из 2 байтов. Первый байт -- старший.
         Dim i As Integer
         For i = 0 To 1
+            b(i + iPos) = ChLInt(k)
+        Next i
+    End Sub
+
+    Sub I3Bytes(ByVal k As Integer, b() As Byte, ByVal iPos As Integer)
+        ' XXYYZZ -> XX, YY, ZZ
+        ' Преобразует одинарное целое в массив из 2 байтов. Первый байт -- старший.
+        Dim i As Integer
+        For i = 0 To 2
             b(i + iPos) = ChLInt(k)
         Next i
     End Sub
@@ -1027,6 +918,7 @@ Public Class driver
             l = l Or b(i + iPos)
             i = i + 1
         Loop
+        Debug.Print("=" + l.ToString)
         Bytes2L = l
     End Function
 
@@ -1228,7 +1120,11 @@ Public Class driver
 
         MyTransport.CleanPort()
         EraseInputQueue()
-        If MC601_СчитатьНомер() <> 0 Then Return True
+        If MC601_СчитатьНомер() <> 0 Then
+            If MC601_СчитатьТип() <> 0 Then
+                Return True
+            End If
+        End If
         DriverTransport.SendEvent(UnitransportAction.LowLevelStop, "Данные не получены")
         Return False
 
@@ -1307,65 +1203,85 @@ Public Class driver
         Dim retsum As String
         Dim ok As Boolean = False
         Dim buf(1000) As Byte
-        cleararchive(Arch)
+        clearArchive(Arch)
+
+
+
+
         Try
-            Dim yymmdd As Long
+            Dim yymmdd As DateTime
 
             Dim rr As Integer
             Dim a() As Double
             Arch.archType = ArchType
             If ArchType = archType_hour Then
+
+                If HourModule = -1 Then
+                    MC601_ПроверитьЧасовойМодуль()
+                End If
+                If HourModule = 0 Then
+                    isArchToDBWrite = False
+                    Return "Ошибка: Нет часового модуля"
+                End If
+
+
                 Arch.DateArch = DateSerial(ArchYear, ArchMonth, ArchDay)
-                yymmdd = Date2YYMMDD(Arch.DateArch)
+                yymmdd = Arch.DateArch ' Date2YYMMDD(Arch.DateArch)
+                'Arch.DateArch = DateSerial(ArchYear, ArchMonth, ArchDay)
+
+                ok = True
 
                 a = MC601_СчитатьЧасовой(MCR_V1, Arch.DateArch)
-                If Not a Is Nothing Then Arch.V1 = a(ArchHour + 1)
+                If Not a Is Nothing Then Arch.V1 = a(ArchHour + 1) Else ok = False
 
                 a = MC601_СчитатьЧасовой(MCR_V2, Arch.DateArch)
-                If Not a Is Nothing Then Arch.V2 = a(ArchHour + 1)
+                If Not a Is Nothing Then Arch.V2 = a(ArchHour + 1) Else ok = False
 
                 a = MC601_СчитатьЧасовой(MCR_M1, Arch.DateArch)
-                If Not a Is Nothing Then Arch.M1 = a(ArchHour + 1)
+                If Not a Is Nothing Then Arch.M1 = a(ArchHour + 1) Else ok = False
 
                 a = MC601_СчитатьЧасовой(MCR_M2, Arch.DateArch)
-                If Not a Is Nothing Then Arch.M2 = a(ArchHour + 1)
+                If Not a Is Nothing Then Arch.M2 = a(ArchHour + 1) Else ok = False
 
                 a = MC601_СчитатьЧасовой(MCR_E1, Arch.DateArch)
-                If Not a Is Nothing Then Arch.Q1 = a(ArchHour + 1)
+                If Not a Is Nothing Then Arch.Q1 = a(ArchHour + 1) Else ok = False
 
                 a = MC601_СчитатьЧасовой(MCR_E2, Arch.DateArch)
-                If Not a Is Nothing Then Arch.Q2 = a(ArchHour + 1)
+                If Not a Is Nothing Then Arch.Q2 = a(ArchHour + 1) Else ok = False
 
                 a = MC601_СчитатьЧасовой(MCR_E3, Arch.DateArch)
-                If Not a Is Nothing Then Arch.Q3 = a(ArchHour + 1)
+                If Not a Is Nothing Then Arch.Q3 = a(ArchHour + 1) Else ok = False
 
                 a = MC601_СчитатьЧасовой(MCR_E4, Arch.DateArch)
-                If Not a Is Nothing Then Arch.Q4 = a(ArchHour + 1)
+                If Not a Is Nothing Then Arch.Q4 = a(ArchHour + 1) Else ok = False
 
                 a = MC601_СчитатьЧасовой(MCR_E5, Arch.DateArch)
-                If Not a Is Nothing Then Arch.Q5 = a(ArchHour + 1)
+                If Not a Is Nothing Then Arch.Q5 = a(ArchHour + 1) Else ok = False
 
                 a = MC601_СчитатьЧасовой(MCR_E6, Arch.DateArch)
-                If Not a Is Nothing Then Arch.Q6 = a(ArchHour + 1)
+                If Not a Is Nothing Then Arch.Q6 = a(ArchHour + 1) Else ok = False
 
                 a = MC601_СчитатьЧасовой(MCR_T1, Arch.DateArch)
-                If Not a Is Nothing Then Arch.T1 = a(ArchHour + 1)
+                If Not a Is Nothing Then Arch.T1 = a(ArchHour + 1) Else ok = False
 
                 a = MC601_СчитатьЧасовой(MCR_T2, Arch.DateArch)
-                If Not a Is Nothing Then Arch.T2 = a(ArchHour + 1)
+                If Not a Is Nothing Then Arch.T2 = a(ArchHour + 1) Else ok = False
 
                 Arch.DateArch = Arch.DateArch.AddHours(ArchHour)
-                isArchToDBWrite = True
-                ok = True
+                If ok Then
+                    isArchToDBWrite = True
+                End If
+
+
 
             End If
 
             If ArchType = archType_day Then
 
 
-
+                ok = True
                 Arch.DateArch = DateSerial(ArchYear, ArchMonth, ArchDay)
-                yymmdd = Date2YYMMDD(Arch.DateArch)
+                yymmdd = Arch.DateArch 'Date2YYMMDD(Arch.DateArch)
                 a = MC601_СчитатьСуточный(MCR_V1, yymmdd, 1, rr)
                 If rr > 0 Then Arch.V1 = a(1)
                 a = MC601_СчитатьСуточный(MCR_V2, yymmdd, 1, rr)
@@ -1390,8 +1306,10 @@ Public Class driver
                 If rr > 0 Then Arch.T1 = a(1)
                 a = MC601_СчитатьСуточный(MCR_T2, yymmdd, 1, rr)
                 If rr > 0 Then Arch.T2 = a(1)
-                isArchToDBWrite = True
-                ok = True
+                If ok Then
+                    isArchToDBWrite = True
+                End If
+
 
             End If
 
@@ -1558,43 +1476,45 @@ Public Class driver
 
     Public Function GetDeviceDate() As Date
 
-        If LastDate <> DateTime.MinValue Then
-            Return LastDate
-        End If
+        'If LastDate <> DateTime.MinValue Then
+        '    Return LastDate
+        'End If
 
         Dim DateArch As Date
         DateArch = Date.Now()
 
-        'Try
+        Try
 
-        '    MC601Command(0) = &H3F
-        '    MC601Command(1) = &H10
-        '    MC601Command(2) = &H1
-        '    I2Bytes(MCR_DATE, MC601Command, 3)
-        '    If MC601RunCommand(MC601Command, 5) <> 0 Then
-        '        DateArch = YYMMDD2Date(Bytes2L(MC601Resp, 4, 5))
-        '        DateArch = DateTime.Today
-        '    End If
-
-
-        '    'If MC601Rsvd <= 7 Then Return 0 ' Пустой ответ
-        '    ''   MC601Resp(4)                           ' Единица измерения
-        '    'Return Byte2Mantiss(MC601Resp, MC601Resp(5), 7) * Byte2Factor(MC601Resp(6))
-        '    '
+            MC601Command(0) = &H3F
+            MC601Command(1) = &H10
+            MC601Command(2) = &H1
+            I2Bytes(MCR_DATE, MC601Command, 3)
+            If MC601RunCommand(MC601Command, 5) <> 0 Then
+                DateArch = YYMMDD2Date(Bytes2L(MC601Resp, 4, 5))
+                DateArch = DateTime.Today
+            End If
 
 
-        '    MC601Command(0) = &H3F
-        '    MC601Command(1) = &H10
-        '    MC601Command(2) = &H1
-        '    I2Bytes(MCR_CLOCK, MC601Command, 3)
-        '    If MC601RunCommand(MC601Command, 5) <> 0 Then
-
-        '        DateArch = DateTime.Today
-        '    End If
+            'If MC601Rsvd <= 7 Then Return 0 ' Пустой ответ
+            ''   MC601Resp(4)                           ' Единица измерения
+            'Return Byte2Mantiss(MC601Resp, MC601Resp(5), 7) * Byte2Factor(MC601Resp(6))
+            '
 
 
-        'Catch
-        'End Try
+            MC601Command(0) = &H3F
+            MC601Command(1) = &H10
+            MC601Command(2) = &H1
+            I2Bytes(MCR_CLOCK, MC601Command, 3)
+            If MC601RunCommand(MC601Command, 5) <> 0 Then
+
+                DateArch = DateTime.Now
+            Else
+                DateArch = DateTime.Now
+            End If
+
+
+        Catch
+        End Try
         Return DateArch
     End Function
 
@@ -1769,7 +1689,7 @@ Public Class driver
         Date2YYMMDD = 0
         'If NoData(d) Then Exit Function
         '
-        Date2YYMMDD = ((Year(d) - 2000) * 100 + Month(d)) * 100 + Day(d)
+        Date2YYMMDD = ((Year(d) - 2000) * 256 + Month(d)) * 256 + Day(d)
 
     End Function
 

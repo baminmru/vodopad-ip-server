@@ -1,7 +1,7 @@
 create sequence WEBTEMPLATE_SEQ
 minvalue 1
 maxvalue 9999999999999
-start with 281
+start with 381
 increment by 1
 cache 20;
 

@@ -59,6 +59,10 @@ Public MustInherit Class GRPSSocket
     Protected Shared m_LogEnabled As Boolean = False
     Protected Shared m_Inited As Boolean = False
 
+    Public Sub New(Optional ByVal _LogEnabled As Boolean = False)
+        m_LogEnabled = _LogEnabled
+    End Sub
+
     Protected Shared Sub CheckLog()
         If m_Inited Then Exit Sub
         Dim xml As XmlDocument

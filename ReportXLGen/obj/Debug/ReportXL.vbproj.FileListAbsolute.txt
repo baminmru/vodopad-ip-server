@@ -237,7 +237,6 @@ C:\bami\VODOPAD\ReportXLGen\bin\PropertyGridEx.xml
 C:\bami\VODOPAD\ReportXLGen\bin\Infragistics2.Win.UltraWinStatusBar.v9.1.xml
 C:\bami\VODOPAD\ReportXLGen\bin\Infragistics2.Win.UltraWinCalcManager.v9.1.FormulaBuilder.xml
 C:\bami\VODOPAD\ReportXLGen\bin\Infragistics2.Win.UltraWinCalcManager.v9.1.xml
-C:\bami\VODOPAD\ReportXLGen\obj\Debug\ReportXL.vbprojResolveAssemblyReference.cache
 C:\bami\VODOPAD\ReportXLGen\obj\Debug\ReportXL.vbproj.ResolveComReference.cache
 C:\bami\VODOPAD\ReportXLGen\obj\Debug\ReportXL.frmMain.resources
 C:\bami\VODOPAD\ReportXLGen\obj\Debug\ReportXL.Resources.resources
@@ -247,3 +246,4 @@ C:\bami\VODOPAD\ReportXLGen\obj\Debug\ReportXL.exe.licenses
 C:\bami\VODOPAD\ReportXLGen\obj\Debug\ReportXL.exe
 C:\bami\VODOPAD\ReportXLGen\obj\Debug\ReportXL.xml
 C:\bami\VODOPAD\ReportXLGen\obj\Debug\ReportXL.pdb
+C:\bami\VODOPAD\ReportXLGen\obj\Debug\ReportXL.vbprojResolveAssemblyReference.cache

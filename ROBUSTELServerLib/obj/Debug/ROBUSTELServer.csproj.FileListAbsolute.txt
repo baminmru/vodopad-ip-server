@@ -6,9 +6,19 @@ C:\bami\Service_2.2_oracle_provider_main\ROBUSTELServerLib\obj\Debug\ROBUSTELSer
 C:\LATIR\Generated\Generated Dlls\ROBUSTELServiceCFG.xml
 C:\LATIR\Generated\Generated Dlls\ROBUSTELServer.dll
 C:\LATIR\Generated\Generated Dlls\ROBUSTELServer.pdb
+C:\bin\debug\ROBUSTELServiceCFG.xml
+C:\bin\debug\ROBUSTELServer.dll
+C:\bin\debug\ROBUSTELServer.pdb
+C:\bami\VODOPAD\ROBUSTELServerLib\bin\debug\ROBUSTELServiceCFG.xml
+C:\bami\VODOPAD\ROBUSTELServerLib\bin\debug\ROBUSTELServer.dll
+C:\bami\VODOPAD\ROBUSTELServerLib\bin\debug\ROBUSTELServer.pdb
+C:\bami\VODOPAD\ROBUSTELServerLib\bin\debug\STKTVMain.dll
+C:\bami\VODOPAD\ROBUSTELServerLib\bin\debug\VIPAnalizer.dll
+C:\bami\VODOPAD\ROBUSTELServerLib\bin\debug\Oracle.DataAccess.dll
+C:\bami\VODOPAD\ROBUSTELServerLib\bin\debug\STKTVMain.pdb
+C:\bami\VODOPAD\ROBUSTELServerLib\bin\debug\STKTVMain.xml
+C:\bami\VODOPAD\ROBUSTELServerLib\bin\debug\VIPAnalizer.pdb
+C:\bami\VODOPAD\ROBUSTELServerLib\bin\debug\VIPAnalizer.xml
+C:\bami\VODOPAD\ROBUSTELServerLib\obj\Debug\ROBUSTELServer.csprojResolveAssemblyReference.cache
 C:\bami\VODOPAD\ROBUSTELServerLib\obj\Debug\ROBUSTELServer.dll
 C:\bami\VODOPAD\ROBUSTELServerLib\obj\Debug\ROBUSTELServer.pdb
-C:\bami\VODOPAD\ROBUSTELServerLib\obj\Debug\ROBUSTELServer.csprojResolveAssemblyReference.cache
-C:\bami\projects\AREAL\VODOPAD\ROBUSTELServerLib\obj\Debug\ROBUSTELServer.csprojResolveAssemblyReference.cache
-C:\bami\projects\AREAL\VODOPAD\ROBUSTELServerLib\obj\Debug\ROBUSTELServer.dll
-C:\bami\projects\AREAL\VODOPAD\ROBUSTELServerLib\obj\Debug\ROBUSTELServer.pdb

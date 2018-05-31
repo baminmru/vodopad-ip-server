@@ -214,13 +214,4 @@ C:\bami\VODOPAD\STKTVMain\obj\Debug\STKTVMain.vbproj.GenerateResource.Cache
 C:\bami\VODOPAD\STKTVMain\obj\Debug\STKTVMain.dll
 C:\bami\VODOPAD\STKTVMain\obj\Debug\STKTVMain.xml
 C:\bami\VODOPAD\STKTVMain\obj\Debug\STKTVMain.pdb
-C:\bami\projects\AREAL\VODOPAD\STKTVMain\bin\Debug\STKTVMain.dll
-C:\bami\projects\AREAL\VODOPAD\STKTVMain\bin\Debug\STKTVMain.pdb
-C:\bami\projects\AREAL\VODOPAD\STKTVMain\bin\Debug\STKTVMain.xml
-C:\bami\projects\AREAL\VODOPAD\STKTVMain\obj\Debug\STKTVMain.Resources.resources
-C:\bami\projects\AREAL\VODOPAD\STKTVMain\obj\Debug\STKTVMain.vbproj.GenerateResource.Cache
-C:\bami\projects\AREAL\VODOPAD\STKTVMain\obj\Debug\STKTVMain.dll
-C:\bami\projects\AREAL\VODOPAD\STKTVMain\obj\Debug\STKTVMain.xml
-C:\bami\projects\AREAL\VODOPAD\STKTVMain\obj\Debug\STKTVMain.pdb
-C:\bami\projects\AREAL\VODOPAD\STKTVMain\obj\Debug\STKTVMain.vbprojResolveAssemblyReference.cache
-C:\bami\projects\AREAL\VODOPAD\STKTVMain\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\bami\VODOPAD\STKTVMain\obj\Debug\STKTVMain.vbprojResolveAssemblyReference.cache

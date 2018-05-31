@@ -383,7 +383,7 @@ Public Class driver
         Dim Frame(10) As Byte
         Dim addr As UInteger
         Dim ch As UInt16
-        Dim pass As Integer
+        Dim pass As Integer = 0
         Dim AddrBuf(8) As Byte
         Dim tryCnt As Integer
         tryCnt = 5
@@ -2223,7 +2223,7 @@ cont:
             Frame(4) = &H2
             Frame(5) = &H2
             Frame(6) = &H10
-            Frame(7) = &H10
+            Frame(7) = 12
             ch = CheckSum(Frame, 0, 8)
             Frame(8) = ch
 
@@ -2264,8 +2264,12 @@ cont:
                         Dim yy As Integer
                         yy = ((b(15) And &HF0) >> 4) * 10 + (b(15) And &HF)
 
+                        Try
+                            d = New DateTime(2000 + yy, mn, dd, hh, mm, ss)
+                        Catch ex As Exception
+                            d = DateAndTime.Now
+                        End Try
 
-                        d = New DateTime(2000 + yy, mn, dd, hh, mm, ss)
                         Return d
                     End If
 

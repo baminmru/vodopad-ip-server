@@ -1,5 +1,5 @@
-<Config DataSource="APER3"
-Oracle="//192.168.9.36:1521/APER3.astrum.local"
+<Config DataSource="FANTOM"
+Oracle="//192.168.9.46:1521/ORA11FAN"
 UserID="COUNTERS"
 Password="counters"
 TimeOut="1000"
@@ -8,5 +8,8 @@ RequestInterval="55000"
 ShowHidden ="false"
 SendToTGK ="true"
 AutoOpen="d"
+WEBPATH="C:\bami\web\rpt"
+WWWPATH="/rpt"
+MASKPATH="C:\bin\VODOPAD-IP\Masks\Luda"  
 >
 </Config>

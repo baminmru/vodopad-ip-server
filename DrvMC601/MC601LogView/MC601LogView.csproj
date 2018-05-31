@@ -51,32 +51,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Infragistics4.Documents.Core.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\Infragistics\2014.2\Windows Forms\CLR4.0\Bin\Infragistics4.Documents.Core.v14.2.dll</HintPath>
-      <Name>Infragistics4.Documents.Core.v14.2</Name>
-    </Reference>
-    <Reference Include="Infragistics4.Documents.Excel.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\Infragistics\2014.2\Windows Forms\CLR4.0\Bin\Infragistics4.Documents.Excel.v14.2.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Shared.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
-    <Reference Include="Infragistics4.Win.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\Infragistics\2014.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.v14.2.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.Misc.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\Infragistics\2014.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.Misc.v14.2.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinChart.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\Infragistics\2014.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinChart.v14.2.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinPrintPreviewDialog.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\Infragistics\2014.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinPrintPreviewDialog.v14.2.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinGrid.ExcelExport.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\Infragistics\2014.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinGrid.ExcelExport.v14.2.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinGrid.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\Infragistics\2014.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinGrid.v14.2.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System" />
@@ -86,18 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
-    <Compile Include="HourLogDataSet.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="LiveLogDataSet.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="HourLogDataSet.cs" />
+    <Compile Include="LiveLogDataSet.cs" />
     <Compile Include="FrmMC601LogView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="YearLogDataSet.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="YearLogDataSet.cs" />
     <Compile Include="FrmContact.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,9 +76,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ERegisterType.cs" />
-    <Compile Include="MonthLogDataSet.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="MonthLogDataSet.cs" />
     <Compile Include="FormLoadingData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,12 +98,7 @@
     <Compile Include="FrmQuickFigure.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmGraph.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DayLogDataSet.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="DayLogDataSet.cs" />
     <Compile Include="FrmMC601LogInfoViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,9 +112,7 @@
     <Compile Include="FrmSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="KMPLogDataSet.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="KMPLogDataSet.cs" />
     <Compile Include="eHourLogType.cs" />
     <Compile Include="FrmHourLogSelecter.cs">
       <SubType>Form</SubType>
@@ -173,7 +132,6 @@
     <EmbeddedResource Include="FormLoadingData.resx" />
     <EmbeddedResource Include="FrmContact.resx" />
     <EmbeddedResource Include="FrmDayLogger.resx" />
-    <EmbeddedResource Include="FrmGraph.resx" />
     <EmbeddedResource Include="FrmHourLogSelecter.resx" />
     <EmbeddedResource Include="FrmKMPLogger.resx" />
     <EmbeddedResource Include="FrmKMPLoggerShowLog.resx" />

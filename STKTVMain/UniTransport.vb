@@ -36,7 +36,7 @@ Public MustInherit Class UniTransport
     Protected mSessionID As Guid = Guid.Empty
     Protected Shared m_LogEnabled As Boolean = False
     Protected Shared m_Inited As Boolean = False
-  
+
     Protected Shared Sub Init()
         If m_Inited Then Exit Sub
         Dim xml As XmlDocument
@@ -50,6 +50,7 @@ Public MustInherit Class UniTransport
         Catch
             m_LogEnabled = False
         End Try
+
         m_Inited = True
     End Sub
 
@@ -75,9 +76,11 @@ Public MustInherit Class UniTransport
         If m_LogEnabled Then
             Try
                 System.IO.File.AppendAllText(GetMyDir() + "\LOGS\" + TransportType() + "_LOG_" + Date.Now.ToString("yyyyMMdd") + "_" + SessionID + ".txt", Date.Now.ToString("yyyy.MM.dd HH:mm:ss") + " " + s + vbCrLf)
+
             Catch ex As Exception
 
             End Try
+            Debug.Print(s)
             Console.WriteLine(s)
         End If
     End Sub
@@ -131,6 +134,10 @@ Public MustInherit Class UniTransport
     Public BytesSent As Integer = 0
     Public BytesReceived As Integer = 0
     Public PortBusy As Boolean = False
+
+    Public Sub New(Optional ByVal _LogEnabled As Boolean = False)
+        m_LogEnabled = _LogEnabled
+    End Sub
 
     Public MustOverride Function BytesToRead() As Integer
     Public MustOverride Function Read(ByVal buffer() As Byte, ByVal offset As Integer, ByVal count As Integer) As Integer
@@ -1529,24 +1536,26 @@ Public Class VortexTransport
             CntRead = count
         End If
 
+        LOG(">>r" + CntRead.ToString)
         For i = 0 To CntRead - 1
             buffer(i + offset) = inBuffer(i)
+            LOG(buffer(i + offset).ToString("X02") + " ")
         Next
 
-        Dim bufstr As String = ""
-        Dim j As Integer
-        Try
-            Dim buf2() As Byte
-            buf2 = System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(866), System.Text.Encoding.Default, buffer, offset, count)
-            For j = 0 To CntRead - 1
-                bufstr = bufstr + Chr(buf2(j))
-            Next
-            If bufstr <> "" Then
-                LOG(">>r" + CntRead.ToString + ">>" + bufstr)
-            End If
-        Catch ex As Exception
-            'Stop
-        End Try
+        'Dim bufstr As String = ""
+        'Dim j As Integer
+        'Try
+        '    Dim buf2() As Byte
+        '    buf2 = System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(866), System.Text.Encoding.Default, buffer, offset, count)
+        '    For j = 0 To CntRead - 1
+        '        bufstr = bufstr + Chr(buf2(j))
+        '    Next
+        '    If bufstr <> "" Then
+        '        LOG(">>r" + CntRead.ToString + ">>" + bufstr)
+        '    End If
+        'Catch ex As Exception
+        '    'Stop
+        'End Try
         BytesReceived += CntRead
         SendEvent(UnitransportAction.ReceiveData, "")
         ReadCount -= CntRead
@@ -1580,17 +1589,21 @@ Public Class VortexTransport
         BytesSent += count
 
         'Dim bufstr As String = ""
-        'Dim j As Integer
+        Dim j As Integer
         'Dim buf2() As Byte
         'buf2 = System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(866), System.Text.Encoding.Default, buffer, offset, count)
         'For j = 0 To count - 1
         '    bufstr = bufstr + Chr(buf2(j))
         'Next
         LOG(">>w" + count.ToString) '+ ">>" + bufstr)
+        For j = 0 To count - 1
+            LOG(buffer(offset + j).ToString("X02") + " ")
+        Next
     End Sub
 
     Public Overrides Sub CleanPort()
         ReadCount = 0
+
     End Sub
 End Class
 

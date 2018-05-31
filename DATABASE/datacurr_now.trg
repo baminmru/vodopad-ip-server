@@ -48,7 +48,7 @@ begin
 
   end if;
   --select id_dev into id_dev1 from bdevices where id_bd=:new.id_bd;
-  if (:new.dt12 is null) and (:new.t1 is not null) and (:new.t2 is not null) then
+  if (:new.dt12 is null or :new.dt12=0 ) and (:new.t1 is not null) and (:new.t2 is not null) then
     :new.dt12 := :new.t1 - :new.t2;
   end if;
   if (:new.dt45 is null) and (:new.t4 is not null) and (:new.t5 is not null) then

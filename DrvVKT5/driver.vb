@@ -316,12 +316,12 @@ Public Class driver
     Private Function GetCFG() As Boolean
         Dim Frame(15) As Byte
         Dim ch As UInt16
-        Frame(0) = &H0
-        Frame(1) = &H3
-        Frame(2) = &HA
-        Frame(3) = &H0
-        Frame(4) = &H0
-        Frame(5) = 28
+        Frame(0) = &H0 ' address
+        Frame(1) = &H3 ' function read current
+        Frame(2) = &HA ' configuration
+        Frame(3) = &H0 ' Тепловой ввод
+        Frame(4) = &H0     'param count hi
+        Frame(5) = 28 * 8  'param count low
         ch = CheckSum(Frame, 0, 6)
         Frame(6) = ch Mod 256
         Frame(7) = ch \ 256
@@ -365,7 +365,7 @@ Public Class driver
                         Next
                         If cfgSz >= 56 Then
                             For i = 1 To 8
-                                idx = 7 * (i - 1) + 4
+                                idx = 7 * (i - 1) + 3
                                 If b(idx) > 0 And b(idx) > MaxTvNumber Then
                                     MaxTvNumber = b(idx)
                                 End If

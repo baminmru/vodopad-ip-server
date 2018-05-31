@@ -1,0 +1,14 @@
+D:\SharpMap\Trunk\SharpMap.UI\obj\Debug\ResolveAssemblyReference.cache
+D:\SharpMap\Trunk\SharpMap.UI\bin\Debug\SharpMap.UI.dll
+D:\SharpMap\Trunk\SharpMap.UI\bin\Debug\SharpMap.UI.pdb
+D:\SharpMap\Trunk\SharpMap.UI\bin\Debug\SharpMap.dll
+D:\SharpMap\Trunk\SharpMap.UI\bin\Debug\ProjNet.dll
+D:\SharpMap\Trunk\SharpMap.UI\bin\Debug\Newtonsoft.Json.dll
+D:\SharpMap\Trunk\SharpMap.UI\bin\Debug\BruTile.dll
+D:\SharpMap\Trunk\SharpMap.UI\bin\Debug\SharpMap.pdb
+D:\SharpMap\Trunk\SharpMap.UI\bin\Debug\SharpMap.xml
+D:\SharpMap\Trunk\SharpMap.UI\bin\Debug\ProjNet.pdb
+D:\SharpMap\Trunk\SharpMap.UI\bin\Debug\ProjNet.xml
+D:\SharpMap\Trunk\SharpMap.UI\bin\Debug\Newtonsoft.Json.xml
+D:\SharpMap\Trunk\SharpMap.UI\obj\Debug\SharpMap.UI.dll
+D:\SharpMap\Trunk\SharpMap.UI\obj\Debug\SharpMap.UI.pdb

@@ -516,10 +516,10 @@ namespace MC601LogView
       mc601RegisterViewer.Show();
       if (dataTable.Rows.Count <= 0)
         return;
-      FrmGraph frmGraph = new FrmGraph(this.m_LLDS.CustomerNo.GetCustomerNo());
-      frmGraph.MdiParent = this.MdiParent;
-      frmGraph.SetData(dataTable);
-      frmGraph.Show();
+      //FrmGraph frmGraph = new FrmGraph(this.m_LLDS.CustomerNo.GetCustomerNo());
+      //frmGraph.MdiParent = this.MdiParent;
+      //frmGraph.SetData(dataTable);
+      //frmGraph.Show();
     }
 
     private void Reg1XReg2(UCRegisterCheckBox Reg1, Decimal calcValue, string CalcRule)
@@ -543,10 +543,10 @@ namespace MC601LogView
       mc601RegisterViewer.Show();
       if (dataTable.Rows.Count <= 0)
         return;
-      FrmGraph frmGraph = new FrmGraph(this.m_LLDS.CustomerNo.GetCustomerNo());
-      frmGraph.MdiParent = this.MdiParent;
-      frmGraph.SetData(dataTable);
-      frmGraph.Show();
+      //FrmGraph frmGraph = new FrmGraph(this.m_LLDS.CustomerNo.GetCustomerNo());
+      //frmGraph.MdiParent = this.MdiParent;
+      //frmGraph.SetData(dataTable);
+      //frmGraph.Show();
     }
 
     private static Decimal DoCalculation(Decimal register1, Decimal register2, string CalcRule)
@@ -632,10 +632,10 @@ namespace MC601LogView
       mc601RegisterViewer.Show();
       if (dataTable.Rows.Count <= 0)
         return;
-      FrmGraph frmGraph = new FrmGraph(this.m_LLDS.CustomerNo.GetCustomerNo());
-      frmGraph.MdiParent = this.MdiParent;
-      frmGraph.SetData(dataTable);
-      frmGraph.Show();
+      //FrmGraph frmGraph = new FrmGraph(this.m_LLDS.CustomerNo.GetCustomerNo());
+      //frmGraph.MdiParent = this.MdiParent;
+      //frmGraph.SetData(dataTable);
+      //frmGraph.Show();
     }
 
     private static void CalculateCalculatedRowForRCB(DataRow dr, UCRegisterCheckBox rcb, LiveLogDataSet.RegistersRow row)

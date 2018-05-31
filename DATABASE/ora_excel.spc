@@ -1,10 +1,10 @@
 CREATE OR REPLACE PACKAGE ORA_EXCEL IS
    /*
-    *  ORAEXCEL version 3.1.3
+    *  ORAEXCEL version 3.1.2
     *  Documentation and examples available on http://www.oraexcel.com/documentation
     *
     */
-    license_key VARCHAR2(100):= '3537350066273005';
+    license_key VARCHAR2(100):= '2402328834198812';
 
     /***************************************************************************
     *

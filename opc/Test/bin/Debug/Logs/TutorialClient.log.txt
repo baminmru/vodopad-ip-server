@@ -1,0 +1,13 @@
+
+PID:3276 ************************* Logging started at 08/23/2016 14:45:23 *************************
+3276 - 14:45:23.838 Token #0 created. CreatedAt = 11:45:23.838 . Lifetime = 3600000
+3276 - 14:45:23.885 SECURE CHANNEL CREATED [TcpClientChannel UA-TCP 1.03.340.0] [ID=82423335] Connected To: opc.tcp://192.168.9.109:4841/ [None/None/Binary]
+3276 - 14:45:23.885 Token #1 activated. CreatedAt = 11:45:23.838 . Lifetime = 3600000
+3276 - 14:45:23.931 TCPCLIENTCHANNEL SOCKET CLOSED: 00000548, ChannelId=82423335
+3276 - 14:45:23.978 Token #0 created. CreatedAt = 11:45:23.978 . Lifetime = 3600000
+3276 - 14:45:23.978 SECURE CHANNEL CREATED [TcpClientChannel UA-TCP 1.03.340.0] [ID=82423336] Connected To: opc.tcp://192.168.9.109:4841/ [None/None/Binary]
+3276 - 14:45:23.978 Token #1 activated. CreatedAt = 11:45:23.978 . Lifetime = 3600000
+3276 - 14:45:23.994 Revised session timeout value: 60000. 
+3276 - 14:45:23.994 Max response message size value: 4194304. Max request message size: 0 
+3276 - 14:45:23.994 Server signature is null or empty.
+3276 - 14:45:24.010 Empty results were received for the ActivateSession call.

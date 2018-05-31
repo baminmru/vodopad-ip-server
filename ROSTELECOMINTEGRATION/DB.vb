@@ -3,7 +3,7 @@ Imports System.IO
 Imports System.Reflection
 Imports System.Xml
 Imports System.Data
-Imports Oracle.ManagedDataAccess.Client
+Imports Oracle.DataAccess.Client
 Imports Oracle.DataAccess.Types
 
 Public Class DB

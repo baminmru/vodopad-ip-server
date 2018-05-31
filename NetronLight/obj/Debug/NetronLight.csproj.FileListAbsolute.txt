@@ -57,10 +57,3 @@ C:\bami\VODOPAD\NetronLight\obj\Debug\NetronLight.GraphControl.resources
 C:\bami\VODOPAD\NetronLight\obj\Debug\NetronLight.csproj.GenerateResource.Cache
 C:\bami\VODOPAD\NetronLight\obj\Debug\NetronLight.dll
 C:\bami\VODOPAD\NetronLight\obj\Debug\NetronLight.pdb
-C:\bami\projects\AREAL\VODOPAD\Generated\Generated Dlls\NetronLight.dll
-C:\bami\projects\AREAL\VODOPAD\Generated\Generated Dlls\NetronLight.pdb
-C:\bami\projects\AREAL\VODOPAD\NetronLight\obj\Debug\NetronLight.GraphControl.resources
-C:\bami\projects\AREAL\VODOPAD\NetronLight\obj\Debug\NetronLight.csproj.GenerateResource.Cache
-C:\bami\projects\AREAL\VODOPAD\NetronLight\obj\Debug\NetronLight.dll
-C:\bami\projects\AREAL\VODOPAD\NetronLight\obj\Debug\NetronLight.pdb
-C:\bami\projects\AREAL\VODOPAD\NetronLight\obj\Debug\NetronLight.csprojResolveAssemblyReference.cache

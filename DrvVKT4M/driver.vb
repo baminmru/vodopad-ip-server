@@ -53,7 +53,7 @@ Public Class Driver
     End Property
 
     Public Overrides Function CounterName() As String
-        Return "VKT4"
+        Return "VKT4M"
     End Function
 
     Public Function GetAndProcessData() As String
@@ -528,7 +528,7 @@ finalRet:
                     Arch.M1 = FloatExt(Mid(hourstr, Adr + &H10, 4))
                     Arch.M2 = FloatExt(Mid(hourstr, Adr + &H14, 4))
                     Arch.M3 = FloatExt(Mid(hourstr, Adr + &H18, 4))
-                    Arch.M3 = FloatExt(Mid(hourstr, Adr + &H1C, 4))
+                    Arch.M4 = FloatExt(Mid(hourstr, Adr + &H1C, 4))
 
                     Arch.T1 = ExtLong2(Mid(hourstr, Adr + &H20, 2)) / 100.0
                     Arch.T2 = ExtLong2(Mid(hourstr, Adr + &H22, 2)) / 100.0
@@ -641,7 +641,7 @@ finalRet:
                     Arch.M1 = FloatExt(Mid(hourstr, Adr + &H10, 4))
                     Arch.M2 = FloatExt(Mid(hourstr, Adr + &H14, 4))
                     Arch.M3 = FloatExt(Mid(hourstr, Adr + &H18, 4))
-                    Arch.M3 = FloatExt(Mid(hourstr, Adr + &H1C, 4))
+                    Arch.M4 = FloatExt(Mid(hourstr, Adr + &H1C, 4))
 
                     Arch.T1 = ExtLong2(Mid(hourstr, Adr + &H20, 2)) / 100.0
                     Arch.T2 = ExtLong2(Mid(hourstr, Adr + &H22, 2)) / 100.0
@@ -714,7 +714,7 @@ finalRet:
 
                 str = ""
                 For i = 5 To ret - 2
-                    str = str + Hex(buf(i)) + " "
+                    str = str & Chr(buf(i))
                 Next
 
 
@@ -829,7 +829,7 @@ finalRet:
         bArr(9) = (256 - ((Int(bArr(1)) + Int(bArr(2)) + Int(bArr(3)) + Int(bArr(4)) + Int(bArr(5)) + Int(bArr(6)) + Int(bArr(7)) + Int(bArr(8)))) Mod 256) Mod 256
         bArr(10) = &H16
         IsmArchToRead = True
-        clearMarchive(mArch)
+        clearMArchive(mArch)
         EraseInputQueue()
 
         WillCountToRead = 18 + 7
@@ -886,7 +886,7 @@ finalRet:
         bArr(9) = (256 - ((Int(bArr(1)) + Int(bArr(2)) + Int(bArr(3)) + Int(bArr(4)) + Int(bArr(5)) + Int(bArr(6)) + Int(bArr(7)) + Int(bArr(8)))) Mod 256) Mod 256
         bArr(10) = &H16
         IsTArchToRead = True
-        clearTarchive(tArch)
+        clearTArchive(tArch)
         EraseInputQueue()
 
 
@@ -1052,16 +1052,18 @@ finalRet:
     End Function
 
     Private Function BCD3(ByVal B As String) As String
-       
-       
-        Return BCD(Mid(B, 1, 1)) & BCD(Mid(B, 2, 1)) & BCD(Mid(B, 3, 1))
+
+
+        Return BCD(Mid(B, 3, 1)) & BCD(Mid(B, 2, 1)) & BCD(Mid(B, 1, 1))
     End Function
 
-   Public Overrides Sub EraseInputQueue()
+    Public Overrides Sub EraseInputQueue()
 
         bufferindex = 0
         System.Threading.Thread.Sleep(150)
         MyTransport.CleanPort()
     End Sub
+
+
 
 End Class

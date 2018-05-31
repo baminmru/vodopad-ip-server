@@ -101,3 +101,7 @@ C:\bami\Service_2.2_oracle_provider_main\TGKSender2\bin\Release\puteclient.dll
 C:\bami\Service_2.2_oracle_provider_main\TGKSender2\obj\Release\TGKSender.vbprojResolveAssemblyReference.cache
 C:\bami\Service_2.2_oracle_provider_main\TGKSender2\obj\Release\TGKSender.Resources.resources
 C:\bami\Service_2.2_oracle_provider_main\TGKSender2\obj\Release\TGKSender.vbproj.GenerateResource.Cache
+C:\bami\VODOPAD\TGKSender2\bin\Release\TGKSender.exe.config
+C:\bami\VODOPAD\TGKSender2\obj\Release\TGKSender.exe
+C:\bami\VODOPAD\TGKSender2\obj\Release\TGKSender.xml
+C:\bami\VODOPAD\TGKSender2\obj\Release\TGKSender.pdb

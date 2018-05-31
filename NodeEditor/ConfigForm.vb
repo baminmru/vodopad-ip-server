@@ -1,6 +1,6 @@
 Imports System.IO
 Imports System.Windows.Forms
-Imports Oracle.ManagedDataAccess.Client
+Imports Oracle.DataAccess.Client
 Imports System.Drawing
 
 Public Class ConfigForm

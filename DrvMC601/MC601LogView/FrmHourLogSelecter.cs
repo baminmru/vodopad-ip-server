@@ -294,11 +294,11 @@ namespace MC601LogView
       mc601RegisterViewer.Show();
       if (dataTable.Rows.Count <= 0)
         return;
-      FrmGraph frmGraph = new FrmGraph(this.m_HLDS.CustomerNo.GetCustomerNo());
-      frmGraph.MdiParent = this.MdiParent;
-      frmGraph.ShowTime = true;
-      frmGraph.SetData(dataTable);
-      frmGraph.Show();
+      //FrmGraph frmGraph = new FrmGraph(this.m_HLDS.CustomerNo.GetCustomerNo());
+      //frmGraph.MdiParent = this.MdiParent;
+      //frmGraph.ShowTime = true;
+      //frmGraph.SetData(dataTable);
+      //frmGraph.Show();
     }
 
     private static void CalculateCalculatedRowForRCB(DataRow dr, UCRegisterCheckBox rcb, HourLogDataSet.RegistersRow row)
@@ -934,11 +934,11 @@ namespace MC601LogView
       mc601RegisterViewer.Show();
       if (dataTable.Rows.Count <= 0)
         return;
-      FrmGraph frmGraph = new FrmGraph(this.m_HLDS.CustomerNo.GetCustomerNo());
-      frmGraph.MdiParent = this.MdiParent;
-      frmGraph.ShowTime = true;
-      frmGraph.SetData(dataTable);
-      frmGraph.Show();
+      //FrmGraph frmGraph = new FrmGraph(this.m_HLDS.CustomerNo.GetCustomerNo());
+      //frmGraph.MdiParent = this.MdiParent;
+      //frmGraph.ShowTime = true;
+      //frmGraph.SetData(dataTable);
+      //frmGraph.Show();
     }
 
     private void Reg1XReg2(UCRegisterCheckBox Reg1, Decimal calcValue, string CalcRule)
@@ -963,11 +963,11 @@ namespace MC601LogView
       mc601RegisterViewer.Show();
       if (dataTable.Rows.Count <= 0)
         return;
-      FrmGraph frmGraph = new FrmGraph(this.m_HLDS.CustomerNo.GetCustomerNo());
-      frmGraph.MdiParent = this.MdiParent;
-      frmGraph.ShowTime = true;
-      frmGraph.SetData(dataTable);
-      frmGraph.Show();
+      //FrmGraph frmGraph = new FrmGraph(this.m_HLDS.CustomerNo.GetCustomerNo());
+      //frmGraph.MdiParent = this.MdiParent;
+      //frmGraph.ShowTime = true;
+      //frmGraph.SetData(dataTable);
+      //frmGraph.Show();
     }
 
     private void btnAddToRegs_Click(object sender, EventArgs e)
