@@ -3,3 +3,4 @@
 *.dll
 *.exe
 */bin
+/DebugSTKService/bin/Debug
