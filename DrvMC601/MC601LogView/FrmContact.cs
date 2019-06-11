@@ -19,7 +19,7 @@ namespace MC601LogView
     private Label label1;
     private Label label2;
     private PictureBox pictureBox1;
-    private LinkLabel linkLabel1;
+    private LinkLabel linkLabel1;f
 
     public FrmContact()
     {

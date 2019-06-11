@@ -1,7 +1,7 @@
 create sequence IPADDR_SEQ
 minvalue 1
 maxvalue 9999
-start with 79
+start with 80
 increment by 1
 nocache;
 

@@ -118,13 +118,8 @@ Module STKPublic
                 dt1 = TvMain.QuerySelect("select bdevices.id_bd, npquery,cstatus,transport,coldwater from bdevices join  plancall on bdevices.id_bd=plancall.id_bd where bdevices.id_bd=" & dt.Rows(i).Item("ID_BD").ToString)
                 dt2 = TvMain.QuerySelect("select * from analizer where id_bd=" & dt.Rows(i).Item("ID_BD").ToString)
                 If dt1.Rows.Count > 0 Then
-                    If dt1.Rows(0)("transport") = 0 Then
-                        TempNode = lv.Items.Add(Nothing, dt.Rows(i).Item("NodeName").ToString())
-                        TempNode.Tag = dt.Rows(i).Item("ID_BD")
-                    Else
-                        TempNode = lv.Items.Add(Nothing, dt.Rows(i).Item("NodeName").ToString())
-                        TempNode.Tag = dt.Rows(i).Item("ID_BD")
-                    End If
+                    TempNode = lv.Items.Add(Nothing, dt.Rows(i).Item("NodeName").ToString())
+                    TempNode.Tag = dt.Rows(i).Item("ID_BD")
                 End If
 
                 Dim bcolor As System.Drawing.Color = Color.White
@@ -169,7 +164,7 @@ Module STKPublic
                     Select Case CInt(dt1.Rows(0)("transport"))
                         Case 0, 1
                             TempNode.Appearance.Image = 1 + cw
-                        Case 2, 3, 9
+                        Case 2, 3, 9, 10
                             TempNode.Appearance.Image = 2 + cw
                         Case 4
                             TempNode.Appearance.Image = 4 + cw
@@ -178,11 +173,6 @@ Module STKPublic
                         Case Else
                             TempNode.Appearance.Image = 1 + cw
                     End Select
-                    'If dt1.Rows(0)("transport") = 0 Then
-                    '    TempNode.Appearance.Image = 1 + cw
-                    'Else
-                    '    TempNode.Appearance.Image = 2 + cw
-                    'End If
 
 
 

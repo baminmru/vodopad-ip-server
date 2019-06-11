@@ -177,7 +177,6 @@ C:\bami\VODOPAD\LogMonitor\bin\Debug\STKTVMain.dll
 C:\bami\VODOPAD\LogMonitor\bin\Debug\Oracle.DataAccess.dll
 C:\bami\VODOPAD\LogMonitor\bin\Debug\STKTVMain.pdb
 C:\bami\VODOPAD\LogMonitor\bin\Debug\STKTVMain.xml
-C:\bami\VODOPAD\LogMonitor\obj\x86\Debug\LogMonitor.vbprojResolveAssemblyReference.cache
 C:\bami\VODOPAD\LogMonitor\obj\x86\Debug\LogMonitor.Form1.resources
 C:\bami\VODOPAD\LogMonitor\obj\x86\Debug\LogMonitor.Resources.resources
 C:\bami\VODOPAD\LogMonitor\obj\x86\Debug\LogMonitor.SplashScreen1.resources
@@ -185,3 +184,4 @@ C:\bami\VODOPAD\LogMonitor\obj\x86\Debug\LogMonitor.vbproj.GenerateResource.Cach
 C:\bami\VODOPAD\LogMonitor\obj\x86\Debug\LogMonitor.exe
 C:\bami\VODOPAD\LogMonitor\obj\x86\Debug\LogMonitor.xml
 C:\bami\VODOPAD\LogMonitor\obj\x86\Debug\LogMonitor.pdb
+C:\bami\VODOPAD\LogMonitor\obj\x86\Debug\LogMonitor.vbprojResolveAssemblyReference.cache

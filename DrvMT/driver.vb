@@ -9,153 +9,7 @@ Imports System.Threading
 #Region "Srtuctures"
 
 
-'Public Structure MArchive
-'    Public DateArch As DateTime
-'    Public HC As Int32
-'    Public MsgHC As String
 
-'    Public HCtv1 As Long
-'    Public MsgHC_1 As String
-
-'    Public HCtv2 As Long
-'    Public MsgHC_2 As String
-
-'    Public G1 As Single
-'    Public G2 As Single
-'    Public G3 As Single
-'    Public G4 As Single
-'    Public G5 As Single
-'    Public G6 As Single
-
-'    Public t1 As Single
-'    Public t2 As Single
-'    Public t3 As Single
-'    Public t4 As Single
-'    Public t5 As Single
-'    Public t6 As Single
-
-'    Public p1 As Single
-'    Public p2 As Single
-'    Public p3 As Single
-'    Public p4 As Single
-'    Public p5 As Single
-
-'    Public dt12 As Single
-'    Public dt45 As Single
-
-'    Public tx1 As Single
-'    Public tx2 As Single
-
-'    Public tair1 As Single
-'    Public tair2 As Single
-
-'    Public SP As Long
-'    Public SPtv1 As Long
-'    Public SPtv2 As Long
-
-'    Public dQ1 As Single
-'    Public dQ2 As Single
-
-
-'    Public archType As Short
-'End Structure
-
-'Public Structure Archive
-'    Public DateArch As DateTime
-'    Public Errtime As Long
-'    Public ErrtimeH As Long
-'    Public oktime As Long
-'    Public HC As Long
-'    Public MsgHC As String
-
-'    Public HCtv1 As Long
-'    Public MsgHC_1 As String
-
-'    Public HCtv2 As Long
-'    Public MsgHC_2 As String
-
-'    Public Tw1 As Single
-'    Public Tw2 As Single
-
-'    Public P1 As Single
-'    Public T1 As Single
-'    Public M2 As Single
-'    Public V1 As Single
-
-'    Public P2 As Single
-'    Public T2 As Single
-'    Public M3 As Single
-'    Public V2 As Single
-
-'    Public V3 As Single
-'    Public M1 As Single
-
-'    Public Q1 As Single
-'    Public Q2 As Single
-
-'    Public QG1 As Single
-'    Public QG2 As Single
-
-'    Public SP As Long
-'    Public SPtv1 As Long
-'    Public SPtv2 As Long
-
-'    Public tx1 As Long
-'    Public tx2 As Long
-'    Public tair1 As Long
-'    Public tair2 As Long
-
-'    Public T3 As Single
-'    Public T4 As Single
-'    Public T5 As Single
-'    Public T6 As Single
-'    Public P3 As Single
-'    Public P4 As Single
-'    Public P5 As Single
-'    Public v4 As Single
-'    Public v5 As Single
-'    Public v6 As Single
-'    Public M4 As Single
-'    Public M5 As Single
-'    Public M6 As Single
-'    Public V1h As Double
-'    Public V2h As Double
-'    Public V4h As Double
-'    Public V5h As Double
-'    Public Q1H As Double
-'    Public Q2H As Double
-
-'    Public archType As Short
-'End Structure
-
-'Public Structure TArchive
-'    Public DateArch As DateTime
-
-
-'    Public V1 As Double
-'    Public V2 As Double
-'    Public V3 As Double
-'    Public V4 As Double
-'    Public V5 As Double
-'    Public V6 As Double
-
-'    Public M1 As Double
-'    Public M2 As Double
-'    Public M3 As Double
-'    Public M4 As Double
-'    Public M5 As Double
-'    Public M6 As Double
-'    Public Q1 As Double
-'    Public Q2 As Double
-
-'    Public TW1 As Double
-'    Public TW2 As Double
-'    Public Q3 As Double
-'    Public Q4 As Double
-'    Public HC As Int32
-
-'    Public archType As Short
-'End Structure
 
 
 'Смещение	Размер поля (в байтах)	Название	Тип значения	Диапазон	Единицы измерения	Примечание
@@ -267,7 +121,7 @@ Public Class DataPass
         Dim sBuilder As New StringBuilder()
 
         ' Loop through each byte of the hashed data 
-        ' and format each one as a hexadecimal string.
+        ' and NanFormat each one as a hexadecimal string.
         Dim i As Integer
         For i = 0 To data.Length - 1
             sBuilder.Append(data(i).ToString("x2"))
@@ -704,7 +558,7 @@ Public Class driver
         Try
 
 
-            cleararchive(Arch)
+            clearArchive(Arch)
             EraseInputQueue()
             Dim d1 As DArch, d2 As DArch
             Dim h1 As HArch, h2 As HArch
@@ -778,7 +632,7 @@ Public Class driver
 
                             Arch.ERRTIME1 = CLng(h2.CrashTime) - CLng(h1.CrashTime)
                             Arch.OKTIME1 = 60 - Arch.ERRTIME1
-                            Arch.ErrtimeH = h2.CrashTime
+                            Arch.ERRTIMEH = h2.CrashTime
                             ok = True
                         Else
                             ok = False
@@ -844,7 +698,7 @@ Public Class driver
                                 Arch.P5 = d2.P4
                             End If
                             Arch.ERRTIME1 = CLng(d2.CrashTime) - CLng(d1.CrashTime)
-                            Arch.ErrtimeH = d2.CrashTime
+                            Arch.ERRTIMEH = d2.CrashTime
                             Arch.OKTIME1 = 1440 - Arch.ERRTIME1
                             ok = True
                         Else
@@ -1756,20 +1610,20 @@ loadbuf:
         '0xD3 к4	SINGLE	Мгновенные	P4
         '0xD3 к5	SINGLE	Мгновенные	P5
 
-        clearMarchive(mArch)
+        clearMArchive(mArch)
         Dim str As String
         Dim ok As Boolean = False
         str = ReadCommand(&H31, 1)
 
-        If Left(str, 5) <> "Error" Then mArch.G1 = Val(str) : ok = True
+        If Left(str, 5) <> "Error" Then mArch.M1 = Val(str) : ok = True
         str = ReadCommand(&H31, 2)
-        If Left(str, 5) <> "Error" Then mArch.G2 = Val(str) : ok = True
+        If Left(str, 5) <> "Error" Then mArch.M2 = Val(str) : ok = True
         str = ReadCommand(&H31, 3)
-        If Left(str, 5) <> "Error" Then mArch.G3 = Val(str) : ok = True
+        If Left(str, 5) <> "Error" Then mArch.M3 = Val(str) : ok = True
         str = ReadCommand(&H31, 4)
-        If Left(str, 5) <> "Error" Then mArch.G4 = Val(str) : ok = True
+        If Left(str, 5) <> "Error" Then mArch.M4 = Val(str) : ok = True
         str = ReadCommand(&H31, 5)
-        If Left(str, 5) <> "Error" Then mArch.G5 = Val(str) : ok = True
+        If Left(str, 5) <> "Error" Then mArch.M5 = Val(str) : ok = True
         str = ReadCommand(&H34, 1)
         If Left(str, 5) <> "Error" Then mArch.t1 = Val(str) : ok = True
         str = ReadCommand(&H34, 2)
@@ -1782,12 +1636,22 @@ loadbuf:
         If Left(str, 5) <> "Error" Then mArch.t5 = Val(str) : ok = True
         str = ReadCommand(&H35, 255)
         If Left(str, 5) <> "Error" Then mArch.dt12 = Val(str) : ok = True
+
+
         str = ReadCommand(&H61, 255)
-        If Left(str, 5) <> "Error" Then mArch.G3 = Val(str) : ok = True
+        If Left(str, 5) <> "Error" Then
+            mArch.M3 = Val(str)
+            If Not Single.IsNaN(mArch.M3) Then
+                mArch.M3 = mArch.M3 / 1000
+            End If
+            ok = True
+        End If
+
+
         str = ReadCommand(&HA5, 1)
-        If Left(str, 5) <> "Error" Then mArch.dQ1 = Val(str) : ok = True
+        If Left(str, 5) <> "Error" Then mArch.Q1 = Val(str) : ok = True
         str = ReadCommand(&HA5, 2)
-        If Left(str, 5) <> "Error" Then mArch.dQ2 = Val(str) : ok = True
+        If Left(str, 5) <> "Error" Then mArch.Q2 = Val(str) : ok = True
 
         str = ReadCommand(&HD1, 2)
         If Left(str, 5) <> "Error" Then mArch.tx1 = Val(str) : ok = True
@@ -1861,13 +1725,7 @@ loadbuf:
         End Set
     End Property
 
-    Public Function ReadFlashSync(ByVal fistpage As Integer, ByVal ReadPageCount As Integer) As String
-        Return ""
-    End Function
 
-    Public Function ReadRAMSync(ByVal fistbyte As Integer, ByVal byteCount As Integer) As String
-        Return ""
-    End Function
 
 
 
@@ -1875,7 +1733,7 @@ loadbuf:
         Dim bArr(0 To 8) As Byte
         Dim temptv As Short
         temptv = tv
-        clearTarchive(tArch)
+        clearTArchive(tArch)
         EraseInputQueue()
 
         '0x30 т1	SINGLE	Итоговые	Q1	Значение Объемного расхода канал 1
@@ -1910,9 +1768,16 @@ loadbuf:
         str = ReadCommand(&H39, 255)
         If Left(str, 5) <> "Error" Then tArch.WORKTIME1 = Val(str) : ok = True
         str = ReadCommand(&H3A, 255)
-        If Left(str, 5) <> "Error" Then tArch.WORKTIME2 = Val(str) : ok = True
+        If Left(str, 5) <> "Error" Then tArch.ERRTIME1 = Val(str) : ok = True
         str = ReadCommand(&H63, 255)
         If Left(str, 5) <> "Error" Then tArch.Q4 = Val(str) : ok = True
+
+        tArch.OKTIME1 = tArch.WORKTIME1
+        tArch.M1 = tArch.V1
+        tArch.M2 = tArch.V2
+        tArch.M3 = tArch.V3
+        tArch.M4 = tArch.V4
+        tArch.M5 = tArch.V5
 
         tArch.DateArch = DateTime.Now
         Try
@@ -2833,7 +2698,200 @@ loadbuf:
     End Property
 
 
+    Public Overrides Function WriteMArchToDB() As String
+        Dim s As String
+        s = ""
+        Try
+            s = "INSERT INTO DATACURR(id_bd, id_ptype,DCALL,DCOUNTER,DATECOUNTER,t1,t2,t3,t4,t5,t6,v1,v2,v3,M1,M2,M3,M4,M5,P1,P2,P3,P4,P5,q1,q2,q3,dt12,dt45,sp_TB1,sp_TB2,tce1,tce2,tair1,tair2,hc_code,hc,hc_1,hc_2,hcraw) values ("
+            s = s + DeviceID.ToString() + ","
+            s = s + "1,"
+            s = s + "SYSDATE" + ","
+            s = s + OracleDate(mArch.DateArch) + ","
+            s = s + OracleDate(mArch.DateArch) + ","
+            s = s + NanFormat(mArch.t1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.t2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.t3, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.t4, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.t5, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.t6, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.V1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.V2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.V3, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.M1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.M2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.M3, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.M4, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.M5, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.p1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.p2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.p3, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.p4, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.p5, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.Q1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.Q2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.Q3, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.dt12, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.dt45, "##############0.000000").Replace(",", ".") + ","
+            s = s + mArch.SPtv1.ToString + ","
+            s = s + mArch.SPtv2.ToString + ","
+            s = s + NanFormat(mArch.tx1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.tx2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.tair1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(mArch.tair2, "##############0.000000").Replace(",", ".") + ","
 
+
+
+            If DeCodeHCNumber(mArch.HC) = "0000000000000000" Then
+                s = s + "'-','Нет НС',"
+                s = s + "'Нет НС',"
+                s = s + "'Нет НС'"
+            Else
+                s = s + "'" + DeCodeHCNumber(mArch.HC) + "','" + S180(DeCodeHCText(mArch.HC)) + "',"
+
+                s = s + "'" + S180(DeCodeHCText(mArch.HC)) + "',"
+                s = s + "'" + S180(DeCodeHCText(mArch.HC)) + "'"
+            End If
+
+            s = s + "," + "'" + mArch.HC.ToString().Replace(",", ".") + "'"
+            s = s + ")"
+        Catch
+        End Try
+        Return s
+    End Function
+
+    Public Overrides Function WriteArchToDB() As String
+
+        Dim s As String
+        s = ""
+        Try
+            s = "INSERT INTO DATACURR(id_bd, id_ptype,DCALL,DCOUNTER,DATECOUNTER,t1,t2,t3,t4,t5,t6,tce1,tce2,tair1,tair2,p1,p2,p3,p4,v1,v2,v3,v4,v5,v6,m1,m2,m3,m4,m5,m6,dm12,V1H,V2H,V5H,V4H,q1h,q2h,sp_TB1,sp_TB2,q1,q2,q3,q4,q5,TSUM1,TSUM2,hc_code,hc,errtime, errtimeh,worktime,oktime,hcraw) values ("
+            s = s + "'" + DeviceID.ToString() + "',"
+            s = s + "'" + Arch.archType.ToString() + "',"
+            s = s + "SYSDATE" + ","
+            s = s + OracleDate(Arch.DateArch) + ","
+            s = s + OracleDate(Arch.DateArch) + ","
+            s = s + NanFormat(Arch.T1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.T2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.T3, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.T4, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.T5, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.T6, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.tx1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.tx2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.tair1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.tair2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.P1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.P2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.P3, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.P4, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.V1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.V2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.V3, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.v4, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.v5, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.v6, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.M1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.M2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.M3, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.M4, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.M5, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.M6, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.M1 - Arch.M2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.V1H, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.V2H, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.V3H, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.v4H, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.Q1H, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.Q2H, "##############0.000000").Replace(",", ".") + ","
+            s = s + Arch.SPtv1.ToString + ","
+            s = s + Arch.SPtv2.ToString + ","
+            s = s + NanFormat(Arch.Q1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.Q2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.Q3, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.Q4, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.Q5, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.WORKTIME1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(Arch.WORKTIME2, "##############0.000000").Replace(",", ".") + ","
+
+
+            If DeCodeHCNumber(Arch.HC) = "0000000000000000" Then
+                s = s + "'','Нет НС'"
+            Else
+                s = s + "'" + S180(DeCodeHCNumber(Arch.HC)) + "','" + S180(DeCodeHCNumber(Arch.HC) + " " + DeCodeHCText(Arch.HC)) + "'"
+            End If
+            s = s + "," + NanFormat(Arch.ERRTIME1, "##############0").Replace(",", ".")
+
+            s = s + "," + NanFormat(Arch.ERRTIMEH, "##############0").Replace(",", ".")
+            s = s + "," + NanFormat(Arch.OKTIME1, "##############0.000000").Replace(",", ".")
+            s = s + "," + NanFormat(Arch.OKTIME1, "##############0.000000").Replace(",", ".")
+            s = s + "," + "'" + Arch.HC.ToString().Replace(",", ".") + "'"
+            s = s + ")"
+            Debug.Print(s)
+        Catch
+        End Try
+        Return s
+    End Function
+
+
+
+    Public Overrides Function WriteTarchToDB() As String
+
+        Dim s As String
+        s = ""
+        Try
+            s = "INSERT INTO DATACURR(id_bd, id_ptype,DCALL,DCOUNTER,DATECOUNTER,t1,t2,t3,t4,t5,t6,p1,p2,p3,p4,v1,v2,v3,v4,v5,v6,m1,m2,m3,m4,m5,m6,dm12,q1,q2,q3,q4,q5,TSUM1,TSUM2,hc_code,hc,errtime, worktime,oktime,hcraw) values ("
+            s = s + "'" + DeviceID.ToString() + "',"
+            s = s + "'2',"
+            s = s + "SYSDATE" + ","
+            s = s + OracleDate(tArch.DateArch) + ","
+            s = s + OracleDate(tArch.DateArch) + ","
+            s = s + NanFormat(tArch.T1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.T2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.T3, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.T4, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.T5, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.T6, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.P1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.P2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.P3, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.P4, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.V1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.V2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.V3, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.V4, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.V5, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.V6, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.M1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.M2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.M3, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.M4, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.M5, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.M6, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.M1 - tArch.M2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.Q1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.Q2, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.Q3, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.Q4, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.Q5, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.WORKTIME1, "##############0.000000").Replace(",", ".") + ","
+            s = s + NanFormat(tArch.WORKTIME2, "##############0.000000").Replace(",", ".") + ","
+
+
+            If DeCodeHCNumber(tArch.HC) = "0000000000000000" Then
+                s = s + "'','Нет НС'"
+            Else
+                s = s + "'" + S180(DeCodeHCNumber(tArch.HC)) + "','" + S180(DeCodeHCNumber(tArch.HC) + " " + DeCodeHCText(tArch.HC)) + "'"
+            End If
+            s = s + "," + NanFormat(tArch.ERRTIME1, "##############0").Replace(",", ".")
+            s = s + "," + NanFormat(tArch.WORKTIME1, "##############0.000000").Replace(",", ".")
+            s = s + "," + NanFormat(tArch.OKTIME1, "##############0.000000").Replace(",", ".")
+            s = s + "," + "'" + tArch.HC.ToString().Replace(",", ".") + "'"
+            s = s + ")"
+            Debug.Print(s)
+        Catch
+        End Try
+        Return s
+    End Function
 
 
 End Class

@@ -1,7 +1,7 @@
 create sequence HCMESSAGES_SEQ
 minvalue 0
 maxvalue 9999999999
-start with 9699076
+start with 10005856
 increment by 1
 cache 20;
 

@@ -517,7 +517,7 @@ finalRet:
                 Arch.M1 = FloatExt(Mid(hourstr, Adr + 4 * 4, 4))
                 Arch.M2 = FloatExt(Mid(hourstr, Adr + 4 * 5, 4))
                 Arch.M3 = FloatExt(Mid(hourstr, Adr + 4 * 6, 4))
-                Arch.M3 = FloatExt(Mid(hourstr, Adr + 4 * 7, 4))
+                Arch.M4 = FloatExt(Mid(hourstr, Adr + 4 * 7, 4))
 
                 Arch.T1 = ExtLong2(Mid(hourstr, Adr + 4 * 8, 2)) / 100.0
                 Arch.T2 = ExtLong2(Mid(hourstr, Adr + 4 * 8 + 2, 2)) / 100.0
@@ -564,7 +564,7 @@ finalRet:
                 Arch.M1 = FloatExt(Mid(hourstr, Adr + 4 * 4, 4))
                 Arch.M2 = FloatExt(Mid(hourstr, Adr + 4 * 5, 4))
                 Arch.M3 = FloatExt(Mid(hourstr, Adr + 4 * 6, 4))
-                Arch.M3 = FloatExt(Mid(hourstr, Adr + 4 * 7, 4))
+                Arch.M4 = FloatExt(Mid(hourstr, Adr + 4 * 7, 4))
 
                 Arch.T1 = ExtLong2(Mid(hourstr, Adr + 4 * 8, 2)) / 100.0
                 Arch.T2 = ExtLong2(Mid(hourstr, Adr + 4 * 8 + 2, 2)) / 100.0

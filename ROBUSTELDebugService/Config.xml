@@ -1,5 +1,5 @@
-<Config DataSource="29f"
-Oracle="//192.168.9.146:1521/xe"
+<Config DataSource="APER3"
+Oracle="APER3"
 UserID="COUNTERS"
 Password="counters" 
 TimeOut="1000"

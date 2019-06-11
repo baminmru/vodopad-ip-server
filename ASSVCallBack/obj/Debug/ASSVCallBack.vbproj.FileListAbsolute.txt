@@ -53,7 +53,6 @@ C:\bami\Service_2.2_oracle_provider_main\ASSVCallBack\obj\Debug\ASSVCallBack.vbp
 C:\bami\VODOPAD\ASSVCallBack\bin\Debug\ASSVCallBack.dll
 C:\bami\VODOPAD\ASSVCallBack\bin\Debug\ASSVCallBack.pdb
 C:\bami\VODOPAD\ASSVCallBack\bin\Debug\ASSVCallBack.xml
-C:\bami\VODOPAD\ASSVCallBack\bin\Debug\Oracle.DataAccess.dll
 C:\bami\VODOPAD\ASSVCallBack\bin\Debug\STKTVMain.dll
 C:\bami\VODOPAD\ASSVCallBack\bin\Debug\STKTVMain.pdb
 C:\bami\VODOPAD\ASSVCallBack\bin\Debug\STKTVMain.xml
@@ -63,16 +62,3 @@ C:\bami\VODOPAD\ASSVCallBack\obj\Debug\ASSVCallBack.dll
 C:\bami\VODOPAD\ASSVCallBack\obj\Debug\ASSVCallBack.xml
 C:\bami\VODOPAD\ASSVCallBack\obj\Debug\ASSVCallBack.pdb
 C:\bami\VODOPAD\ASSVCallBack\obj\Debug\ASSVCallBack.vbprojResolveAssemblyReference.cache
-C:\bami\projects\AREAL\VODOPAD\ASSVCallBack\bin\Debug\ASSVCallBack.dll
-C:\bami\projects\AREAL\VODOPAD\ASSVCallBack\bin\Debug\ASSVCallBack.pdb
-C:\bami\projects\AREAL\VODOPAD\ASSVCallBack\bin\Debug\ASSVCallBack.xml
-C:\bami\projects\AREAL\VODOPAD\ASSVCallBack\bin\Debug\STKTVMain.dll
-C:\bami\projects\AREAL\VODOPAD\ASSVCallBack\bin\Debug\STKTVMain.pdb
-C:\bami\projects\AREAL\VODOPAD\ASSVCallBack\bin\Debug\STKTVMain.xml
-C:\bami\projects\AREAL\VODOPAD\ASSVCallBack\obj\Debug\ASSVCallBack.vbprojResolveAssemblyReference.cache
-C:\bami\projects\AREAL\VODOPAD\ASSVCallBack\obj\Debug\ASSVCallBack.Resources.resources
-C:\bami\projects\AREAL\VODOPAD\ASSVCallBack\obj\Debug\ASSVCallBack.vbproj.GenerateResource.Cache
-C:\bami\projects\AREAL\VODOPAD\ASSVCallBack\obj\Debug\ASSVCallBack.dll
-C:\bami\projects\AREAL\VODOPAD\ASSVCallBack\obj\Debug\ASSVCallBack.xml
-C:\bami\projects\AREAL\VODOPAD\ASSVCallBack\obj\Debug\ASSVCallBack.pdb
-C:\bami\projects\AREAL\VODOPAD\ASSVCallBack\bin\Debug\Oracle.ManagedDataAccess.dll

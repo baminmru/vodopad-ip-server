@@ -261,17 +261,3 @@ C:\bami\VODOPAD\DrvMT\obj\Debug\DrvMT.dll
 C:\bami\VODOPAD\DrvMT\obj\Debug\DrvMT.xml
 C:\bami\VODOPAD\DrvMT\obj\Debug\DrvMT.pdb
 C:\bami\VODOPAD\DrvMT\obj\Debug\DrvMT.vbprojResolveAssemblyReference.cache
-C:\bami\projects\AREAL\VODOPAD\DrvMT\bin\Debug\ConfigDrvMT.xml
-C:\bami\projects\AREAL\VODOPAD\DrvMT\bin\Debug\DrvMT.dll
-C:\bami\projects\AREAL\VODOPAD\DrvMT\bin\Debug\DrvMT.pdb
-C:\bami\projects\AREAL\VODOPAD\DrvMT\bin\Debug\DrvMT.xml
-C:\bami\projects\AREAL\VODOPAD\DrvMT\bin\Debug\STKTVMain.dll
-C:\bami\projects\AREAL\VODOPAD\DrvMT\bin\Debug\STKTVMain.pdb
-C:\bami\projects\AREAL\VODOPAD\DrvMT\bin\Debug\STKTVMain.xml
-C:\bami\projects\AREAL\VODOPAD\DrvMT\obj\Debug\DrvMT.vbprojResolveAssemblyReference.cache
-C:\bami\projects\AREAL\VODOPAD\DrvMT\obj\Debug\DrvMT.Resources.resources
-C:\bami\projects\AREAL\VODOPAD\DrvMT\obj\Debug\DrvMT.vbproj.GenerateResource.Cache
-C:\bami\projects\AREAL\VODOPAD\DrvMT\obj\Debug\DrvMT.dll
-C:\bami\projects\AREAL\VODOPAD\DrvMT\obj\Debug\DrvMT.xml
-C:\bami\projects\AREAL\VODOPAD\DrvMT\obj\Debug\DrvMT.pdb
-C:\bami\projects\AREAL\VODOPAD\DrvMT\bin\Debug\Oracle.ManagedDataAccess.dll

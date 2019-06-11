@@ -4,11 +4,7 @@
 // MVID: C22A753E-EAD1-4FBB-8540-FB46F840C010
 // Assembly location: C:\Program Files (x86)\Kamstrup\MC601LogView\MC601LogView.exe
 
-using Infragistics.UltraChart.Shared.Events;
-using Infragistics.UltraChart.Shared.Styles;
-using Infragistics.Win.Misc;
-using Infragistics.Win.Printing;
-using Infragistics.Win.UltraWinChart;
+
 using System;
 using System.ComponentModel;
 using System.Data;
@@ -21,9 +17,7 @@ namespace MC601LogView
   {
     private bool m_ShowTime;
     private IContainer components;
-    private UltraChart graph;
-    private UltraButton btnPrint;
-    private UltraPrintPreviewDialog ultraPrintPreviewDialog1;
+   
 
     public bool ShowTime
     {

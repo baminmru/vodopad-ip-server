@@ -2,9 +2,8 @@
 Imports System.IO
 Imports System.Reflection
 Imports System.Xml
-Imports Oracle.ManagedDataAccess.Client
-
-
+Imports Oracle.DataAccess.Client
+Imports System.Text
 
 Public Class TVMain
 
@@ -141,7 +140,17 @@ Public Class TVMain
         End Set
     End Property
     Public Function dbconnect() As OracleConnection
+        If connection IsNot Nothing Then
+            If connection.State = ConnectionState.Open Then
+                Return connection
+            Else
+                connection.Close()
+            End If
+        End If
+        Inited = False
+        Init()
         Return connection
+
     End Function
     Private Structure ToolTipStruct
         Dim ip As String
@@ -403,7 +412,7 @@ Public Class TVMain
         Dim cmd As New OracleCommand()
         cmd.Connection = connection
         'cmd.CommandText = "select * from plancall where cstatus=0"
-        cmd.CommandText = "select plancall.*,npip,nppassword,ipport,transport,sysdate ServerDate from bdevices join plancall on bdevices.id_bd=plancall.id_bd where  transport in (0,2,3,4,9) and npquery=1 and( nplock is null or nplock < sysdate) " &
+        cmd.CommandText = "select plancall.*,npip,nppassword,ipport,transport,sysdate ServerDate from bdevices join plancall on bdevices.id_bd=plancall.id_bd where  transport in (0,2,3,4,9,10) and npquery=1 and( nplock is null or nplock < sysdate) " &
             " and (plancall.dlock is null or plancall.dlock + plancall.MINREPEAT/24/60 < sysdate ) and plancall.ncall < plancall.nmaxcall " &
             "and ((plancall.chour=1 and nvl(plancall.DNEXTHOUR,sysdate-1)<=sysdate) or (plancall.ccurr=1 and nvl(plancall.dnextcurr,sysdate-1) <=sysdate) or (plancall.c24=1 and nvl(plancall.dnext24 ,sysdate-1)<=sysdate)  or (plancall.csum=1 and nvl(plancall.dnextsum ,sysdate-1)<=sysdate)) " + " "
 
@@ -436,7 +445,7 @@ Public Class TVMain
         'cmd.CommandText = "select * from plancall where cstatus=0"
         cmd.CommandText = "select plancall.*,npip,nppassword,ipport,transport,sysdate ServerDate from bdevices" +
          " join ipaddr on bdevices.srv_ip_id=ipaddr.id_ip  and ipaddr.terminal='" + MyName + "' " +
-        " join plancall on bdevices.id_bd=plancall.id_bd where  transport in (2,3,9) and npquery=1 and( nplock is null or nplock < sysdate) " &
+        " join plancall on bdevices.id_bd=plancall.id_bd where  transport in (2,3,9,10) and npquery=1 and( nplock is null or nplock < sysdate) " &
         " and (plancall.dlock is null or plancall.dlock + plancall.MINREPEAT/24/60 < sysdate ) and plancall.ncall < plancall.nmaxcall " &
         " and ((plancall.chour=1 and nvl(plancall.DNEXTHOUR,sysdate-1)<=sysdate) or (plancall.ccurr=1 and nvl(plancall.dnextcurr,sysdate-1) <=sysdate) or (plancall.c24=1 and nvl(plancall.dnext24 ,sysdate-1)<=sysdate)  or (plancall.csum=1 and nvl(plancall.dnextsum ,sysdate-1)<=sysdate)) " + " "
 
@@ -504,15 +513,10 @@ Public Class TVMain
         Dim cmd As New OracleCommand()
         cmd.Connection = connection
         'cmd.CommandText = "select * from plancall where cstatus=0"
-        cmd.CommandText = "select plancall.*,npip,nppassword,ipport,transport,sysdate ServerDate from bdevices join plancall on bdevices.id_bd=plancall.id_bd where  ( nplock is null or nplock <sysdate ) and npquery=1 " &
-        " and (plancall.dlock is null or plancall.dlock + plancall.MINREPEAT/24/60 < sysdate ) and plancall.ncall < plancall.nmaxcall " &
-        " and ((plancall.chour=1 and nvl(plancall.DNEXTHOUR,sysdate-1)<=sysdate) or (plancall.ccurr=1 and nvl(plancall.dnextcurr,sysdate-1) <=sysdate) or (plancall.c24=1 and nvl(plancall.dnext24 ,sysdate-1)<=sysdate)  or (plancall.csum=1 and nvl(plancall.dnextsum ,sysdate-1)<=sysdate)) " &
+        cmd.CommandText = "select plancall.*,npip,nppassword,ipport,transport,sysdate ServerDate from bdevices join plancall on bdevices.id_bd=plancall.id_bd where  ( nplock is null or nplock <sysdate ) and npquery=1 " & _
+        " and (plancall.dlock is null or plancall.dlock + plancall.MINREPEAT/24/60 < sysdate ) and plancall.ncall < plancall.nmaxcall " & _
+        " and ((plancall.chour=1 and nvl(plancall.DNEXTHOUR,sysdate-1)<=sysdate) or (plancall.ccurr=1 and nvl(plancall.dnextcurr,sysdate-1) <=sysdate) or (plancall.c24=1 and nvl(plancall.dnext24 ,sysdate-1)<=sysdate)  or (plancall.csum=1 and nvl(plancall.dnextsum ,sysdate-1)<=sysdate)) " & _
         " and bdevices.id_bd=" & DevID.ToString() + " "
-
-
-        'cmd.CommandText = "select plancall.*,npip,nppassword,ipport,transport,sysdate ServerDate from bdevices join plancall on bdevices.id_bd=plancall.id_bd where  ( nplock is null or nplock <sysdate ) and npquery=1 " &
-        '" and bdevices.id_bd=" & DevID.ToString() + " "
-
 
         da.SelectCommand = cmd
         dt = New DataTable
@@ -579,7 +583,7 @@ Public Class TVMain
         cmd.Connection = connection
 
 
-        cmd.CommandText = "select npip,sysdate ServerDate from bdevices  where  ( nplock is null or nplock <sysdate ) and  transport in (0,1,2,3,4,5,6,9) /* and npquery=1 */  and bdevices.id_bd=" & DevID.ToString() + " "
+        cmd.CommandText = "select npip,sysdate ServerDate from bdevices  where  ( nplock is null or nplock <sysdate ) and  transport in (0,1,2,3,4,5,6,9,10) /* and npquery=1 */  and bdevices.id_bd=" & DevID.ToString() + " "
 
         da.SelectCommand = cmd
         dt = New DataTable
@@ -615,7 +619,7 @@ Public Class TVMain
         cmd.Connection = connection
 
 
-        cmd.CommandText = "select npip,sysdate ServerDate from bdevices  where  ( nplock >=sysdate ) and   transport in (0,1,2,3,4,5,6,9) /* and npquery=1 */  and bdevices.id_bd=" + DevID.ToString() + " "
+        cmd.CommandText = "select npip,sysdate ServerDate from bdevices  where  ( nplock >=sysdate ) and   transport in (0,1,2,3,4,5,6,9,10) /* and npquery=1 */  and bdevices.id_bd=" + DevID.ToString() + " "
 
         da.SelectCommand = cmd
         dt = New DataTable
@@ -831,6 +835,7 @@ Public Class TVMain
     Public Function DeviceInit(ByVal id_bd As Int32, Optional ByVal UsePort As String = "(Любой)", Optional ByVal aSocket As GRPSSocket = Nothing) As Boolean
         ClearDuration()
         Dim deviceid As Int32
+        Dim addms As Int32
         Dim IPstr As String = String.Empty
         Dim DrvStr As String = String.Empty
         Dim NPPassword As String = String.Empty
@@ -839,8 +844,8 @@ Public Class TVMain
         Dim dr As OracleDataReader
         Dim cmd As New OracleCommand()
         cmd.Connection = connection
-        cmd.CommandText = "select devices.dllname, bdevices.npip,bdevices.nppassword, bdevices.ipport,bdevices.transport, bdevices.id_dev" + _
-           ",bmodems.cspeed,bmodems.cphone,bmodems.cdatabit,bmodems.cstopbits,bmodems.cparity,bmodems.connectlimit from bdevices,bmodems,devices where devices.id_dev =bdevices.id_dev and bmodems.id_bd=bdevices.id_bd and bdevices.id_bd=" + id_bd.ToString + " "
+        cmd.CommandText = "select devices.dllname, bdevices.npip,bdevices.nppassword, bdevices.ipport,bdevices.transport, bdevices.id_dev" +
+           ",bmodems.cspeed,bmodems.cphone,bmodems.cdatabit,bmodems.cstopbits,bmodems.cparity,bmodems.connectlimit,devices.addms from bdevices,bmodems,devices where devices.id_dev =bdevices.id_dev and bmodems.id_bd=bdevices.id_bd and bdevices.id_bd=" + id_bd.ToString + " "
 
         Dim cspeed As Long = 9600
         Dim cdatabit As Integer = 0
@@ -859,6 +864,7 @@ Public Class TVMain
                     dr.Read()
                     IPstr = dr("NPIP").ToString & ""
                     deviceid = Convert.ToInt32(dr("id_dev").ToString)
+                    addms = Convert.ToInt32(dr("addms").ToString)
                     DrvStr = "" & dr("dllname")
                     NPPassword = dr("nppassword").ToString() & ""
                     Try
@@ -886,7 +892,7 @@ Public Class TVMain
                         cparity = "Mark"
                     End If
                     ipport = dr("ipport").ToString() & ""
-                    transport = dr("transport").ToString & ""
+                    transport = dr("transport") & ""
                     phone = dr("cphone") & ""
 
                 End If
@@ -964,7 +970,9 @@ Public Class TVMain
                 Case 9
                     'm_ConnectStatus += vbCrLf & "Транспорт: модем"
                     SaveLog(id_bd, 0, "??", 1, "Транспорт: DUMMY")
-
+                Case 10
+                    'm_ConnectStatus += vbCrLf & "Транспорт: Ser2Net"
+                    SaveLog(id_bd, 0, "??", 1, "Транспорт:  Ser2Net")
             End Select
 
             If transport = 0 Or transport = 4 Then
@@ -1011,7 +1019,8 @@ Public Class TVMain
             TVD.NPPassword = NPPassword
 
             TVD.DeviceID = id_bd
-
+            TVD.DevTypeID = deviceid
+            TVD.AddMS = addms
 
             ' таймаут
             TVD.TimeOut = 2000
@@ -1063,12 +1072,22 @@ Public Class TVMain
 
     Public Function GetEnvInfo() As String
         Dim out As String
-        out = "Path:" & System.IO.Path.GetDirectoryName(Me.GetType().Assembly.Location()) + "\Config.xml"
+        out = "Path:" & GetConfigPath()
         Try
             out = out & vbCrLf & connection.ConnectionString
         Catch
         End Try
         Return out
+    End Function
+
+
+
+    Private m_ConfigPath As String = ""
+    Private Function GetConfigPath() As String
+        If m_ConfigPath = "" Then
+            m_ConfigPath = System.IO.Path.GetDirectoryName(Me.GetType().Assembly.Location()) + "\Config.xml"
+        End If
+        Return m_ConfigPath
     End Function
     Public Function Init() As Boolean
         If Inited Then
@@ -1079,11 +1098,12 @@ Public Class TVMain
 
         Dim xml As XmlDocument
         xml = New XmlDocument
-        xml.Load(System.IO.Path.GetDirectoryName(Me.GetType().Assembly.Location()) + "\Config.xml")
+        xml.Load(GetConfigPath())
         Dim node As XmlElement
         node = xml.FirstChild()
 
-        Dim builder As New OracleConnectionStringBuilder()
+        Dim builder As OracleConnectionStringBuilder = New OracleConnectionStringBuilder()
+
         Dim serviceName As String = ""
         Try
             serviceName = node.Attributes.GetNamedItem("Oracle").Value
@@ -1126,6 +1146,7 @@ Try
             Catch
             End Try
 
+        'Data Source = MyOracleDB;User Id=myUsername;Password=myPassword;Integrated Security = no;
         builder.DataSource = serviceName '  node.Attributes.GetNamedItem("DataSource").Value
         builder.UserID = node.Attributes.GetNamedItem("UserID").Value
         builder.Password = node.Attributes.GetNamedItem("Password").Value
@@ -1262,6 +1283,10 @@ Try
                         mGetConfigStructFromId_BD.Transport = "DUMMY"
                     End If
 
+                    If dr("transport") = 10 Then
+                        mGetConfigStructFromId_BD.Transport = "SER2NET"
+                    End If
+
 
                     mGetConfigStructFromId_BD.IP = dr("NPIP").ToString
                     mGetConfigStructFromId_BD.device = dr("cdevname").ToString
@@ -1282,65 +1307,11 @@ Try
         End If
 
     End Function
-    'Public Sub setConfigToDB(ByVal id_bd As Int32, ByVal ip As String, ByVal password As String, ByVal device As String, ByVal NPQuery As Boolean, ByVal HideRow As Boolean, ByVal Transport As String, ByVal IPPort As String)
-    '    Dim cmd As New OracleCommand()
-    '    cmd.Connection = connection
-    '    Dim i As Integer
-    '    Dim trId As Integer
-    '    If NPQuery Then
-    '        i = 1
-    '    Else
-    '        i = 0
-    '    End If
-    '    Dim j As Integer
-    '    If HideRow Then
-    '        j = 1
-    '    Else
-    '        j = 0
-    '    End If
 
-    '    If Transport = "MODEM" Then
-    '        trId = 0
-    '    End If
-
-    '    If Transport = "COM" Then
-    '        trId = 1
-    '    End If
-
-    '    If Transport = "NPORT" Then
-    '        trId = 2
-    '    End If
-
-    '    If Transport = "VSX" Then
-    '        trId = 3
-    '    End If
-
-    '    If Transport = "GSM Modem" Then
-    '        trId = 4
-    '    End If
-
-    '    If Transport = "ASSV" Then
-    '        trId = 5
-    '    End If
-
-
-    '    cmd.CommandText = "update bdevices set bdevices.hiderow=" & j.ToString & ", bdevices.npquery=" & i.ToString & ", bdevices.nppassword='" + password + "'" + _
-    '    ", bdevices.npip='" + ip + "', bdevices.ipport='" + IPPort + "', bdevices.transport=" + trId.ToString + ", bdevices.id_dev=(select devices.id_dev from devices where devices.cdevname='" + device + _
-    '    "') where bdevices.id_bd=" + id_bd.ToString + " "
-
-
-    '    Try
-    '        '' SyncLock connection
-    '        cmd.ExecuteNonQuery()
-    '        '' End SyncLock
-    '    Catch ex As Exception
-    '        Console.WriteLine(ex.Message)
-    '    End Try
-    'End Sub
     Public Sub ClearDBarch(ByVal after As Date, ByVal befor As Date, ByVal archtype As Short, ByVal id_bd As String)
         Dim cmd As New OracleCommand()
-        after = after.AddSeconds(-1)
-        befor = befor.AddSeconds(1)
+        after = after.AddSeconds(-5)
+        befor = befor.AddSeconds(5)
         cmd.Connection = connection
         cmd.CommandText = "delete from " & DBTableName & " where dcounter>=" + _
         "to_date('" + after.Year.ToString() + "-" + after.Month.ToString() + "-" + after.Day.ToString() + _
@@ -1685,82 +1656,6 @@ Try
         End If
     End Function
 
-    'Public Function WriteErrToDB(ByVal DeviceID As Integer, ByVal ErrDate As Date, ByVal ErrMsg As String) As String
-    '    Dim SSS As String
-
-    '    Dim dr As DataRow
-    '    Dim useIns As Boolean = True
-    '    Dim DCOUNTER As Date
-
-    '    dr = GetLastMomentArchive(DeviceID.ToString)
-    '    If Not dr Is Nothing Then
-    '        If dr("hc").ToString().Contains(ErrMsg) Then
-    '            DCOUNTER = dr("DCOUNTER")
-    '            If Math.Abs(DateDiff(Microsoft.VisualBasic.DateInterval.Minute, ErrDate, DCOUNTER)) > 59 Then
-    '                useIns = True
-    '            Else
-    '                useIns = False
-    '            End If
-    '        End If
-    '    End If
-
-    '    If Not useIns Then
-    '        Dim hc As String
-    '        Dim passIdx As Integer
-    '        hc = dr("hc").ToString()
-    '        passIdx = hc.IndexOf(". Попытка № ")
-    '        If passIdx > 0 Then
-    '            If Not Integer.TryParse(hc.Substring(passIdx + 12).Trim(), passIdx) Then
-    '                passIdx = 2
-    '            Else
-    '                passIdx += 1
-    '            End If
-    '        Else
-    '            passIdx = 2
-    '        End If
-
-    '        SSS = "update datacurr set HC ='" + ErrMsg + ". Попытка № " + passIdx.ToString + "' ,dcall=sysdate  where id_bd=" + DeviceID.ToString + " and id_ptype=1 and dcall>=" & OracleDate(dr("dcall"))
-    '        command.CommandText = SSS
-    '        Dim ret As String
-    '        ret = command.CommandText & " "
-    '        Try
-    '            '' SyncLock connection
-    '            command.ExecuteNonQuery()
-    '            '' End SyncLock
-    '            TVD.isArchToDBWrite = False
-    '            Return ret
-    '        Catch ex As Exception
-    '            Console.WriteLine(ex.Message)
-    '            Debug.Print(ex.Message)
-    '            Return ret & ex.Message
-    '        End Try
-    '    Else
-    '        SSS = "INSERT INTO " & DBTableName & "(id_bd,DCALL,DCOUNTER,id_ptype,hc,hc_1) values ("
-    '        SSS = SSS + DeviceID.ToString() + ","
-    '        SSS = SSS + "SYSDATE" + ","
-    '        SSS = SSS + OracleDate(ErrDate) + ","
-    '        SSS = SSS + "1,"
-    '        SSS = SSS + "'" & S180(ErrMsg) & "',"
-    '        SSS = SSS + "'" & S180(ErrMsg) & "')"
-
-    '        command.CommandText = SSS
-    '        Dim ret As String
-    '        ret = command.CommandText & " "
-    '        Try
-    '            '' SyncLock connection
-    '            command.ExecuteNonQuery()
-    '            '' End SyncLock
-    '            TVD.isArchToDBWrite = False
-    '            Return ret
-    '        Catch ex As Exception
-    '            Console.WriteLine(ex.Message)
-    '            Debug.Print(ex.Message)
-    '            Return ret & ex.Message
-    '        End Try
-    '    End If
-
-
-    'End Function
 
 
     Public Function WriteErrToDB(ByVal DeviceID As Integer, ByVal ErrDate As Date, ByVal ErrMsg As String) As String
@@ -1929,6 +1824,12 @@ Try
             Debug.Print(s + " err:")
             Debug.Print(ex.Message)
             Try
+                connection.Close()
+            Catch ex0 As Exception
+
+            End Try
+
+            Try
                 cmd.Dispose()
             Catch ex1 As Exception
 
@@ -1961,6 +1862,12 @@ Try
         da.Fill(dt)
         Catch ex As Exception
             Debug.Print(s + " Err:" + ex.Message)
+            Try
+                connection.Close()
+
+            Catch ex0 As Exception
+
+            End Try
         End Try
         Try
             da.Dispose()
@@ -2214,7 +2121,13 @@ Try
         Inited = Init()
     End Sub
 
+    Public Sub New(ByVal ConfigPath As String)
+        If IO.File.Exists(ConfigPath) Then
+            m_ConfigPath = ConfigPath
+        End If
 
+        Inited = Init()
+    End Sub
 
     Public Sub LoadFileToField(ByVal filepath As String, ByVal table As String, ByVal field As String, ByVal idField As String, ByVal RowID As String)
 

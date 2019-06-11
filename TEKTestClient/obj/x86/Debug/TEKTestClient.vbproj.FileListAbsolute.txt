@@ -8,14 +8,3 @@ C:\bami\VODOPAD\TEKTestClient\obj\x86\Debug\TEKTestClient.vbproj.GenerateResourc
 C:\bami\VODOPAD\TEKTestClient\obj\x86\Debug\TEKTestClient.exe
 C:\bami\VODOPAD\TEKTestClient\obj\x86\Debug\TEKTestClient.xml
 C:\bami\VODOPAD\TEKTestClient\obj\x86\Debug\TEKTestClient.pdb
-C:\bami\projects\AREAL\VODOPAD\TEKTestClient\bin\Debug\TEKTestClient.exe.config
-C:\bami\projects\AREAL\VODOPAD\TEKTestClient\bin\Debug\TEKTestClient.exe
-C:\bami\projects\AREAL\VODOPAD\TEKTestClient\bin\Debug\TEKTestClient.pdb
-C:\bami\projects\AREAL\VODOPAD\TEKTestClient\bin\Debug\TEKTestClient.xml
-C:\bami\projects\AREAL\VODOPAD\TEKTestClient\obj\x86\Debug\TEKTestClient.vbprojResolveAssemblyReference.cache
-C:\bami\projects\AREAL\VODOPAD\TEKTestClient\obj\x86\Debug\TEKTestClient.Form1.resources
-C:\bami\projects\AREAL\VODOPAD\TEKTestClient\obj\x86\Debug\TEKTestClient.Resources.resources
-C:\bami\projects\AREAL\VODOPAD\TEKTestClient\obj\x86\Debug\TEKTestClient.vbproj.GenerateResource.Cache
-C:\bami\projects\AREAL\VODOPAD\TEKTestClient\obj\x86\Debug\TEKTestClient.exe
-C:\bami\projects\AREAL\VODOPAD\TEKTestClient\obj\x86\Debug\TEKTestClient.xml
-C:\bami\projects\AREAL\VODOPAD\TEKTestClient\obj\x86\Debug\TEKTestClient.pdb

@@ -60,10 +60,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="oracle.dataaccess, Version=4.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_64\Oracle.DataAccess\v4.0_4.112.3.0__89b483f429c47342\oracle.dataaccess.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
@@ -130,6 +126,10 @@
       <Project>{06291B86-FBC9-417B-8EAE-357777BBBFA3}</Project>
       <Name>DeviceThread</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Drv941.20\Drv941_20.vbproj">
+      <Project>{8d570af3-2b30-4686-b039-9da0c90e62e5}</Project>
+      <Name>Drv941_20</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Drv941\Drv941.vbproj">
       <Project>{EA163B07-EF46-418C-97EA-70DB84C263A3}</Project>
       <Name>Drv941</Name>
@@ -146,9 +146,9 @@
       <Project>{C815653B-CE5F-4A86-AC55-123AE1FC0B81}</Project>
       <Name>Drv943</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DrvAreal\DrvAreal.vbproj">
-      <Project>{c02aedbf-2df5-441d-a168-8c7b645c2ccc}</Project>
-      <Name>DrvAreal</Name>
+    <ProjectReference Include="..\Drv944\Drv944.vbproj">
+      <Project>{6db801d7-19c3-4546-b268-1bc08f79ac85}</Project>
+      <Name>Drv944</Name>
     </ProjectReference>
     <ProjectReference Include="..\DrvDAN300\DrvDAN300.vbproj">
       <Project>{6e1e0e80-2d2f-4ffd-9701-a02eca496b55}</Project>
@@ -166,10 +166,6 @@
       <Project>{E3F69481-2D81-4B0F-AAE3-E36955C78E79}</Project>
       <Name>DrvMC601</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DrvMODBUS\DrvMODBUS.vbproj">
-      <Project>{ea5ba547-dd40-408d-b94a-ab18f5a7dcf1}</Project>
-      <Name>DrvMODBUS</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DrvMT\DrvMT.vbproj">
       <Project>{715A122F-4389-4F4C-8FFB-8347F5637FC7}</Project>
       <Name>DrvMT</Name>
@@ -177,6 +173,10 @@
     <ProjectReference Include="..\DrvOPC\DrvOPC.vbproj">
       <Project>{abdb8044-3555-45d0-907b-62f865c8559d}</Project>
       <Name>DrvOPC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrvTEM104.1\DrvTEM104.1.vbproj">
+      <Project>{0fda8114-a55d-4e31-9726-354b54190ddc}</Project>
+      <Name>DrvTEM104.1</Name>
     </ProjectReference>
     <ProjectReference Include="..\DrvTEM104\DrvTEM104.vbproj">
       <Project>{0CA60AB7-4F6F-43D3-B9F4-C39E7DEF79E9}</Project>
@@ -211,16 +211,10 @@
       <Name>STKTVMain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Config.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="YearStamp.MonthStamp.DayStamp.Increment" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="YearStamp.MonthStamp.DayStamp.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

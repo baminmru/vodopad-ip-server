@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using STKTVMain;
 
 namespace ROBUSTELDebugService
 {
@@ -19,7 +20,7 @@ namespace ROBUSTELDebugService
 
         static void Main(string[] args)
         {
-
+              
             XmlDocument xml;
             xml = new XmlDocument();
             xml.Load(GetMyDir() + "\\ROBUSTELServiceCFG.xml");
@@ -49,6 +50,13 @@ namespace ROBUSTELDebugService
 
             Console.WriteLine("Start server on " + sAddr + ":" + nPort.ToString() );
             ROBUSTELServer.TCPServer srv = new ROBUSTELServer.TCPServer(sAddr, nPort);
+            
+
+            //STKTVMain.TVMain tvmain = new STKTVMain.TVMain();
+            //tvmain.Init();
+            //Console.WriteLine("DBTime=" + tvmain.GetDBDateTime().ToString() ); 
+
+
             srv.StartServer();
 
        

@@ -51,16 +51,3 @@ C:\bami\VODOPAD\DrvVKT5\obj\Debug\DrvVKT5.dll
 C:\bami\VODOPAD\DrvVKT5\obj\Debug\DrvVKT5.xml
 C:\bami\VODOPAD\DrvVKT5\obj\Debug\DrvVKT5.pdb
 C:\bami\VODOPAD\DrvVKT5\obj\Debug\DrvVKT5.vbprojResolveAssemblyReference.cache
-C:\bami\projects\AREAL\VODOPAD\DrvVKT5\bin\Debug\DrvVKT5.dll
-C:\bami\projects\AREAL\VODOPAD\DrvVKT5\bin\Debug\DrvVKT5.pdb
-C:\bami\projects\AREAL\VODOPAD\DrvVKT5\bin\Debug\DrvVKT5.xml
-C:\bami\projects\AREAL\VODOPAD\DrvVKT5\bin\Debug\STKTVMain.dll
-C:\bami\projects\AREAL\VODOPAD\DrvVKT5\bin\Debug\STKTVMain.pdb
-C:\bami\projects\AREAL\VODOPAD\DrvVKT5\bin\Debug\STKTVMain.xml
-C:\bami\projects\AREAL\VODOPAD\DrvVKT5\obj\Debug\DrvVKT5.vbprojResolveAssemblyReference.cache
-C:\bami\projects\AREAL\VODOPAD\DrvVKT5\obj\Debug\DrvVKT5.Resources.resources
-C:\bami\projects\AREAL\VODOPAD\DrvVKT5\obj\Debug\DrvVKT5.vbproj.GenerateResource.Cache
-C:\bami\projects\AREAL\VODOPAD\DrvVKT5\obj\Debug\DrvVKT5.dll
-C:\bami\projects\AREAL\VODOPAD\DrvVKT5\obj\Debug\DrvVKT5.xml
-C:\bami\projects\AREAL\VODOPAD\DrvVKT5\obj\Debug\DrvVKT5.pdb
-C:\bami\projects\AREAL\VODOPAD\DrvVKT5\bin\Debug\Oracle.ManagedDataAccess.dll

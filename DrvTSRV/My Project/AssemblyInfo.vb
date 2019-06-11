@@ -2,8 +2,8 @@
 Imports System.Reflection
 Imports System.Runtime.InteropServices
 
-' General Information about an assembly is controlled through the following 
-' set of attributes. Change these attribute values to modify the information
+' General InNanFormation about an assembly is controlled through the following 
+' set of attributes. Change these attribute values to modify the inNanFormation
 ' associated with an assembly.
 
 ' Review the values of the assembly attributes
@@ -20,7 +20,7 @@ Imports System.Runtime.InteropServices
 'The following GUID is for the ID of the typelib if this project is exposed to COM
 <Assembly: Guid("17b14887-c294-4ed4-8d54-3cbee5b2e67b")> 
 
-' Version information for an assembly consists of the following four values:
+' Version inNanFormation for an assembly consists of the following four values:
 '
 '      Major Version
 '      Minor Version 
@@ -29,7 +29,7 @@ Imports System.Runtime.InteropServices
 '
 ' You can specify all the values or you can default the Build and Revision Numbers 
 ' by using the '*' as shown below:
-' <Assembly: AssemblyVersion("2016.9.15.*")> 
+' <Assembly: AssemblyVersion("2019.06.11.*")> 
 
-<Assembly: AssemblyVersion("2016.9.15.*")> 
-<Assembly: AssemblyFileVersion("2016.9.15.1401")> 
+<Assembly: AssemblyVersion("2019.06.11.*")> 
+<Assembly: AssemblyFileVersion("2019.06.11.1401")> 

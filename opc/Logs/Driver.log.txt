@@ -1,0 +1,3 @@
+
+PID:2312 ************************* Logging started at 09/22/2016 12:18:14 *************************
+2312 - 12:18:20.602 TCPCLIENTCHANNEL SOCKET CLOSED: 000003F8, ChannelId=0

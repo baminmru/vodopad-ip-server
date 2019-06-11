@@ -86,7 +86,6 @@ C:\bami\VODOPAD\GPIOClientTest\bin\Debug\STKTVMain.dll
 C:\bami\VODOPAD\GPIOClientTest\bin\Debug\Oracle.DataAccess.dll
 C:\bami\VODOPAD\GPIOClientTest\bin\Debug\STKTVMain.pdb
 C:\bami\VODOPAD\GPIOClientTest\bin\Debug\STKTVMain.xml
-C:\bami\VODOPAD\GPIOClientTest\obj\Debug\GPIOClientTest.vbprojResolveAssemblyReference.cache
 C:\bami\VODOPAD\GPIOClientTest\obj\Debug\GPIOClientTest.frmAddIP.resources
 C:\bami\VODOPAD\GPIOClientTest\obj\Debug\GPIOClientTest.frmControl.resources
 C:\bami\VODOPAD\GPIOClientTest\obj\Debug\GPIOClientTest.Resources.resources
@@ -95,3 +94,4 @@ C:\bami\VODOPAD\GPIOClientTest\obj\Debug\GPIOClientTest.vbproj.GenerateResource.
 C:\bami\VODOPAD\GPIOClientTest\obj\Debug\GPIOClientTest.exe
 C:\bami\VODOPAD\GPIOClientTest\obj\Debug\GPIOClientTest.xml
 C:\bami\VODOPAD\GPIOClientTest\obj\Debug\GPIOClientTest.pdb
+C:\bami\VODOPAD\GPIOClientTest\obj\Debug\GPIOClientTest.vbprojResolveAssemblyReference.cache

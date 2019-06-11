@@ -343,6 +343,10 @@ Public Class driver
         tcnt = 0
         ok = False
 
+        If Not IsConnected() Then
+            Return "Ошибка: ошибка  соединения или  протокола"
+        End If
+
         'AErr = "Ошибка в получении параметров: "
         AErr = ""
         'Dim ok As Boolean
@@ -613,6 +617,11 @@ archErr:
 
         clearMarchive(mArch)
         SequenceErrorCount = 0
+
+        If Not IsConnected() Then
+            Return "Ошибка: ошибка  соединения или  протокола"
+        End If
+
         Dim tcnt As Integer
         Dim ok As Boolean
         tcnt = 0
@@ -750,11 +759,17 @@ ArchErr:
 
 
     Public Overrides Function ReadTArch() As String
+
+        If Not IsConnected() Then
+            Return "Ошибка: ошибка  соединения или  протокола"
+        End If
+
+
         Dim AErr As String = ""
         Dim tcnt As Integer
         Dim ok As Boolean
 
-        clearTarchive(tArch)
+        clearTArchive(tArch)
         EraseInputQueue()
         SequenceErrorCount = 0
 
@@ -906,6 +921,9 @@ archerr:
     End Function
 
     Public Overrides Function ReadSystemParameters() As DataTable
+
+
+
         SequenceErrorCount = 0
         Dim dt As DataTable
         dt = New DataTable
@@ -913,6 +931,10 @@ archerr:
         dt.Columns.Add("Значение")
         Dim dr As DataRow
 
+
+        If Not IsConnected() Then
+            Return dt
+        End If
 
         '0x00 0x03 0x3f 0xf9 0x00 0x00 0x98 0x3e
         Dim Frame(10) As Byte
@@ -1973,12 +1995,12 @@ filldata:
                                 If IsHC Then
                                     Arch.MsgHC += "P2:" + CurHC + " "
                                 End If
-                                If IsError Then
-                                        AErr += "P2;"
-                                    End If
+                                        If IsError Then
+                                            AErr += "P2;"
+                                        End If
 
-                            Case VKT7ElemType.P2_1Type
-                                Arch.P3 = GetValue(sout, IsError)
+                                    Case VKT7ElemType.P1_2Type
+                                        Arch.P3 = GetValue(sout, IsError)
                                 If IsHC Then
                                     Arch.MsgHC += "P3:" + CurHC + " "
                                 End If
@@ -2021,9 +2043,9 @@ filldata:
 
                             End Select
                         Catch ex As Exception
-                            IsError = True
-                            Return "Ошибка " + ex.Message
-                        End Try
+                                IsError = True
+                                Return "Ошибка " + ex.Message
+                            End Try
 
                         pRes += (2 + pSz) ' size + pSz + Q+NC
                     Next
@@ -2159,6 +2181,7 @@ filldata:
                 If VerifySumm(b, 0, sz) Then
                     EraseInputQueue()
                     SequenceErrorCount = 0
+                    ReDim Preserve b(sz)
                     Return b
                 End If
 

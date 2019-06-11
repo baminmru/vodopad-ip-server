@@ -29,7 +29,12 @@ Public Class Driver
         Dim d As Date
         Dim s As String
         d = DateTime.Now
-        s = OPC.GetTime()
+        Try
+            s = OPC.GetTime()
+        Catch ex As Exception
+            s = ""
+        End Try
+
 
         If DateTime.TryParse(s, d) Then Return d
 
@@ -289,7 +294,12 @@ Public Class Driver
 
 
     Private Function TryConnect() As Boolean
-        If Not OPC.Connect() Is Nothing Then Return True
+        Try
+            If Not OPC.Connect() Is Nothing Then Return True
+        Catch ex As Exception
+
+        End Try
+
         Return False
 
     End Function
@@ -324,14 +334,18 @@ Public Class Driver
 
         Dim d As Date
 
-        'd = GetDeviceDate()
-        'If rdate < d Then
-        If ArchType = archType_day Then
-            dt = OPC.ReadDay(rdate)
-        Else
 
-            dt = OPC.getHour(rdate)
-        End If
+        Try
+            If ArchType = archType_day Then
+                dt = OPC.ReadDay(rdate)
+            Else
+
+                dt = OPC.getHour(rdate)
+            End If
+        Catch ex As Exception
+            dt = New DataTable
+        End Try
+
         If dt.Rows.Count > 0 Then
             ok = True
 
@@ -432,7 +446,8 @@ Public Class Driver
                     Case "Q2N"
                         Arch.Q2H = Str2Dbl(dt.Rows(i)("Value").ToString())
 
-
+                    Case "ERR"
+                        Arch.HC = Long.Parse(dt.Rows(i)("Value"))
                     Case "ERR1"
                         Arch.HCtv1 = Long.Parse(dt.Rows(i)("Value"))
                         Arch.HC = Long.Parse(dt.Rows(i)("Value"))
@@ -626,8 +641,12 @@ arch_final:
         mArch.DateArch = d
 
         Dim dt As DataTable
+        Try
+            dt = OPC.GetCurrent()
+        Catch ex As Exception
+            dt = New DataTable
+        End Try
 
-        dt = OPC.GetCurrent()
 
         If dt.Rows.Count > 0 Then
 
@@ -704,6 +723,8 @@ arch_final:
                     Case "Q6"
                         mArch.Q6 = Str2Dbl(dt.Rows(i)("Value").ToString())
 
+                    Case "ERR"
+                        mArch.HC = Long.Parse(dt.Rows(i)("Value"))
                     Case "ERR1"
                         mArch.HCtv1 = Long.Parse(dt.Rows(i)("Value"))
                         mArch.HC = Long.Parse(dt.Rows(i)("Value"))
@@ -749,7 +770,12 @@ march_final:
         tArch.DateArch = d
         Dim dt As DataTable
 
-        dt = OPC.GetTotals()
+        Try
+            dt = OPC.GetTotals()
+        Catch ex As Exception
+            dt = New DataTable
+        End Try
+
 
         If dt.Rows.Count > 0 Then
 
@@ -866,6 +892,8 @@ march_final:
                     Case "Q6N"
                         tArch.Q6 = Str2Dbl(dt.Rows(i)("Value").ToString())
 
+                    Case "ERR"
+                        tArch.HC = Long.Parse(dt.Rows(i)("Value"))
                     Case "ERR1"
                         tArch.HCtv1 = Long.Parse(dt.Rows(i)("Value"))
                         tArch.HC = Long.Parse(dt.Rows(i)("Value"))

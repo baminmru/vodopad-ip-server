@@ -1,0 +1,11 @@
+create global temporary table EXCELDOCUMENTSTORE
+(
+  object_id  NUMBER(12),
+  seg_index  NUMBER(12),
+  segment    VARCHAR2(60),
+  seg_length NUMBER(12),
+  value      VARCHAR2(4000)
+)
+on commit delete rows;
+create index EXCELDOCUMENTSTORE_I on EXCELDOCUMENTSTORE (OBJECT_ID, SEGMENT);
+

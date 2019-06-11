@@ -570,6 +570,7 @@ Public Class driver
                     Else
                         ok = False
                     End If
+                    If dt > lastH Then Exit While
                 End While
 
                 Frame(0) = &H8
@@ -658,6 +659,7 @@ Public Class driver
                         Else
                             ok = False
                         End If
+                        If dt > lastD Then Exit While
                     End While
                 End If
 

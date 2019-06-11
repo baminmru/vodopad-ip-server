@@ -115,6 +115,7 @@ Partial Class ClientForm
         Me.Button3 = New System.Windows.Forms.Button()
         Me.ButtonExportHour = New System.Windows.Forms.Button()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.cmdChek24 = New System.Windows.Forms.Button()
         Me.cmdRefreshDay = New System.Windows.Forms.Button()
         Me.lblDay = New System.Windows.Forms.Label()
         Me.DataGridDay = New System.Windows.Forms.DataGridView()
@@ -150,7 +151,6 @@ Partial Class ClientForm
         Me.ReadTimer = New System.Windows.Forms.Timer(Me.components)
         Me.ComTimer = New System.Windows.Forms.Timer(Me.components)
         Me.wb = New SpreadsheetGear.Windows.Forms.WorkbookView()
-        Me.cmdChek24 = New System.Windows.Forms.Button()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -473,7 +473,7 @@ Partial Class ClientForm
         '
         'DateTimePickerBefor
         '
-        Me.DateTimePickerBefor.CustomFormat = "dd/MM/yyyy HH:mm:ss"
+        Me.DateTimePickerBefor.CustomFormat = "dd/MM/yyyy HH:59:59"
         Me.DateTimePickerBefor.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.DateTimePickerBefor.Location = New System.Drawing.Point(362, 4)
         Me.DateTimePickerBefor.Name = "DateTimePickerBefor"
@@ -482,7 +482,7 @@ Partial Class ClientForm
         '
         'DateTimePickerAfter
         '
-        Me.DateTimePickerAfter.CustomFormat = "dd/MM/yyyy HH:mm:ss"
+        Me.DateTimePickerAfter.CustomFormat = "dd/MM/yyyy HH:00:00"
         Me.DateTimePickerAfter.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.DateTimePickerAfter.Location = New System.Drawing.Point(168, 4)
         Me.DateTimePickerAfter.Name = "DateTimePickerAfter"
@@ -814,6 +814,15 @@ Partial Class ClientForm
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Суточный"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'cmdChek24
+        '
+        Me.cmdChek24.Location = New System.Drawing.Point(658, 7)
+        Me.cmdChek24.Name = "cmdChek24"
+        Me.cmdChek24.Size = New System.Drawing.Size(85, 23)
+        Me.cmdChek24.TabIndex = 12
+        Me.cmdChek24.Text = "=24?"
+        Me.cmdChek24.UseVisualStyleBackColor = True
         '
         'cmdRefreshDay
         '
@@ -1305,15 +1314,6 @@ Partial Class ClientForm
         Me.wb.TabIndex = 0
         Me.wb.Visible = False
         Me.wb.WorkbookSetState = resources.GetString("wb.WorkbookSetState")
-        '
-        'cmdChek24
-        '
-        Me.cmdChek24.Location = New System.Drawing.Point(658, 7)
-        Me.cmdChek24.Name = "cmdChek24"
-        Me.cmdChek24.Size = New System.Drawing.Size(85, 23)
-        Me.cmdChek24.TabIndex = 12
-        Me.cmdChek24.Text = "=24?"
-        Me.cmdChek24.UseVisualStyleBackColor = True
         '
         'ClientForm
         '

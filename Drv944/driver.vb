@@ -167,7 +167,7 @@ Public Class driver
             End If
 
         End While
-
+        Debug.Print("Tegs Found: " + Tegs.Count.ToString())
         Return Tegs
 
     End Function
@@ -611,7 +611,7 @@ Public Class driver
         d = GetDeviceDate()
 
 
-        ''''''''''''''''''  chanel0 '''''''''''''''''''''''''
+        ''''''''''''''''''  chanel_0 '''''''''''''''''''''''''
         msg = New messageM4(cmdM4.cmd_ARCHIV, 0)
 
         block = New blockM4(TegM4.teg_OCTET_STRING, 5)
@@ -676,6 +676,7 @@ Public Class driver
 
         msg.Tegs.Add(block)
 
+
         trycnt = 5
 tv0_get:
         trycnt -= 1
@@ -724,19 +725,102 @@ tv0_get:
                     block = msg.Tegs(1)
                     If block.teg = TegM4.teg_SEQUENCE And dok Then
                         Seq = ParseM4Sequence(block.data, block.dl)
-                        If Seq.Count >= 36 Then
+                        If Seq.Count >= 71 Then
+                            Try
 
-                            block = Seq(12)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.Q1H = BToSingle(block.data, 0)
-                            block = Seq(13)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.WORKTIME1 = BToSingle(block.data, 0)
-                            block = Seq(14)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.ERRTIME1 = BToSingle(block.data, 0)
-                            block = Seq(15)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.OKTIME1 = BToSingle(block.data, 0)
-                            block = Seq(36)
-                            If block.teg = TegM4.teg_FLAGS Then Arch.HC = block.data(1) * 256 + block.data(0)
-                            Arch.MsgHC = DeCodeHC(Arch.HC)
+
+                                block = Seq(12)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.Q1H = BToSingle(block.data, 0)
+                                block = Seq(13)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.WORKTIME1 = BToSingle(block.data, 0)
+                                block = Seq(14)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.ERRTIME1 = BToSingle(block.data, 0)
+                                block = Seq(15)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.OKTIME1 = BToSingle(block.data, 0)
+                                block = Seq(36)
+                                If block.teg = TegM4.teg_FLAGS Then Arch.HC = block.data(1) * 256 + block.data(0)
+                                Arch.MsgHC = DeCodeHC(Arch.HC)
+
+
+                                '''''''''''''' TV1
+                                block = Seq(38 + 1)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.T1 = BToSingle(block.data, 0)
+                                block = Seq(38 + 2)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.T2 = BToSingle(block.data, 0)
+                                block = Seq(38 + 4)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.T3 = BToSingle(block.data, 0)
+
+                                block = Seq(38 + 6)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.P1 = BToSingle(block.data, 0)
+                                block = Seq(38 + 7)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.P2 = BToSingle(block.data, 0)
+                                block = Seq(38 + 8)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.P3 = BToSingle(block.data, 0)
+
+
+
+                                block = Seq(38 + 9)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.V1 = BToSingle(block.data, 0)
+                                block = Seq(38 + 10)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.V2 = BToSingle(block.data, 0)
+                                block = Seq(38 + 11)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.V3 = BToSingle(block.data, 0)
+
+                                block = Seq(38 + 12)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.M1 = BToSingle(block.data, 0)
+                                block = Seq(38 + 13)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.M2 = BToSingle(block.data, 0)
+                                block = Seq(38 + 14)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.M3 = BToSingle(block.data, 0)
+
+                                block = Seq(38 + 15)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.Q1 = BToSingle(block.data, 0)
+                                block = Seq(38 + 16)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.Q2 = BToSingle(block.data, 0)
+
+                                ''''''''''''''''''''' TV2
+                                block = Seq(55 + 1)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.T4 = BToSingle(block.data, 0)
+                                block = Seq(55 + 2)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.T5 = BToSingle(block.data, 0)
+                                block = Seq(55 + 4)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.T6 = BToSingle(block.data, 0)
+
+                                block = Seq(55 + 6)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.P4 = BToSingle(block.data, 0)
+                                block = Seq(55 + 7)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.P5 = BToSingle(block.data, 0)
+                                block = Seq(55 + 8)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.P6 = BToSingle(block.data, 0)
+
+
+
+                                block = Seq(55 + 9)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.v4 = BToSingle(block.data, 0)
+                                block = Seq(55 + 10)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.v5 = BToSingle(block.data, 0)
+                                block = Seq(55 + 11)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.v6 = BToSingle(block.data, 0)
+
+                                block = Seq(55 + 12)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.M4 = BToSingle(block.data, 0)
+                                block = Seq(55 + 13)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.M5 = BToSingle(block.data, 0)
+                                block = Seq(55 + 14)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.M6 = BToSingle(block.data, 0)
+
+                                block = Seq(55 + 15)
+                                If block.teg = TegM4.teg_IEEFloat Then Arch.Q4 = BToSingle(block.data, 0)
+                                If Seq.Count > 71 Then
+                                    block = Seq(55 + 16)
+                                    If block.teg = TegM4.teg_IEEFloat Then Arch.Q5 = BToSingle(block.data, 0)
+                                End If
+
+
+                            Catch ex As Exception
+                                Debug.Print(ex.Message)
+                            End Try
+
                         End If
 
                         ok = True
@@ -753,323 +837,324 @@ tv0_get:
 
 
 tv1_arch:
+        '' 18.10.2017 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        '        ''''''''''''''''''  chanel 1 '''''''''''''''''''''''''
+        '        msg = New messageM4(cmdM4.cmd_ARCHIV, 0)
+
+        '        block = New blockM4(TegM4.teg_OCTET_STRING, 5)
+        '        block.data(0) = &HFF
+        '        block.data(1) = &HFF
+        '        block.data(2) = 1 ' chanel 1
+        '        If (ArchType = archType_hour) Then
+        '            block.data(3) = 0
+        '        Else
+        '            block.data(3) = 1
+        '        End If
+
+        '        block.data(4) = 1
+
+        '        msg.Tegs.Add(block)
+
+
+        '        block = New blockM4(TegM4.teg_ARCHDATE, 8)
+
+
+        '        If (ArchType = archType_hour) Then
+        '            block.data(0) = ArchYear - 2000
+        '            block.data(1) = ArchMonth Mod 13
+        '            block.data(2) = ArchDay Mod 32
+        '            block.data(3) = ArchHour Mod 24
+        '            block.data(4) = 0
+        '            block.data(5) = 0
+        '            block.data(6) = 0
+        '            block.data(7) = 0
+        '            Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, ArchHour, 0, 0)
+        '            Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
+
+        '            Arch.archType = archType_hour
+
+        '            If Arch.DateArch > d Then
+        '                isArchToDBWrite = False
+        '                Return "Ошибка даты архива"
+
+        '            End If
+        '        End If
+
+        '        If (ArchType = archType_day) Then
+        '            Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, 0, 0, 0)
+        '            Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
+        '            block.data(0) = ArchYear - 2000
+        '            block.data(1) = ArchMonth Mod 13
+        '            block.data(2) = ArchDay Mod 32
+        '            block.data(3) = 0
+        '            block.data(4) = 0
+        '            block.data(5) = 0
+        '            block.data(6) = 0
+        '            block.data(7) = 0
+
+        '            Arch.archType = archType_day
+
+        '            If Arch.DateArch > d Then
+        '                isArchToDBWrite = False
+        '                Return "Ошибка даты архива"
+
+        '            End If
+        '        End If
+
+        '        msg.Tegs.Add(block)
+
+        '        trycnt = 5
+        'tv1_get:
+        '        trycnt -= 1
+        '        mID = NextID()
+
+        '        barr = msg.BuildMessage(mID)
+
+        '        EraseInputQueue()
+
+        '        write(barr, barr.Length)
+        '        WaitForData()
+
+
+        '        i = MyRead(inbuf, 0, 7, 1000)
+
+        '        If i = 7 Then
+        '            If CheckHeader(inbuf) Then
+        '                sz = inbuf(5) + inbuf(6) * 256
+        '                i = MyRead(inbuf, 7, sz + 2, 3000)
+        '            Else
+        '                EraseInputQueue()
+        '                i = 0
+        '            End If
+        '        End If
+
+
 
-        ''''''''''''''''''  chanel1 '''''''''''''''''''''''''
-        msg = New messageM4(cmdM4.cmd_ARCHIV, 0)
-
-        block = New blockM4(TegM4.teg_OCTET_STRING, 5)
-        block.data(0) = &HFF
-        block.data(1) = &HFF
-        block.data(2) = 1 ' chanel 1
-        If (ArchType = archType_hour) Then
-            block.data(3) = 0
-        Else
-            block.data(3) = 1
-        End If
-
-        block.data(4) = 1
-
-        msg.Tegs.Add(block)
-
-
-        block = New blockM4(TegM4.teg_ARCHDATE, 8)
-
-
-        If (ArchType = archType_hour) Then
-            block.data(0) = ArchYear - 2000
-            block.data(1) = ArchMonth Mod 13
-            block.data(2) = ArchDay Mod 32
-            block.data(3) = ArchHour Mod 24
-            block.data(4) = 0
-            block.data(5) = 0
-            block.data(6) = 0
-            block.data(7) = 0
-            Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, ArchHour, 0, 0)
-            Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
-
-            Arch.archType = archType_hour
-
-            If Arch.DateArch > d Then
-                isArchToDBWrite = False
-                Return "Ошибка даты архива"
-
-            End If
-        End If
-
-        If (ArchType = archType_day) Then
-            Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, 0, 0, 0)
-            Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
-            block.data(0) = ArchYear - 2000
-            block.data(1) = ArchMonth Mod 13
-            block.data(2) = ArchDay Mod 32
-            block.data(3) = 0
-            block.data(4) = 0
-            block.data(5) = 0
-            block.data(6) = 0
-            block.data(7) = 0
-
-            Arch.archType = archType_day
-
-            If Arch.DateArch > d Then
-                isArchToDBWrite = False
-                Return "Ошибка даты архива"
-
-            End If
-        End If
-
-        msg.Tegs.Add(block)
-
-        trycnt = 5
-tv1_get:
-        trycnt -= 1
-        mID = NextID()
-
-        barr = msg.BuildMessage(mID)
-
-        EraseInputQueue()
-
-        write(barr, barr.Length)
-        WaitForData()
-
-
-        i = MyRead(inbuf, 0, 7, 1000)
-
-        If i = 7 Then
-            If CheckHeader(inbuf) Then
-                sz = inbuf(5) + inbuf(6) * 256
-                i = MyRead(inbuf, 7, sz + 2, 3000)
-            Else
-                EraseInputQueue()
-                i = 0
-            End If
-        End If
-
-
-
-        dok = False
-        If i > 0 Then
-            If CheckCRC16(inbuf, 1, i + 7 - 3) Then
-                msg = ParseM4Message(inbuf)
-                If msg.cmd = cmdM4.cmd_ARCHIV Then 'msg.ID = mID And
-                    block = msg.Tegs(0)
-                    If block.teg = TegM4.teg_ARCHDATE And block.dl >= 3 Then
-                        If (ArchType = archType_hour) Then
-                            If block.data(0) = ArchYear - 2000 And block.data(1) = ArchMonth And block.data(2) = ArchDay And block.data(3) = ArchHour Then
-                                dok = True
-                            End If
-                        Else
-                            If block.data(0) = ArchYear - 2000 And block.data(1) = ArchMonth And block.data(2) = ArchDay Then
-                                dok = True
-                            End If
-                        End If
-
-                    End If
-                    block = msg.Tegs(1)
-                    If block.teg = TegM4.teg_SEQUENCE And dok Then
-                        Seq = ParseM4Sequence(block.data, block.dl)
-                        If Seq.Count >= 17 Then
-                            block = Seq(1)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.T1 = BToSingle(block.data, 0)
-                            block = Seq(2)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.T2 = BToSingle(block.data, 0)
-                            block = Seq(4)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.T3 = BToSingle(block.data, 0)
-
-                            block = Seq(6)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.P1 = BToSingle(block.data, 0)
-                            block = Seq(7)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.P2 = BToSingle(block.data, 0)
-                            block = Seq(8)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.P3 = BToSingle(block.data, 0)
-
-
-
-                            block = Seq(9)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.V1 = BToSingle(block.data, 0)
-                            block = Seq(10)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.V2 = BToSingle(block.data, 0)
-                            block = Seq(11)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.V3 = BToSingle(block.data, 0)
-
-                            block = Seq(12)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.M1 = BToSingle(block.data, 0)
-                            block = Seq(13)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.M2 = BToSingle(block.data, 0)
-                            block = Seq(14)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.M3 = BToSingle(block.data, 0)
-
-                            block = Seq(15)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.Q1 = BToSingle(block.data, 0)
-                            block = Seq(16)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.Q2 = BToSingle(block.data, 0)
-
-                        End If
-
-                        ok = True
-                        GoTo tv2_arch
-                    End If
-
-
-                End If
-            End If
-        End If
-        If trycnt > 0 Then GoTo tv1_get
-
-        EraseInputQueue()
-
-
-
-tv2_arch:
-        '''''''''''''''''''''''' chanel 2 ''''''''''''''''''
-
-        msg = New messageM4(cmdM4.cmd_ARCHIV, 0)
-
-        block = New blockM4(TegM4.teg_OCTET_STRING, 5)
-        block.data(0) = &HFF
-        block.data(1) = &HFF
-        block.data(2) = 2
-        If (ArchType = archType_hour) Then
-            block.data(3) = 0
-        Else
-            block.data(3) = 1
-        End If
-
-        block.data(4) = 1
-
-        msg.Tegs.Add(block)
-
-
-        block = New blockM4(TegM4.teg_ARCHDATE, 8)
-
-
-        If (ArchType = archType_hour) Then
-
-            block.data(0) = ArchYear - 2000
-            block.data(1) = ArchMonth Mod 13
-            block.data(2) = ArchDay Mod 32
-            block.data(3) = ArchHour Mod 24
-            block.data(4) = 0
-            block.data(5) = 0
-            block.data(6) = 0
-            block.data(7) = 0
-            Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, ArchHour, 0, 0)
-            Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
-            Arch.archType = archType_hour
-        End If
-
-        If (ArchType = archType_day) Then
-            block.data(0) = ArchYear - 2000
-            block.data(1) = ArchMonth Mod 13
-            block.data(2) = ArchDay Mod 32
-            block.data(3) = 0
-            block.data(4) = 0
-            block.data(5) = 0
-            block.data(6) = 0
-            block.data(7) = 0
-            Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, 0, 0, 0)
-            Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
-            Arch.archType = archType_day
-        End If
-
-        msg.Tegs.Add(block)
-
-        trycnt = 5
-tv2_get:
-
-        trycnt -= 1
-        mID = NextID()
-
-        barr = msg.BuildMessage(mID)
-
-        EraseInputQueue()
-
-        write(barr, barr.Length)
-        WaitForData()
-
-
-        i = MyRead(inbuf, 0, 7, 1000)
-
-        If i = 7 Then
-            If CheckHeader(inbuf) Then
-                sz = inbuf(5) + inbuf(6) * 256
-                i = MyRead(inbuf, 7, sz + 2, 3000)
-            Else
-                EraseInputQueue()
-                i = 0
-            End If
-        End If
-
-
-
-
-        dok = False
-        If i > 0 Then
-            If CheckCRC16(inbuf, 1, i + 7 - 3) Then
-                msg = ParseM4Message(inbuf)
-                If msg.cmd = cmdM4.cmd_ARCHIV Then 'msg.ID = mID And
-                    block = msg.Tegs(0)
-                    If block.teg = TegM4.teg_ARCHDATE And block.dl >= 3 Then
-                        If (ArchType = archType_hour) Then
-                            If block.data(0) = ArchYear - 2000 And block.data(1) = ArchMonth And block.data(2) = ArchDay And block.data(3) = ArchHour Then
-                                dok = True
-                            End If
-                        Else
-                            If block.data(0) = ArchYear - 2000 And block.data(1) = ArchMonth And block.data(2) = ArchDay Then
-                                dok = True
-                            End If
-                        End If
-                    End If
-                    block = msg.Tegs(1)
-                    If block.teg = TegM4.teg_SEQUENCE And dok Then
-                        Seq = ParseM4Sequence(block.data, block.dl)
-                        If Seq.Count >= 17 Then
-                            block = Seq(1)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.T4 = BToSingle(block.data, 0)
-                            block = Seq(2)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.T5 = BToSingle(block.data, 0)
-                            block = Seq(4)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.T6 = BToSingle(block.data, 0)
-
-                            block = Seq(6)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.P4 = BToSingle(block.data, 0)
-                            block = Seq(7)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.P5 = BToSingle(block.data, 0)
-                            block = Seq(8)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.P6 = BToSingle(block.data, 0)
-
-
-
-                            block = Seq(9)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.v4 = BToSingle(block.data, 0)
-                            block = Seq(10)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.v5 = BToSingle(block.data, 0)
-                            block = Seq(11)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.v6 = BToSingle(block.data, 0)
-
-                            block = Seq(12)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.M4 = BToSingle(block.data, 0)
-                            block = Seq(13)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.M5 = BToSingle(block.data, 0)
-                            block = Seq(14)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.M6 = BToSingle(block.data, 0)
-
-                            block = Seq(15)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.Q4 = BToSingle(block.data, 0)
-                            block = Seq(16)
-                            If block.teg = TegM4.teg_IEEFloat Then Arch.Q5 = BToSingle(block.data, 0)
-                        End If
-                        ok = True
-                        GoTo arch_final
-                    End If
-
-
-                End If
-            End If
-        End If
-        If trycnt > 0 Then
-            GoTo tv2_get
-        End If
-
+        '        dok = False
+        '        If i > 0 Then
+        '            If CheckCRC16(inbuf, 1, i + 7 - 3) Then
+        '                msg = ParseM4Message(inbuf)
+        '                If msg.cmd = cmdM4.cmd_ARCHIV Then 'msg.ID = mID And
+        '                    block = msg.Tegs(0)
+        '                    If block.teg = TegM4.teg_ARCHDATE And block.dl >= 3 Then
+        '                        If (ArchType = archType_hour) Then
+        '                            If block.data(0) = ArchYear - 2000 And block.data(1) = ArchMonth And block.data(2) = ArchDay And block.data(3) = ArchHour Then
+        '                                dok = True
+        '                            End If
+        '                        Else
+        '                            If block.data(0) = ArchYear - 2000 And block.data(1) = ArchMonth And block.data(2) = ArchDay Then
+        '                                dok = True
+        '                            End If
+        '                        End If
+
+        '                    End If
+        '                    block = msg.Tegs(1)
+        '                    If block.teg = TegM4.teg_SEQUENCE And dok Then
+        '                        Seq = ParseM4Sequence(block.data, block.dl)
+        '                        If Seq.Count >= 17 Then
+        '                            block = Seq(1)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.T1 = BToSingle(block.data, 0)
+        '                            block = Seq(2)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.T2 = BToSingle(block.data, 0)
+        '                            block = Seq(4)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.T3 = BToSingle(block.data, 0)
+
+        '                            block = Seq(6)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.P1 = BToSingle(block.data, 0)
+        '                            block = Seq(7)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.P2 = BToSingle(block.data, 0)
+        '                            block = Seq(8)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.P3 = BToSingle(block.data, 0)
+
+
+
+        '                            block = Seq(9)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.V1 = BToSingle(block.data, 0)
+        '                            block = Seq(10)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.V2 = BToSingle(block.data, 0)
+        '                            block = Seq(11)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.V3 = BToSingle(block.data, 0)
+
+        '                            block = Seq(12)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.M1 = BToSingle(block.data, 0)
+        '                            block = Seq(13)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.M2 = BToSingle(block.data, 0)
+        '                            block = Seq(14)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.M3 = BToSingle(block.data, 0)
+
+        '                            block = Seq(15)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.Q1 = BToSingle(block.data, 0)
+        '                            block = Seq(16)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.Q2 = BToSingle(block.data, 0)
+
+        '                        End If
+
+        '                        ok = True
+        '                        GoTo tv2_arch
+        '                    End If
+
+
+        '                End If
+        '            End If
+        '        End If
+        '        If trycnt > 0 Then GoTo tv1_get
+
+        '        EraseInputQueue()
+
+        '        ok = False
+        '        GoTo arch_final
+
+        'tv2_arch:
+        '        '''''''''''''''''''''''' chanel 2 ''''''''''''''''''
+
+        '        msg = New messageM4(cmdM4.cmd_ARCHIV, 0)
+
+        '        block = New blockM4(TegM4.teg_OCTET_STRING, 5)
+        '        block.data(0) = &HFF
+        '        block.data(1) = &HFF
+        '        block.data(2) = 2
+        '        If (ArchType = archType_hour) Then
+        '            block.data(3) = 0
+        '        Else
+        '            block.data(3) = 1
+        '        End If
+
+        '        block.data(4) = 1
+
+        '        msg.Tegs.Add(block)
+
+
+        '        block = New blockM4(TegM4.teg_ARCHDATE, 8)
+
+
+        '        If (ArchType = archType_hour) Then
+
+        '            block.data(0) = ArchYear - 2000
+        '            block.data(1) = ArchMonth Mod 13
+        '            block.data(2) = ArchDay Mod 32
+        '            block.data(3) = ArchHour Mod 24
+        '            block.data(4) = 0
+        '            block.data(5) = 0
+        '            block.data(6) = 0
+        '            block.data(7) = 0
+        '            Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, ArchHour, 0, 0)
+        '            Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
+        '            Arch.archType = archType_hour
+        '        End If
+
+        '        If (ArchType = archType_day) Then
+        '            block.data(0) = ArchYear - 2000
+        '            block.data(1) = ArchMonth Mod 13
+        '            block.data(2) = ArchDay Mod 32
+        '            block.data(3) = 0
+        '            block.data(4) = 0
+        '            block.data(5) = 0
+        '            block.data(6) = 0
+        '            block.data(7) = 0
+        '            Arch.DateArch = New DateTime(ArchYear, ArchMonth, ArchDay, 0, 0, 0)
+        '            Arch.DateArch = Arch.DateArch.AddMilliseconds(Me.AddMS)
+        '            Arch.archType = archType_day
+        '        End If
+
+        '        msg.Tegs.Add(block)
+
+        '        trycnt = 5
+        'tv2_get:
+
+        '        trycnt -= 1
+        '        mID = NextID()
+
+        '        barr = msg.BuildMessage(mID)
+
+        '        EraseInputQueue()
+
+        '        write(barr, barr.Length)
+        '        WaitForData()
+
+
+        '        i = MyRead(inbuf, 0, 7, 1000)
+
+        '        If i = 7 Then
+        '            If CheckHeader(inbuf) Then
+        '                sz = inbuf(5) + inbuf(6) * 256
+        '                i = MyRead(inbuf, 7, sz + 2, 3000)
+        '            Else
+        '                EraseInputQueue()
+        '                i = 0
+        '            End If
+        '        End If
+
+
+
+
+        '        dok = False
+        '        If i > 0 Then
+        '            If CheckCRC16(inbuf, 1, i + 7 - 3) Then
+        '                msg = ParseM4Message(inbuf)
+        '                If msg.cmd = cmdM4.cmd_ARCHIV Then 'msg.ID = mID And
+        '                    block = msg.Tegs(0)
+        '                    If block.teg = TegM4.teg_ARCHDATE And block.dl >= 3 Then
+        '                        If (ArchType = archType_hour) Then
+        '                            If block.data(0) = ArchYear - 2000 And block.data(1) = ArchMonth And block.data(2) = ArchDay And block.data(3) = ArchHour Then
+        '                                dok = True
+        '                            End If
+        '                        Else
+        '                            If block.data(0) = ArchYear - 2000 And block.data(1) = ArchMonth And block.data(2) = ArchDay Then
+        '                                dok = True
+        '                            End If
+        '                        End If
+        '                    End If
+        '                    block = msg.Tegs(1)
+        '                    If block.teg = TegM4.teg_SEQUENCE And dok Then
+        '                        Seq = ParseM4Sequence(block.data, block.dl)
+        '                        If Seq.Count >= 17 Then
+        '                            block = Seq(1)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.T4 = BToSingle(block.data, 0)
+        '                            block = Seq(2)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.T5 = BToSingle(block.data, 0)
+        '                            block = Seq(4)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.T6 = BToSingle(block.data, 0)
+
+        '                            block = Seq(6)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.P4 = BToSingle(block.data, 0)
+        '                            block = Seq(7)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.P5 = BToSingle(block.data, 0)
+        '                            block = Seq(8)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.P6 = BToSingle(block.data, 0)
+
+
+
+        '                            block = Seq(9)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.v4 = BToSingle(block.data, 0)
+        '                            block = Seq(10)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.v5 = BToSingle(block.data, 0)
+        '                            block = Seq(11)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.v6 = BToSingle(block.data, 0)
+
+        '                            block = Seq(12)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.M4 = BToSingle(block.data, 0)
+        '                            block = Seq(13)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.M5 = BToSingle(block.data, 0)
+        '                            block = Seq(14)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.M6 = BToSingle(block.data, 0)
+
+        '                            block = Seq(15)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.Q4 = BToSingle(block.data, 0)
+        '                            block = Seq(16)
+        '                            If block.teg = TegM4.teg_IEEFloat Then Arch.Q5 = BToSingle(block.data, 0)
+        '                        End If
+        '                        ok = True
+        '                        GoTo arch_final
+        '                    End If
+
+
+        '                End If
+        '            End If
+        '        End If
+        '        If trycnt > 0 Then
+        '            GoTo tv2_get
+        '        End If
+        '' 18.10.2017 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 arch_final:
         EraseInputQueue()
         If ok = False Then
@@ -1104,6 +1189,7 @@ arch_final:
 
     Private Function CheckCRC16(ByVal buf() As Byte, ByVal offset As Integer, ByVal len As Integer) As Boolean
         Dim crc As UShort
+        If len <=0 Then Return False
         crc = M4CRC(buf, offset, len)
         If (buf(offset + len) = crc \ 256) And (buf(offset + len + 1) = crc Mod 256) Then
             Return True
@@ -1425,7 +1511,7 @@ arch_final:
             Return BitConverter.ToSingle(bArray, 0)
 
         Catch ex As Exception
-
+            Return Single.NaN
         End Try
     End Function
 
@@ -2453,159 +2539,222 @@ tarch_final:
         dt.Rows.Add(dr)
 
 
-        msg = New messageM4(cmdM4.cmd_PARAM, 0)
 
+        Dim stpos As Integer
+        Dim curpos As Integer
+        Dim t4portion As Integer
         Dim pair As KeyValuePair(Of Integer, String)
         Dim ikey As Integer
-        For Each pair In cn
-            ikey = (pair.Key)
-            block = New blockM4(TegM4.teg_PNUM, 3)
-            block.data(0) = 0 ' chanel
-            block.data(1) = ikey Mod 256
-            block.data(2) = ikey \ 256
-            msg.Tegs.Add(block)
+        t4portion = 25
+        For stpos = 0 To cn.Count Step t4portion
+            msg = New messageM4(cmdM4.cmd_PARAM, 0)
+            curpos = 0
+            For Each pair In cn
+                If curpos >= stpos Then
+                    ikey = (pair.Key)
+                    block = New blockM4(TegM4.teg_PNUM, 3)
+                    block.data(0) = 0 ' chanel
+                    block.data(1) = ikey Mod 256
+                    block.data(2) = ikey \ 256
+                    msg.Tegs.Add(block)
+                End If
+                curpos += 1
+                If curpos = stpos + t4portion Then
+                    Exit For
+                End If
+            Next
+
+
+
+
+            mID = NextID()
+
+            barr = msg.BuildMessage(mID)
+
+            EraseInputQueue()
+
+            write(barr, barr.Length)
+            WaitForData()
+
+
+            i = MyRead(inbuf, 0, 1024, 2000)
+            If i > 0 Then
+                If CheckCRC16(inbuf, 1, i - 3) Then
+                    msg = ParseM4Message(inbuf)
+                    If msg.cmd = cmdM4.cmd_PARAM Then 'msg.ID = mID And
+                        i = 0
+                        curpos = 0
+                        Dim sName As String
+                        For Each pair In cn
+                            sName = pair.Value
+                            If curpos >= stpos Then
+                                block = msg.Tegs(i)
+                                i += 1
+                                If block.teg = TegM4.teg_ASCIIString Then
+                                    dr = dt.NewRow
+                                    dr("Название") = sName
+
+                                    s = ""
+                                    For j = 0 To block.dl - 1
+                                        s = s + Chr(block.data(j))
+                                    Next
+                                    dr("Значение") = s
+                                    dt.Rows.Add(dr)
+                                Else
+                                    Debug.Print(block.teg.ToString)
+                                End If
+                            End If
+                            curpos += 1
+                            If curpos = stpos + t4portion Then
+                                Exit For
+                            End If
+                        Next
+
+                    End If
+                End If
+            End If
+            Debug.Print(stpos.ToString())
+        Next  ' stpos
+
+
+        For stpos = 0 To sn.Count Step t4portion
+
+            msg = New messageM4(cmdM4.cmd_PARAM, 0)
+            curpos = 0
+            For Each pair In sn
+                If curpos >= stpos Then
+                    ikey = (pair.Key)
+                    block = New blockM4(TegM4.teg_PNUM, 3)
+                    block.data(0) = 1 ' chanel
+                    block.data(1) = ikey Mod 256
+                    block.data(2) = ikey \ 256
+                    msg.Tegs.Add(block)
+                End If
+                curpos += 1
+                If curpos >= stpos + t4portion Then
+                    Exit For
+                End If
+            Next
+
+
+
+            mID = NextID()
+
+            barr = msg.BuildMessage(mID)
+
+            EraseInputQueue()
+
+            write(barr, barr.Length)
+            WaitForData()
+
+
+            i = MyRead(inbuf, 0, 1024, 2000)
+            If i > 0 Then
+                If CheckCRC16(inbuf, 1, i - 3) Then
+                    msg = ParseM4Message(inbuf)
+                    If msg.cmd = cmdM4.cmd_PARAM Then 'msg.ID = mID And
+                        i = 0
+                        curpos = 0
+                        Dim sName As String
+                        For Each pair In sn
+                            sName = pair.Value
+                            If curpos >= stpos Then
+                                block = msg.Tegs(i)
+                                i += 1
+                                If block.teg = TegM4.teg_ASCIIString Then
+                                    dr = dt.NewRow
+                                    dr("Название") = "TV1. " + sName
+
+                                    s = ""
+                                    For j = 0 To block.dl - 1
+                                        s = s + Chr(block.data(j))
+                                    Next
+                                    dr("Значение") = s
+                                    dt.Rows.Add(dr)
+                                End If
+                            End If
+                            curpos += 1
+                            If curpos >= stpos + t4portion Then
+                                Exit For
+                            End If
+                        Next
+
+
+                        ok = True
+                    End If
+                End If
+            End If
         Next
 
 
+        For stpos = 0 To sn.Count Step t4portion
+
+            msg = New messageM4(cmdM4.cmd_PARAM, 0)
+            curpos = 0
+            For Each pair In sn
+                If curpos >= stpos Then
+                    ikey = (pair.Key)
+                    block = New blockM4(TegM4.teg_PNUM, 3)
+                    block.data(0) = 2 ' chanel
+                    block.data(1) = ikey Mod 256
+                    block.data(2) = ikey \ 256
+                    msg.Tegs.Add(block)
+                End If
+                curpos += 1
+                If curpos >= stpos + t4portion Then
+                    Exit For
+                End If
+            Next
 
 
-        mID = NextID()
 
-        barr = msg.BuildMessage(mID)
+            mID = NextID()
 
-        EraseInputQueue()
+            barr = msg.BuildMessage(mID)
 
-        write(barr, barr.Length)
-        WaitForData()
+            EraseInputQueue()
+
+            write(barr, barr.Length)
+            WaitForData()
 
 
-        i = MyRead(inbuf, 0, 1024, 2000)
-        If i > 0 Then
-            If CheckCRC16(inbuf, 1, i - 3) Then
-                msg = ParseM4Message(inbuf)
-                If msg.cmd = cmdM4.cmd_PARAM Then 'msg.ID = mID And
-                    i = 0
-                    For Each sName As String In cn.Values
-                        block = msg.Tegs(i)
-                        i += 1
-                        If block.teg = TegM4.teg_ASCIIString Then
-                            dr = dt.NewRow
-                            dr("Название") = sName
+            i = MyRead(inbuf, 0, 1024, 2000)
+            If i > 0 Then
+                If CheckCRC16(inbuf, 1, i - 3) Then
+                    msg = ParseM4Message(inbuf)
+                    If msg.cmd = cmdM4.cmd_PARAM Then 'msg.ID = mID And
+                        i = 0
+                        curpos = 0
+                        Dim sName As String
+                        For Each pair In sn
+                            sName = pair.Value
+                            If curpos >= stpos Then
+                                block = msg.Tegs(i)
+                                i += 1
+                                If block.teg = TegM4.teg_ASCIIString Then
+                                    dr = dt.NewRow
+                                    dr("Название") = "TV2. " + sName
 
-                            s = ""
-                            For j = 0 To block.dl - 1
-                                s = s + Chr(block.data(j))
-                            Next
-                            dr("Значение") = s
-                            dt.Rows.Add(dr)
-                        End If
-                    Next
+                                    s = ""
+                                    For j = 0 To block.dl - 1
+                                        s = s + Chr(block.data(j))
+                                    Next
+                                    dr("Значение") = s
+                                    dt.Rows.Add(dr)
+                                End If
+                            End If
+                            curpos += 1
+                            If curpos >= stpos + t4portion Then
+                                Exit For
+                            End If
+                        Next
 
+
+                        ok = True
+                    End If
                 End If
             End If
-        End If
-
-
-        msg = New messageM4(cmdM4.cmd_PARAM, 0)
-        For Each pair In sn
-            ikey = (pair.Key)
-            block = New blockM4(TegM4.teg_PNUM, 3)
-            block.data(0) = 1 ' chanel
-            block.data(1) = ikey Mod 256
-            block.data(2) = ikey \ 256
-            msg.Tegs.Add(block)
         Next
-
-
-
-        mID = NextID()
-
-        barr = msg.BuildMessage(mID)
-
-        EraseInputQueue()
-
-        write(barr, barr.Length)
-        WaitForData()
-
-
-        i = MyRead(inbuf, 0, 1024, 2000)
-        If i > 0 Then
-            If CheckCRC16(inbuf, 1, i - 3) Then
-                msg = ParseM4Message(inbuf)
-                If msg.cmd = cmdM4.cmd_PARAM Then 'msg.ID = mID And
-                    i = 0
-                    For Each sName As String In sn.Values
-                        block = msg.Tegs(i)
-                        i += 1
-                        If block.teg = TegM4.teg_ASCIIString Then
-                            dr = dt.NewRow
-                            dr("Название") = "TV1. " + sName
-
-                            s = ""
-                            For j = 0 To block.dl - 1
-                                s = s + Chr(block.data(j))
-                            Next
-                            dr("Значение") = s
-                            dt.Rows.Add(dr)
-                        End If
-                    Next
-
-
-                    ok = True
-                End If
-            End If
-        End If
-
-
-        msg = New messageM4(cmdM4.cmd_PARAM, 0)
-        For Each pair In sn
-            ikey = (pair.Key)
-            block = New blockM4(TegM4.teg_PNUM, 3)
-            block.data(0) = 2 ' chanel
-            block.data(1) = ikey Mod 256
-            block.data(2) = ikey \ 256
-            msg.Tegs.Add(block)
-        Next
-
-
-
-        mID = NextID()
-
-        barr = msg.BuildMessage(mID)
-
-        EraseInputQueue()
-
-        write(barr, barr.Length)
-        WaitForData()
-
-
-        i = MyRead(inbuf, 0, 1024, 2000)
-        If i > 0 Then
-            If CheckCRC16(inbuf, 1, i - 3) Then
-                msg = ParseM4Message(inbuf)
-                If msg.cmd = cmdM4.cmd_PARAM Then 'msg.ID = mID And
-                    i = 0
-                    For Each sName As String In sn.Values
-                        block = msg.Tegs(i)
-                        i += 1
-                        If block.teg = TegM4.teg_ASCIIString Then
-                            dr = dt.NewRow
-                            dr("Название") = "TV2. " + sName
-
-                            s = ""
-                            For j = 0 To block.dl - 1
-                                s = s + Chr(block.data(j))
-                            Next
-                            dr("Значение") = s
-                            dt.Rows.Add(dr)
-                        End If
-                    Next
-
-
-                    ok = True
-                End If
-            End If
-        End If
 
 
         Return dt

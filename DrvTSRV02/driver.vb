@@ -723,14 +723,18 @@ READMORE:
                     MyTransport.CleanPort()
                     MyTransport.Write(buf, 0, 15)
 
-                    WaitForData()
 
                     Dim btr As Long
                     Dim sz As Long = 0
+                    Dim tryCnt As Integer = 5
+                    ok = False
+                    While tryCnt > 0 And ok = False
+                        tryCnt -= 1
+                        WaitForData()
                     btr = MyTransport.BytesToRead
                     While btr > 0
                         MyTransport.Read(buf, sz, btr)
-                        System.Threading.Thread.Sleep(CalcInterval(20))
+                            System.Threading.Thread.Sleep(CalcInterval(200))
                         sz += btr
                         btr = MyTransport.BytesToRead
                     End While
@@ -741,8 +745,6 @@ READMORE:
                                 ok = False
                                 retsum = EncodeError(buf(2))
                             Else
-
-
                                 With Arch
                                     .M1 = GetFlt(buf, 3 + 118 - 1)
                                     .T1 = 0.01 * GetInt(buf, 3 + 122 - 1) '
@@ -877,13 +879,26 @@ READMORE:
                                 Arch.DateArch = dt2
                                 ok = True
                             End If
-                        Else
-                            SequenceErrorCount += 1
+
+                                'Else
+                                '    SequenceErrorCount += 1
                         End If
-                    Else
+
+                            'Else
+                            '    SequenceErrorCount += 1
+                        End If
+                        If ok = False Then
+                            System.Threading.Thread.Sleep(1500)
+                        End If
+                    End While
+                    If ok = False Then
                         SequenceErrorCount += 1
                     End If
+
+
+
                 End If
+
 
                 If ArchType = archType_day Then
 
@@ -917,10 +932,16 @@ READMORE:
 
                     Dim btr As Long
                     Dim sz As Long = 0
+                    Dim tryCnt As Integer = 5
+                    ok = False
+                    While tryCnt > 0 And ok = False
+                        tryCnt -= 1
+                        WaitForData()
+
                     btr = MyTransport.BytesToRead
                     While btr > 0
                         MyTransport.Read(buf, sz, btr)
-                        System.Threading.Thread.Sleep(CalcInterval(20))
+                            System.Threading.Thread.Sleep(CalcInterval(200))
                         sz += btr
                         btr = MyTransport.BytesToRead
                     End While
@@ -1069,13 +1090,19 @@ READMORE:
                                 ok = True
                                 Arch.DateArch = dt2
                             End If
-                        Else
-                            SequenceErrorCount += 1
+                                'Else
+                                '    SequenceErrorCount += 1
                         End If
-                    Else
+                            'Else
+                            '    SequenceErrorCount += 1
+                        End If
+                        If ok = False Then
+                            System.Threading.Thread.Sleep(1500)
+                        End If
+                    End While
+                    If ok = False Then
                         SequenceErrorCount += 1
                     End If
-
 
                 End If
             End If
@@ -1146,15 +1173,20 @@ READMORE:
 
 
 
-                    WaitForData()
+
 
 
                     Dim btr As Long
                     Dim sz As Long = 0
+                    Dim tryCnt As Integer = 5
+                    ok = False
+                    While tryCnt > 0 And ok = False
+                        tryCnt -= 1
+                        WaitForData()
                     btr = MyTransport.BytesToRead
                     While btr > 0
                         MyTransport.Read(buf, sz, btr)
-                        System.Threading.Thread.Sleep(CalcInterval(20))
+                            System.Threading.Thread.Sleep(CalcInterval(200))
                         sz += btr
                         btr = MyTransport.BytesToRead
                     End While
@@ -1302,10 +1334,17 @@ READMORE:
                                 Arch.DateArch = DateArch
                                 ok = True
                             End If
-                        Else
-                            SequenceErrorCount += 1
+                                'Else
+                                '    SequenceErrorCount += 1
+                            End If
+                            'Else
+                            '    SequenceErrorCount += 1
                         End If
-                    Else
+                        If ok = False Then
+                            System.Threading.Thread.Sleep(1500)
+                        End If
+                    End While
+                    If ok = False Then
                         SequenceErrorCount += 1
                     End If
                 End If
@@ -1339,11 +1378,16 @@ READMORE:
                     'Dim i As Int16
                     'Dim j As Int16
 
-                    WaitForData()
+
 
 
                     Dim btr As Long
                     Dim sz As Long = 0
+                    Dim tryCnt As Integer = 5
+                    ok = False
+                    While tryCnt > 0 And ok = False
+                        tryCnt -= 1
+                        WaitForData()
                     btr = MyTransport.BytesToRead
                     While btr > 0
                         MyTransport.Read(buf, sz, btr)
@@ -1505,10 +1549,17 @@ READMORE:
                                 ok = True
                                 Arch.DateArch = DateArch
                             End If
-                        Else
-                            SequenceErrorCount += 1
+                                'Else
+                                '    SequenceErrorCount += 1
+                            End If
+                            'Else
+                            '    SequenceErrorCount += 1
                         End If
-                    Else
+                        If ok = False Then
+                            System.Threading.Thread.Sleep(1500)
+                        End If
+                    End While
+                    If ok = False Then
                         SequenceErrorCount += 1
                     End If
 

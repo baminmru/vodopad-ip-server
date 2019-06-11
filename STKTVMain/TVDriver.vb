@@ -18,6 +18,7 @@ Public MustInherit Class TVDriver
         Debug.Print(CounterName() + ": execute SetupDriverFromDB ")
     End Sub
 #End Region
+
 #Region "properties"
     Private mDeviceID As Integer
     Public Overridable Property DeviceID As Integer
@@ -26,6 +27,28 @@ Public MustInherit Class TVDriver
         End Get
         Set(value As Integer)
             mDeviceID = value
+        End Set
+    End Property
+
+
+    Private mDevTypeID As Integer
+    Public Overridable Property DevTypeID As Integer
+        Get
+            Return mDevTypeID
+        End Get
+        Set(value As Integer)
+            mDevTypeID = value
+        End Set
+    End Property
+
+
+    Private mAddMS As Integer
+    Public Overridable Property AddMS As Integer
+        Get
+            Return mAddMS
+        End Get
+        Set(value As Integer)
+            mAddMS = value
         End Set
     End Property
 
@@ -238,7 +261,7 @@ Public MustInherit Class TVDriver
             ad.BaudRate = BaudRate
             MyTransport.SetupTransport(ad)
         End If
-        If Transport = 3 Then
+        If Transport = 3 Or Transport = 10 Then
             MyTransport = New VortexTransport
             vd = New VortexTransportSetupData
             vd.BaudRate = BaudRate
@@ -539,7 +562,7 @@ Public MustInherit Class TVDriver
 
         RaiseIdle()
         t = 0
-        si = CalcInterval(10)
+        si = CalcInterval(50)
         Thread.Sleep(si)
         RaiseIdle()
         While MyTransport.BytesToRead = 0 And t < 500
@@ -582,7 +605,6 @@ Public MustInherit Class TVDriver
                 Me.BaudRate = 1200
             End If
 
-            Debug.Print("Decrement baud rate: " + BaudRate.ToString)
         End If
 
     End Sub
@@ -771,6 +793,12 @@ Public MustInherit Class TVDriver
         Public WORKTIME2 As Single
 
 
+        Public G1 As Single
+        Public G2 As Single
+        Public G3 As Single
+        Public G4 As Single
+        Public G5 As Single
+        Public G6 As Single
 
         Public archType As Short
     End Structure
@@ -1137,16 +1165,16 @@ Public MustInherit Class TVDriver
         sOUt = sOUt + NanFormat(Arch.P4, "##############0.000000").Replace(",", ".") + ","
         sOUt = sOUt + NanFormat(Arch.P5, "##############0.000000").Replace(",", ".") + ","
         sOUt = sOUt + NanFormat(Arch.P6, "##############0.000000").Replace(",", ".") + ","
-        sOUt = sOUt + NanFormat(Arch.V1H, "##############0.000000").Replace(",", ".") + ","
-        sOUt = sOUt + NanFormat(Arch.V2H, "##############0.000000").Replace(",", ".") + ","
-        sOUt = sOUt + NanFormat(Arch.v4H, "##############0.000000").Replace(",", ".") + ","
-        sOUt = sOUt + NanFormat(Arch.v5H, "##############0.000000").Replace(",", ".") + ","
         sOUt = sOUt + NanFormat(Arch.V1, "##############0.000000").Replace(",", ".") + ","
         sOUt = sOUt + NanFormat(Arch.V2, "##############0.000000").Replace(",", ".") + ","
         sOUt = sOUt + NanFormat(Arch.V3, "##############0.000000").Replace(",", ".") + ","
         sOUt = sOUt + NanFormat(Arch.v4, "##############0.000000").Replace(",", ".") + ","
         sOUt = sOUt + NanFormat(Arch.v5, "##############0.000000").Replace(",", ".") + ","
         sOUt = sOUt + NanFormat(Arch.v6, "##############0.000000").Replace(",", ".") + ","
+        sOUt = sOUt + NanFormat(Arch.V1H, "##############0.000000").Replace(",", ".") + ","
+        sOUt = sOUt + NanFormat(Arch.V2H, "##############0.000000").Replace(",", ".") + ","
+        sOUt = sOUt + NanFormat(Arch.v4H, "##############0.000000").Replace(",", ".") + ","
+        sOUt = sOUt + NanFormat(Arch.v5H, "##############0.000000").Replace(",", ".") + ","
         sOUt = sOUt + NanFormat(Arch.M1, "##############0.000000").Replace(",", ".") + ","
         sOUt = sOUt + NanFormat(Arch.M2, "##############0.000000").Replace(",", ".") + ","
         sOUt = sOUt + NanFormat(Arch.M3, "##############0.000000").Replace(",", ".") + ","

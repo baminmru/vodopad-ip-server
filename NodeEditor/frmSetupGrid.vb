@@ -1,7 +1,7 @@
 ﻿Imports System.Windows.Forms
 Imports Infragistics.Win
 Imports Infragistics.Win.UltraWinGrid
-Imports Oracle.ManagedDataAccess.Client
+Imports Oracle.DataAccess.Client
 
 Public Class frmSetupGrid
     Public TVMain As STKTVMain.TVMain

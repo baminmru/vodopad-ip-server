@@ -516,17 +516,13 @@ Public Class frmMain
                                 node.Override.NodeAppearance.BackColor = Color.White
                                 node.Override.NodeAppearance.ForeColor = Color.LightGray
                                 node.LeftImages.Clear()
-                               
-                                
-                                'If dt1.Rows(bi)("transport") = 0 Or dt1.Rows(bi)("transport") = 4 Then
-                                '    node.LeftImages.Add(1 + cw)
-                                'Else
-                                '    node.LeftImages.Add(2 + cw)
-                                'End If
+
+
+
                                 Select Case CInt(dt1.Rows(bi)("transport"))
                                     Case 0, 1
                                     node.LeftImages.Add(1 + cw)
-                                    Case 2, 3, 9
+                                    Case 2, 3, 9, 10
                                         node.LeftImages.Add(2 + cw)
                                     Case 4
                                         node.LeftImages.Add(4 + cw)
@@ -543,16 +539,12 @@ Public Class frmMain
                                 node.Override.NodeAppearance.BackColor = bcolor
                                 node.Override.NodeAppearance.ForeColor = Color.Blue
                                 node.LeftImages.Clear()
-                                'If dt1.Rows(bi)("transport") = 0 Or dt1.Rows(bi)("transport") = 4 Then
-                                '    node.LeftImages.Add(1 + cw)
-                                'Else
-                                '    node.LeftImages.Add(2 + cw)
-                                'End If
+
 
                                 Select Case CInt(dt1.Rows(bi)("transport"))
                                     Case 0, 1
                                     node.LeftImages.Add(1 + cw)
-                                    Case 2, 3, 9
+                                    Case 2, 3, 9, 10
                                         node.LeftImages.Add(2 + cw)
                                     Case 4
                                         node.LeftImages.Add(4 + cw)
@@ -694,7 +686,7 @@ Public Class frmMain
                     Select Case CInt(dt1.Rows(bi)("transport"))
                         Case 0, 1
                         lvi.Appearance.Image = 1 + cw
-                        Case 2, 3, 9
+                        Case 2, 3, 9, 10
                             lvi.Appearance.Image = 2 + cw
                         Case 4
                             lvi.Appearance.Image = 4 + cw

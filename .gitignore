@@ -1,1 +1,10 @@
 */obj
+*/bin
+*/backup
+*/debug
+*/release
+*.user
+*.exe
+*.dll
+Debug
+/publish/Application Files/VIPAdmin_2012_12_10_0/*.deploy

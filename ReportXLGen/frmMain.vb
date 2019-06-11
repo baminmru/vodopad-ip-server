@@ -644,6 +644,17 @@ Public Class frmMain
             outws.PageSetup.BottomMargin = ws.PageSetup.BottomMargin
             outws.PageSetup.FooterMargin = ws.PageSetup.FooterMargin
             outws.PageSetup.HeaderMargin = ws.PageSetup.HeaderMargin
+            Try
+                outws.PageSetup.Orientation = ws.PageSetup.Orientation
+            Catch ex As Exception
+
+            End Try
+
+
+
+
+
+
 
 
 
