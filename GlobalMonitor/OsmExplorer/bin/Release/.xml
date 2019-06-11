@@ -1,0 +1,2555 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OsmExplorer</name>
+    </assembly>
+    <members>
+        <member name="T:OsmExplorer.Collections.TieBreakingMode">
+            <summary>
+            Designates how a PriorityHeap breaks ties between values of equal priority.
+            See remarks.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Collections.TieBreakingMode.FIFO">
+            <summary>
+            Objects that have the same priority will be removed from the
+            heap in a first-in, first-out order (queue) when PriorityHeap.Pop()
+            is called, i.e. items pushed into the heap earlier for a given
+            priority will be removed first.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Collections.TieBreakingMode.LIFO">
+            <summary>
+            Objects that have the same priority will be removed from the
+            heap in a first-in, last-out order (stack) when PriorityHeap.Pop()
+            is called, i.e. items pushed into the heap the lastest for a given
+            priority will be removed first.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Collections.PriorityHeap`2">
+            <summary>
+            Maintains a set of items sorted by priority with O(log n) insertion and removal.
+            </summary>
+            <typeparam name="P">IComparable value type</typeparam>
+            <typeparam name="T">Item type to sort by priority</typeparam>
+        </member>
+        <member name="M:OsmExplorer.Collections.PriorityHeap`2.#ctor">
+            <summary>
+            Creates a new PriorityHeap with the default comparer 
+            (items sorted smallest to largest) and the default TieBreakingMode (FIFO).
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Collections.PriorityHeap`2.#ctor(OsmExplorer.Collections.TieBreakingMode)">
+            <summary>
+            Creates a new PriorityHeap with the default comparer 
+            (items sorted smallest to largest) and the specified TieBreakingMode.
+            </summary>
+            <param name="tMode"></param>
+        </member>
+        <member name="M:OsmExplorer.Collections.PriorityHeap`2.#ctor(System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Creates a new PriorityHeap with the specified IComparer and
+            the default TieBreakingMode (FIFO).
+            </summary>
+            <param name="comparer">A comparer for the priority values</param>
+        </member>
+        <member name="M:OsmExplorer.Collections.PriorityHeap`2.#ctor(System.Collections.Generic.IComparer{`0},OsmExplorer.Collections.TieBreakingMode)">
+            <summary>
+            
+            </summary>
+            <param name="comparer"></param>
+            <param name="tMode"></param>
+        </member>
+        <member name="M:OsmExplorer.Collections.PriorityHeap`2.Push(`0,`1)">
+            <summary>
+            Adds an item with a specified priority to the PriorityHeap
+            </summary>
+            <param name="priority">Priority value</param>
+            <param name="value">Item to be added</param>
+            <remarks>This is an O(log n) operation where n is the number of items in the PriorityStack</remarks>
+        </member>
+        <member name="M:OsmExplorer.Collections.PriorityHeap`2.Pop">
+            <summary>
+            Removes and returns the item at the top of the PriorityHeap
+            </summary>
+            <returns>Item with highest priority</returns>
+            <remarks>This is an O(log n) operation where n is the number of items in the PriorityStack</remarks>
+        </member>
+        <member name="M:OsmExplorer.Collections.PriorityHeap`2.Peek">
+            <summary>
+            Returns the item at the top of the PriorityHeap without removing it.
+            </summary>
+            <returns>The item with the highest priority</returns>
+            <remarks>This is an O(1) operation</remarks>
+        </member>
+        <member name="P:OsmExplorer.Collections.PriorityHeap`2.IsEmpty">
+            <summary>
+            Returns whether the PriorityHeap is empty or not. This is an O(1) operation.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Collections.PriorityHeap`2.Count">
+            <summary>
+            Number of items in the PriorityHeap.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Data.OsmXmlImporter">
+            <summary>
+            Class for importing OpenStreetMap XML files (.osm) into a spatial database
+            suitable for spatial queries and routing.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Data.OsmXmlImporter.#ctor(System.IO.FileInfo,System.IO.DirectoryInfo)">
+            <summary>
+            Creates a new OsmXmlImporter for a specified XML file (.osm) and an output
+            directory for the database files.
+            </summary>
+            <param name="XmlFile">.osm XML file.</param>
+            <param name="OutputDirectory">Output directory for database files.</param>
+        </member>
+        <member name="M:OsmExplorer.Data.OsmXmlImporter.CreatePrimitiveDatabase(System.Boolean)">
+            <summary>
+            Imports the XML file and creates primitives (.pdbf) file.
+            </summary>
+            <param name="TrackProgress">If true, the importer will read the length of the .osm
+            file prior to importing in order to generate a progress percentage.</param>
+        </member>
+        <member name="M:OsmExplorer.Data.OsmXmlImporter.CreateSpatialDatabase">
+            <summary>
+            Creates a spatial database for routing and spatial quieries via the MapExplorer control.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Data.OsmXmlImporter.ImportProgress">
+            <summary>
+            Sets a delegate function to track import progress, e.g. through a
+            BackgroundWorker or other background thread.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Data.OsmXmlImporter.DefaultSpeedUnits">
+            <summary>
+            Sets the default units the DataInterpreter should use when a way is tagged with
+            a speed but no units. Generally MPH in the U.S. and KPH elsewhere.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Data.OsmXmlImporter.ImportStatus">
+            <summary>
+            Structure containing information on import progress.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Data.OsmXmlImporter.ImportStatus.Count">
+            <summary>
+            Returns the amount of an imported database object,
+            which is specified in the Status message.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Data.OsmXmlImporter.ImportStatus.State">
+            <summary>
+            Returns an ImportState enumeration value. See ImportState documentation.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Data.OsmXmlImporter.ImportState">
+            <summary>
+            Enum indicating the state of an XML file import.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.OsmXmlImporter.ImportState.ImportingNodes">
+            <summary>
+            Indicates importer is importing OSM Nodes.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.OsmXmlImporter.ImportState.ImportingWays">
+            <summary>
+            Indicates importer is importing OSM Ways.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.OsmXmlImporter.ImportState.ImportingRoadLinks">
+            <summary>
+            Indicates importer is creating RoadLinks and populating the .dbf file.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.OsmXmlImporter.ImportState.CreatingRoutingDatabase">
+            <summary>
+            Indicates importer is creating and populating indices used by the routing engine.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.OsmXmlImporter.ImportState.UpdatingSpatialIndex">
+            <summary>
+            Indicates importer is executing a post-processing step subsequent to populating
+            the routing database.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.OsmXmlImporter.ImportState.Complete">
+            <summary>
+            Indicates an import is completed.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Data.XmlImportProgress">
+            <summary>
+            Delegate method that reports import progress of the OsmXmlImporter class.
+            </summary>
+            <param name="Progress">Progress percentage of an .osm XML file import.</param>
+            <param name="UserState">Status of the import.</param>
+        </member>
+        <member name="T:OsmExplorer.Data.DataRepository">
+            <summary>
+            The DataRepository class loads and manages the .dbf data file 
+            for routing and spatial queries on OSM data. The LoadRepository() method 
+            should be called upon initialization of the application's components. See
+            remarks.
+            </summary>
+            <remarks> The DataRepository is based on the
+            Volante embedded .NET database engine (see http://blog.kowalczyk.info/software/volante/database.html 
+            for more info).</remarks>
+        </member>
+        <member name="M:OsmExplorer.Data.DataRepository.LoadRepository">
+            <summary>
+            Loads the DataRepository from the current directory.
+            </summary>
+            <exception cref="T:OsmExplorer.Exceptions.DatabaseLoadErrorException"> Thrown when the .dbf data file is
+            not found in the current directory.</exception>
+        </member>
+        <member name="M:OsmExplorer.Data.DataRepository.LoadRepository(System.IO.FileInfo)">
+            <summary>
+            Loads the DataRepository from the specified directory.
+            </summary>
+            <param name="info"></param>
+            <exception cref="T:OsmExplorer.Exceptions.DatabaseLoadErrorException"> Thrown when the .dbf data file is
+            not found in the specified directory.</exception>
+        </member>
+        <member name="P:OsmExplorer.Data.DataRepository.DatabaseOpen">
+            <summary>
+            Returns true if the database is currently open, false otherwise.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Data.DataRepository.WrappingBox">
+            <summary>
+            Returns the minimum BoundingBox that encloses the BoundingBoxes
+            of all elements in the current data file.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Data.QueryMode">
+            <summary>
+            Query mode for BoundingBox queries. See remarks.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.QueryMode.Contains">
+            <summary>
+            When selected, a BoundingBox query returns only items with
+            BoundingBoxes entirely within the query box.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.QueryMode.Overlaps">
+            <summary>
+            When selected, a BoundingBox query returns items whose BoundingBoxes
+            are either contained within the query box or overlap it. Note that a RoadLink
+            that otherwise appears completely outside the querying BoundingBox can be included
+            since RoadLink BoundingBoxes are constructed as the smallest rectangle that contains
+            all points in the Points array.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Data.RoadCategory">
+            <summary>
+            RoadLink categories based on OSM highway classifications. See descriptions.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.RoadCategory.motorway">
+            <summary>
+            Motorways.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.RoadCategory.motorway_link">
+            <summary>
+            Motorway links
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.RoadCategory.trunk">
+            <summary>
+            Trunks roads.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.RoadCategory.trunk_link">
+            <summary>
+            Trunk links.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.RoadCategory.primary">
+            <summary>
+            Primary roads.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.RoadCategory.primary_link">
+            <summary>
+            Primary links.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.RoadCategory.secondary">
+            <summary>
+            Secondary roads.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.RoadCategory.secondary_link">
+            <summary>
+            Secondary links.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.RoadCategory.tertiary">
+            <summary>
+            Tertiary roads.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.RoadCategory.tertiary_link">
+            <summary>
+            Tertiary links.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.RoadCategory.residential">
+            <summary>
+            Residential roads.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Data.RoadCategory.service">
+            <summary>
+            Service and/or private roads.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Data.SpatialQuery">
+            <summary>
+            Provides methods for querying the spatial database contained in the .dbf file.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Data.SpatialQuery.QueryLink(OsmExplorer.Spatial.LatLon)">
+            <summary>
+            Queries the nearest RoadLink to the given LatLon coordinate. Useful for obtaining
+            RoadLink information and as a hook for arc-based routing engines.
+            </summary>
+            <param name="Position">Query location.</param>
+            <returns>Nearest RoadLink to the queried location.</returns>
+            <exception cref="T:OsmExplorer.Exceptions.DataRepositoryNotOpenException"> Thrown when the DataRepository is not open or failed to load.</exception>
+            <exception cref="T:OsmExplorer.Exceptions.RoadLinksNotFoundException">Thrown when a RoadLink could not be located near the specified location.</exception>
+        </member>
+        <member name="M:OsmExplorer.Data.SpatialQuery.QueryLinks(OsmExplorer.Spatial.BoundingBox,OsmExplorer.Data.QueryMode)">
+            <summary>
+            Queries all links within the provided BoundingBox. Note that large quieries
+            can throw OutOfMemoryExceptions and make for extremely slow map rendering,
+            so be conservative with BoundingBox size.
+            </summary>
+            <param name="bbox">BoundingBox to query RoadLinks</param>
+            <param name="qmode">Query mode (see QueryMode documentation).</param>
+            <returns>Array of RoadLinks</returns>
+        </member>
+        <member name="M:OsmExplorer.Data.SpatialQuery.QueryLinks(OsmExplorer.Spatial.BoundingBox,OsmExplorer.Data.QueryMode,OsmExplorer.Data.RoadCategory[])">
+            <summary>
+            Queries all links within the provided BoundingBox and are of the specified 
+            RoadCategory(s) (see RoadCategory enum for more info). Note that large quieries
+            can throw OutOfMemoryExceptions and make for extremely slow map rendering,
+            so be conservative with BoundingBox size.
+            </summary>
+            <param name="bbox">BoundingBox to query RoadLinks</param>
+            <param name="qmode">Query mode</param>
+            <param name="categories">RoadCategory filter</param>
+            <returns></returns>
+        </member>
+        <member name="T:OsmExplorer.Exceptions.NotEnoughRouteStopsException">
+            <summary>
+            Exception thrown when a route contains fewer than 2 stops.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Exceptions.DatabaseException">
+            <summary>
+            Base class for database exceptions
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Exceptions.DatabaseLoadErrorException">
+            <summary>
+            Error thrown when a .dbf file fails to load. Check that 
+            the file is located in the /bin folder along with the application executable.
+            The DatabaseRepository uses Directory.GetCurrentDirectory() to look
+            in the executable directory for the MapData.dbs file
+            and maintains an open database connection while an application is running.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Exceptions.DataRepositoryNotOpenException">
+            <summary>
+            Exception thrown when the DataRepository is not open. This usually occurs when a .dbs
+            file fails to load.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Exceptions.InvalidRouteStopException">
+            <summary>
+            Thrown when a route is attempted on a null-equivalent (uninitialized)
+            LatLon coordinate (coordinates will be set to 0,0).
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Exceptions.RoadLinksNotFoundException">
+            <summary>
+            Exception thrown when a RoadLink query fails to return a RoadLink object.
+            Most often due to insufficient/non-existent data at the quieried location.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Exceptions.RouteNotFoundErrorMsg">
+            <summary>
+            The type of error message given when a RouteNotFoundException is thrown.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Exceptions.RouteNotFoundErrorMsg.ImpassableArea">
+            <summary>
+            Route could not be found due to an impassable area.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Exceptions.RouteNotFoundErrorMsg.RouteTooLong">
+            <summary>
+            A possible route was determined to be excessively long.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Exceptions.RouteNotFoundException">
+            <summary>
+            Error thrown when a route cannot be found between a specified
+            start and end location. Can be the result of insufficient data,
+            erroneous data or impassable areas on the map, among other things.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Exceptions.RouteStopTooFarAwayException">
+            <summary>
+            Exception thrown when a route stop is too far away from the closest 
+            traversable street. The routing engine will search for several kilometers
+            around the start and end locations for a suitable street to start routing on,
+            so this will most often be the result of insufficient (i.e. non-existent) map
+            data. Make sure the MapData.dbs file contains map data for the region
+            you are trying to route on.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Exceptions.RoutingDataNotFoundException">
+            <summary>
+            Exception thrown when the RoutingEngine fails to locate a .dbs data file.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Exceptions.RoutingException">
+            <summary>
+            Base class for all routing exceptions.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Components.MapExplorer">
+            <summary>
+            Map Explorer
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Components.MapExplorer.#ctor">
+            <summary>
+            Creates a new MapExplorer instance for tile and spatial rendering.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Components.MapExplorer.renderCollection">
+            <summary>
+            Gets or sets the RenderCollection associated with the MapExplorer
+            component.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Components.MapExplorer.Manager">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Components.MapExplorer.ZoomScales">
+            <summary>
+            A predetermined list of discrete scales that can be
+            used to provide a linear zoom range for a scrollbar.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Components.MapExplorer.ZoomLevel">
+            <summary>
+            Set the zoom level of the MapExplorer window.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Components.MapExplorer.HighlightedCoordinate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:OsmExplorer.Components.MapExplorer.ViewChanged">
+            <summary>
+            Event raised when the view parameters are changed such as 
+            when the map window is dragged by the mouse.
+            </summary>
+        </member>
+        <member name="E:OsmExplorer.Components.MapExplorer.MouseMoved">
+            <summary>
+            Event raised when the mouse is moved in the map window.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Components.MapExplorer.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Raises the System.Windows.Forms.Control.Paint event.
+            </summary>
+            <param name="e">A System.Windows.Forms.PaintEventArgs that contains the event data</param>
+        </member>
+        <member name="M:OsmExplorer.Components.MapExplorer.Dispose(System.Boolean)">
+            <summary>
+            Disposes resources used by the form.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="T:OsmExplorer.Components.MapExplorer.TileManager">
+            <summary>
+            Class that manages map image tile downloading and caching.
+            Maintains an internal limit on tile cache size to conserve memory.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Components.MapExplorer.TileManager.#ctor(OsmExplorer.Rendering.TileType)">
+            <summary>
+            Creates a new TileManager instance with the specified TileType
+            (OSM or MapQuest) and the default cache size (150 tiles). See
+            remarks.
+            </summary>
+            <param name="type">Type of tiles to download.</param>
+            <remarks>TileManager maintains a cache of tiles and automatically
+            removes the tiles furthest from the current map view when the 
+            cache exceeds the cache size limit. </remarks>
+        </member>
+        <member name="M:OsmExplorer.Components.MapExplorer.TileManager.#ctor(OsmExplorer.Rendering.TileType,System.Int32)">
+            <summary>
+            Creates a new TileManager instance with the specified TileType
+            (OSM or MapQuest) and the specified tile cache size (recommended is at least 50).
+            See remarks.
+            </summary>
+            <param name="type">Type of tiles to download.</param>
+            <param name="MaxTileCache">Maximum number of cached tiles to store.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">MaxTileCache is set to 0.</exception>
+            <remarks>TileManager maintains a cache of tiles and automatically
+            removes the tiles furthest from the current map view when the 
+            cache exceeds the cache size limit. </remarks>
+        </member>
+        <member name="M:OsmExplorer.Components.MapExplorer.TileManager.GetTile(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Gets an Image tile for the specified x-y coordinates (transformed from
+            LatLon values) and zoom level.
+            </summary>
+            <param name="x">x-coordinate</param>
+            <param name="y">y-coordinate</param>
+            <param name="zoom">Zoom level</param>
+            <returns>Bitmap image</returns>
+        </member>
+        <member name="M:OsmExplorer.Components.MapExplorer.TileManager.EmptyCache">
+            <summary>
+            Empties the tile cache of all downloaded map tiles.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Components.MapExplorer.components">
+            <summary>
+            Designer variable used to keep track of non-visual components.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Components.MapExplorer.InitializeComponent">
+            <summary>
+            This method is required for Windows Forms designer support.
+            Do not change the method contents inside the source code editor. The Forms designer might
+            not be able to load this method if it was changed manually.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Components.MouseMoveEventArgs">
+            <summary>
+            Class that contains the latitude and longitude of the mouse cursor position
+            with respect to a MaxExplorer control in addition to standard MouseEventArg
+            data.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Components.MouseMoveEventArgs.CoordinateLocation">
+            <summary>
+            Gets the LatLon coordinate position of the mouse cursor
+            within a MapExplorer control.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Components.MouseMoveEventHandler">
+            <summary>
+            Provides information about the current location of the mouse cursor
+            within a MapExplorer control.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">An OsmExplorer.Rendering.MouseMoveEventArgs object containing event data.</param>
+        </member>
+        <member name="T:OsmExplorer.Components.ViewChangedEventArgs">
+            <summary>
+            Class containing event data for the ViewChangedEvent within a MapExplorer control.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Components.ViewChangedEventArgs.CenterPosition">
+            <summary>
+            Gets the LatLon coordinate of the center of a MapExplorer control.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Components.ViewChangedEventArgs.ZoomScale">
+            <summary>
+            Gets the zoom level of the current view within a MapExplorer control.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Components.ViewChangedEventHandler">
+            <summary>
+            Method that handles the event that occurs when the current view within
+            a MapExplorer control changes.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">An OsmExplorer.Rendering.ViewChangedEventArgs containing event data.</param>
+        </member>
+        <member name="M:OsmExplorer.Rendering.TileSystem.Clip(System.Double,System.Double,System.Double)">
+            <summary>
+            Clips a number to the specified minimum and maximum values.
+            </summary>
+            <param name="n">The number to clip.</param>
+            <param name="minValue">Minimum allowable value.</param>
+            <param name="maxValue">Maximum allowable value.</param>
+            <returns>The clipped value.</returns>
+        </member>
+        <member name="M:OsmExplorer.Rendering.TileSystem.MapSize(System.Int32)">
+            <summary>
+            Determines the map width and height (in pixels) at a specified level
+            of detail.
+            </summary>
+            <param name="levelOfDetail">Level of detail, from 1 (lowest detail)
+            to 23 (highest detail).</param>
+            <returns>The map width and height in pixels.</returns>
+        </member>
+        <member name="M:OsmExplorer.Rendering.TileSystem.GroundResolution(System.Double,System.Int32)">
+            <summary>
+            Determines the ground resolution (in meters per pixel) at a specified
+            latitude and level of detail.
+            </summary>
+            <param name="latitude">Latitude (in degrees) at which to measure the
+            ground resolution.</param>
+            <param name="levelOfDetail">Level of detail, from 1 (lowest detail)
+            to 23 (highest detail).</param>
+            <returns>The ground resolution, in meters per pixel.</returns>
+        </member>
+        <member name="M:OsmExplorer.Rendering.TileSystem.MapScale(System.Double,System.Int32,System.Int32)">
+            <summary>
+            Determines the map scale at a specified latitude, level of detail,
+            and screen resolution.
+            </summary>
+            <param name="latitude">Latitude (in degrees) at which to measure the
+            map scale.</param>
+            <param name="levelOfDetail">Level of detail, from 1 (lowest detail)
+            to 23 (highest detail).</param>
+            <param name="screenDpi">Resolution of the screen, in dots per inch.</param>
+            <returns>The map scale, expressed as the denominator N of the ratio 1 : N.</returns>
+        </member>
+        <member name="M:OsmExplorer.Rendering.TileSystem.LatLonToPixelXY(System.Double,System.Double,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Converts a point from latitude/longitude WGS-84 coordinates (in degrees)
+            into pixel XY coordinates at a specified level of detail.
+            </summary>
+            <param name="latitude">Latitude of the point, in degrees.</param>
+            <param name="longitude">Longitude of the point, in degrees.</param>
+            <param name="levelOfDetail">Level of detail, from 1 (lowest detail)
+            to 23 (highest detail).</param>
+            <param name="pixelX">Output parameter receiving the X coordinate in pixels.</param>
+            <param name="pixelY">Output parameter receiving the Y coordinate in pixels.</param>
+        </member>
+        <member name="M:OsmExplorer.Rendering.TileSystem.PixelXYToLatLong(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Converts a pixel from pixel XY coordinates at a specified level of detail
+            into latitude/longitude WGS-84 coordinates (in degrees).
+            </summary>
+            <param name="pixelX">X coordinate of the point, in pixels.</param>
+            <param name="pixelY">Y coordinates of the point, in pixels.</param>
+            <param name="levelOfDetail">Level of detail, from 1 (lowest detail)
+            to 23 (highest detail).</param>
+            <param name="latitude">Output parameter receiving the latitude in degrees.</param>
+            <param name="longitude">Output parameter receiving the longitude in degrees.</param>
+        </member>
+        <member name="M:OsmExplorer.Rendering.TileSystem.PixelXYToTileXY(System.Int32,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Converts pixel XY coordinates into tile XY coordinates of the tile containing
+            the specified pixel.
+            </summary>
+            <param name="pixelX">Pixel X coordinate.</param>
+            <param name="pixelY">Pixel Y coordinate.</param>
+            <param name="tileX">Output parameter receiving the tile X coordinate.</param>
+            <param name="tileY">Output parameter receiving the tile Y coordinate.</param>
+        </member>
+        <member name="M:OsmExplorer.Rendering.TileSystem.TileXYToPixelXY(System.Int32,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Converts tile XY coordinates into pixel XY coordinates of the upper-left pixel
+            of the specified tile.
+            </summary>
+            <param name="tileX">Tile X coordinate.</param>
+            <param name="tileY">Tile Y coordinate.</param>
+            <param name="pixelX">Output parameter receiving the pixel X coordinate.</param>
+            <param name="pixelY">Output parameter receiving the pixel Y coordinate.</param>
+        </member>
+        <member name="M:OsmExplorer.Rendering.TileSystem.TileXYToQuadKey(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Converts tile XY coordinates into a QuadKey at a specified level of detail.
+            </summary>
+            <param name="tileX">Tile X coordinate.</param>
+            <param name="tileY">Tile Y coordinate.</param>
+            <param name="levelOfDetail">Level of detail, from 1 (lowest detail)
+            to 23 (highest detail).</param>
+            <returns>A string containing the QuadKey.</returns>
+        </member>
+        <member name="M:OsmExplorer.Rendering.TileSystem.QuadKeyToTileXY(System.String,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Converts a QuadKey into tile XY coordinates.
+            </summary>
+            <param name="quadKey">QuadKey of the tile.</param>
+            <param name="tileX">Output parameter receiving the tile X coordinate.</param>
+            <param name="tileY">Output parameter receiving the tile Y coordinate.</param>
+            <param name="levelOfDetail">Output parameter receiving the level of detail.</param>
+        </member>
+        <member name="T:OsmExplorer.Rendering.IRenderable">
+            <summary>
+            Interface for objects that can be rendered within a RenderCollection.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Rendering.IRenderable.RenderPen">
+            <summary>
+            Gets or sets a System.Drawing.Pen used for rendering.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Rendering.IRenderable.Render(System.Drawing.Graphics,OsmExplorer.Rendering.RenderCollection)">
+            <summary>
+            Renders a given IRenderable object.
+            </summary>
+            <param name="graphics">A System.Drawing.Graphics object.</param>
+            <param name="collection">An associated RenderCollection.</param>
+        </member>
+        <member name="T:OsmExplorer.Rendering.RenderCollection">
+            <summary>
+            Represents a collection of objects that implement the OsmExplorer.Rendering.IRenderable interface 
+            to be rendered within a MapExplorer control.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Rendering.RenderCollection.#ctor(OsmExplorer.Components.MapExplorer)">
+            <summary>
+            Creates a new RenderCollection for rendering OsmExplorer.Spatial objects within
+            a MapExplorer control.
+            </summary>
+            <param name="explorer">An OsmExplorer.MapExplorer control.</param>
+        </member>
+        <member name="M:OsmExplorer.Rendering.RenderCollection.#ctor(SharpMap.Map)">
+            <summary>
+            
+            </summary>
+            <param name="map"></param>
+        </member>
+        <member name="M:OsmExplorer.Rendering.RenderCollection.Add(OsmExplorer.Rendering.IRenderable)">
+            <summary>
+            Adds an IRenderable item to the RenderCollection.
+            </summary>
+            <param name="item">Item implementing IRenderable interface.</param>
+        </member>
+        <member name="M:OsmExplorer.Rendering.RenderCollection.Clear">
+            <summary>
+            Removes all items from the RenderCollection.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Rendering.RenderCollection.Contains(OsmExplorer.Rendering.IRenderable)">
+            <summary>
+            Determines if the RenderCollection contains the specified item.
+            </summary>
+            <param name="item">Object implementing IRenderable interface.</param>
+            <returns>True if the RenderCollection contains the specified item.</returns>
+        </member>
+        <member name="M:OsmExplorer.Rendering.RenderCollection.CopyTo(OsmExplorer.Rendering.IRenderable[],System.Int32)">
+            <summary>
+            Copies the elements of the RenderCollection to a
+            System.Array, starting at a particular System.Array index.
+            </summary>
+            <param name="array">A System.Array object.</param>
+            <param name="arrayIndex">Start index of the System.Array.</param>
+        </member>
+        <member name="P:OsmExplorer.Rendering.RenderCollection.Count">
+            <summary>
+            Returns the number of IRenderable items in the RenderCollection.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Rendering.RenderCollection.IsReadOnly">
+            <summary>
+            Returns whether the RenderCollection is read-only. Always false.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Rendering.RenderCollection.Remove(OsmExplorer.Rendering.IRenderable)">
+            <summary>
+            Removes an item from the RenderCollection.
+            </summary>
+            <param name="item">An item to remove that implements the IRenderable interface.</param>
+            <returns>True if the item was successfully removed.</returns>
+        </member>
+        <member name="M:OsmExplorer.Rendering.RenderCollection.GetEnumerator">
+            <summary>
+            Gets an enumerator that iterates through the RenderCollection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the items in the RenderCollection.</returns>
+        </member>
+        <member name="T:OsmExplorer.Rendering.TileType">
+            <summary>
+            Specifies the type of map tiles to use in the Map Explorer
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Rendering.TileType.Osm">
+            <summary>
+            OpenStreetMap tiles.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Rendering.TileType.MapQuest">
+            <summary>
+            MapQuest tiles.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Routing.Direction">
+            <summary>
+            Class representing a single driving instruction.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.Direction.DirectionMsg">
+            <summary>
+            Returns the driving instruction for the particular movement.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.Direction.Movement">
+            <summary>
+            Returns the MovementType enumeration for the Direction.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.Direction.CumulativeDistance">
+            <summary>
+            Returns the estimated cumulative distance travelled up to the point where
+            this direction is given along a route.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.Direction.CumulativeTravelTime">
+            <summary>
+            Returns the estimated cumulative travel time up to the point where
+            this direction is given along a route.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Routing.DrivingDirections">
+            <summary>
+            Class representing a set of natural-language driving directions for a route.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Routing.DrivingDirections.GetEnumerator">
+            <summary>
+            Gets an enumerator that enumerates through the list of Directions in this DrivingDirections.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the list of Directions.</returns>
+        </member>
+        <member name="T:OsmExplorer.Routing.Internal.Point2PointRouterParallel">
+            <summary>
+            A parallel implementation of the HBA* algorithm that runs the forward 
+            and backward searches on their own threads. Currently very buggy and 
+            unpredictable (use of non-parallel Point2PointRouter is recommended for now).
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Routing.Internal.Point2PointRouter">
+            <summary>
+            Arc-based bidirectional A* algorithm based on the HBA* algorithm
+            (see http://www.icsi.berkeley.edu/pubs/techreports/TR-09-007.pdf).
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Routing.Internal.RouterBase">
+            <summary>
+            Base class for all P2P router implementations.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Routing.Internal.RouterBase.ProhibitedCost">
+            <summary>
+            Cost assigned to prohibited RoadLinks. Rather than modify the underlying graph
+            structure and removing prohibited links, they are instead assigned 
+            a very high cost (unattainable by standard distance or calculated travel time metrics)
+            and skipped as the routing algorithm populates the open set.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Routing.Internal.RouterBase.Estimate(OsmExplorer.Spatial.LatLon,OsmExplorer.Spatial.LatLon,OsmExplorer.Spatial.LatLon)">
+            <summary>
+            A* estimating heuristic. Inflating the heuristic improves runtime but can cause the
+            algorithm to produce suboptimal paths.
+            </summary>
+            <param name="P1"></param>
+            <param name="P2"></param>
+            <param name="P3"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OsmExplorer.Routing.Internal.RouterBase.TurnProhibited(OsmExplorer.Routing.Internal.RouteLink,OsmExplorer.Routing.Internal.RouteLink,OsmExplorer.Routing.Internal.SearchDirection,System.Double@)">
+            <summary>
+            Determines whether a turn is prohibited while outputting an associated turn cost.
+            </summary>
+            <param name="Previous"></param>
+            <param name="Next"></param>
+            <param name="direction"></param>
+            <param name="turnCost"></param>
+            <returns></returns>
+        </member>
+        <member name="T:OsmExplorer.Routing.MovementType">
+            <summary>
+            Enumeration representing a type of movement or turn along a route.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Routing.MovementType.Arrival">
+            <summary>
+            Represents an arrival at a destination.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Routing.MovementType.Departure">
+            <summary>
+            Represents a departure from an origin.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Routing.MovementType.LeftTurn">
+            <summary>
+            Indicates a left turn movement.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Routing.MovementType.RightTurn">
+            <summary>
+            Indicates a right turn movement.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Routing.MovementType.SlightLeft">
+            <summary>
+            Indicates a slight left turn, usually occurring at a split
+            junction but not a formal intersection.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Routing.MovementType.SlightRight">
+            <summary>
+            Indicates a slight right turn, usually occurring at a split
+            junction but not a formal intersection.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Routing.MovementType.StraightAhead">
+            <summary>
+            Indicates a straight or thru movement.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Routing.MovementType.UTurn">
+            <summary>
+            Indicates a u-turn movement.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Routing.RouteResultMatrix">
+            <summary>
+            Class representing results from a many-to-many route calculation
+            for a set of route stops.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Routing.RouteStop">
+            <summary>
+            Class representing a stop along a route.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Routing.RouteStop.#ctor(OsmExplorer.Spatial.LatLon)">
+            <summary>
+            Creates a new RouteStop with the specified location.
+            </summary>
+            <param name="location">LatLon location.</param>
+        </member>
+        <member name="P:OsmExplorer.Routing.RouteStop.Location">
+            <summary>
+            Gets or sets the location of the RouteStop.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RouteStop.RenderPen">
+            <summary>
+            Gets or sets the System.Drawing.Pen used to render this RouteStop.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Routing.RouteStop.Render(System.Drawing.Graphics,OsmExplorer.Rendering.RenderCollection)">
+            <summary>
+            Renders the RouteStop using the specified System.Drawing.Graphics and RenderCollection.
+            </summary>
+            <param name="graphics">A System.Drawing.Graphics object.</param>
+            <param name="collection">An associated RenderCollection.</param>
+        </member>
+        <member name="T:OsmExplorer.Routing.SpeedProfile">
+            <summary>
+            Class representing a set of speed profiles for each RoadCategory enumeration value
+            of a RoadLink.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Routing.SpeedProfile.#ctor">
+            <summary>
+            Creates a new SpeedProfile.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Routing.SpeedProfile.#ctor(System.Collections.Generic.Dictionary{OsmExplorer.Data.RoadCategory,OsmExplorer.Units.Speed})">
+            <summary>
+            Creates a new SpeedProfile from a Dictionary of RoadCategory/Speed key-value pairs.
+            </summary>
+            <param name="speeds"></param>
+        </member>
+        <member name="M:OsmExplorer.Routing.SpeedProfile.SetSpeed(OsmExplorer.Data.RoadCategory,OsmExplorer.Units.Speed)">
+            <summary>
+            Sets a speed for a given RoadCategory
+            </summary>
+            <param name="category">RoadCategory enumeration to set a Speed value for.</param>
+            <param name="speed">A Speed value.</param>
+        </member>
+        <member name="T:OsmExplorer.Routing.RoadFlags">
+            <summary>
+            Represents a set of routing constraints for a RoadLink.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.MaxDimensions">
+            <summary>
+            Gets a set of maxmimum dimensions (size and weight) that a given RoadLink
+            allows. RoadDimensions can be compared directly to a vehicle's VehicleDimensions 
+            to determine if through travel is possible.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.Heading_F_Inbound">
+            <summary>
+            Gets the initial heading starting at the FirstPoint 
+            and moving towards the LastPoint of the RoadLink.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.Heading_F_Outbound">
+            <summary>
+            Gets the final heading at the FirstPoint when traversing the RoadLink
+            starting at the LastPoint.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.Heading_L_Inbound">
+            <summary>
+            Gets the initial heading when starting at the LastPoint on
+            the RoadLink and moving towards the FirstPoint.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.Heading_L_Outbound">
+            <summary>
+            Gets the final heading at the LastPoint when traversing 
+            the RoadLink starting at the FirstPoint.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.Barricade">
+            <summary>
+            Indicates whether the RoadLink has a barricade of some kind across it,
+            prohibiting through travel.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.BicycleAccess">
+            <summary>
+            Indicates whether bicycles are permitted.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.Bridge">
+            <summary>
+            Indicates if this RoadLink is a bridge
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.DeliveryAccess">
+            <summary>
+            Access permission for light commercial vehicles (LCV) 
+            or goods vehicles of category N1 with a maximum allowed 
+            mass of up to 3.5 tonnes. In the USA, combined weight 
+            26,000 lbs or less. True if delivery access allowed.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.EmergencyAccess">
+            <summary>
+            Indicates if emergency vehicles are permitted.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.HazmatAccess">
+            <summary>
+            Access permission for vehicles carrying 
+            hazardous materials.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.MopedAccess">
+            <summary>
+            Indicates if mopeds (scooter with engine less than 50cc) are
+            permitted on the RoadLink.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.MotorVehicleAccess">
+            <summary>
+            Indicates whether motor vehicle are permitted.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.PermissiveAccess">
+            <summary>
+            Indicates whether general access is permissive.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.PrivateAccess">
+            <summary>
+            True when general traffic (public) is not permitted
+            to travel on this RoadLink.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.Roundabout">
+            <summary>
+            Indicates if this RoadLink is a roundabout
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.Tollway">
+            <summary>
+            Indicates whether RoadLink is a tollway
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.TruckAccess">
+            <summary>
+            Access permission for Heavy Goods Vehicles (HGV) (UK), 
+            e.g. for goods vehicles of category N2 and N3 (trucks, 
+            lorries) with a maximum allowed mass over 3.5 tonnes. 
+            In the USA, combined weight 26,001 lbs or greater
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.Tunnel">
+            <summary>
+            Indicates if this RoadLink is a tunnel
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.ProhibitedFrom">
+            <summary>
+            Get an array of WayIds that this RoadLink is not reachable from due to 
+            turn restrictions or other constraints.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.ProhibitedTo">
+            <summary>
+            Get an array of WayIds that are not reachable from this RoadLink due to 
+            turn restrictions or other constraints.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.TravelDistance">
+            <summary>
+            Returns the travel distance along the RoadLink in meters.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.TravelSpeed">
+            <summary>
+            Approximate travel speed along the RoadLink
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.StopSign">
+            <summary>
+            Returns the configuration of stop signs on the RoadLink. See remarks.
+            </summary>
+            <remarks >
+            F = Stop sign on the FirstPoint
+            L = Stop sign on the LastPoint
+            B = Stop signs on both the FirstPoint and LastPoint
+            N = No stop signs on either end
+            </remarks>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoadFlags.TrafficSignal">
+            <summary>
+            Returns the configuration of traffic signals on the RoadLink. See remarks.
+            </summary>
+            <remarks >
+            F = Signal on the FirstPoint
+            L = Signal on the LastPoint
+            B = Signals on both the FirstPoint and LastPoint
+            N = No signals on either end
+            </remarks>
+        </member>
+        <member name="T:OsmExplorer.Routing.RouteResult">
+            <summary>
+            Output class produced by the routing engine containing
+            results from a calculated route, driving directions and 
+            rendering data.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RouteResult.StartLocation">
+            <summary>
+            Start location of the route.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RouteResult.EndLocation">
+            <summary>
+            End location of the route.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RouteResult.RoutePoints">
+            <summary>
+            Points that make up this route.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RouteResult.TravelTime">
+            <summary>
+            Estimates total travel time of the route.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RouteResult.TravelDistance">
+            <summary>
+            Estimated total travel distance of the route.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RouteResult.AlgorithmRuntime">
+            <summary>
+            Amount of the time the RoutingEngine required to calculate the route.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RouteResult.Directions">
+            <summary>
+            Gets a set of driving directions for the route.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RouteResult.RenderPen">
+            <summary>
+            Gets or sets the System.Drawing.Pen that renders this RouteResult instance.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Routing.RouteResult.Render(System.Drawing.Graphics,OsmExplorer.Rendering.RenderCollection)">
+            <summary>
+            Renders the RouteResult instance using the specified System.Drawing.Graphics
+            and RenderCollection.
+            </summary>
+            <param name="graphics">A System.Drawing.Graphics object.</param>
+            <param name="collection">An associated RenderCollection.</param>
+        </member>
+        <member name="T:OsmExplorer.Routing.RoutingEngine">
+            <summary>
+            Instantiates the RoutingEngine class for point-to-point routing along an
+            array of 2 or more RouteStops.
+            </summary>
+            <remarks>The RoutingEngine utilizes a bidirectional, hierarchical A* search 
+            algorithm based on the HBA* algorithm
+            (see http://www.icsi.berkeley.edu/pubs/techreports/TR-09-007.pdf). </remarks>
+        </member>
+        <member name="M:OsmExplorer.Routing.RoutingEngine.#ctor">
+            <summary>
+            Initializes a new instance of the RoutingEngine.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoutingEngine.Stops">
+            <summary>
+            Gets the array of stops that are part of the current route.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoutingEngine.AvoidUTurns">
+            <summary>
+            Gets or sets whether the RoutingEngine will avoid making
+            U-turns. Default is false;
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoutingEngine.AvoidTollRoads">
+            <summary>
+            Gets or sets whether RoutingEngine will avoid toll roads. 
+            Default is false;
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoutingEngine.vehicleType">
+            <summary>
+            Gets or sets the vehicle type. 
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoutingEngine.Strategy">
+            <summary>
+            Gets or sets the routing strategy used for this route.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoutingEngine.Profile">
+            <summary>
+            Gets or sets the road speed profile used for RoutingStrategy.Fastest
+            routing option.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Routing.RoutingEngine.CalculateRoute">
+            <summary>
+            Calculates a route for the specified set of route stops.
+            </summary>
+            <returns>Results from the calculated route</returns>
+        </member>
+        <member name="M:OsmExplorer.Routing.RoutingEngine.CalculateManyToMany">
+            <summary>
+            Calculates an array of results for each route stop to every other
+            stop.
+            </summary>
+            <returns>A RouteResultMatrix of RouteResults for each pair of route stops.</returns>
+        </member>
+        <member name="M:OsmExplorer.Routing.RoutingEngine.SetStart(OsmExplorer.Routing.RouteStop@)">
+            <summary>
+            Sets a start location for the route by inserting a route stop
+            at the beginning of the list of stops.
+            </summary>
+            <param name="start">Start location.</param>
+        </member>
+        <member name="M:OsmExplorer.Routing.RoutingEngine.SetEnd(OsmExplorer.Routing.RouteStop@)">
+            <summary>
+            Sets an end location for the route by inserting a route stop
+            at the end of the list of stops.
+            </summary>
+            <param name="end">End location.</param>
+        </member>
+        <member name="M:OsmExplorer.Routing.RoutingEngine.AddStop(OsmExplorer.Routing.RouteStop@)">
+            <summary>
+            Resolved the specified LatLon to a start location on the map and adds
+            to the list of route stops.
+            </summary>
+            <param name="stop">Stop location.</param>
+        </member>
+        <member name="M:OsmExplorer.Routing.RoutingEngine.DeleteStop(OsmExplorer.Routing.RouteStop)">
+            <summary>
+            Deletes the specified route stop from the current route.
+            </summary>
+            <param name="stop">Stop to delete.</param>
+            <returns>True if the stop is successfully deleted.</returns>
+        </member>
+        <member name="M:OsmExplorer.Routing.RoutingEngine.ClearStops">
+            <summary>
+            Clears all stops from the current route.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.RoutingEngine.StopCount">
+            <summary>
+            Returns the number of stops on the current route.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Routing.RoutingStrategy">
+            <summary>
+            Sets the routing strategy for a route.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Routing.RoutingStrategy.Fastest">
+            <summary>
+            Strategy that indicates the RoutingEngine should attempt
+            to find the quickest route.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Routing.RoutingStrategy.Shortest">
+            <summary>
+            Strategy that indicates the RoutingEngine should attempt
+            to find the shortest route.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Routing.VehicleType">
+            <summary>
+            The type of vehicle to route.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Routing.VehicleType.Auto">
+            <summary>
+            Passenger car
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Routing.VehicleType.Truck_1">
+            <summary>
+            Freight/delivery truck with GVWR less than 26,000 lbs.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Routing.VehicleType.Truck_2">
+            <summary>
+            Freight vehicle (typically semi/tractor-trailer) with GVWR greater than 26,000 lbs.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Routing.VehicleType.Hazmat">
+            <summary>
+            Any vehicle carrying hazardous material. Will avoid tunnels
+            and (if tagged) ares where hazmat transport is specifically
+            prohibited.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Routing.VehicleType.Scooter_50cc">
+            <summary>
+            Scooter/moped under 50cc. Will avoid controlled-access
+            freeways and other roads where slow traffic is prohibited.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Routing.VehicleDimensions">
+            <summary>
+            Structure representing a set of specifications for vehicle size and weight.
+            Vehicle dimensions can be tested with VehicleDimensions.WithinSpecifications 
+            against maximum vehicle dimensions associated with RoadLinks to determine if
+            a vehicle can be routed on a given section of road.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Routing.VehicleDimensions.#ctor(System.UInt16,System.UInt16,System.UInt16,System.UInt16)">
+            <summary>
+            Creates a new VehicleDimensions for the specified vehicle parameters.
+            </summary>
+            <param name="height_cm">Height in centimeters.</param>
+            <param name="length_cm">Lenght in centimeters.</param>
+            <param name="width_cm">Width in centimeters.</param>
+            <param name="weight_kg">Weight in kilograms.</param>
+        </member>
+        <member name="P:OsmExplorer.Routing.VehicleDimensions.Height_cm">
+            <summary>
+            Gets or sets the vehicle height in centimeters.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.VehicleDimensions.Length_cm">
+            <summary>
+            Gets or sets the vehicle length in centimeters.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.VehicleDimensions.Width_cm">
+            <summary>
+            Gets or sets the vehicle weight in centimeters.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Routing.VehicleDimensions.Weight_kg">
+            <summary>
+            Gets or sets the vehicle weight in kilograms.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Routing.VehicleDimensions.WithinSpecifications(OsmExplorer.Spatial.IDimensions)">
+            <summary>
+            Determines if this set of vehicle dimensions is within another set of IDimensions,
+            such as the maximum dimensions of a RoadLink
+            </summary>
+            <param name="MaxDimensions">Another set of IDimensions</param>
+            <returns>True if all the specifications in this IDimensions instance are
+            within (less than) those of the specified IDimensions.</returns>
+        </member>
+        <member name="T:OsmExplorer.Spatial.IDimensions">
+            <summary>
+            Interface representing a set of spatial and weigh dimensions for either a
+            vehicle or as a set of maximum permitted dimensions on a RoadLink.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.IDimensions.Height_cm">
+            <summary>
+            Height in centimeters.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.IDimensions.Length_cm">
+            <summary>
+            Length in centimeters.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.IDimensions.Width_cm">
+            <summary>
+            Width in centimeters.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.IDimensions.Weight_kg">
+            <summary>
+            Weight in kilograms.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Spatial.BoundingBox">
+            <summary>
+            A Rectangular box that can be defined around a set of points
+            or a single point with provided dimensions
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Spatial.BoundingBox.#ctor(OsmExplorer.Spatial.LatLon[])">
+            <summary>
+            Constructs a BoundingBox that contains all the specified LatLons
+            </summary>
+            <param name="points">One or more LatLon points</param>
+        </member>
+        <member name="M:OsmExplorer.Spatial.BoundingBox.#ctor(OsmExplorer.Spatial.LatLon,System.Double)">
+            <summary>
+            Constructs a square BoundingBox centered on the specified point 
+            with dimensions (in degrees) specified by the size parameter
+            </summary>
+            <param name="CenterPoint">LatLon that the BoundingBox is centered over</param>
+            <param name="size">Size in degrees of the edges of the BoundingBox</param>
+        </member>
+        <member name="M:OsmExplorer.Spatial.BoundingBox.#ctor(OsmExplorer.Spatial.LatLon,System.Double,System.Double)">
+            <summary>
+            Constructs a square BoundingBox centered on the specified point 
+            with dimensions (in degrees) specified by the height and width parameters.
+            </summary>
+            <param name="CenterPoint">LatLon that the BoundingBox is centered over.</param>
+            <param name="height">Height in degrees of latitude of the BoundingBox.</param>
+            <param name="width">Width in degress of longitude of the BoundingBox.</param>
+        </member>
+        <member name="M:OsmExplorer.Spatial.BoundingBox.#ctor(Volante.RectangleR2)">
+            <summary>
+            Creates a BoundingBox from a Volante.RectangleR2
+            </summary>
+            <param name="rect">Volante RectangleR2</param>
+        </member>
+        <member name="M:OsmExplorer.Spatial.BoundingBox.Contains(OsmExplorer.Spatial.LatLon)">
+            <summary>
+            Returns whether the BoundingBox contains the specified point
+            </summary>
+            <param name="point">Point to test</param>
+            <returns>Returns true if the point lies on an edge or within the BoundingBox</returns>
+        </member>
+        <member name="P:OsmExplorer.Spatial.BoundingBox.y_max">
+            <summary>
+            Returns the top edge of the BoundingBox
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.BoundingBox.y_min">
+            <summary>
+            Returns the bottom edge of the BoundingBox
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.BoundingBox.x_max">
+            <summary>
+            Returns the right edge of the BoundingBox
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.BoundingBox.x_min">
+            <summary>
+            Returns the left edge of the BoundingBox
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.BoundingBox.Rectangle">
+            <summary>
+            Returns a representative Volante.RectangleR2 of this BoundingBox
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.BoundingBox.RenderPen">
+            <summary>
+            Gets or sets the System.Drawing.Pen for rendering this
+            BoundingBox.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Spatial.BoundingBox.Render(System.Drawing.Graphics,OsmExplorer.Rendering.RenderCollection)">
+            <summary>
+            Renders the BoundingBox using the specified graphics instance and
+            an associated RenderCollection.
+            </summary>
+            <param name="graphics">A System.Drawing.Graphics object.</param>
+            <param name="collection">An associated RenderCollection.</param>
+        </member>
+        <member name="M:OsmExplorer.Spatial.BoundingBox.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Populates a System.Runtime.Serialization.SerializationInfo with the data
+            needed to serialize a BoundingBox object
+            </summary>
+            <param name="info">The System.Runtime.Serialization.SerializationInfo to 
+            populate with data</param>
+            <param name="context">The destination (see System.Runtime.Serialization.StreamingContext) 
+            for this serialization.</param>
+        </member>
+        <member name="M:OsmExplorer.Spatial.BoundingBox.Equals(System.Object)">
+            <summary>
+            Indicates if this BoundingBox is equal to the specified object instance.
+            </summary>
+            <param name="obj">Specified object instance.</param>
+            <returns>Returns false if the specified object is not a BoundingBox or
+            and/or has dimensions different from the current BoundingBox instance.
+            Otherwise, returns true.</returns>
+        </member>
+        <member name="M:OsmExplorer.Spatial.BoundingBox.GetHashCode">
+            <summary>
+            Returns a hashcode for a BoundingBox instance.
+            </summary>
+            <returns>Hashcode for this instance.</returns>
+        </member>
+        <member name="T:OsmExplorer.Spatial.ProjectionType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Spatial.ProjectionType.FlatEarth">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Spatial.ProjectionType.Mercator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Spatial.RoadDimensions">
+            <summary>
+            Class representing a set of maximum vehicle dimensions (weight and size)
+            that are permitted on a given RoadLink. RoadLinks with no restrictions on a given dimension
+            will have values set to ushort.MaxValue.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.RoadDimensions.Height_cm">
+            <summary>
+            Gets the maximum height in centimeters.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.RoadDimensions.Length_cm">
+            <summary>
+            Gets the maximum permitted vehicle length in centimeters.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.RoadDimensions.Width_cm">
+            <summary>
+            Gets the maximum vehicle width in centimeters.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.RoadDimensions.Weight_kg">
+            <summary>
+            Gets the maximum vehicle weight in kilograms.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Spatial.TravelDirection">
+            <summary>
+            Enumeration indicating the allowed directions of travel on a
+            RoadLink. See comments.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Spatial.TravelDirection.Both">
+            <summary>
+            Travel permitted in both directions.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Spatial.TravelDirection.From">
+            <summary>
+            One-way with travel allowed only from the FirstPoint
+            to the LastPoint.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Spatial.TravelDirection.To">
+            <summary>
+            One-way with travel allowed only from the LastPoint
+            to the FirstPoint.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Spatial.LatLon">
+            <summary>
+            Structure that represents a latitude/longitude pair.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Spatial.LatLon.#ctor(System.Double,System.Double)">
+            <summary>
+            Constructs a LatLon from a latitude and longitude value
+            </summary>
+            <param name="lat">Latitude value.</param>
+            <param name="lon">Longitude value.</param>
+        </member>
+        <member name="M:OsmExplorer.Spatial.LatLon.#ctor(System.String)">
+            <summary>
+            Constructs a LatLon from a comma-separated string 
+            representation of a coordinate e.g. "Lat,Lon"
+            </summary>
+            <param name="latlon">String representation of coordinate</param>
+            <exception cref="T:System.FormatException">LatLon string format incorrect.</exception>
+        </member>
+        <member name="M:OsmExplorer.Spatial.LatLon.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="P:OsmExplorer.Spatial.LatLon.Id">
+            <summary>
+            A unique identifier of a LatLon derived from the
+            OpenStreetMap Node Id. 
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.LatLon.Lat">
+            <summary>
+            The Latitude (y-coordinate) of the LatLon
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.LatLon.Lon">
+            <summary>
+            The Longitude (x-coordinate) of the LatLon
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.LatLon.IsValid">
+            <summary>
+            Returns true if a LatLon has been initialized and its latitude
+            and longitude fields set.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Spatial.LatLon.op_Equality(OsmExplorer.Spatial.LatLon,OsmExplorer.Spatial.LatLon)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OsmExplorer.Spatial.LatLon.op_Inequality(OsmExplorer.Spatial.LatLon,OsmExplorer.Spatial.LatLon)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OsmExplorer.Spatial.LatLon.DistanceTo(OsmExplorer.Spatial.LatLon)">
+            <summary>
+            Calculates the geodesic (world line) distance between 
+            this LatLon and another.
+            </summary>
+            <param name="other">Another LatLon coordinate.</param>
+            <returns>DistanceSpan representing the distance interval.</returns>
+        </member>
+        <member name="M:OsmExplorer.Spatial.LatLon.PDistanceTo(OsmExplorer.Spatial.LatLon)">
+            <summary>
+            Calulates the Pythagorean (flat-earth) distance to another LatLon. See remarks.
+            </summary>
+            <param name="other">Another LatLon coordinate.</param>
+            <returns>DistanceSpan representing the distance interval.</returns>
+            <remarks>The Pythagorean distance assumes the world is flat. For short-
+            distance calculations this can be an acceptable approximation and may be
+            preferred for multiple repeat calculations (slightly less than half as expensive
+            as DistanceTo method).</remarks>
+        </member>
+        <member name="M:OsmExplorer.Spatial.LatLon.ToString">
+            <summary>
+            Converts the LatLon to a string representation.
+            </summary>
+            <returns>String representation of the LatLon</returns>
+        </member>
+        <member name="M:OsmExplorer.Spatial.LatLon.GetHashCode">
+            <summary>
+            Returns the hash code for this LatLon instance.
+            </summary>
+            <returns>A 32-bit signed integer that is the hash code for this LatLon instance.</returns>
+        </member>
+        <member name="M:OsmExplorer.Spatial.LatLon.Equals(System.Object)">
+            <summary>
+            Determines if this LatLon is equal to the specified object
+            </summary>
+            <param name="obj">The specified object</param>
+            <returns>True when the object is a LatLon and equal to this instance.</returns>
+        </member>
+        <member name="M:OsmExplorer.Spatial.LatLon.Equals(OsmExplorer.Spatial.LatLon)">
+            <summary>
+            Compares this LatLon to another.
+            </summary>
+            <param name="other">Another LatLon.</param>
+            <returns>True if the latitude/longitude coordinates in this instance
+            equals those of other.</returns>
+        </member>
+        <member name="M:OsmExplorer.Spatial.LatLon.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Populates a System.Runtime.Serialization.SerializationInfo with the data
+            needed to serialize a LatLon object
+            </summary>
+            <param name="info">The System.Runtime.Serialization.SerializationInfo to 
+            populate with data</param>
+            <param name="context">The destination (see System.Runtime.Serialization.StreamingContext) 
+            for this serialization.</param>
+        </member>
+        <member name="T:OsmExplorer.Spatial.RoadLink">
+            <summary>
+            Represents a portion of an OpenStreetMap Way between two decision 
+            points (e.g. intersections, junctions, etc.). RoadLinks are thus (generally) 
+            suitable for all routing applications.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.RoadLink.LinkId">
+            <summary>
+            A unique identifier for a given RoadLink. 
+            RoadLinks can be tested for equality by comparing their
+            LinkIds.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.RoadLink.WayId">
+            <summary>
+            A non-unique value that associates a RoadLink with
+            an OpenStreetMap way.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.RoadLink.Category">
+            <summary>
+            Road category (0-6).
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.RoadLink.Names">
+            <summary>
+            Gets the street name for this RoadLink, if one is available.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.RoadLink.FirstPoint">
+            <summary>
+            The first point on the RoadLink equal to Points[0].
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.RoadLink.LastPoint">
+            <summary>
+            The last point on the RoadLink equal to Points[Points.Count()-1];
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.RoadLink.Flags">
+            <summary>
+            Get the set of RoadFlags that describes routing 
+            constraints and other features of this RoadLink
+            (see RoadLink documentation).
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.RoadLink.Points">
+            <summary>
+            Gets an array of ordered points that make up this
+            RoadLink.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.RoadLink.DirectionOfTravel">
+            <summary>
+            Indicates the direction of travel on the RoadLink.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.RoadLink.GetBoundingBox">
+            <summary>
+            Gets a BoundingBox that contains all of the points
+            in the Points array of this RoadLink.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.RoadLink.Rectangle">
+            <summary>
+            Returns a Volante.RectangleR2 object containing
+            all points in the Points array.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Spatial.RoadLink.RenderPen">
+            <summary>
+            Gets or sets the System.Drawing.Pen that renders this RoadLink.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Spatial.RoadLink.Render(System.Drawing.Graphics,OsmExplorer.Rendering.RenderCollection)">
+            <summary>
+            Renders the RoadLink within the context of a given RenderCollection.
+            </summary>
+            <param name="graphics">System.Drawing.Graphics</param>
+            <param name="collection">An associated RenderCollection object.</param>
+        </member>
+        <member name="M:OsmExplorer.Spatial.RoadLink.Equals(OsmExplorer.Spatial.RoadLink)">
+            <summary>
+            Compares two RoadLinks for equality by comparing the LinkIds.
+            </summary>
+            <param name="other">Another RoadLink</param>
+            <returns>True if the LinkIds are equal</returns>
+        </member>
+        <member name="M:OsmExplorer.Spatial.RoadLink.Equals(System.Object)">
+            <summary>
+            Determines whether the specified System.Object is equal to the current System.Object.
+            </summary>
+            <param name="obj">The System.Object to compare with the current System.Object.</param>
+            <returns>true if the specified System.Object is equal to the current System.Object; otherwise, false.</returns>
+        </member>
+        <member name="M:OsmExplorer.Spatial.RoadLink.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type.
+            </summary>
+            <returns>A hash code for the current System.Object.</returns>
+        </member>
+        <member name="T:OsmExplorer.Units.Length">
+            <summary>
+            Structure representing a unit of length.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.Length.MetersPerFoot">
+            <summary>
+            Number of meters per foot. This field is constant.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.Length.MetersPerKilometer">
+            <summary>
+            Number of meters per kilometer. This field is constant.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.Length.MetersPerMile">
+            <summary>
+            Number of meters per mile. This field is constant.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.Length.MetersPerNauticalMile">
+            <summary>
+            Number of meters per nautical mile. This field is constant.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.Length.FeetPerMeter">
+            <summary>
+            Number of feet per meter. This field is constant.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.Length.FeetPerKilometer">
+            <summary>
+            Number of feet per kilometer. This field is constant.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.Length.FeetPerMile">
+            <summary>
+            Number of feet per mile. This field is constant.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.Length.FeetPerNauticalMile">
+            <summary>
+            Number of feet per nautical mile. This field is constant.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Units.Length.ZeroLength">
+            <summary>
+            Returns a zero-equivalent Length.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Units.Length.#ctor(System.Double,OsmExplorer.Units.LengthUnits)">
+            <summary>
+            Creates a new Length for the specified distance and LengthUnits.
+            </summary>
+            <param name="distance">Distance interval.</param>
+            <param name="units">Distance units.</param>
+        </member>
+        <member name="M:OsmExplorer.Units.Length.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:OsmExplorer.Units.Length.LengthValue(OsmExplorer.Units.LengthUnits)">
+            <summary>
+            Returns the value of a Length instance in the specified units.
+            </summary>
+            <param name="units">Specified units.</param>
+            <returns>A double-precision value representing the Length in the specified units.</returns>
+        </member>
+        <member name="P:OsmExplorer.Units.Length.Feet">
+            <summary>
+            Gets the Length in feet.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Units.Length.Meters">
+            <summary>
+            Gets the Length in meters.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Units.Length.Kilometers">
+            <summary>
+            Gets the Length in kilometers.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Units.Length.Miles">
+            <summary>
+            Gets the Length in miles.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Units.Length.NauticalMiles">
+            <summary>
+            Gets the Length in nautical miles.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Units.Length.op_Addition(OsmExplorer.Units.Length,OsmExplorer.Units.Length)">
+            <summary>
+            Adds two Lengths.
+            </summary>
+            <param name="d1">First Length.</param>
+            <param name="d2">Second Length.</param>
+            <returns>Sum of the Lengths.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Length.op_Subtraction(OsmExplorer.Units.Length,OsmExplorer.Units.Length)">
+            <summary>
+            Subtracts one Length from another.
+            </summary>
+            <param name="d1">First Length.</param>
+            <param name="d2">Second Length.</param>
+            <returns>The difference of the Lengths</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Length.op_Division(OsmExplorer.Units.Length,OsmExplorer.Units.Length)">
+            <summary>
+            Gets the ratio of two Lengths
+            </summary>
+            <param name="d1">First Length.</param>
+            <param name="d2">Second Length.</param>
+            <returns>Ratio of the Lengths.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Length.op_Equality(OsmExplorer.Units.Length,OsmExplorer.Units.Length)">
+            <summary>
+            Determines if two Lengths are equal in value;
+            </summary>
+            <param name="d1">First Length.</param>
+            <param name="d2">Second Length.</param>
+            <returns>True if x and y are equal in length</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Length.op_Inequality(OsmExplorer.Units.Length,OsmExplorer.Units.Length)">
+            <summary>
+            Determines if two Lengths have different values;
+            </summary>
+            <param name="d1">First Length.</param>
+            <param name="d2">Second Length.</param>
+            <returns>True if x and y are of different lengths</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Length.op_GreaterThan(OsmExplorer.Units.Length,OsmExplorer.Units.Length)">
+            <summary>
+            Tests whether one Length is greater than another
+            </summary>
+            <param name="d1">First Length.</param>
+            <param name="d2">Second Length.</param>
+            <returns>True if d1 is greater than d2</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Length.op_LessThan(OsmExplorer.Units.Length,OsmExplorer.Units.Length)">
+            <summary>
+            Tests whether one Length is shorter than another
+            </summary>
+            <param name="d1">First Length.</param>
+            <param name="d2">Second Length.</param>
+            <returns>True if d1 is less than d2</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Length.op_GreaterThanOrEqual(OsmExplorer.Units.Length,OsmExplorer.Units.Length)">
+            <summary>
+            Tests whether one Length is greater than or equal to another
+            </summary>
+            <param name="d1">First Length.</param>
+            <param name="d2">Second Length.</param>
+            <returns>True if d1 is greater than or equal to d2</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Length.op_LessThanOrEqual(OsmExplorer.Units.Length,OsmExplorer.Units.Length)">
+            <summary>
+            Tests whether one Length is less than or equal  to another
+            </summary>
+            <param name="d1">First Length.</param>
+            <param name="d2">Second Length.</param>
+            <returns>True if d1 is less than or equal to d2</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Length.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to this Length instance
+            </summary>
+            <param name="obj">System.Object</param>
+            <returns>True if obj is a Length and equal in value, otherwise false</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Length.GetHashCode">
+            <summary>
+            Returns a hashcode for the Length instance.
+            </summary>
+            <returns>A hashcode for this instance</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Length.CompareTo(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Length.CompareTo(OsmExplorer.Units.Length)">
+            <summary>
+            
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Length.Equals(OsmExplorer.Units.Length)">
+            <summary>
+            
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Length.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:OsmExplorer.Units.LengthUnits">
+            <summary>
+            Enumeration representing a type of unit of distance measurement.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.LengthUnits.Feet">
+            <summary>
+            Feet.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.LengthUnits.Meters">
+            <summary>
+            Meters.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.LengthUnits.Kilometers">
+            <summary>
+            Kilometers.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.LengthUnits.Miles">
+            <summary>
+            Miles.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.LengthUnits.NauticalMiles">
+            <summary>
+            Nautical miles.
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Units.Speed">
+            <summary>
+            Structure representing a speed value.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.Speed.MPS_per_FPS">
+            <summary>
+            1 foot per second expressed in meters per second.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.Speed.MPS_per_KPH">
+            <summary>
+            1 kilometer per hour expressed in meters per second.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.Speed.MPS_per_MPH">
+            <summary>
+            1 mile per hour expressed in meters per second.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.Speed.MPS_per_Knot">
+            <summary>
+            1 knot expressed in meters per second.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Units.Speed.ZeroSpeed">
+            <summary>
+            Gets a zero-values Speed.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Units.Speed.#ctor(System.Double,OsmExplorer.Units.SpeedUnits)">
+            <summary>
+            Creates a new Speed for a given value and SpeedUnits.
+            </summary>
+            <param name="value">Speed value.</param>
+            <param name="units">Type of speed units.</param>
+        </member>
+        <member name="M:OsmExplorer.Units.Speed.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Gets a Speed instance from a System.Runtime.Serialization.SerializationInfo object.
+            </summary>
+            <param name="info">A System.Runtime.Serialization.SerializationInfo object.</param>
+            <param name="context">A StreamingContext for the serialization.</param>
+        </member>
+        <member name="M:OsmExplorer.Units.Speed.SpeedValue(OsmExplorer.Units.SpeedUnits)">
+            <summary>
+            Returns the Speed instance in terms of the specified units.
+            </summary>
+            <param name="units">Specified units.</param>
+            <returns>Double-precision value of the Speed expressed in the specified units.</returns>
+        </member>
+        <member name="P:OsmExplorer.Units.Speed.FeetPerSecond">
+            <summary>
+            Returns a Speed instance in feet per second.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Units.Speed.MetersPerSecond">
+            <summary>
+            Returns a Speed instance in meters per second.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Units.Speed.KilometersPerHour">
+            <summary>
+            Returns a Speed instance in kilometers per hour.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Units.Speed.MilesPerHour">
+            <summary>
+            Returns a Speed instance in miles per hour.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Units.Speed.Knots">
+            <summary>
+            Returns a Speed instance in knots (nautical miles per hour).
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Units.Speed.op_Addition(OsmExplorer.Units.Speed,OsmExplorer.Units.Speed)">
+            <summary>
+            Adds to Speed values.
+            </summary>
+            <param name="a">First speed value.</param>
+            <param name="b">Second speed value.</param>
+            <returns>The sum of a and b.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Speed.op_Subtraction(OsmExplorer.Units.Speed,OsmExplorer.Units.Speed)">
+            <summary>
+            Returns the difference of two speed values.
+            </summary>
+            <param name="a">First Speed.</param>
+            <param name="b">Second Speed.</param>
+            <returns>The difference of a and b.</returns>
+            <remarks>It is possible for this operator to return a negative speed value,
+            which may be non-sensical depending on the context. Note that a negative speed
+            value is acceptable when speed is considered analagous to velocity.</remarks>
+        </member>
+        <member name="M:OsmExplorer.Units.Speed.op_Equality(OsmExplorer.Units.Speed,OsmExplorer.Units.Speed)">
+            <summary>
+            Determines if two Speeds are equal in value.
+            </summary>
+            <param name="a">First Speed.</param>
+            <param name="b">Second Speed.</param>
+            <returns>True if a and b are equal.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Speed.op_Inequality(OsmExplorer.Units.Speed,OsmExplorer.Units.Speed)">
+            <summary>
+            Determines if two speeds are inequal in value.
+            </summary>
+            <param name="a">First Speed.</param>
+            <param name="b">Second Speed.</param>
+            <returns>True if a and b are inequal.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Speed.op_GreaterThan(OsmExplorer.Units.Speed,OsmExplorer.Units.Speed)">
+            <summary>
+            Determines if one speed is greater than another.
+            </summary>
+            <param name="a">First Speed.</param>
+            <param name="b">Second Speed.</param>
+            <returns>True if a is larger than b.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Speed.op_LessThan(OsmExplorer.Units.Speed,OsmExplorer.Units.Speed)">
+            <summary>
+            Determines if one Speed is less than another.
+            </summary>
+            <param name="a">First Speed.</param>
+            <param name="b">Second Speed.</param>
+            <returns>True if a is less than b.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Speed.op_GreaterThanOrEqual(OsmExplorer.Units.Speed,OsmExplorer.Units.Speed)">
+            <summary>
+            Determines if one speed is greater than or equal to another.
+            </summary>
+            <param name="a">First Speed.</param>
+            <param name="b">Second Speed.</param>
+            <returns>True if a is larger than or equal to b.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Speed.op_LessThanOrEqual(OsmExplorer.Units.Speed,OsmExplorer.Units.Speed)">
+            <summary>
+            Determines if one Speed is less than or equal to another.
+            </summary>
+            <param name="a">First Speed.</param>
+            <param name="b">Second Speed.</param>
+            <returns>True if a is less than or equal to b.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Speed.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Populates a System.Runtime.Serialization.SerializationInfo object 
+            with data needed to serialize a Speed instance.
+            </summary>
+            <param name="info">The System.Runtime.Serialization.SerializationInfo to populate with data.</param>
+            <param name="context">The destination (see System.Runtime.Serialization.StreamingContext) 
+            for this serialization.</param>
+        </member>
+        <member name="M:OsmExplorer.Units.Speed.CompareTo(System.Object)">
+            <summary>
+            Compares this Speed instance to the specified object.
+            </summary>
+            <param name="obj">A specified object.</param>
+            <returns>1 if this Speed instance is greater than the specified object; 
+            -1 if this Speed instance is less than the specified object;
+             0 if this Speed instance equals the specified object.</returns>
+            <exception cref="T:System.InvalidCastException">Object is not a Speed.</exception>
+        </member>
+        <member name="M:OsmExplorer.Units.Speed.CompareTo(OsmExplorer.Units.Speed)">
+            <summary>
+            Compares this Speed instance to another.
+            </summary>
+            <param name="other">Another Speed instance.</param>
+            <returns>1 if this Speed instance is greater than other; 
+            -1 if this Speed instance is less than other;
+             0 if this Speed instance equals other.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Speed.Equals(OsmExplorer.Units.Speed)">
+            <summary>
+            Determines if this Speed instance equals another.
+            </summary>
+            <param name="other">Another Speed instance.</param>
+            <returns>True if this instance and other are equal; false otherwise.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Speed.Equals(System.Object)">
+            <summary>
+            Determines if this Speed instance is equal to the specified object.
+            </summary>
+            <param name="obj">A System.Object.</param>
+            <returns>True if the specified object is a Speed and is equal to this instance; 
+            otherwise false.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Speed.GetHashCode">
+            <summary>
+            Returns a hash code for this Speed instance.
+            </summary>
+            <returns>A 32-bit signed integer.</returns>
+        </member>
+        <member name="T:OsmExplorer.Units.SpeedUnits">
+            <summary>
+            Enumeration representing the type of units for a speed value.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.SpeedUnits.FPS">
+            <summary>
+            Speed expressed in feet per second.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.SpeedUnits.MPS">
+            <summary>
+            Speed expressed in meters per second.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.SpeedUnits.KPH">
+            <summary>
+            Speed expressed in kilometers per hour.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.SpeedUnits.MPH">
+            <summary>
+            Speed expressed in miles per hour.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.SpeedUnits.Knots">
+            <summary>
+            Speed expressed in nautical miles per hour (knots).
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Units.Weight">
+            <summary>
+            Structure representing an amount of weight.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.Weight.PoundsPerKilogram">
+            <summary>
+            Amount of pounds per kilogram. This field is constant.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.Weight.PoundsPerShortTon">
+            <summary>
+            Amount of pounds per short ton. This field is constant.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.Weight.PoundsPerMetricTon">
+            <summary>
+            Amount of pounts per metric ton (tonne). This field is constant.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.Weight.KilogramsPerPound">
+            <summary>
+            Amount of kilograms per pound. This field is constant.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.Weight.KilogramsPerShortTon">
+            <summary>
+            Amount of kilograms per short ton. This field is constant.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.Weight.KilogramsPerMetricTon">
+            <summary>
+            Amount of kilograms per metric ton (tonne). This field is constant.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Units.Weight.MaxWeight">
+            <summary>
+            Represents the maximum weight value that can be assigned.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Units.Weight.ZeroWeight">
+            <summary>
+            Represents the minimum (zero) value of a Weight instance.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Units.Weight.#ctor(System.Single,OsmExplorer.Units.WeightUnits)">
+            <summary>
+            Creates a new Weight object for the specified amount and WeightUnits.
+            </summary>
+            <param name="weight">Weight quantity.</param>
+            <param name="units">Units of weight measurement</param>
+            <exception cref="T:System.ArgumentException"> Weight cannot be a negative value.</exception>
+        </member>
+        <member name="M:OsmExplorer.Units.Weight.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="P:OsmExplorer.Units.Weight.Pounds">
+            <summary>
+            Returns the Weight instance in units of pounds (lbs).
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Units.Weight.Kilograms">
+            <summary>
+            Returns the Weight instance in units of kilograms (kgs).
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Units.Weight.ShortTons">
+            <summary>
+            Returns the Weight instance in units of short tons.
+            </summary>
+        </member>
+        <member name="P:OsmExplorer.Units.Weight.MetricTons">
+            <summary>
+            Returns the Weight instance in units of metric tons (tonnes).
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Units.Weight.op_Equality(OsmExplorer.Units.Weight,OsmExplorer.Units.Weight)">
+            <summary>
+            Compares two Weights for equality.
+            </summary>
+            <param name="w1">First Weight.</param>
+            <param name="w2">Second Weight.</param>
+            <returns>True if the Weights are equal.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Weight.op_Inequality(OsmExplorer.Units.Weight,OsmExplorer.Units.Weight)">
+            <summary>
+            Compares two Weights for inequality
+            </summary>
+            <param name="w1">First Weight.</param>
+            <param name="w2">Second Weight.</param>
+            <returns></returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Weight.op_GreaterThan(OsmExplorer.Units.Weight,OsmExplorer.Units.Weight)">
+            <summary>
+            Determines if a Weight is greater than another.
+            </summary>
+            <param name="w1">First Weight.</param>
+            <param name="w2">Second Weight.</param>
+            <returns>True if w1 is greater than w2.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Weight.op_LessThan(OsmExplorer.Units.Weight,OsmExplorer.Units.Weight)">
+            <summary>
+            Determines if a Weight is less than another.
+            </summary>
+            <param name="w1">First Weight.</param>
+            <param name="w2">Second Weight.</param>
+            <returns>True if w1 is less than w2.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Weight.op_GreaterThanOrEqual(OsmExplorer.Units.Weight,OsmExplorer.Units.Weight)">
+            <summary>
+            Determines if a Weight is greater than or equal to another.
+            </summary>
+            <param name="w1">First Weight.</param>
+            <param name="w2">Second Weight.</param>
+            <returns>True if w1 is greater than or equal to w2.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Weight.op_LessThanOrEqual(OsmExplorer.Units.Weight,OsmExplorer.Units.Weight)">
+            <summary>
+            Determines if a Weight is less than or equal to another.
+            </summary>
+            <param name="w1">First Weight.</param>
+            <param name="w2">Second Weight.</param>
+            <returns>True if w1 is less than or equal to w2.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Weight.op_Addition(OsmExplorer.Units.Weight,OsmExplorer.Units.Weight)">
+            <summary>
+            Sums two Weight objects.
+            </summary>
+            <param name="w1">First Weight.</param>
+            <param name="w2">Second Weight.</param>
+            <returns>The sum of Weights w1 and w2.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Weight.op_Subtraction(OsmExplorer.Units.Weight,OsmExplorer.Units.Weight)">
+            <summary>
+            Gets the difference of two Weights.
+            </summary>
+            <param name="w1">First Weight.</param>
+            <param name="w2">Second Weight.</param>
+            <returns>Weight w1 subtracted by Weight w2.</returns>
+            <exception cref="T:System.ArgumentException">The difference between w1 and w2 cannot be less than 0.</exception>
+        </member>
+        <member name="M:OsmExplorer.Units.Weight.op_Division(OsmExplorer.Units.Weight,OsmExplorer.Units.Weight)">
+            <summary>
+            Gets the ratio of two Weights.
+            </summary>
+            <param name="w1">First Weight.</param>
+            <param name="w2">Second Weight.</param>
+            <returns>The ratio of w1 and w2 (w1/w2).</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Weight.CompareTo(System.Object)">
+            <summary>
+            Compares this Weight instance to the specified object.
+            </summary>
+            <param name="obj">A System.Object</param>
+            <returns>1 if this instance is greater than the specified object; 
+            -1 if this instance is less than the specified object; 0 if they are equal.</returns>
+            <exception cref="T:System.ArgumentException">Value is not a OsmExplorer.Units.Weight.</exception>
+        </member>
+        <member name="M:OsmExplorer.Units.Weight.CompareTo(OsmExplorer.Units.Weight)">
+            <summary>
+            Compares this Weight to another.
+            </summary>
+            <param name="other">Another Weight.</param>
+            <returns>1 if this instance is greater than the specified object; 
+            -1 if this instance is less than the specified object; 0 if they are equal.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Weight.Equals(OsmExplorer.Units.Weight)">
+            <summary>
+            Determines if this Weight instance is equal to another.
+            </summary>
+            <param name="other">Another Weight.</param>
+            <returns>True if this Weight is equal in amount to the other.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Weight.Equals(System.Object)">
+            <summary>
+            Returns a value indicating whether this Weight instance is equal to the specified object.
+            </summary>
+            <param name="obj"> An object to compare with this Weight instance.</param>
+            <returns>True if obj is a Weight and equal in amount to this instance; otherwise false.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Weight.GetHashCode">
+            <summary>
+            Returns a hash code for this Weight instance.
+            </summary>
+            <returns>A 32-bit signed integer hash code for this Weight instance.</returns>
+        </member>
+        <member name="M:OsmExplorer.Units.Weight.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            System.Runtime.Serialization.SerializationInfo object 
+            with data needed to serialize a Weight instance.
+            </summary>
+            <param name="info">The System.Runtime.Serialization.SerializationInfo to populate with data.</param>
+            <param name="context">The destination (see System.Runtime.Serialization.StreamingContext) 
+            for this serialization.</param>
+        </member>
+        <member name="T:OsmExplorer.Units.WeightUnits">
+            <summary>
+            Enumeration representing a type of weight measurment.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.WeightUnits.Pounds">
+            <summary>
+            Pounds (lb)
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.WeightUnits.Kilograms">
+            <summary>
+            Kilograms (kg)
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.WeightUnits.ShortTons">
+            <summary>
+            Short tons.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Units.WeightUnits.MetricTons">
+            <summary>
+            Metric tons (tonnes).
+            </summary>
+        </member>
+        <member name="T:OsmExplorer.Functions.MathFunctions">
+            <summary>
+            Static class containing mathematical methods for working with spatial data.
+            </summary>
+        </member>
+        <member name="F:OsmExplorer.Functions.MathFunctions.earth_radius_meters">
+            <summary>
+            Radius of the earth in meters. This field is constant.
+            </summary>
+        </member>
+        <member name="M:OsmExplorer.Functions.MathFunctions.Distance(OsmExplorer.Spatial.LatLon[])">
+            <summary>
+            Calculates the great circle distance along an ordered array or set of LatLons.
+            </summary>
+            <param name="points">An ordered array or set of LatLons.</param>
+            <returns>A DistanceSpan object representing the distance along the set of LatLons.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Argument must be 2 or more LatLons.</exception>
+        </member>
+        <member name="M:OsmExplorer.Functions.MathFunctions.PythagoreanDistance(OsmExplorer.Spatial.LatLon[])">
+            <summary>
+            Calculates the Pythagorean approximated distance along an ordered array or set of LatLons. See remarks.
+            </summary>
+            <param name="points">An ordered array or set of LatLons.</param>
+            <returns>A DistanceSpan object representing the distance along the set of LatLons.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Argument must be 2 or more LatLons.</exception>
+            /// <remarks>The Pythagorean distance assumes the world is flat. For short-
+            distance calculations this can be an acceptable approximation and may be
+            preferred for multiple repeat calculations (slightly less than half as expensive
+            as DistanceTo method).</remarks>
+        </member>
+        <member name="M:OsmExplorer.Functions.MathFunctions.GetHeading(OsmExplorer.Spatial.LatLon,OsmExplorer.Spatial.LatLon)">
+            <summary>
+            Gets an initial heading from one LatLon to another.
+            </summary>
+            <param name="P1">First LatLon.</param>
+            <param name="P2">Second LatLon.</param>
+            <returns>Initial heading in degrees from P1 to P2.</returns>
+        </member>
+        <member name="M:OsmExplorer.Functions.MathFunctions.HeadingDiff(System.Double,System.Double)">
+            <summary>
+            Calculates the difference in two headings in degrees.
+            </summary>
+            <param name="Heading1">First heading in degrees.</param>
+            <param name="Heading2">Second heading in degrees.</param>
+            <returns>The difference in headings in degrees.</returns>
+        </member>
+        <member name="M:OsmExplorer.Functions.MathFunctions.Interpolate(OsmExplorer.Spatial.LatLon,OsmExplorer.Spatial.LatLon,System.Int32)">
+            <summary>
+            Linearly interpolates between two LatLons and returns an array of points
+            equal in size to the specified InterpolationFactor.
+            </summary>
+            <param name="P1">First LatLon.</param>
+            <param name="P2">Second LatLon.</param>
+            <param name="InterpolationFactor">Number of interpolated points to return.</param>
+            <returns>An array of interpolated LatLons.</returns>
+        </member>
+    </members>
+</doc>

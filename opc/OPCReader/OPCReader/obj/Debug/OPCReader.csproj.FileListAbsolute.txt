@@ -1,0 +1,9 @@
+C:\bami\VODOPAD\opc\OPCReader\OPCReader\bin\Debug\OPCReader.dll
+C:\bami\VODOPAD\opc\OPCReader\OPCReader\bin\Debug\OPCReader.pdb
+C:\bami\VODOPAD\opc\OPCReader\OPCReader\bin\Debug\Opc.Ua.Client.dll
+C:\bami\VODOPAD\opc\OPCReader\OPCReader\bin\Debug\Opc.Ua.ClientControls.dll
+C:\bami\VODOPAD\opc\OPCReader\OPCReader\bin\Debug\Opc.Ua.Configuration.dll
+C:\bami\VODOPAD\opc\OPCReader\OPCReader\bin\Debug\Opc.Ua.Core.dll
+C:\bami\VODOPAD\opc\OPCReader\OPCReader\obj\Debug\OPCReader.dll
+C:\bami\VODOPAD\opc\OPCReader\OPCReader\obj\Debug\OPCReader.pdb
+C:\bami\VODOPAD\opc\OPCReader\OPCReader\obj\Debug\OPCReader.csprojResolveAssemblyReference.cache

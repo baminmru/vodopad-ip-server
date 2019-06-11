@@ -50,6 +50,7 @@ Public MustInherit Class UniTransport
         Catch
             m_LogEnabled = False
         End Try
+
         m_Inited = True
     End Sub
 
@@ -74,7 +75,11 @@ Public MustInherit Class UniTransport
         Init()
         If m_LogEnabled Then
             Try
+<<<<<<< HEAD
                 System.IO.File.AppendAllText(GetMyDir() + "\LOGS\" + TransportType() + "_LOG_" + Date.Now.ToString("yyyyMMdd") + "_" + SessionID + ".txt", Date.Now.ToString("yyyy.MM.dd HH:mm:ss.fff") + " " + s + vbCrLf)
+=======
+                System.IO.File.AppendAllText(GetMyDir() + "\LOGS\" + TransportType() + "_LOG_" + Date.Now.ToString("yyyyMMdd") + "_" + SessionID + ".txt", Date.Now.ToString("yyyy.MM.dd HH:mm:ss") + " " + s + vbCrLf)
+>>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a
 
             Catch ex As Exception
 

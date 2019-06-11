@@ -1,0 +1,13 @@
+
+PID:2932 ************************* Logging started at 09/29/2016 14:59:30 *************************
+2932 - 14:59:30.716 Token #0 created. CreatedAt = 11:59:30.716 . Lifetime = 3600000
+2932 - 14:59:30.746 SECURE CHANNEL CREATED [TcpClientChannel UA-TCP 1.03.340.0] [ID=1644108] Connected To: opc.tcp://10.0.3.214:4841/ [None/None/Binary]
+2932 - 14:59:30.747 Token #1 activated. CreatedAt = 11:59:30.716 . Lifetime = 3600000
+2932 - 14:59:30.775 TCPCLIENTCHANNEL SOCKET CLOSED: 000004DC, ChannelId=1644108
+2932 - 14:59:30.811 Token #0 created. CreatedAt = 11:59:30.811 . Lifetime = 3600000
+2932 - 14:59:30.818 SECURE CHANNEL CREATED [TcpClientChannel UA-TCP 1.03.340.0] [ID=1644109] Connected To: opc.tcp://10.0.3.214:4841/ [None/None/Binary]
+2932 - 14:59:30.818 Token #1 activated. CreatedAt = 11:59:30.811 . Lifetime = 3600000
+2932 - 14:59:31.049 Revised session timeout value: 60000. 
+2932 - 14:59:31.050 Max response message size value: 4194304. Max request message size: 0 
+2932 - 14:59:31.053 Server signature is null or empty.
+2932 - 14:59:31.069 Empty results were received for the ActivateSession call.

@@ -402,15 +402,6 @@ Public MustInherit Class TVDriver
     End Sub
 
 
-    ' Отработка дополнительных команд для управления устройством
-    ' Очередь комманд должна быт где-то сохранена
-    Public Overridable Function ProcessComands() As Integer
-        ' do nothing by default
-        ' return count of processed commands
-        Return 0
-    End Function
-
-
 
     Public Overridable Sub EraseInputQueue()
         System.Threading.Thread.Sleep(150)
@@ -565,9 +556,9 @@ Public MustInherit Class TVDriver
         si = CalcInterval(50)
         Thread.Sleep(si)
         RaiseIdle()
-        While MyTransport.BytesToRead = 0 And t < 500
+        While MyTransport.BytesToRead = 0 And t < 100
             If Not MyTransport.IsConnected Then Exit Sub
-            si = CalcInterval(1)
+            si = CalcInterval(10)
             Thread.Sleep(si)
             RaiseIdle()
             t = t + 1
@@ -590,20 +581,16 @@ Public MustInherit Class TVDriver
             t = 0
             While MyTransport.BytesToRead = 0 And t < 20
                 If Not MyTransport.IsConnected Then Exit Sub
-                System.Threading.Thread.Sleep(100)
+                si = CalcInterval(10)
+                Thread.Sleep(si)
                 RaiseIdle()
                 t = t + 1
             End While
             cnt = MyTransport.BytesToRead
             If cnt = 0 Then
-                System.Threading.Thread.Sleep(500)
+                System.Threading.Thread.Sleep(100)
             End If
 
-            If Me.BaudRate - (Me.BaudRate / 10) >= 1200 Then
-                Me.BaudRate -= (Me.BaudRate / 10)
-            Else
-                Me.BaudRate = 1200
-            End If
 
         End If
 

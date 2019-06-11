@@ -145,6 +145,13 @@ C:\bami\VODOPAD\ASSVDebugService\bin\Debug\VIPAnalizer.dll
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\ASSVCallBack.pdb
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\ASSVCallBack.xml
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\ASSVServerLib.pdb
+<<<<<<< HEAD
+=======
+C:\bami\VODOPAD\ASSVDebugService\bin\Debug\Drv941.pdb
+C:\bami\VODOPAD\ASSVDebugService\bin\Debug\Drv941.xml
+C:\bami\VODOPAD\ASSVDebugService\bin\Debug\Drv942.pdb
+C:\bami\VODOPAD\ASSVDebugService\bin\Debug\Drv942.xml
+>>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\Drv943.pdb
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\Drv943.xml
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\DrvMAGIKA.pdb
@@ -159,6 +166,11 @@ C:\bami\VODOPAD\ASSVDebugService\bin\Debug\DrvTSRV02.pdb
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\DrvTSRV02.xml
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\DrvTSRV.pdb
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\DrvTSRV.xml
+<<<<<<< HEAD
+=======
+C:\bami\VODOPAD\ASSVDebugService\bin\Debug\DrvVKT4_0.pdb
+C:\bami\VODOPAD\ASSVDebugService\bin\Debug\DrvVKT4_0.xml
+>>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\DrvVKT7.pdb
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\DrvVKT7.xml
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\STKTVMain.pdb
@@ -171,9 +183,12 @@ C:\bami\VODOPAD\ASSVDebugService\obj\x86\Debug\ASSVDebugService.pdb
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\DrvOPC.Config.xml
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\InstallConfig.xml
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\maptv.xml
+<<<<<<< HEAD
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\Drv941.pdb
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\Drv941.xml
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\Drv942.pdb
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\Drv942.xml
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\DrvVKT4_0.pdb
 C:\bami\VODOPAD\ASSVDebugService\bin\Debug\DrvVKT4_0.xml
+=======
+>>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a

@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 <Config DataSource="APER4" 
 Oracle="//192.168.9.36:1521/ORA11APE"
+=======
+<Config DataSource="FANTOM" 
+Oracle="//192.168.9.46:1521/ORA11FAN"
+
+>>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a
 UserID="COUNTERS"
 Password="counters" 
 TimeOut="1000"

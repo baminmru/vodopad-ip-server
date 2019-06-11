@@ -67,6 +67,7 @@ namespace STKService
         private int ActiveThreadsCount()
         {
             int Count = 0;
+<<<<<<< HEAD
             ThreadObj tt;
 
             foreach (var pair in Threads)
@@ -77,6 +78,16 @@ namespace STKService
                     try
                     {
                         tt.Process.Kill();
+=======
+
+            for (int i = 0; i < Threads.Count; i++)
+            {
+                if (Threads[i].Process.HasExited == true || Threads[i].Process.StartTime.AddMinutes(30) <= DateTime.Now)
+                {
+                    try
+                    {
+                        Threads[id_bd].Process.Kill();
+>>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a
                     }
                     catch
                     {
@@ -88,9 +99,13 @@ namespace STKService
                 {
                     Count++;
                 }
+<<<<<<< HEAD
 
             }
 
+=======
+            }
+>>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a
             return Count;
 
 

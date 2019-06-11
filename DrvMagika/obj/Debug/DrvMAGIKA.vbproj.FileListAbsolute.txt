@@ -81,5 +81,10 @@ C:\bami\VODOPAD\DrvMagika\obj\Debug\DrvMAGIKA.vbproj.GenerateResource.Cache
 C:\bami\VODOPAD\DrvMagika\obj\Debug\DrvMAGIKA.dll
 C:\bami\VODOPAD\DrvMagika\obj\Debug\DrvMAGIKA.xml
 C:\bami\VODOPAD\DrvMagika\obj\Debug\DrvMAGIKA.pdb
+<<<<<<< HEAD
 C:\bami\VODOPAD\DrvMagika\bin\Debug\STKTVMain.xml
 C:\bami\VODOPAD\DrvMagika\obj\Debug\DrvMAGIKA.vbprojResolveAssemblyReference.cache
+=======
+C:\bami\VODOPAD\DrvMagika\obj\Debug\DrvMAGIKA.vbprojResolveAssemblyReference.cache
+C:\bami\VODOPAD\DrvMagika\bin\Debug\STKTVMain.xml
+>>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a

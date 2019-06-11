@@ -1,0 +1,6 @@
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\SharpMap\bin\Release\SharpMap.XML
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\SharpMap\bin\Release\SharpMap.dll
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\SharpMap\bin\Release\SharpMap.pdb
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\SharpMap\obj\Release\ResolveAssemblyReference.cache
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\SharpMap\obj\Release\SharpMap.dll
+C:\bami\Service_2.2_oracle_provider\GlobalMonitor\SharpMap\obj\Release\SharpMap.pdb

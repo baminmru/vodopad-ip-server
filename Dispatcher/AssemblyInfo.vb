@@ -28,8 +28,13 @@ Imports System.Runtime.InteropServices
 ' You can specify all the values or you can default the Build and Revision Numbers
 ' by using the '*' as shown below:
 
+<<<<<<< HEAD
 <Assembly: AssemblyVersion("2019.06.11.*")>
 <Assembly: AssemblyFileVersion("2019.06.11.1402")>
+=======
+<Assembly: AssemblyVersion("2017.12.05.*")>
+<Assembly: AssemblyFileVersion("2017.12.05.1402")>
+>>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a
 
 
 

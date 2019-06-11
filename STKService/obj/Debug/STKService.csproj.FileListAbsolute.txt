@@ -704,6 +704,15 @@ C:\bami\VODOPAD\STKService\obj\Debug\STKService.csproj.GenerateResource.Cache
 C:\bami\VODOPAD\STKService\obj\Debug\STKService.exe
 C:\bami\VODOPAD\STKService\obj\Debug\STKService.pdb
 C:\bami\VODOPAD\STKService\obj\Debug\STKService.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
+=======
+C:\bami\VODOPAD\STKService\bin\Debug\Drv941.pdb
+C:\bami\VODOPAD\STKService\bin\Debug\Drv941.xml
+C:\bami\VODOPAD\STKService\bin\Debug\Drv942.pdb
+C:\bami\VODOPAD\STKService\bin\Debug\Drv942.xml
+C:\bami\VODOPAD\STKService\bin\Debug\DrvVKT4_0.pdb
+C:\bami\VODOPAD\STKService\bin\Debug\DrvVKT4_0.xml
+>>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a
 C:\bami\VODOPAD\STKService\bin\Debug\DrvOPC.Config.xml
 C:\bami\VODOPAD\STKService\bin\Debug\InstallConfig.xml
 C:\bami\VODOPAD\STKService\bin\Debug\maptv.xml
@@ -731,6 +740,11 @@ C:\bami\VODOPAD\STKService\bin\Debug\DrvDAN3010.pdb
 C:\bami\VODOPAD\STKService\bin\Debug\DrvDAN3010.xml
 C:\bami\VODOPAD\STKService\bin\Debug\DrvOPC.pdb
 C:\bami\VODOPAD\STKService\bin\Debug\DrvOPC.xml
+<<<<<<< HEAD
+=======
+C:\bami\VODOPAD\STKService\bin\Debug\DrvVKT4.pdb
+C:\bami\VODOPAD\STKService\bin\Debug\DrvVKT4.xml
+>>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a
 C:\bami\VODOPAD\STKService\bin\Debug\DrvVKT5.pdb
 C:\bami\VODOPAD\STKService\bin\Debug\DrvVKT5.xml
 C:\bami\VODOPAD\STKService\bin\Debug\OPCReader.pdb
