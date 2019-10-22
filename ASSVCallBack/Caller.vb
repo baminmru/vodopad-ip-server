@@ -242,38 +242,38 @@ Public Class Caller
 
                     LOG("atz" & vbCrLf)
                     port.Write("atez" & vbCrLf)
-                    System.Threading.Thread.Sleep(1000)
+                    System.Threading.Thread.Sleep((1000))
                     WaitOK()
 
                     LOG("at&f" & vbCrLf)
                     port.Write("at&f" & vbCrLf)
-                    System.Threading.Thread.Sleep(1000)
+                    System.Threading.Thread.Sleep((1000))
                     WaitOK()
 
                     LOG(initstr & vbCrLf)
                     port.Write(initstr & vbCrLf)
-                    System.Threading.Thread.Sleep(1000)
+                    System.Threading.Thread.Sleep((1000))
                     WaitOK()
 
                     LOG("ate0" & vbCrLf)
                     port.Write("ate0" & vbCrLf)
-                    System.Threading.Thread.Sleep(1000)
+                    System.Threading.Thread.Sleep((1000))
                 Else
-                   
+
                     LOG("atz" & vbCrLf)
                     port.Write("atez" & vbCrLf)
-                    System.Threading.Thread.Sleep(1000)
+                    System.Threading.Thread.Sleep((1000))
                     WaitOK()
 
                     LOG("at&f" & vbCrLf)
                     port.Write("at&f" & vbCrLf)
-                    System.Threading.Thread.Sleep(1000)
+                    System.Threading.Thread.Sleep((1000))
                     WaitOK()
 
 
                     LOG("ate0" & vbCrLf)
                     port.Write("ate0" & vbCrLf)
-                    System.Threading.Thread.Sleep(1000)
+                    System.Threading.Thread.Sleep((1000))
                 End If
                 WaitOK()
 

@@ -68,6 +68,7 @@ namespace STKServiceModem
         {
             int Count = 0;
             ThreadObj tt;
+            STKTVMain.TVMain TvMain=null;
 
             foreach (var pair in Threads)
             {
@@ -77,6 +78,20 @@ namespace STKServiceModem
                     try
                     {
                         tt.Process.Kill();
+                    }
+                    catch
+                    {
+
+                    }
+                    if(TvMain == null)
+                    {
+                        TvMain = new STKTVMain.TVMain();
+                        
+                    }
+                    try
+                    {
+                        if(TvMain.Init())
+                            TvMain.UnLockDevice(pair.Key);
                     }
                     catch
                     {

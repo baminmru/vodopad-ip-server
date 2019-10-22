@@ -67,14 +67,31 @@ namespace STKService
         private int ActiveThreadsCount()
         {
             int Count = 0;
+            ThreadObj tt;
+            STKTVMain.TVMain TvMain = null;
 
-            for (int i = 0; i < Threads.Count; i++)
+            foreach (var pair in Threads)
             {
-                if (Threads[i].Process.HasExited == true || Threads[i].Process.StartTime.AddMinutes(30) <= DateTime.Now)
+                tt = pair.Value;
+                if (tt.Process.HasExited == true || tt.Process.StartTime.AddMinutes(30) <= DateTime.Now)
                 {
                     try
                     {
-                        Threads[id_bd].Process.Kill();
+                        tt.Process.Kill();
+                    }
+                    catch
+                    {
+
+                    }
+                    if (TvMain == null)
+                    {
+                        TvMain = new STKTVMain.TVMain();
+
+                    }
+                    try
+                    {
+                        if (TvMain.Init())
+                            TvMain.UnLockDevice(pair.Key);
                     }
                     catch
                     {
@@ -86,7 +103,9 @@ namespace STKService
                 {
                     Count++;
                 }
+
             }
+
             return Count;
 
 

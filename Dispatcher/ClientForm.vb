@@ -1728,4 +1728,24 @@ Stopping:
         an.CheckD24H(tag, 31)
         RefreshData(localtree)
     End Sub
+
+    Private Sub cmdUnlock_Click(sender As Object, e As EventArgs) Handles cmdUnlock.Click
+        Dim tag As Object
+        If localtree.SelectedNodes.Count > 0 Then
+            If localtree.SelectedNodes.Item(0).Key.ToString().Substring(0, 1) = "N" Then
+                Tag = localtree.SelectedNodes.Item(0).Tag
+            Else
+                Exit Sub
+            End If
+        Else
+            Exit Sub
+
+        End If
+
+
+        If MsgBox("Разблокировать текущий узел ?", MsgBoxStyle.YesNo) = DialogResult.Yes Then
+            TvMain.UnLockDevice(tag)
+        End If
+
+    End Sub
 End Class

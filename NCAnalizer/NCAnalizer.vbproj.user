@@ -11,10 +11,4 @@
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>
-<<<<<<< HEAD:TGKSender2/Backup/TGKSender.vbproj.user
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>nodel</StartArguments>
-  </PropertyGroup>
-=======
->>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a:NCAnalizer/NCAnalizer.vbproj.user
 </Project>

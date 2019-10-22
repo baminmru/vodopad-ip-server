@@ -61,6 +61,7 @@ Public MustInherit Class GRPSSocket
 
     Public Sub New(Optional ByVal _LogEnabled As Boolean = False)
         m_LogEnabled = _LogEnabled
+m_Inited=false
     End Sub
 
     Protected Shared Sub CheckLog()

@@ -3,18 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-<<<<<<< HEAD:TGKSender2/Backup/TGKSender.vbproj
-    <ProductVersion>9.0.21022</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AB4D2C53-EE8B-4CAF-98EE-7D671854B281}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <StartupObject>TGKSender.Module1</StartupObject>
-    <RootNamespace>TGKSender</RootNamespace>
-    <AssemblyName>TGKSender</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <MyType>Console</MyType>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-=======
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{381F0054-57F8-4709-80F4-E98E3232ADE4}</ProjectGuid>
@@ -25,7 +13,6 @@
     <FileAlignment>512</FileAlignment>
     <MyType>Console</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
->>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a:NCAnalizer/NCAnalizer.vbproj
     <OptionExplicit>On</OptionExplicit>
     <OptionCompare>Binary</OptionCompare>
     <OptionStrict>Off</OptionStrict>
@@ -58,11 +45,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-<<<<<<< HEAD:TGKSender2/Backup/TGKSender.vbproj
-    <DocumentationFile>TGKSender.xml</DocumentationFile>
-=======
     <DocumentationFile>NCAnalizer.xml</DocumentationFile>
->>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a:NCAnalizer/NCAnalizer.vbproj
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -73,26 +56,6 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-<<<<<<< HEAD:TGKSender2/Backup/TGKSender.vbproj
-    <DocumentationFile>TGKSender.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>TGK.ico</ApplicationIcon>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Oracle.DataAccess, Version=4.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\odac32\odp.net\bin\4\Oracle.DataAccess.dll</HintPath>
-    </Reference>
-    <Reference Include="puteclient, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e87720686b2b9c77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\puteclient.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-=======
     <DocumentationFile>NCAnalizer.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
@@ -101,7 +64,6 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.OracleClient" />
->>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a:NCAnalizer/NCAnalizer.vbproj
     <Reference Include="System.Deployment" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -114,10 +76,6 @@
     <Import Include="System.Diagnostics" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD:TGKSender2/Backup/TGKSender.vbproj
-    <Compile Include="DB.vb" />
-=======
->>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a:NCAnalizer/NCAnalizer.vbproj
     <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -134,10 +92,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-<<<<<<< HEAD:TGKSender2/Backup/TGKSender.vbproj
-    <Compile Include="Sender.vb" />
-=======
->>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a:NCAnalizer/NCAnalizer.vbproj
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -177,10 +131,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD:TGKSender2/Backup/TGKSender.vbproj
-    <Content Include="TGK.ico" />
-    <Content Include="TGKSender_Config.xml">
-=======
     <ProjectReference Include="..\STKTVMain\STKTVMain.vbproj">
       <Project>{0C7D9D95-1165-4C46-8346-748E4D276CFD}</Project>
       <Name>STKTVMain</Name>
@@ -192,18 +142,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config.xml">
->>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a:NCAnalizer/NCAnalizer.vbproj
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-<<<<<<< HEAD:TGKSender2/Backup/TGKSender.vbproj
-      <UserProperties BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="YearStamp.MonthStamp.DayStamp.Increment" />
-=======
       <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="YearStamp.MonthStamp.DayStamp.Increment" />
->>>>>>> 1df6630c1f273a55783ddc7b5354cf723c2a001a:NCAnalizer/NCAnalizer.vbproj
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

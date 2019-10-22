@@ -472,7 +472,7 @@ Public Class driver
 
         write(startBytes, 16)
         System.Threading.Thread.Sleep(CalcInterval(16))
-        System.Threading.Thread.Sleep(1000)
+        System.Threading.Thread.Sleep(MyTransport.SleepTime(1000))
 
         Dim bArr(0 To 20) As Byte
         Try
@@ -519,7 +519,7 @@ Public Class driver
 
         write(startBytes, 16)
         System.Threading.Thread.Sleep(CalcInterval(16))
-        System.Threading.Thread.Sleep(1000)
+        System.Threading.Thread.Sleep(MyTransport.SleepTime(1000))
         Dim crc As UShort
 
         '10 FF 90 00 00 05 00 3F 00 00 00 00 D9 19 

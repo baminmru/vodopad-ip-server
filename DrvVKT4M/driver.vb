@@ -76,6 +76,15 @@ Public Class Driver
                     End If
 
                     bufferindex += ret
+                    If bufferindex > 5 Then
+                        If buf(2) > &H41 Then
+                            If WillCountToRead < CType(buf(3), UInt16) * 256 + CType(buf(4), UInt16) + 7 Then
+
+                                WillCountToRead = CType(buf(3), UInt16)* 256 + CType(buf(4), UInt16)  + 7
+                            End If
+                        End If
+                    End If
+
                     If (bufferindex >= WillCountToRead) Then
                         Return ProcessReceivedData(buf, bufferindex)
                     End If
@@ -540,8 +549,8 @@ finalRet:
                     Arch.HC = Asc(Mid(hourstr, Adr + &H28, 1))
                     Arch.HCtv1 = Asc(Mid(hourstr, Adr + &H28, 1))
                     Arch.HCtv2 = Asc(Mid(hourstr, Adr + &H29, 1))
-                    Arch.ERRTIME1 = Asc(Mid(hourstr, Adr + &H2A, 1))
-                    Arch.ERRTIME2 = Asc(Mid(hourstr, Adr + &H2C, 1))
+                    Arch.ERRTIME1 = ExtLong2(Mid(hourstr, Adr + &H2A, 2))
+                    Arch.ERRTIME2 = ExtLong2(Mid(hourstr, Adr + &H2C, 2))
                 Else
                     Return "Ошибка! Неверный размер записи"
                 End If
@@ -607,31 +616,7 @@ finalRet:
                 Dim Adr As Long
                 Adr = 1
 
-                'Arch.V1 = FloatExt(Mid(hourstr, Adr + 4 * 0, 4))
-                'Arch.V2 = FloatExt(Mid(hourstr, Adr + 4 * 1, 4))
-                'Arch.V3 = FloatExt(Mid(hourstr, Adr + 4 * 2, 4))
-                'Arch.v4 = FloatExt(Mid(hourstr, Adr + 4 * 3, 4))
 
-                'Arch.M1 = FloatExt(Mid(hourstr, Adr + 4 * 4, 4))
-                'Arch.M2 = FloatExt(Mid(hourstr, Adr + 4 * 5, 4))
-                'Arch.M3 = FloatExt(Mid(hourstr, Adr + 4 * 6, 4))
-                'Arch.M3 = FloatExt(Mid(hourstr, Adr + 4 * 7, 4))
-
-                'Arch.T1 = ExtLong2(Mid(hourstr, Adr + 4 * 8, 2)) / 100.0
-                'Arch.T2 = ExtLong2(Mid(hourstr, Adr + 4 * 8 + 2, 2)) / 100.0
-                'Arch.T3 = ExtLong2(Mid(hourstr, Adr + 4 * 9, 2)) / 100.0
-                'Arch.T4 = ExtLong2(Mid(hourstr, Adr + 4 * 9 + 2, 2)) / 100.0
-
-                'Arch.HC = Asc(Mid(hourstr, Adr + 4 * 10, 1))
-                'Arch.HCtv2 = Asc(Mid(hourstr, Adr + 4 * 10 + 1, 1))
-                'Arch.ERRTIME1 = Asc(Mid(hourstr, Adr + 4 * 10 + 2, 1))
-                '' Arch.TНСEnt1minDay = Asc(Mid(hourstr, Adr + 4 * 10 + 3, 1))
-
-                'Arch.ERRTIME2 = Asc(Mid(hourstr, Adr + 4 * 11, 1))
-                '' Arch.TНСEnt2minDay = Asc(Mid(hourstr, Adr + 4 * 11 + 1, 1))
-
-                'Arch.Q1 = FloatExt(Mid(hourstr, Adr + 4 * 11 + 2, 4))
-                'Arch.Q2 = FloatExt(Mid(hourstr, Adr + 4 * 12 + 2, 4))
                 If hourstr.Length > &H2C Then
                     Arch.V1 = FloatExt(Mid(hourstr, Adr + &H0, 4))
                     Arch.V2 = FloatExt(Mid(hourstr, Adr + &H4, 4))
@@ -651,8 +636,8 @@ finalRet:
                     Arch.HC = Asc(Mid(hourstr, Adr + &H28, 1))
                     Arch.HCtv1 = Asc(Mid(hourstr, Adr + &H28, 1))
                     Arch.HCtv2 = Asc(Mid(hourstr, Adr + &H29, 1))
-                    Arch.ERRTIME1 = Asc(Mid(hourstr, Adr + &H2A, 1))
-                    Arch.ERRTIME2 = Asc(Mid(hourstr, Adr + &H2C, 1))
+                    Arch.ERRTIME1 = ExtLong2(Mid(hourstr, Adr + &H2A, 2))
+                    Arch.ERRTIME2 = ExtLong2(Mid(hourstr, Adr + &H2C, 2))
                 Else
                     Return "Ошибка! Неверный размер записи"
                 End If

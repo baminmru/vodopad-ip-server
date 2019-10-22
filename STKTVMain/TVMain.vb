@@ -2086,8 +2086,8 @@ Try
         LastLog = DateTime.Now
         'query = "insert into logcall( ID_BD,  ID_PTYPE ,  CPORT , NSESSION,  DBEG,  DURATION,  CEXAMINE ,  CRESULT) values(" & _
         'id_bd.ToString() & "," & id_ptype.ToString() & ",'" & cport & "',0,SYSTIMESTAMP," & duration.ToString() & "," & cEXAMINE.ToString & ",'" & S180(cresult) & "')"
-        query = "insert into logcall( ID_BD,  ID_PTYPE ,  CPORT , NSESSION, DBEG, TSBEG,  DURATION,  CEXAMINE ,  CRESULT) values(" & _
-        id_bd.ToString() & "," & id_ptype.ToString() & ",'" & cport & "',0," + OracleDate(LastLog) + "," + OracleTimeStamp(LastLog) + "," & duration.ToString() & "," & cEXAMINE.ToString & ",'" & S180(cresult) & "')"
+        query = "insert into logcall( ID_BD,  ID_PTYPE ,  CPORT , NSESSION, DBEG, TSBEG,  DURATION,  CEXAMINE ,  CRESULT) values(" &
+        id_bd.ToString() & "," & id_ptype.ToString() & ",'" & cport & "',0," + OracleDate(LastLog) + "," + OracleTimeStamp(LastLog) + "," & duration.ToString() & "," & cEXAMINE.ToString & ",'" & S180(Environment.MachineName + ": " + cresult) & "')"
 
 
         QueryExec(query)

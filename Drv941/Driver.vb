@@ -2358,7 +2358,7 @@ finalRet:
             IsBytesToRead = False
         End If
         bufferindex = 0
-        System.Threading.Thread.Sleep(150)
+        System.Threading.Thread.Sleep(MyTransport.SleepTime(150))
         MyTransport.CleanPort()
       
     End Sub

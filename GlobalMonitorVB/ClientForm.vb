@@ -636,7 +636,7 @@ read_again:
 
             Dim i_sleep As Integer
             For i_sleep = sleeper To 0 Step -1
-                System.Threading.Thread.Sleep(1000)
+                System.Threading.Thread.Sleep((1000))
                 lblActiopn.Text = "ждем:" + i_sleep.ToString
                 If StopReading Then
                     GoTo stopping

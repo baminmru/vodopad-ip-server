@@ -67,8 +67,9 @@ namespace STKService
 
         private int ActiveThreadsCount()
         {
-            int Count=0;
+            int Count = 0;
             ThreadObj tt;
+            STKTVMain.TVMain TvMain = null;
 
             foreach (var pair in Threads)
             {
@@ -83,15 +84,29 @@ namespace STKService
                     {
 
                     }
+                    if (TvMain == null)
+                    {
+                        TvMain = new STKTVMain.TVMain();
+
+                    }
+                    try
+                    {
+                        if (TvMain.Init())
+                            TvMain.UnLockDevice(pair.Key);
+                    }
+                    catch
+                    {
+
+                    }
 
                 }
                 else
                 {
                     Count++;
                 }
-                
+
             }
-          
+
             return Count;
 
 

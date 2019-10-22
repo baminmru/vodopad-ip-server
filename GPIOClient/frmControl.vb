@@ -182,7 +182,7 @@ Public Class frmControl
             np = New VortexTransport
 
 
-            np.SetupTransport(spd)
+            sp.SetupTransport(spd)
             sp = np
             np = Nothing
             If sp.Connect() Then
@@ -198,7 +198,7 @@ Public Class frmControl
                     t = 0
                     While (sp.BytesToRead = 0 And t < 8)
                         Application.DoEvents()
-                        Thread.Sleep(100)
+                        Thread.Sleep(sp.SleepTime(100))
                         t += 1
                     End While
 
@@ -219,7 +219,7 @@ Public Class frmControl
                 t = 0
                 While (sp.BytesToRead = 0 And t < 8)
                     Application.DoEvents()
-                    Thread.Sleep(100)
+                    Thread.Sleep(sp.SleepTime(100))
                     t += 1
                 End While
 
@@ -256,7 +256,7 @@ Public Class frmControl
             t = 0
             While (sp.BytesToRead = 0 And t < 8)
                 Application.DoEvents()
-                Thread.Sleep(100)
+                Thread.Sleep(sp.SleepTime(100))
                 t += 1
             End While
 
@@ -275,7 +275,7 @@ Public Class frmControl
             t = 0
             While (sp.BytesToRead = 0 And t < 8)
                 Application.DoEvents()
-                Thread.Sleep(100)
+                Thread.Sleep(sp.SleepTime(100))
                 t += 1
             End While
 
@@ -308,7 +308,7 @@ Public Class frmControl
             t = 0
             While (sp.BytesToRead = 0 And t < 8)
                 Application.DoEvents()
-                Thread.Sleep(100)
+                Thread.Sleep(sp.SleepTime(100))
                 t += 1
             End While
 
@@ -327,7 +327,7 @@ Public Class frmControl
             t = 0
             While (sp.BytesToRead = 0 And t < 8)
                 Application.DoEvents()
-                Thread.Sleep(100)
+                Thread.Sleep(sp.SleepTime(100))
                 t += 1
             End While
 
@@ -383,7 +383,7 @@ Public Class frmControl
         cmd = New OracleCommand
         cmd.CommandType = CommandType.Text
         cmd.CommandText = s
-        cmd.Connection = tvmain.dbconnect
+        cmd.Connection = TVMain.dbconnect
         Dim dt As DataTable
         Dim da As OracleDataAdapter
         dt = New DataTable
@@ -428,7 +428,7 @@ Public Class frmControl
             t = 0
             While (sp.BytesToRead = 0 And t < 8)
                 Application.DoEvents()
-                Thread.Sleep(100)
+                Thread.Sleep(sp.SleepTime(100))
                 t += 1
             End While
 
@@ -448,7 +448,7 @@ Public Class frmControl
             t = 0
             While (sp.BytesToRead = 0 And t < 8)
                 Application.DoEvents()
-                Thread.Sleep(100)
+                Thread.Sleep(sp.SleepTime(100))
                 t += 1
             End While
 
@@ -481,7 +481,7 @@ Public Class frmControl
             t = 0
             While (sp.BytesToRead = 0 And t < 8)
                 Application.DoEvents()
-                Thread.Sleep(100)
+                Thread.Sleep(sp.SleepTime(100))
                 t += 1
             End While
 
@@ -500,7 +500,7 @@ Public Class frmControl
             t = 0
             While (sp.BytesToRead = 0 And t < 8)
                 Application.DoEvents()
-                Thread.Sleep(100)
+                Thread.Sleep(sp.SleepTime(100))
                 t += 1
             End While
 
@@ -534,7 +534,7 @@ Public Class frmControl
             t = 0
             While (sp.BytesToRead = 0 And t < 8)
                 Application.DoEvents()
-                Thread.Sleep(100)
+                Thread.Sleep(sp.SleepTime(100))
                 t += 1
             End While
 
@@ -554,7 +554,7 @@ Public Class frmControl
             t = 0
             While (sp.BytesToRead = 0 And t < 8)
                 Application.DoEvents()
-                Thread.Sleep(100)
+                Thread.Sleep(sp.SleepTime(100))
                 t += 1
             End While
 
@@ -587,7 +587,7 @@ Public Class frmControl
             t = 0
             While (sp.BytesToRead = 0 And t < 8)
                 Application.DoEvents()
-                Thread.Sleep(100)
+                Thread.Sleep(sp.SleepTime(100))
                 t += 1
             End While
 
@@ -606,7 +606,7 @@ Public Class frmControl
             t = 0
             While (sp.BytesToRead = 0 And t < 8)
                 Application.DoEvents()
-                Thread.Sleep(100)
+                Thread.Sleep(sp.SleepTime(100))
                 t += 1
             End While
 
@@ -639,7 +639,7 @@ Public Class frmControl
             t = 0
             While (sp.BytesToRead = 0 And t < 8)
                 Application.DoEvents()
-                Thread.Sleep(100)
+                Thread.Sleep(sp.SleepTime(100))
                 t += 1
             End While
 
@@ -658,7 +658,7 @@ Public Class frmControl
             t = 0
             While (sp.BytesToRead = 0 And t < 8)
                 Application.DoEvents()
-                Thread.Sleep(100)
+                Thread.Sleep(sp.SleepTime(100))
                 t += 1
             End While
 
@@ -692,7 +692,7 @@ Public Class frmControl
             t = 0
             While (sp.BytesToRead = 0 And t < 8)
                 Application.DoEvents()
-                Thread.Sleep(100)
+                Thread.Sleep(sp.SleepTime(100))
                 t += 1
             End While
 
@@ -711,7 +711,7 @@ Public Class frmControl
             t = 0
             While (sp.BytesToRead = 0 And t < 8)
                 Application.DoEvents()
-                Thread.Sleep(100)
+                Thread.Sleep(sp.SleepTime(100))
                 t += 1
             End While
 
@@ -756,7 +756,7 @@ Public Class frmControl
             tt = 0
             While (sp.BytesToRead = 0 And tt < 8)
                 Application.DoEvents()
-                Thread.Sleep(100)
+                Thread.Sleep(sp.SleepTime(100))
                 tt += 1
             End While
 

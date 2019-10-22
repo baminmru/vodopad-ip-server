@@ -151,6 +151,7 @@ Partial Class ClientForm
         Me.ReadTimer = New System.Windows.Forms.Timer(Me.components)
         Me.ComTimer = New System.Windows.Forms.Timer(Me.components)
         Me.wb = New SpreadsheetGear.Windows.Forms.WorkbookView()
+        Me.cmdUnlock = New System.Windows.Forms.Button()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -1074,6 +1075,7 @@ Partial Class ClientForm
         '
         'TabPage6
         '
+        Me.TabPage6.Controls.Add(Me.cmdUnlock)
         Me.TabPage6.Controls.Add(Me.btnSystemExport)
         Me.TabPage6.Controls.Add(Me.lblSystem)
         Me.TabPage6.Controls.Add(Me.DataGridSystem)
@@ -1315,6 +1317,16 @@ Partial Class ClientForm
         Me.wb.Visible = False
         Me.wb.WorkbookSetState = resources.GetString("wb.WorkbookSetState")
         '
+        'cmdUnlock
+        '
+        Me.cmdUnlock.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdUnlock.Location = New System.Drawing.Point(781, 10)
+        Me.cmdUnlock.Name = "cmdUnlock"
+        Me.cmdUnlock.Size = New System.Drawing.Size(165, 23)
+        Me.cmdUnlock.TabIndex = 7
+        Me.cmdUnlock.Text = "Разблокировать узел"
+        Me.cmdUnlock.UseVisualStyleBackColor = True
+        '
         'ClientForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1438,5 +1450,5 @@ Partial Class ClientForm
     Friend WithEvents cmbUsePort As System.Windows.Forms.ComboBox
     Friend WithEvents btnSystemExport As System.Windows.Forms.Button
     Friend WithEvents cmdChek24 As System.Windows.Forms.Button
-
+    Friend WithEvents cmdUnlock As Button
 End Class

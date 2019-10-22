@@ -165,7 +165,7 @@ namespace ASSVServiceNS
                         
                     }
 
-                    System.Threading.Thread.Sleep(1000);
+                     System.Threading.Thread.Sleep((1000));
 
                     if (caller != null)
                     {
