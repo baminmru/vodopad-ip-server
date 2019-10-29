@@ -1,5 +1,7 @@
 ﻿Imports System.Net.Sockets
 Imports System.Xml
+Imports NLog
+
 Public MustInherit Class GRPSSocket
 
 
@@ -17,6 +19,8 @@ Public MustInherit Class GRPSSocket
             Return mCallerID
         End Get
     End Property
+
+    Public ID_BD As Integer = 0
 
     Public Overridable ReadOnly Property LastRcvTime As Date
         Get
@@ -58,6 +62,7 @@ Public MustInherit Class GRPSSocket
 
     Protected Shared m_LogEnabled As Boolean = False
     Protected Shared m_Inited As Boolean = False
+    Protected Shared Logger As Logger = LogManager.GetCurrentClassLogger()
 
     Public Sub New(Optional ByVal _LogEnabled As Boolean = False)
         m_LogEnabled = _LogEnabled
@@ -79,25 +84,36 @@ m_Inited=false
         End Try
         m_Inited = True
     End Sub
-    Protected Sub LOG(ByVal s As String)
+    Protected Overridable Sub LOG(ByVal s As String)
 
         CheckLog()
         If m_LogEnabled Then
-            Dim ep As String = ""
 
-            If Not IPSocket Is Nothing Then
-                If IPSocket.Connected Then
-                    ep = IPSocket.RemoteEndPoint.ToString()
+            If ID_BD <> 0 Then
+                NLog.GlobalDiagnosticsContext.Set("counter", "_" & ID_BD & "_GRPS")
+                NLog.GlobalDiagnosticsContext.Set("id", ID_BD)
+            Else
+                NLog.GlobalDiagnosticsContext.Set("counter", "_" & callerID & "_GRPS")
+                NLog.GlobalDiagnosticsContext.Set("id", callerID)
                 End If
 
-            End If
 
-            Try
-                System.IO.File.AppendAllText(GetMyDir() + "\LOGS\" + SocketType() + "_LOG_" + Date.Now.ToString("yyyyMMdd") + "_" + callerID + ".txt", Date.Now.ToString("yyyy.MM.dd HH:mm:ss") + " (" + ep + ") " + s + vbCrLf)
-            Catch ex As Exception
+            'Dim ep As String = ""
 
-            End Try
-            Console.WriteLine(s)
+            'If Not IPSocket Is Nothing Then
+            '    If IPSocket.Connected Then
+            '        ep = IPSocket.RemoteEndPoint.ToString()
+            '    End If
+
+            'End If
+
+            'Try
+            '        System.IO.File.AppendAllText(GetMyDir() + "\LOGS\" + SocketType() + "_LOG_" + Date.Now.ToString("yyyyMMdd") + "_" + callerID + ".txt", Date.Now.ToString("yyyy.MM.dd HH:mm:ss") + " (" + ep + ") " + s + vbCrLf)
+            'Catch ex As Exception
+
+            'End Try
+            'Console.WriteLine(s)
+            Logger.Info(s)
         End If
     End Sub
 

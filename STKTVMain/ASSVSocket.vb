@@ -13,6 +13,23 @@ Public Class ASSVSocket
         MyBase.New(aSocket)
     End Sub
 
+
+    Protected Overrides Sub LOG(ByVal s As String)
+
+        CheckLog()
+        If m_LogEnabled Then
+            If ID_BD <> 0 Then
+                NLog.GlobalDiagnosticsContext.Set("counter", "_" & ID_BD & "_ASSV")
+                NLog.GlobalDiagnosticsContext.Set("id", ID_BD)
+            Else
+                NLog.GlobalDiagnosticsContext.Set("counter", "_" & callerID & "_ASSV")
+                NLog.GlobalDiagnosticsContext.Set("id", callerID)
+            End If
+
+            Logger.Info(s)
+        End If
+    End Sub
+
     Protected Overrides Sub Init()
 
         If IPSocket.Connected Then

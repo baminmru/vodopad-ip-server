@@ -1,6 +1,7 @@
 ﻿Option Explicit On
 Imports System.IO.Ports
 Imports System.Xml
+Imports NLog
 
 Public Class TransportSetupData
     Protected mBaudRate As Integer
@@ -33,9 +34,12 @@ Public MustInherit Class UniTransport
     Public Event Idle()
     Protected mCancelNow As Boolean = False
     Protected mError As String = ""
-    Protected mSessionID As Guid = Guid.Empty
+    'Protected mSessionID As Guid = Guid.Empty
+    Public ID_BD As Integer = 0
     Protected Shared m_LogEnabled As Boolean = False
     Protected Shared m_Inited As Boolean = False
+
+    Protected Shared Logger As Logger = LogManager.GetCurrentClassLogger()
 
     Protected Shared Sub Init()
         If m_Inited Then Exit Sub
@@ -75,14 +79,17 @@ Public MustInherit Class UniTransport
     Protected Sub LOG(ByVal s As String)
         Init()
         If m_LogEnabled Then
-            Try
-                System.IO.File.AppendAllText(GetMyDir() + "\LOGS\" + TransportType() + "_LOG_" + Date.Now.ToString("yyyyMMdd") + "_" + SessionID + ".txt", Date.Now.ToString("yyyy.MM.dd HH:mm:ss.fff") + " " + s + vbCrLf)
+            NLog.GlobalDiagnosticsContext.Set("counter", "_" & ID_BD.ToString() & "_" & TransportType())
+            NLog.GlobalDiagnosticsContext.Set("id", ID_BD)
+            Logger.Info(s)
+            'Try
+            '        System.IO.File.AppendAllText(GetMyDir() + "\LOGS\" + TransportType() + "_LOG_" + Date.Now.ToString("yyyyMMdd") + "_" + SessionID + ".txt", Date.Now.ToString("yyyy.MM.dd HH:mm:ss.fff") + " " + s + vbCrLf)
 
-            Catch ex As Exception
+            'Catch ex As Exception
 
-            End Try
-            Debug.Print(s)
-            Console.WriteLine(s)
+            'End Try
+            '    Debug.Print(s)
+            'Console.WriteLine(s)
         End If
     End Sub
 
@@ -101,7 +108,7 @@ Public MustInherit Class UniTransport
         End If
 
         If MSG <> "" Then
-        LOG(Action.ToString() + " " + MSG)
+            LOG(Action.ToString() + " " + MSG)
         End If
 
         RaiseEvent TransportAction(Action, MSG)
@@ -117,14 +124,14 @@ Public MustInherit Class UniTransport
     End Property
 
 
-    Public ReadOnly Property SessionID() As String
-        Get
-            If mSessionID.Equals(Guid.Empty) Then
-                mSessionID = Guid.NewGuid
-            End If
-            Return mSessionID.ToString()
-        End Get
-    End Property
+    'Public ReadOnly Property SessionID() As String
+    '    Get
+    '        If mSessionID.Equals(Guid.Empty) Then
+    '            mSessionID = Guid.NewGuid
+    '        End If
+    '        Return mSessionID.ToString()
+    '    End Get
+    'End Property
 
     Public Overridable ReadOnly Property GetError() As String
         Get
@@ -209,6 +216,7 @@ Public Class SerialTransport
     End Function
 
     Public Overrides Function Connect() As Boolean
+        LOG("Connecting")
         Try
             SendEvent(UnitransportAction.Connecting, "")
             SetupTransport(SetupData)
@@ -219,7 +227,7 @@ Public Class SerialTransport
             End If
 
 
-            Log("DTR =0")
+            LOG("DTR =0")
             Port.DtrEnable = False
             System.Threading.Thread.Sleep(SleepTime(1000))
             SendIdle()
@@ -245,7 +253,7 @@ Public Class SerialTransport
     Public Overrides Function DisConnect() As Boolean
         Try
 
-            LOG("Disconnect function")
+            LOG("Disconnect")
             LOG("DTR =0")
             Port.DtrEnable = False
             System.Threading.Thread.Sleep(SleepTime(1000))
@@ -285,7 +293,7 @@ Public Class SerialTransport
                 bufstr = bufstr + Hex(buffer(offset + j)) + " "
             Next
             If bufstr <> "" Then
-                Log(">>r" + i.ToString + " (" + bufstr + ")")
+                LOG(">>r" + i.ToString + " (" + bufstr + ")")
             End If
             Return i
         Else
@@ -330,7 +338,7 @@ Public Class SerialTransport
         For j = 0 To count - 1
             bufstr = bufstr + Hex(buffer(offset + j)) + " "
         Next
-        Log(">>w" + count.ToString + " (" + bufstr + ")")
+        LOG(">>w" + count.ToString + " (" + bufstr + ")")
         System.Threading.Thread.Sleep(SleepTime(10))
         SendIdle()
         Port.Write(buffer, offset, count)
@@ -399,7 +407,7 @@ Public Class NportTransport
         OpenCount -= 1
         If OpenCount = 0 Then
             Try
-            IPSerial.nsio_end()
+                IPSerial.nsio_end()
             Catch ex As Exception
 
             End Try
@@ -433,6 +441,7 @@ Public Class NportTransport
     End Function
 
     Public Overrides Function Connect() As Boolean
+        LOG("Connecting")
         SendEvent(UnitransportAction.Connecting, "")
         Try
             Port_id = IPSerial.nsio_open(mData.IPAddress, mData.ComPortIdx, mData.Timeout)
@@ -557,6 +566,7 @@ Public Class NportTransport
 
     Public Overrides Function DisConnect() As Boolean
         SendEvent(UnitransportAction.Disconnecting, "")
+        LOG("Disconnect")
         If Port_id >= 0 Then
             Try
                 IPSerial.nsio_RTS(Port_id, 0)
@@ -596,7 +606,7 @@ Public Class NportTransport
             bufstr = bufstr + Hex(buffer(offset + j)) + " "
         Next
         If bufstr <> "" Then
-            Log(">>r" + CntRead.ToString + " (" + bufstr + ")")
+            LOG(">>r" + CntRead.ToString + " (" + bufstr + ")")
         End If
         'Catch ex As Exception
         '    'Stop
@@ -642,7 +652,7 @@ Public Class NportTransport
         For j = 0 To count - 1
             bufstr = bufstr + Hex(buffer(offset + j)) + " "
         Next
-        Log(">>w" + count.ToString + " (" + bufstr + ")")
+        LOG(">>w" + count.ToString + " (" + bufstr + ")")
     End Sub
 
     Public Overrides Sub CleanPort()
@@ -674,6 +684,8 @@ Public Class ModemTransport
         mData = New ModemTransportSetupData
         Port = New SerialPort
         mCancelNow = False
+        m_Inited = False
+
     End Sub
 
     Protected Overrides Sub Finalize()
@@ -736,12 +748,12 @@ Public Class ModemTransport
             If mCancelNow Then
                 SendEvent(UnitransportAction.LowLevelStop, "Cancelled by user")
                 mIsConnected = False
-                Log("Cancelled by user")
+                LOG("Cancelled by user")
                 Return False
             End If
             System.Threading.Thread.Sleep(SleepTime(Timeout / 100))
             SendIdle()
-            If i Mod 10 = 0 Then Log("wait for answer " + i.ToString + "%")
+            If i Mod 10 = 0 Then LOG("wait for answer " + i.ToString + "%")
             btr = Port.BytesToRead
             BytesReceived += btr
             If btr > 0 Then
@@ -765,7 +777,7 @@ Public Class ModemTransport
 
                 bufStr = bufStr.Replace(vbCrLf, "")
 
-                Log("<<wait for:" + WaitStr + "<< received:" + bufStr)
+                LOG("<<wait for:" + WaitStr + "<< received:" + bufStr)
 
                 If bufStr.ToLower().IndexOf(WaitStr.ToLower) >= 0 Then
                     If Not ReceivedString Is Nothing Then
@@ -819,7 +831,7 @@ Public Class ModemTransport
         For j = 0 To sz - 1
             bufStr = bufStr + Chr(buf2(j))
         Next
-        Log("<<" + WaitStr + "<<" + bufStr)
+        LOG("<<" + WaitStr + "<<" + bufStr)
         bufStr = bufStr.Replace(vbCrLf, "")
 
         If bufStr.IndexOf("ERROR") >= 0 Then
@@ -866,7 +878,7 @@ Public Class ModemTransport
         End If
 
         If mCancelNow Then
-            Log("Cancelled by user")
+            LOG("Cancelled by user")
             SendEvent(UnitransportAction.LowLevelStop, "Cancelled by user")
             Return
         End If
@@ -890,7 +902,7 @@ Public Class ModemTransport
             System.Threading.Thread.Sleep(SleepTime(1 + CInt(1000 * 8 * 2 / Port.BaudRate)))
             SendIdle()
             If mCancelNow Then
-                Log("Cancelled by user")
+                LOG("Cancelled by user")
                 SendEvent(UnitransportAction.LowLevelStop, "Cancelled by user")
                 Return
             End If
@@ -902,7 +914,7 @@ Public Class ModemTransport
         Dim j As Integer
         For j = 0 To sz - 1
             If j < buf2.Length Then
-            bufStr = bufStr + Chr(buf2(j))
+                bufStr = bufStr + Chr(buf2(j))
             End If
 
         Next
@@ -915,7 +927,7 @@ Public Class ModemTransport
             mIsConnected = False
             SendEvent(UnitransportAction.LowLevelStop, "COM->BUSY")
         End If
-        Log("<<A<<" + bufStr)
+        LOG("<<A<<" + bufStr)
     End Sub
 
     Private Connecting As Boolean = False
@@ -927,9 +939,9 @@ Public Class ModemTransport
             If Port.IsOpen Then
                 SendEvent(UnitransportAction.Connecting, "")
 
-                Port.Handshake = Handshake.None
-                Port.ReadTimeout = 2000
-                Port.WriteTimeout = 2000
+                'Port.Handshake = Handshake.None
+                'Port.ReadTimeout = 2000
+                'Port.WriteTimeout = 2000
 
 
                 LOG("RTS =1")
@@ -937,12 +949,12 @@ Public Class ModemTransport
 
                 System.Threading.Thread.Sleep(SleepTime(1000))
                 SendIdle()
-                Log("DTR =0")
+                LOG("DTR =0")
                 Port.DtrEnable = False
 
                 System.Threading.Thread.Sleep(SleepTime(1000))
                 SendIdle()
-                Log("DTR =1")
+                LOG("DTR =1")
                 Port.DtrEnable = True
 
                 'Log("RTS =0")
@@ -1086,6 +1098,7 @@ Public Class ModemTransport
             Dim cnt As Integer = 0
 
             SendEvent(UnitransportAction.Disconnecting, "")
+            LOG("Disconnect")
 
             'While cnt < 2 And Not ok
 
@@ -1441,12 +1454,14 @@ Public Class DummyTransport
     End Function
 
     Public Overrides Function Connect() As Boolean
+        LOG("Connecting")
         mIsConnected = True
         SendEvent(UnitransportAction.Connected, "")
         Return mIsConnected
     End Function
 
     Public Overrides Function DisConnect() As Boolean
+        LOG("Disconnect")
         mIsConnected = False
         Return Not mIsConnected
     End Function
@@ -1555,7 +1570,7 @@ Public Class VortexTransport
     End Function
 
     Public Overrides Function Connect() As Boolean
-
+        LOG("Connecting")
         Try
             SendEvent(UnitransportAction.Connecting, "")
             soc.Connect(mData.Host, mData.Port)
@@ -1576,6 +1591,7 @@ Public Class VortexTransport
     End Function
 
     Public Overrides Function DisConnect() As Boolean
+        LOG("Disconnect")
         If (soc.Connected) Then
             SendEvent(UnitransportAction.Disconnecting, "")
             soc.Close()
@@ -1672,7 +1688,7 @@ End Class
 
 Public Class GRPSTransportSetupData
     Inherits TransportSetupData
-   
+
     Public Sub New()
     End Sub
 End Class
@@ -1715,7 +1731,7 @@ Public Class GRPSTransport
                         Soc.Close()
                         SendEvent(UnitransportAction.Disconnected, "")
                     Catch ex As Exception
-                        Log(ex.Message)
+                        LOG(ex.Message)
                     End Try
                 End If
             End If
@@ -1740,11 +1756,11 @@ Public Class GRPSTransport
         If tmpReadCount > 0 Then
             BytesReceived += tmpReadCount
             SendEvent(UnitransportAction.ReceiveData, "")
-                For i = 0 To tmpReadCount - 1
+            For i = 0 To tmpReadCount - 1
                 dataBuffer(DataCount) = tmpBuffer(i)
                 DataCount += 1
-                Next
-            End If
+            Next
+        End If
     End Sub
 
     'Private Sub TryRead()
@@ -1789,13 +1805,14 @@ Public Class GRPSTransport
     '        End If
     '    End If
     'End Sub
-   
+
     Public Overrides Function BytesToRead() As Integer
         TryRead()
         Return DataCount
     End Function
 
     Public Overrides Function Connect() As Boolean
+        LOG("Connecting")
         If Soc.Connected Then
             mIsConnected = True
             SendEvent(UnitransportAction.Connected, "")
@@ -1807,6 +1824,7 @@ Public Class GRPSTransport
     End Function
 
     Public Overrides Function DisConnect() As Boolean
+        LOG("Disconnect")
         If (Soc.Connected) Then
             SendEvent(UnitransportAction.Disconnecting, "")
             Soc.Close()
@@ -1827,12 +1845,13 @@ Public Class GRPSTransport
             CntRead = count
         End If
 
+        LOG(">>r" + CntRead.ToString + " ")
         For i = 0 To CntRead - 1
             buffer(i + offset) = dataBuffer(i)
+            LOG(buffer(i + offset).ToString("X02") + " ")
         Next
 
 
-        Log(">>r" + CntRead.ToString + " >>")
 
         BytesReceived += CntRead
         SendEvent(UnitransportAction.ReceiveData, "")

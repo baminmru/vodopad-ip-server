@@ -228,6 +228,18 @@ Public MustInherit Class TVDriver
         End Set
     End Property
 
+
+    Dim m_DB As TVMain
+
+    Public Overridable Property DB() As TVMain
+        Get
+            Return m_DB
+        End Get
+        Set(ByVal value As TVMain)
+            m_DB = value
+        End Set
+    End Property
+
 #End Region
 #Region "Transport support"
 
@@ -255,7 +267,7 @@ Public MustInherit Class TVDriver
             dd.BaudRate = BaudRate
             MyTransport.SetupTransport(dd)
         End If
-        If Transport = 5 Or Transport = 6 Then
+        If Transport = 5 Or Transport = 6 Or Transport = 7  Then
             MyTransport = New GRPSTransport(aSocket)
             ad = New GRPSTransportSetupData
             ad.BaudRate = BaudRate
@@ -382,6 +394,11 @@ Public MustInherit Class TVDriver
         End If
         If MyTransport Is Nothing Then
             MyTransport = New NportTransport
+        End If
+        MyTransport.ID_BD = DeviceID
+
+        If Not aSocket Is Nothing Then
+            aSocket.ID_BD = DeviceID
         End If
 
         Return MyTransport.Connect()
