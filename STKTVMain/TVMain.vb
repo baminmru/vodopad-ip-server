@@ -608,7 +608,7 @@ Public Class TVMain
         cmd.Connection = connection
 
 
-        cmd.CommandText = "select npip,sysdate ServerDate from bdevices  where  ( nplock is null or nplock <sysdate ) and  transport in (0,1,2,3,4,5,6,9,10) /* and npquery=1 */  and bdevices.id_bd=" & DevID.ToString() + " "
+        cmd.CommandText = "select npip,sysdate ServerDate from bdevices  where  ( nplock is null or nplock <sysdate ) and  transport in (0,1,2,3,4,5,6,7,9,10) /* and npquery=1 */  and bdevices.id_bd=" & DevID.ToString() + " "
 
         da.SelectCommand = cmd
         dt = New DataTable
@@ -644,7 +644,7 @@ Public Class TVMain
         cmd.Connection = connection
 
 
-        cmd.CommandText = "select npip,sysdate ServerDate from bdevices  where  ( nplock >=sysdate ) and   transport in (0,1,2,3,4,5,6,9,10) /* and npquery=1 */  and bdevices.id_bd=" + DevID.ToString() + " "
+        cmd.CommandText = "select npip,sysdate ServerDate from bdevices  where  ( nplock >=sysdate ) and   transport in (0,1,2,3,4,5,6,7,9,10) /* and npquery=1 */  and bdevices.id_bd=" + DevID.ToString() + " "
 
         da.SelectCommand = cmd
         dt = New DataTable
@@ -998,8 +998,7 @@ Public Class TVMain
                 Case 6
                     'm_ConnectStatus += vbCrLf & "Транспорт: модем"
                     SaveLog(id_bd, 0, "??", 1, "Транспорт: ROBUSTEL")
-
-  Case 7
+                Case 7
                     'm_ConnectStatus += vbCrLf & "Транспорт: модем"
                     SaveLog(id_bd, 0, "??", 1, "Транспорт: ATM")
                 Case 9
@@ -1314,7 +1313,7 @@ Try
                     If dr("transport") = 6 Then
                         mGetConfigStructFromId_BD.Transport = "ROBUSTEL"
                     End If
-  If dr("transport") = 7 Then
+                    If dr("transport") = 7 Then
                         mGetConfigStructFromId_BD.Transport = "ATM"
                     End If
 

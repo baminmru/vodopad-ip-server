@@ -5,6 +5,7 @@ Imports System.Text
 Imports STKTVMain
 Imports System.IO
 Imports System.Threading
+Imports NLog
 
 
 
@@ -104,6 +105,8 @@ Public Class driver
 
     Public PT(3) As Double
     Public MV(3) As Integer
+
+    Protected Shared Logger As Logger = LogManager.GetCurrentClassLogger()
 
 
 
@@ -438,6 +441,7 @@ READMORE:
         Dim HC As UInteger
 
 
+
         Try
 
 
@@ -482,7 +486,7 @@ READMORE:
 
                     MyTransport.CleanPort()
                     MyTransport.Write(buf, 0, 15)
-
+                    Thread.Sleep(MyTransport.SleepTime(CalcInterval(1000)))
                     WaitForData()
 
                     Dim btr As Long
@@ -500,89 +504,94 @@ READMORE:
                                 ok = False
                                 retsum = EncodeError(buf(2))
                             Else
-                                'Dim Seconds As Long
-                                'Dim CheckDate As Date
-                                'Seconds = GetLng(buf, 3)
-                                'CheckDate = New Date(1970, 1, 1, 0, 0, 0)
-                                'CheckDate = CheckDate.AddSeconds(Seconds)
+                                Dim Seconds As Long
+                                Dim CheckDate As Date
+                                Seconds = GetLng(buf, 3)
+                                CheckDate = New Date(1970, 1, 1, 0, 0, 0)
+                                CheckDate = CheckDate.AddSeconds(Seconds)
 
-                                With Arch
-                                    .T1 = 0.01 * GetInt(buf, 3 + 28)
-                                    .T2 = 0.01 * GetInt(buf, 3 + 30)
-                                    .T3 = 0.01 * GetInt(buf, 3 + 32)
+                                NLog.GlobalDiagnosticsContext.Set("counter", "_" & DeviceID.ToString())
+                                NLog.GlobalDiagnosticsContext.Set("id", DeviceID.ToString())
+                                Logger.Debug("Half date: " + CheckDate.ToString())
+                                If (CheckDate > dt2) And CheckDate < dt2.AddHours(1) Then
+                                    With Arch
+                                        .T1 = 0.01 * GetInt(buf, 3 + 28)
+                                        .T2 = 0.01 * GetInt(buf, 3 + 30)
+                                        .T3 = 0.01 * GetInt(buf, 3 + 32)
 
-                                    If MV(1) = 1 Then
-                                        .V1 = 0.001 * GetLng(buf, 3 + 16)
-                                        .M1 = .V1 * PT(1)
-                                    Else
-                                        .M1 = 0.001 * GetLng(buf, 3 + 16)
-                                        .V1 = .M1 / PT(1)
-                                    End If
+                                        If MV(1) = 1 Then
+                                            .V1 = 0.001 * GetLng(buf, 3 + 16)
+                                            .M1 = .V1 * PT(1)
+                                        Else
+                                            .M1 = 0.001 * GetLng(buf, 3 + 16)
+                                            .V1 = .M1 / PT(1)
+                                        End If
 
-                                    If MV(2) = 1 Then
-                                        .V2 = 0.001 * GetLng(buf, 3 + 20)
-                                        .M2 = .V2 * PT(2)
-                                    Else
-                                        .M2 = 0.001 * GetLng(buf, 3 + 20)
-                                        .V2 = .M2 / PT(2)
-                                    End If
-
-
-                                    If MV(3) = 1 Then
-                                        .V3 = 0.001 * GetLng(buf, 3 + 24)
-                                        .M3 = .V3 * PT(3)
-                                    Else
-                                        .M3 = 0.001 * GetLng(buf, 3 + 24)
-                                        .V3 = .M3 / PT(3)
-                                    End If
-
-                                    '.M1 = 0.001 * GetLng(buf, 3 + 16)
-                                    '.M2 = 0.001 * GetLng(buf, 3 + 20)
-                                    '.M3 = 0.001 * GetLng(buf, 3 + 24)
-                                    '.V1 = 0.001 * GetLng(buf, 3 + 16)
-                                    '.V2 = 0.001 * GetLng(buf, 3 + 20)
-                                    '.V3 = 0.001 * GetLng(buf, 3 + 24)
+                                        If MV(2) = 1 Then
+                                            .V2 = 0.001 * GetLng(buf, 3 + 20)
+                                            .M2 = .V2 * PT(2)
+                                        Else
+                                            .M2 = 0.001 * GetLng(buf, 3 + 20)
+                                            .V2 = .M2 / PT(2)
+                                        End If
 
 
-                                    .Q1 = 0.001 * GetLng(buf, 3 + 4)
-                                    .Q2 = 0.001 * GetLng(buf, 3 + 8)
-                                    .Q3 = 0.001 * GetLng(buf, 3 + 12)
-                                    .ErrtimeH = GetLng(buf, 3 + 40) / 60
-                                    .ERRTIMEH = .ERRTIME1
-                                    .OKTIME1 = GetLng(buf, 3 + 36) / 60
+                                        If MV(3) = 1 Then
+                                            .V3 = 0.001 * GetLng(buf, 3 + 24)
+                                            .M3 = .V3 * PT(3)
+                                        Else
+                                            .M3 = 0.001 * GetLng(buf, 3 + 24)
+                                            .V3 = .M3 / PT(3)
+                                        End If
+
+                                        '.M1 = 0.001 * GetLng(buf, 3 + 16)
+                                        '.M2 = 0.001 * GetLng(buf, 3 + 20)
+                                        '.M3 = 0.001 * GetLng(buf, 3 + 24)
+                                        '.V1 = 0.001 * GetLng(buf, 3 + 16)
+                                        '.V2 = 0.001 * GetLng(buf, 3 + 20)
+                                        '.V3 = 0.001 * GetLng(buf, 3 + 24)
 
 
-                                    HC = GetUInt(buf, 3 + 34)
-                                    'If buf(3 + 44) <> 0 Then
-                                    '    HC = HC + 1
-                                    'End If
-                                    'If buf(3 + 45) <> 0 Then
-                                    '    HC = HC + 2
-                                    'End If
-                                    'If buf(3 + 46) <> 0 Then
-                                    '    HC = HC + 4
-                                    'End If
-                                    'If buf(3 + 47) <> 0 Then
-                                    '    HC = HC + 8
-                                    'End If
-                                    'If buf(3 + 48) <> 0 Then
-                                    '    HC = HC + 16
-                                    'End If
-                                    'If buf(3 + 49) <> 0 Then
-                                    '    HC = HC + 32
-                                    'End If
-                                    'If buf(3 + 50) <> 0 Then
-                                    '    HC = HC + 64
-                                    'End If
-                                    'If buf(3 + 51) <> 0 Then
-                                    '    HC = HC + 128
-                                    'End If
-                                    .HC = HC
-                                End With
-                                Arch.DateArch = dt2
-                                ok = True
+                                        .Q1 = 0.001 * GetLng(buf, 3 + 4)
+                                        .Q2 = 0.001 * GetLng(buf, 3 + 8)
+                                        .Q3 = 0.001 * GetLng(buf, 3 + 12)
+                                        .ERRTIMEH = GetLng(buf, 3 + 40) / 60
+                                        .ERRTIMEH = .ERRTIME1
+                                        .OKTIME1 = GetLng(buf, 3 + 36) / 60
+
+
+                                        HC = GetUInt(buf, 3 + 34)
+                                        'If buf(3 + 44) <> 0 Then
+                                        '    HC = HC + 1
+                                        'End If
+                                        'If buf(3 + 45) <> 0 Then
+                                        '    HC = HC + 2
+                                        'End If
+                                        'If buf(3 + 46) <> 0 Then
+                                        '    HC = HC + 4
+                                        'End If
+                                        'If buf(3 + 47) <> 0 Then
+                                        '    HC = HC + 8
+                                        'End If
+                                        'If buf(3 + 48) <> 0 Then
+                                        '    HC = HC + 16
+                                        'End If
+                                        'If buf(3 + 49) <> 0 Then
+                                        '    HC = HC + 32
+                                        'End If
+                                        'If buf(3 + 50) <> 0 Then
+                                        '    HC = HC + 64
+                                        'End If
+                                        'If buf(3 + 51) <> 0 Then
+                                        '    HC = HC + 128
+                                        'End If
+                                        .HC = HC
+                                    End With
+                                    Arch.DateArch = dt2
+                                    ok = True
+                                End If
                             End If
-                        End If
+                            End If
                     End If
                 End If
 
@@ -612,7 +621,7 @@ READMORE:
 
                     'Dim i As Int16
                     'Dim j As Int16
-
+                    Thread.Sleep(MyTransport.SleepTime(CalcInterval(1000)))
                     WaitForData()
 
 
@@ -636,88 +645,96 @@ READMORE:
                                 ok = False
                                 retsum = EncodeError(buf(2))
                             Else
+
+
                                 Dim Seconds As Long
-                                Dim DateArch As Date
-                                Seconds = GetLng(buf, 3 + 0)
-                                DateArch = New Date(1970, 1, 1, 0, 0, 0)
-                                DateArch = DateArch.AddSeconds(Seconds)
+                                Dim CheckDate As Date
+                                Seconds = GetLng(buf, 3)
+                                CheckDate = New Date(1970, 1, 1, 0, 0, 0)
+                                CheckDate = CheckDate.AddSeconds(Seconds)
 
-                                With Arch
-                                    .T1 = 0.01 * GetInt(buf, 3 + 28)
-                                    .T2 = 0.01 * GetInt(buf, 3 + 30)
-                                    .T3 = 0.01 * GetInt(buf, 3 + 32)
+                                NLog.GlobalDiagnosticsContext.Set("counter", "_" & DeviceID.ToString())
+                                NLog.GlobalDiagnosticsContext.Set("id", DeviceID.ToString())
+                                Logger.Debug("Half date: " + CheckDate.ToString())
+                                If (CheckDate > dt2) And CheckDate < dt2.AddDays(1) Then
 
-                                    '.M1 = 0.001 * GetLng(buf, 3 + 16)
-                                    '.M2 = 0.001 * GetLng(buf, 3 + 20)
-                                    '.M3 = 0.001 * GetLng(buf, 3 + 24)
-                                    '.V1 = 0.001 * GetLng(buf, 3 + 16)
-                                    '.V2 = 0.001 * GetLng(buf, 3 + 20)
-                                    '.V3 = 0.001 * GetLng(buf, 3 + 24)
+                                    With Arch
+                                        .T1 = 0.01 * GetInt(buf, 3 + 28)
+                                        .T2 = 0.01 * GetInt(buf, 3 + 30)
+                                        .T3 = 0.01 * GetInt(buf, 3 + 32)
 
-
-                                    If MV(1) = 1 Then
-                                        .V1 = 0.001 * GetLng(buf, 3 + 16)
-                                        .M1 = .V1 * PT(1)
-                                    Else
-                                        .M1 = 0.001 * GetLng(buf, 3 + 16)
-                                        .V1 = .M1 / PT(1)
-                                    End If
-
-                                    If MV(2) = 1 Then
-                                        .V2 = 0.001 * GetLng(buf, 3 + 20)
-                                        .M2 = .V2 * PT(2)
-                                    Else
-                                        .M2 = 0.001 * GetLng(buf, 3 + 20)
-                                        .V2 = .M2 / PT(2)
-                                    End If
-
-                                    If MV(3) = 1 Then
-                                        .V3 = 0.001 * GetLng(buf, 3 + 24)
-                                        .M3 = .V3 * PT(3)
-                                    Else
-                                        .M3 = 0.001 * GetLng(buf, 3 + 24)
-                                        .V3 = .M3 / PT(3)
-                                    End If
-
-                                    .Q1 = 0.001 * GetLng(buf, 3 + 4)
-                                    .Q2 = 0.001 * GetLng(buf, 3 + 8)
-                                    .Q3 = 0.001 * GetLng(buf, 3 + 12)
-                                    .ERRTIME1 = GetLng(buf, 3 + 40) / 60
-                                    .ERRTIMEH = .ERRTIME1 / 60
-                                    .OKTIME1 = GetLng(buf, 3 + 36) / 60
+                                        '.M1 = 0.001 * GetLng(buf, 3 + 16)
+                                        '.M2 = 0.001 * GetLng(buf, 3 + 20)
+                                        '.M3 = 0.001 * GetLng(buf, 3 + 24)
+                                        '.V1 = 0.001 * GetLng(buf, 3 + 16)
+                                        '.V2 = 0.001 * GetLng(buf, 3 + 20)
+                                        '.V3 = 0.001 * GetLng(buf, 3 + 24)
 
 
-                                    HC = 0
-                                    If GetInt(buf, 3 + 44) <> 0 Then
-                                        HC = HC + 1
-                                    End If
-                                    If GetInt(buf, 3 + 46) <> 0 Then
-                                        HC = HC + 2
-                                    End If
-                                    If GetInt(buf, 3 + 48) <> 0 Then
-                                        HC = HC + 4
-                                    End If
-                                    If GetInt(buf, 3 + 50) <> 0 Then
-                                        HC = HC + 8
-                                    End If
-                                    If GetInt(buf, 3 + 52) <> 0 Then
-                                        HC = HC + 16
-                                    End If
-                                    If GetInt(buf, 3 + 54) <> 0 Then
-                                        HC = HC + 32
-                                    End If
-                                    If GetInt(buf, 3 + 56) <> 0 Then
-                                        HC = HC + 64
-                                    End If
-                                    If GetInt(buf, 3 + 58) <> 0 Then
-                                        HC = HC + 128
-                                    End If
-                                    .HC = HC
-                                End With
-                                ok = True
-                                Arch.DateArch = dt2
+                                        If MV(1) = 1 Then
+                                            .V1 = 0.001 * GetLng(buf, 3 + 16)
+                                            .M1 = .V1 * PT(1)
+                                        Else
+                                            .M1 = 0.001 * GetLng(buf, 3 + 16)
+                                            .V1 = .M1 / PT(1)
+                                        End If
+
+                                        If MV(2) = 1 Then
+                                            .V2 = 0.001 * GetLng(buf, 3 + 20)
+                                            .M2 = .V2 * PT(2)
+                                        Else
+                                            .M2 = 0.001 * GetLng(buf, 3 + 20)
+                                            .V2 = .M2 / PT(2)
+                                        End If
+
+                                        If MV(3) = 1 Then
+                                            .V3 = 0.001 * GetLng(buf, 3 + 24)
+                                            .M3 = .V3 * PT(3)
+                                        Else
+                                            .M3 = 0.001 * GetLng(buf, 3 + 24)
+                                            .V3 = .M3 / PT(3)
+                                        End If
+
+                                        .Q1 = 0.001 * GetLng(buf, 3 + 4)
+                                        .Q2 = 0.001 * GetLng(buf, 3 + 8)
+                                        .Q3 = 0.001 * GetLng(buf, 3 + 12)
+                                        .ERRTIME1 = GetLng(buf, 3 + 40) / 60
+                                        .ERRTIMEH = .ERRTIME1 / 60
+                                        .OKTIME1 = GetLng(buf, 3 + 36) / 60
+
+
+                                        HC = 0
+                                        If GetInt(buf, 3 + 44) <> 0 Then
+                                            HC = HC + 1
+                                        End If
+                                        If GetInt(buf, 3 + 46) <> 0 Then
+                                            HC = HC + 2
+                                        End If
+                                        If GetInt(buf, 3 + 48) <> 0 Then
+                                            HC = HC + 4
+                                        End If
+                                        If GetInt(buf, 3 + 50) <> 0 Then
+                                            HC = HC + 8
+                                        End If
+                                        If GetInt(buf, 3 + 52) <> 0 Then
+                                            HC = HC + 16
+                                        End If
+                                        If GetInt(buf, 3 + 54) <> 0 Then
+                                            HC = HC + 32
+                                        End If
+                                        If GetInt(buf, 3 + 56) <> 0 Then
+                                            HC = HC + 64
+                                        End If
+                                        If GetInt(buf, 3 + 58) <> 0 Then
+                                            HC = HC + 128
+                                        End If
+                                        .HC = HC
+                                    End With
+                                    ok = True
+                                    Arch.DateArch = dt2
+                                End If
                             End If
-                        End If
+                            End If
 
                     End If
 
@@ -789,7 +806,7 @@ READMORE:
                     'Dim i As Int16
                     'Dim j As Int16
 
-
+                    Thread.Sleep(MyTransport.SleepTime(CalcInterval(1000)))
 
                     WaitForData()
 
@@ -809,90 +826,102 @@ READMORE:
                                 ok = False
                                 retsum = EncodeError(buf(2))
                             Else
+                                Dim Seconds As Long
+                                Dim CheckDate As Date
+                                Seconds = GetLng(buf, 3)
+                                CheckDate = New Date(1970, 1, 1, 0, 0, 0)
+                                CheckDate = CheckDate.AddSeconds(Seconds)
+                                NLog.GlobalDiagnosticsContext.Set("counter", "_" & DeviceID.ToString())
+                                NLog.GlobalDiagnosticsContext.Set("id", DeviceID.ToString())
 
-                                With Arch
-                                    .T1 = 0.01 * GetInt(buf, 3 + 20) '
-                                    .T2 = 0.01 * GetInt(buf, 3 + 22) '
-                                    .T3 = 0.01 * GetInt(buf, 3 + 24) '
-                                    '.M1 = 0.001 * GetLng(buf, 3 + 8) '
-                                    '.M2 = 0.001 * GetLng(buf, 3 + 12) '
-                                    '.M3 = 0.001 * GetLng(buf, 3 + 16) '
-                                    '.V1 = 0.001 * GetLng(buf, 3 + 8) '
-                                    '.V2 = 0.001 * GetLng(buf, 3 + 12) '
-                                    '.V3 = 0.001 * GetLng(buf, 3 + 16) '
-
-
-                                    '.Q1 = 0.001 * GetLng(buf, 3 + 4)
-                                    '.Q2 = 0.001 * GetLng(buf, 3 + 8)
+                                Logger.Debug("Half date: " + CheckDate.ToString())
+                                If (CheckDate > dt2) And CheckDate < dt2.AddHours(1) Then
 
 
+                                    With Arch
+                                        .T1 = 0.01 * GetInt(buf, 3 + 20) '
+                                        .T2 = 0.01 * GetInt(buf, 3 + 22) '
+                                        .T3 = 0.01 * GetInt(buf, 3 + 24) '
+                                        '.M1 = 0.001 * GetLng(buf, 3 + 8) '
+                                        '.M2 = 0.001 * GetLng(buf, 3 + 12) '
+                                        '.M3 = 0.001 * GetLng(buf, 3 + 16) '
+                                        '.V1 = 0.001 * GetLng(buf, 3 + 8) '
+                                        '.V2 = 0.001 * GetLng(buf, 3 + 12) '
+                                        '.V3 = 0.001 * GetLng(buf, 3 + 16) '
 
 
-                                    If MV(1) = 1 Then
-                                        .V1 = 0.001 * GetLng(buf, 3 + 8)
-                                        .M1 = .V1 * PT(1)
-                                    Else
-                                        .M1 = 0.001 * GetLng(buf, 3 + 8)
-                                        .V1 = .M1 / PT(1)
-                                    End If
-
-                                    If MV(2) = 1 Then
-                                        .V2 = 0.001 * GetLng(buf, 3 + 12)
-                                        .M2 = .V2 * PT(2)
-                                    Else
-                                        .M2 = 0.001 * GetLng(buf, 3 + 12)
-                                        .V2 = .M2 / PT(2)
-                                    End If
-
-                                    If MV(3) = 1 Then
-                                        .V3 = 0.001 * GetLng(buf, 3 + 16)
-                                        .M3 = .V3 * PT(3)
-                                    Else
-                                        .M3 = 0.001 * GetLng(buf, 3 + 16)
-                                        .V3 = .M3 / PT(3)
-                                    End If
-
-
-                                    .Q3 = 0.001 * GetLng(buf, 3 + 4) '
-                                    .Q1 = .Q3
-                                    .Q2 = .Q3
-                                    .ERRTIME1 = GetLng(buf, 3 + 32) / 60
-                                    .ERRTIMEH = .ERRTIME1
-                                    .OKTIME1 = GetLng(buf, 3 + 28) / 60
+                                        '.Q1 = 0.001 * GetLng(buf, 3 + 4)
+                                        '.Q2 = 0.001 * GetLng(buf, 3 + 8)
 
 
 
 
-                                    HC = GetUInt(buf, 3 + 26)
-                                    'HC = 0
-                                    'If GetInt(buf, (3 + 36)) <> 0 Then
-                                    '    HC = HC + 1
-                                    'End If
-                                    'If GetInt(buf, (3 + 38)) <> 0 Then
-                                    '    HC = HC + 2
-                                    'End If
-                                    'If GetInt(buf, (3 + 40)) <> 0 Then
-                                    '    HC = HC + 4
-                                    'End If
-                                    'If GetInt(buf, (3 + 42)) <> 0 Then
-                                    '    HC = HC + 8
-                                    'End If
-                                    'If GetInt(buf, (3 + 44)) <> 0 Then
-                                    '    HC = HC + 16
-                                    'End If
-                                    'If GetInt(buf, (3 + 46)) Then
-                                    '    HC = HC + 32
-                                    'End If
-                                    'If GetInt(buf, (3 + 48)) <> 0 Then
-                                    '    HC = HC + 64
-                                    'End If
-                                    'If GetInt(buf, (3 + 50)) <> 0 Then
-                                    '    HC = HC + 128
-                                    'End If
-                                    .HC = HC
-                                End With
-                                Arch.DateArch = dt2
-                                ok = True
+                                        If MV(1) = 1 Then
+                                            .V1 = 0.001 * GetLng(buf, 3 + 8)
+                                            .M1 = .V1 * PT(1)
+                                        Else
+                                            .M1 = 0.001 * GetLng(buf, 3 + 8)
+                                            .V1 = .M1 / PT(1)
+                                        End If
+
+                                        If MV(2) = 1 Then
+                                            .V2 = 0.001 * GetLng(buf, 3 + 12)
+                                            .M2 = .V2 * PT(2)
+                                        Else
+                                            .M2 = 0.001 * GetLng(buf, 3 + 12)
+                                            .V2 = .M2 / PT(2)
+                                        End If
+
+                                        If MV(3) = 1 Then
+                                            .V3 = 0.001 * GetLng(buf, 3 + 16)
+                                            .M3 = .V3 * PT(3)
+                                        Else
+                                            .M3 = 0.001 * GetLng(buf, 3 + 16)
+                                            .V3 = .M3 / PT(3)
+                                        End If
+
+
+                                        .Q3 = 0.001 * GetLng(buf, 3 + 4) '
+                                        .Q1 = .Q3
+                                        .Q2 = .Q3
+                                        .ERRTIME1 = GetLng(buf, 3 + 32) / 60
+                                        .ERRTIMEH = .ERRTIME1
+                                        .OKTIME1 = GetLng(buf, 3 + 28) / 60
+
+
+
+
+                                        HC = GetUInt(buf, 3 + 26)
+                                        'HC = 0
+                                        'If GetInt(buf, (3 + 36)) <> 0 Then
+                                        '    HC = HC + 1
+                                        'End If
+                                        'If GetInt(buf, (3 + 38)) <> 0 Then
+                                        '    HC = HC + 2
+                                        'End If
+                                        'If GetInt(buf, (3 + 40)) <> 0 Then
+                                        '    HC = HC + 4
+                                        'End If
+                                        'If GetInt(buf, (3 + 42)) <> 0 Then
+                                        '    HC = HC + 8
+                                        'End If
+                                        'If GetInt(buf, (3 + 44)) <> 0 Then
+                                        '    HC = HC + 16
+                                        'End If
+                                        'If GetInt(buf, (3 + 46)) Then
+                                        '    HC = HC + 32
+                                        'End If
+                                        'If GetInt(buf, (3 + 48)) <> 0 Then
+                                        '    HC = HC + 64
+                                        'End If
+                                        'If GetInt(buf, (3 + 50)) <> 0 Then
+                                        '    HC = HC + 128
+                                        'End If
+                                        .HC = HC
+                                    End With
+                                    Arch.DateArch = dt2
+                                    ok = True
+                                End If
                             End If
                         End If
                     End If
@@ -926,7 +955,7 @@ READMORE:
 
                     'Dim i As Int16
                     'Dim j As Int16
-
+                    Thread.Sleep(MyTransport.SleepTime(CalcInterval(1000)))
                     WaitForData()
 
 
@@ -950,82 +979,93 @@ READMORE:
                                 ok = False
                                 retsum = EncodeError(buf(2))
                             Else
+                                Dim Seconds As Long
+                                Dim CheckDate As Date
+                                Seconds = GetLng(buf, 3)
+                                CheckDate = New Date(1970, 1, 1, 0, 0, 0)
+                                CheckDate = CheckDate.AddSeconds(Seconds)
+                                NLog.GlobalDiagnosticsContext.Set("counter", "_" & DeviceID.ToString())
+                                NLog.GlobalDiagnosticsContext.Set("id", DeviceID.ToString())
 
-                                With Arch
-                                    .T1 = 0.01 * GetInt(buf, 3 + 20) '
-                                    .T2 = 0.01 * GetInt(buf, 3 + 22) '
-                                    .T3 = 0.01 * GetInt(buf, 3 + 24) '
-                                    '.M1 = 0.001 * GetLng(buf, 3 + 8) '
-                                    '.M2 = 0.001 * GetLng(buf, 3 + 12) '
-                                    '.M3 = 0.001 * GetLng(buf, 3 + 16) '
-                                    '.V1 = 0.001 * GetLng(buf, 3 + 8) '
-                                    '.V2 = 0.001 * GetLng(buf, 3 + 12) '
-                                    '.V3 = 0.001 * GetLng(buf, 3 + 16) '
+                                Logger.Debug("Half date: " + CheckDate.ToString())
+                                If (CheckDate > dt2) And CheckDate < dt2.AddDays(1) Then
+                                    With Arch
+                                        .T1 = 0.01 * GetInt(buf, 3 + 20) '
+                                        .T2 = 0.01 * GetInt(buf, 3 + 22) '
+                                        .T3 = 0.01 * GetInt(buf, 3 + 24) '
+                                        '.M1 = 0.001 * GetLng(buf, 3 + 8) '
+                                        '.M2 = 0.001 * GetLng(buf, 3 + 12) '
+                                        '.M3 = 0.001 * GetLng(buf, 3 + 16) '
+                                        '.V1 = 0.001 * GetLng(buf, 3 + 8) '
+                                        '.V2 = 0.001 * GetLng(buf, 3 + 12) '
+                                        '.V3 = 0.001 * GetLng(buf, 3 + 16) '
 
-                                    If MV(1) = 1 Then
-                                        .V1 = 0.001 * GetLng(buf, 3 + 8)
-                                        .M1 = .V1 * PT(1)
-                                    Else
-                                        .M1 = 0.001 * GetLng(buf, 3 + 8)
-                                        .V1 = .M1 / PT(1)
-                                    End If
+                                        If MV(1) = 1 Then
+                                            .V1 = 0.001 * GetLng(buf, 3 + 8)
+                                            .M1 = .V1 * PT(1)
+                                        Else
+                                            .M1 = 0.001 * GetLng(buf, 3 + 8)
+                                            .V1 = .M1 / PT(1)
+                                        End If
 
-                                    If MV(2) = 1 Then
-                                        .V2 = 0.001 * GetLng(buf, 3 + 12)
-                                        .M2 = .V2 * PT(2)
-                                    Else
-                                        .M2 = 0.001 * GetLng(buf, 3 + 12)
-                                        .V2 = .M2 / PT(2)
-                                    End If
+                                        If MV(2) = 1 Then
+                                            .V2 = 0.001 * GetLng(buf, 3 + 12)
+                                            .M2 = .V2 * PT(2)
+                                        Else
+                                            .M2 = 0.001 * GetLng(buf, 3 + 12)
+                                            .V2 = .M2 / PT(2)
+                                        End If
 
-                                    If MV(3) = 1 Then
-                                        .V3 = 0.001 * GetLng(buf, 3 + 16)
-                                        .M3 = .V3 * PT(3)
-                                    Else
-                                        .M3 = 0.001 * GetLng(buf, 3 + 16)
-                                        .V3 = .M3 / PT(3)
-                                    End If
-
-
-                                    '.Q1 = 0.001 * GetLng(buf, 3 + 4)
-                                    '.Q2 = 0.001 * GetLng(buf, 3 + 8)
-                                    .Q3 = 0.001 * GetLng(buf, 3 + 4) '
-                                    .Q1 = .Q3
-                                    .Q2 = .Q3
-                                    .ERRTIME1 = GetLng(buf, 3 + 32) / 60 '
-                                    .ERRTIMEH = .ERRTIME1 / 60
-                                    .OKTIME1 = GetLng(buf, 3 + 28) / 60 '
+                                        If MV(3) = 1 Then
+                                            .V3 = 0.001 * GetLng(buf, 3 + 16)
+                                            .M3 = .V3 * PT(3)
+                                        Else
+                                            .M3 = 0.001 * GetLng(buf, 3 + 16)
+                                            .V3 = .M3 / PT(3)
+                                        End If
 
 
-                                    HC = 0
-                                    If GetInt(buf, (3 + 36)) <> 0 Then
-                                        HC = HC + 1
-                                    End If
-                                    If GetInt(buf, (3 + 38)) <> 0 Then
-                                        HC = HC + 2
-                                    End If
-                                    If GetInt(buf, (3 + 40)) <> 0 Then
-                                        HC = HC + 4
-                                    End If
-                                    If GetInt(buf, (3 + 42)) <> 0 Then
-                                        HC = HC + 8
-                                    End If
-                                    If GetInt(buf, (3 + 44)) <> 0 Then
-                                        HC = HC + 16
-                                    End If
-                                    If GetInt(buf, (3 + 46)) Then
-                                        HC = HC + 32
-                                    End If
-                                    If GetInt(buf, (3 + 48)) <> 0 Then
-                                        HC = HC + 64
-                                    End If
-                                    If GetInt(buf, (3 + 50)) <> 0 Then
-                                        HC = HC + 128
-                                    End If
-                                    .HC = HC
-                                End With
-                                ok = True
-                                Arch.DateArch = dt2
+                                        '.Q1 = 0.001 * GetLng(buf, 3 + 4)
+                                        '.Q2 = 0.001 * GetLng(buf, 3 + 8)
+                                        .Q3 = 0.001 * GetLng(buf, 3 + 4) '
+                                        .Q1 = .Q3
+                                        .Q2 = .Q3
+                                        .ERRTIME1 = GetLng(buf, 3 + 32) / 60 '
+                                        .ERRTIMEH = .ERRTIME1 / 60
+                                        .OKTIME1 = GetLng(buf, 3 + 28) / 60 '
+
+
+                                        HC = 0
+                                        If GetInt(buf, (3 + 36)) <> 0 Then
+                                            HC = HC + 1
+                                        End If
+                                        If GetInt(buf, (3 + 38)) <> 0 Then
+                                            HC = HC + 2
+                                        End If
+                                        If GetInt(buf, (3 + 40)) <> 0 Then
+                                            HC = HC + 4
+                                        End If
+                                        If GetInt(buf, (3 + 42)) <> 0 Then
+                                            HC = HC + 8
+                                        End If
+                                        If GetInt(buf, (3 + 44)) <> 0 Then
+                                            HC = HC + 16
+                                        End If
+                                        If GetInt(buf, (3 + 46)) Then
+                                            HC = HC + 32
+                                        End If
+                                        If GetInt(buf, (3 + 48)) <> 0 Then
+                                            HC = HC + 64
+                                        End If
+                                        If GetInt(buf, (3 + 50)) <> 0 Then
+                                            HC = HC + 128
+                                        End If
+                                        .HC = HC
+                                    End With
+                                    ok = True
+                                    Arch.DateArch = dt2
+                                End If
+
                             End If
                         End If
                     End If
@@ -1079,10 +1119,16 @@ READMORE:
                 Dim Arch2 As Archive
 
                 Arch2 = New Archive
+                NLog.GlobalDiagnosticsContext.Set("counter", "_" & DeviceID.ToString())
+                NLog.GlobalDiagnosticsContext.Set("id", DeviceID.ToString())
+                Logger.Debug("Later Half : " + dt2.ToString())
                 ok = ReadArchHalf(ArchType, dt2, Arch2)
 
                 If ok Then
                     Arch1 = New Archive
+                    NLog.GlobalDiagnosticsContext.Set("counter", "_" & DeviceID.ToString())
+                    NLog.GlobalDiagnosticsContext.Set("id", DeviceID.ToString())
+                    Logger.Debug("Early Half : " + dt1.ToString())
                     ok = ReadArchHalf(ArchType, dt1, Arch1)
                 End If
 
@@ -1100,7 +1146,7 @@ READMORE:
                         .Q3 = Arch2.Q3 - Arch1.Q3
 
                         .ERRTIME1 = Arch2.ERRTIMEH - Arch1.ERRTIMEH
-                        .ErrtimeH = Arch2.ERRTIMEH
+                        .ERRTIMEH = Arch2.ERRTIMEH
                         .OKTIME1 = Arch2.OKTIME1 - Arch1.OKTIME1
                         .V1 = Arch2.V1 - Arch1.V1
                         .V2 = Arch2.V2 - Arch1.V2
@@ -1520,11 +1566,25 @@ READMORE:
 
 
     Public Overrides Sub EraseInputQueue()
+        Dim btr As Long
+        Dim sz As Long = 0
+
+
+        Dim buf(4096) As Byte
+        btr = MyTransport.BytesToRead
+        While btr > 0
+            MyTransport.Read(buf, sz, btr)
+            System.Threading.Thread.Sleep(CalcInterval(20))
+            sz += btr
+            btr = MyTransport.BytesToRead
+        End While
+
+
         If (IsBytesToRead = True) Then
             IsBytesToRead = False
         End If
         bufferindex = 0
-        System.Threading.Thread.Sleep(150)
+        System.Threading.Thread.Sleep(MyTransport.SleepTime(150))
         MyTransport.CleanPort()
     End Sub
 

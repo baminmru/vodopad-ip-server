@@ -584,7 +584,7 @@ Public MustInherit Class TVDriver
         RaiseIdle()
         While MyTransport.BytesToRead = 0 And t < 500
             If Not MyTransport.IsConnected Then Exit Sub
-            si = CalcInterval(1)
+            si = CalcInterval(10)
             Thread.Sleep(si)
             RaiseIdle()
             t = t + 1
@@ -597,7 +597,7 @@ Public MustInherit Class TVDriver
             If Not MyTransport.IsConnected Then Exit Sub
             cnt = MyTransport.BytesToRead
             RaiseIdle()
-            si = CalcInterval(10)
+            si = CalcInterval(20)
             Thread.Sleep(si)
             t = t + 1
         End While

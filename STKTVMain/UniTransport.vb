@@ -1889,6 +1889,7 @@ Public Class GRPSTransport
 
     Public Overrides Sub CleanPort()
         'ReadCount = 0
+
         DataCount = 0
     End Sub
 End Class
