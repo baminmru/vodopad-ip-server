@@ -1548,6 +1548,16 @@ filldata:
             Return "Ошибка выбора списка параметров"
         End If
 
+        Dim rI As Integer
+        Dim rSz As Integer
+        rSz = 0
+        For rI = 0 To elCnt - 1
+            ElemType = ElemTypes(rI)
+            rSz += ElemSize(ElemType)
+            rSz += 2
+        Next
+
+
 
         Dim d As Single = 0.0
 
@@ -1588,7 +1598,7 @@ filldata:
                 sz += cnt
 
 
-                If VerifySumm(b, 0, sz) Then
+                If (b(1) = &H83 Or b(1) = &H90) Or (sz >= rSz And VerifySumm(b, 0, sz)) Then
 
 
                     SequenceErrorCount = 0
@@ -1617,7 +1627,9 @@ filldata:
                                 digs = PropVal(DigMap(ElemType))
                             End If
                             IsError = False
-
+                            If i = 25 Then
+                                Debug.Print(i)
+                            End If
 
                             pSz = ElemSize(ElemType)
                             Debug.Print(ElemType.ToString & " size=" & pSz.ToString() & "  ptr=" & pRes.ToString() & " digs=" & digs.ToString())
@@ -1688,59 +1700,90 @@ filldata:
                             Try
                                 Select Case ElemType
                                     Case VKT7ElemType.G1Type
-                                        Arch.G1 = GetValue(sout, IsError)
-                                        If IsError And lastArchType = 1 Then
-                                            AErr += "G1;"
-                                        End If
-                                        If IsHC Then
-                                            Arch.MsgHC += "G1:" + CurHC + " "
-                                        End If
+                                        Try
+                                            Arch.G1 = GetValue(sout, IsError)
+                                            If IsError And lastArchType = 1 Then
+                                                AErr += "G1;"
+                                            End If
+                                            If IsHC Then
+                                                Arch.MsgHC += "G1:" + CurHC + " "
+                                            End If
+                                        Catch ex As Exception
+
+                                        End Try
+
+
 
                                     Case VKT7ElemType.G2Type
-                                        Arch.G2 = GetValue(sout, IsError)
-                                        If IsError And lastArchType = 1 Then
-                                            AErr += "G2;"
-                                        End If
-                                        If IsHC Then
-                                            Arch.MsgHC += "G2:" + CurHC + " "
-                                        End If
+                                        Try
+                                            Arch.G2 = GetValue(sout, IsError)
+                                            If IsError And lastArchType = 1 Then
+                                                AErr += "G2;"
+                                            End If
+                                            If IsHC Then
+                                                Arch.MsgHC += "G2:" + CurHC + " "
+                                            End If
+                                        Catch ex As Exception
+
+                                        End Try
+
 
                                     Case VKT7ElemType.G3Type
-                                        Arch.G3 = GetValue(sout, IsError)
-                                        If IsHC Then
-                                            Arch.MsgHC += "G3:" + CurHC + " "
-                                        End If
-                                        If IsError And lastArchType = 1 Then
-                                            AErr += "G3;"
-                                        End If
+                                        Try
+                                            Arch.G3 = GetValue(sout, IsError)
+                                            If IsHC Then
+                                                Arch.MsgHC += "G3:" + CurHC + " "
+                                            End If
+                                            If IsError And lastArchType = 1 Then
+                                                AErr += "G3;"
+                                            End If
+
+                                        Catch ex As Exception
+
+                                        End Try
 
                                     Case VKT7ElemType.G1_2Type
-                                        Arch.G4 = GetValue(sout, IsError)
-                                        If IsError And lastArchType = 1 Then
-                                            AErr += "G4;"
-                                        End If
-                                        If IsHC Then
-                                            Arch.MsgHC += "G4:" + CurHC + " "
-                                        End If
+                                        Try
+                                            Arch.G4 = GetValue(sout, IsError)
+                                            If IsError And lastArchType = 1 Then
+                                                AErr += "G4;"
+                                            End If
+                                            If IsHC Then
+                                                Arch.MsgHC += "G4:" + CurHC + " "
+                                            End If
+                                        Catch ex As Exception
+
+                                        End Try
+
 
                                     Case VKT7ElemType.G2_2Type
-                                        Arch.G5 = GetValue(sout, IsError)
-                                        If IsError And lastArchType = 1 Then
-                                            AErr += "G5;"
-                                        End If
-                                        If IsHC Then
-                                            Arch.MsgHC += "G5:" + CurHC + " "
-                                        End If
+                                        Try
+                                            Arch.G5 = GetValue(sout, IsError)
+                                            If IsError And lastArchType = 1 Then
+                                                AErr += "G5;"
+                                            End If
+                                            If IsHC Then
+                                                Arch.MsgHC += "G5:" + CurHC + " "
+                                            End If
+                                        Catch ex As Exception
+
+                                        End Try
+
 
 
                                     Case VKT7ElemType.G3_2Type
-                                        Arch.G6 = GetValue(sout, IsError)
-                                        If IsError And lastArchType = 1 Then
-                                            AErr += "G6;"
-                                        End If
-                                        If IsHC Then
-                                            Arch.MsgHC += "G6:" + CurHC + " "
-                                        End If
+                                        Try
+                                            Arch.G6 = GetValue(sout, IsError)
+                                            If IsError And lastArchType = 1 Then
+                                                AErr += "G6;"
+                                            End If
+                                            If IsHC Then
+                                                Arch.MsgHC += "G6:" + CurHC + " "
+                                            End If
+                                        Catch ex As Exception
+
+                                        End Try
+
 
                                     Case VKT7ElemType.Qg_1TypeP
                                         Arch.Q4 = GetValue(sout, IsError)
@@ -1760,61 +1803,61 @@ filldata:
                                             AErr += "Q5;"
                                         End If
 
-                            Case VKT7ElemType.M1_1Type
-                                Arch.M1 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "M1:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "M1;"
-                                    End If
+                                    Case VKT7ElemType.M1_1Type
+                                        Arch.M1 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "M1:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "M1;"
+                                        End If
 
-                            Case VKT7ElemType.M2_1Type
-                                Arch.M2 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "M2:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "M2;"
-                                    End If
+                                    Case VKT7ElemType.M2_1Type
+                                        Arch.M2 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "M2:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "M2;"
+                                        End If
 
-                            Case VKT7ElemType.M3_1Type
-                                Arch.M3 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "M3:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "M3;"
-                                    End If
+                                    Case VKT7ElemType.M3_1Type
+                                        Arch.M3 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "M3:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "M3;"
+                                        End If
 
-                            Case VKT7ElemType.M1_2Type
-                                Arch.M4 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "M4:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "M4;"
-                                End If
+                                    Case VKT7ElemType.M1_2Type
+                                        Arch.M4 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "M4:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "M4;"
+                                        End If
 
-                            Case VKT7ElemType.M2_2Type
-                                Arch.M5 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "M5:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "M5;"
-                                    End If
+                                    Case VKT7ElemType.M2_2Type
+                                        Arch.M5 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "M5:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "M5;"
+                                        End If
 
-                            Case VKT7ElemType.M3_2Type
-                                Arch.M6 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "M6:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "M6;"
-                                    End If
+                                    Case VKT7ElemType.M3_2Type
+                                        Arch.M6 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "M6:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "M6;"
+                                        End If
                                     Case VKT7ElemType.Mg_2TypeP
-                                        dim mg2 as double
+                                        Dim mg2 As Double
                                         mg2 = GetValue(sout, IsError)
                                         If IsHC Then
                                             Arch.MsgHC += "Mg2:" + CurHC + " "
@@ -1824,7 +1867,7 @@ filldata:
                                         End If
 
                                     Case VKT7ElemType.Mg_1TypeP
-                                        dim mg1 as double
+                                        Dim mg1 As Double
                                         mg1 = GetValue(sout, IsError)
                                         If IsHC Then
                                             Arch.MsgHC += "Mg1:" + CurHC + " "
@@ -1833,233 +1876,233 @@ filldata:
                                             AErr += "Mg1;"
                                         End If
 
-                            Case VKT7ElemType.V1_1Type
-                                Arch.V1 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "V1:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "V1;"
-                                    End If
-
-                            Case VKT7ElemType.V2_1Type
-                                Arch.V2 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "V2:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "V2;"
-                                    End If
-
-                            Case VKT7ElemType.V3_1Type
-                                Arch.V3 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "V3:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "V3;"
-                                    End If
-
-                            Case VKT7ElemType.V1_2Type
-                                Arch.v4 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "V4:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "V4;"
-                                    End If
-
-                            Case VKT7ElemType.V2_2Type
-                                Arch.v5 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "V5:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "V5;"
-                                    End If
-
-                            Case VKT7ElemType.V3_2Type
-                                Arch.v6 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "V6:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "V6;"
-                                    End If
-
-                            Case VKT7ElemType.Qo_1TypeP
-                                Arch.Q1 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "Q1:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "Q1;"
-                                    End If
-
-                            Case VKT7ElemType.Qo_2TypeP
-                                Arch.Q2 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "Q2:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "Q2;"
-                                    End If
-
-                            Case VKT7ElemType.t1_1Type
-                                Arch.T1 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "T1:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "T1;"
-                                    End If
-
-                            Case VKT7ElemType.t2_1Type
-                                Arch.T2 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "T2:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "T2;"
-                                    End If
-
-                            Case VKT7ElemType.t3_1Type
-                                Arch.T3 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "T3:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "T3;"
-                                    End If
-
-                            Case VKT7ElemType.t1_2Type
-                                Arch.T4 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "T4:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "T4;"
-                                    End If
-
-                            Case VKT7ElemType.t2_2Type
-                                Arch.T5 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "T5:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "T5;"
-                                    End If
-
-                            Case VKT7ElemType.t3_2Type
-                                Arch.T6 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "T6:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "T6;"
-                                    End If
-
-                            Case VKT7ElemType.NSPrintTypeM_1
-                                Try
-                                    Arch.HCtv1 = GetValue(sout, IsError, True)
-                                Catch ex As Exception
-
-                                End Try
-
-                            Case VKT7ElemType.NSPrintTypeM_2
-                                Try
-                                    Arch.HCtv2 = GetValue(sout, IsError, True)
-                                Catch ex As Exception
-
-                                End Try
-
-                                If IsError Then
-                                        If Not OldVersion Then
-                                            '       AErr += "HCtv2;"
-                                        Else
-                                            Arch.HCtv2 = 32
+                                    Case VKT7ElemType.V1_1Type
+                                        Arch.V1 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "V1:" + CurHC + " "
                                         End If
-                                    End If
+                                        If IsError Then
+                                            AErr += "V1;"
+                                        End If
 
-                            Case VKT7ElemType.P1_1Type
-                                Arch.P1 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "P1:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "P1;"
-                                    End If
+                                    Case VKT7ElemType.V2_1Type
+                                        Arch.V2 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "V2:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "V2;"
+                                        End If
 
-                            Case VKT7ElemType.P2_1Type
-                                Arch.P2 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "P2:" + CurHC + " "
-                                End If
+                                    Case VKT7ElemType.V3_1Type
+                                        Arch.V3 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "V3:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "V3;"
+                                        End If
+
+                                    Case VKT7ElemType.V1_2Type
+                                        Arch.v4 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "V4:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "V4;"
+                                        End If
+
+                                    Case VKT7ElemType.V2_2Type
+                                        Arch.v5 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "V5:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "V5;"
+                                        End If
+
+                                    Case VKT7ElemType.V3_2Type
+                                        Arch.v6 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "V6:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "V6;"
+                                        End If
+
+                                    Case VKT7ElemType.Qo_1TypeP
+                                        Arch.Q1 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "Q1:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "Q1;"
+                                        End If
+
+                                    Case VKT7ElemType.Qo_2TypeP
+                                        Arch.Q2 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "Q2:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "Q2;"
+                                        End If
+
+                                    Case VKT7ElemType.t1_1Type
+                                        Arch.T1 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "T1:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "T1;"
+                                        End If
+
+                                    Case VKT7ElemType.t2_1Type
+                                        Arch.T2 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "T2:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "T2;"
+                                        End If
+
+                                    Case VKT7ElemType.t3_1Type
+                                        Arch.T3 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "T3:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "T3;"
+                                        End If
+
+                                    Case VKT7ElemType.t1_2Type
+                                        Arch.T4 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "T4:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "T4;"
+                                        End If
+
+                                    Case VKT7ElemType.t2_2Type
+                                        Arch.T5 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "T5:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "T5;"
+                                        End If
+
+                                    Case VKT7ElemType.t3_2Type
+                                        Arch.T6 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "T6:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "T6;"
+                                        End If
+
+                                    Case VKT7ElemType.NSPrintTypeM_1
+                                        Try
+                                            Arch.HCtv1 = GetValue(sout, IsError, True)
+                                        Catch ex As Exception
+
+                                        End Try
+
+                                    Case VKT7ElemType.NSPrintTypeM_2
+                                        Try
+                                            Arch.HCtv2 = GetValue(sout, IsError, True)
+                                        Catch ex As Exception
+
+                                        End Try
+
+                                        If IsError Then
+                                            If Not OldVersion Then
+                                                '       AErr += "HCtv2;"
+                                            Else
+                                                Arch.HCtv2 = 32
+                                            End If
+                                        End If
+
+                                    Case VKT7ElemType.P1_1Type
+                                        Arch.P1 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "P1:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "P1;"
+                                        End If
+
+                                    Case VKT7ElemType.P2_1Type
+                                        Arch.P2 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "P2:" + CurHC + " "
+                                        End If
                                         If IsError Then
                                             AErr += "P2;"
                                         End If
 
                                     Case VKT7ElemType.P1_2Type
                                         Arch.P3 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "P3:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "P3;"
-                                    End If
+                                        If IsHC Then
+                                            Arch.MsgHC += "P3:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "P3;"
+                                        End If
 
-                            Case VKT7ElemType.P2_2Type
-                                Arch.P4 = GetValue(sout, IsError)
-                                If IsHC Then
-                                    Arch.MsgHC += "P4:" + CurHC + " "
-                                End If
-                                If IsError Then
-                                        AErr += "P4;"
-                                    End If
+                                    Case VKT7ElemType.P2_2Type
+                                        Arch.P4 = GetValue(sout, IsError)
+                                        If IsHC Then
+                                            Arch.MsgHC += "P4:" + CurHC + " "
+                                        End If
+                                        If IsError Then
+                                            AErr += "P4;"
+                                        End If
 
-                            Case VKT7ElemType.QntType_1P
-                                Arch.errtime1 = GetValue(sout, IsError, True)
+                                    Case VKT7ElemType.QntType_1P
+                                        Arch.errtime1 = GetValue(sout, IsError, True)
                                     'If IsError Then
                                     'AErr += "errtime1;"
                                     'End If
 
-                            Case VKT7ElemType.Qnt_2TypeP
-                                Arch.errtime2 = GetValue(sout, IsError, True)
+                                    Case VKT7ElemType.Qnt_2TypeP
+                                        Arch.errtime2 = GetValue(sout, IsError, True)
                                     'If IsError Then
                                     'AErr += "errtime2;"
                                     'End If
 
-                            Case VKT7ElemType.QntType_1HIP
-                                Arch.oktime1 = GetValue(sout, IsError, True)
+                                    Case VKT7ElemType.QntType_1HIP
+                                        Arch.oktime1 = GetValue(sout, IsError, True)
                                     'If IsError Then
                                     'AErr += "oktime1;"
                                     'End If
 
-                            Case VKT7ElemType.Qnt_2TypeHIP
-                                Arch.oktime2 = GetValue(sout, IsError, True)
-                                    'If IsError Then
-                                    'AErr += "oktime2;"
-                                    'End If
+                                    Case VKT7ElemType.Qnt_2TypeHIP
+                                        Arch.oktime2 = GetValue(sout, IsError, True)
+                                        'If IsError Then
+                                        'AErr += "oktime2;"
+                                        'End If
 
-                            End Select
-                        Catch ex As Exception
+                                End Select
+                            Catch ex As Exception
                                 IsError = True
                                 Return "Ошибка " + ex.Message
                             End Try
 
-                        pRes += (2 + pSz) ' size + pSz + Q+NC
-                    Next
+                            pRes += (2 + pSz) ' size + pSz + Q+NC
+                        Next
 
-                    'If AErr = "" Then
-                    IsError = False
-                    'End If
-                    Return AErr
+                        'If AErr = "" Then
+                        IsError = False
+                        'End If
+                        Return AErr
 
+                    End If
                 End If
-                End If
 
 
-        RaiseIdle()
+                RaiseIdle()
         Thread.Sleep(CalcInterval(2))
         cnt = MyTransport.BytesToRead
             End While

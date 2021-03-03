@@ -1464,20 +1464,13 @@ arch_final:
 
     Private Function GetLng(ByVal SI() As Byte, ByVal Pos As Integer) As Long
 
-        Dim h As ULong
-        h = 0
-        Dim b1 As Integer, b2 As Integer, b3 As Integer, b0 As Integer
-        Try
-            b0 = SI(Pos + 3)
-            b1 = SI(Pos + 2)
-            b2 = SI(Pos + 1)
-            b3 = SI(Pos + 0)
-            h = (b0 << 24) + (b1 << 16) + (b2 << 8) + b3
-        Catch ex As Exception
+        Dim h As Long
 
-            h = 0
-        End Try
+        h = BitConverter.ToInt32(SI, Pos)
+
         Return h
+
+
     End Function
     Private Function GetInt(ByVal SI() As Byte, ByVal Pos As Integer) As Integer
         Dim h As Integer

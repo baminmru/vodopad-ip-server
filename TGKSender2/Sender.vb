@@ -105,6 +105,8 @@
 lbl_pass2:
                 OK = False
 
+
+
                 If usedates Then
                     sdate = New Date(d1)
                     edate = New Date(d2)
@@ -159,15 +161,26 @@ lbl_pass2:
                         If sfile <> "" Then
 
                             fileData = ""
+                            Dim tryCnt As Integer
+                            tryCnt = 20
+                            While tryCnt > 0
+                                tryCnt -= 1
 
-                            Try
-                                ' читаем файл
-                                fileData = My.Computer.FileSystem.ReadAllText(SZTDB.FileDirectory & sfile, _
+                                OK = True
+                                Try
+                                    ' читаем файл
+                                    fileData = My.Computer.FileSystem.ReadAllText(SZTDB.FileDirectory & sfile,
                                    System.Text.Encoding.Default)
-                            Catch ex As Exception
-                                My.Computer.FileSystem.WriteAllText(LogPath(), vbCrLf & ex.Message & vbCrLf, True, System.Text.Encoding.Default)
-                                OK = False
-                            End Try
+                                    Exit While
+
+                                Catch ex As Exception
+                                    My.Computer.FileSystem.WriteAllText(LogPath(), vbCrLf & Format(Now, "HH:mm:ss") & ":" & ex.Message & vbCrLf, True, System.Text.Encoding.Default)
+                                    OK = False
+                                End Try
+
+                                Threading.Thread.Sleep(1500)
+                            End While
+
 
 
                             My.Computer.FileSystem.WriteAllText(LogPath(), vbCrLf & fileData & vbCrLf, True, System.Text.Encoding.Default)
